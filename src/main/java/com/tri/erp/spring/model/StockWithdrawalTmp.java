@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Date;
 
 /**
  * Created by Ryan D. Repe on 10/5/2014.
@@ -72,5 +73,165 @@ public class StockWithdrawalTmp {
 
     @Column(name = "sw_number")
     private String referenceNo;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getTransId() {
+        return transId;
+    }
+
+    public void setTransId(int transId) {
+        this.transId = transId;
+    }
+
+    public Date getTransDate() {
+        return transDate;
+    }
+
+    public void setTransDate(Date transDate) {
+        this.transDate = transDate;
+    }
+
+    public int getDeptId() {
+        return deptId;
+    }
+
+    public void setDeptId(int deptId) {
+        this.deptId = deptId;
+    }
+
+    public String getPurpose() {
+        return purpose;
+    }
+
+    public void setPurpose(String purpose) {
+        this.purpose = purpose;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(int locationId) {
+        this.locationId = locationId;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getApprovedBy() {
+        return approvedBy;
+    }
+
+    public void setApprovedBy(int approvedBy) {
+        this.approvedBy = approvedBy;
+    }
+
+    public int getReceivedBy() {
+        return receivedBy;
+    }
+
+    public void setReceivedBy(int receivedBy) {
+        this.receivedBy = receivedBy;
+    }
+
+    public int getRequisitioned() {
+        return requisitioned;
+    }
+
+    public void setRequisitioned(int requisitioned) {
+        this.requisitioned = requisitioned;
+    }
+
+    public int getPreparedBy() {
+        return preparedBy;
+    }
+
+    public void setPreparedBy(int preparedBy) {
+        this.preparedBy = preparedBy;
+    }
+
+    public int getNotedBy() {
+        return notedBy;
+    }
+
+    public void setNotedBy(int notedBy) {
+        this.notedBy = notedBy;
+    }
+
+    public int getIssuedBy() {
+        return issuedBy;
+    }
+
+    public void setIssuedBy(int issuedBy) {
+        this.issuedBy = issuedBy;
+    }
+
+    public int getDocStatusId() {
+        return docStatusId;
+    }
+
+    public void setDocStatusId(int docStatusId) {
+        this.docStatusId = docStatusId;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    public Date getTransDateTime() {
+        return transDateTime;
+    }
+
+    public void setTransDateTime(Date transDateTime) {
+        this.transDateTime = transDateTime;
+    }
+
+    public int getRequestType() {
+        return requestType;
+    }
+
+    public void setRequestType(int requestType) {
+        this.requestType = requestType;
+    }
+
+    public String getReferenceNo() {
+        return referenceNo;
+    }
+
+    public void setReferenceNo(String referenceNo) {
+        this.referenceNo = referenceNo;
+    }
 }
 
