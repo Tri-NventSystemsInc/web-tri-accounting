@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 /**
  * Created by Ryan D. Repe on 10/5/2014.
@@ -74,6 +75,9 @@ public class StockWithdrawalTmp {
 
     @Column(name = "sw_number")
     private String referenceNo;
+
+    @OneToMany(mappedBy = "stockWithdrawal")
+    private List<StockWithdrawalDetailTmp> details;
 
     public int getId() {
         return id;
