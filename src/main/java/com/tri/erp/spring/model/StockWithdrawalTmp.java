@@ -1,9 +1,8 @@
 package com.tri.erp.spring.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.persistence.*;
 import java.sql.Date;
 
 /**
@@ -14,6 +13,7 @@ import java.sql.Date;
 public class StockWithdrawalTmp {
 
     @Id
+    @GeneratedValue
     @Column(name = "stock_withdrawal_id")
     private int id;
 
@@ -27,6 +27,7 @@ public class StockWithdrawalTmp {
     private int deptId;
 
     @Column
+    @NotEmpty
     private String purpose;
 
     @Column
