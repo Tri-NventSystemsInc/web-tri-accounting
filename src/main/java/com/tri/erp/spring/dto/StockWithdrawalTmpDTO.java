@@ -1,88 +1,37 @@
-package com.tri.erp.spring.model;
+package com.tri.erp.spring.dto;
 
-import com.tri.erp.spring.model.enums.RequestType;
-import org.hibernate.validator.constraints.NotEmpty;
+import com.tri.erp.spring.model.Department;
+import com.tri.erp.spring.model.StockWithdrawalDetailTmp;
 
-import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Ryan D. Repe on 10/5/2014.
  */
-@Entity
-@Table(name = "stock_withdrawal_tmp")
-public class StockWithdrawalTmp {
-
-    @Id
-    @GeneratedValue
-    @Column(name = "stock_withdrawal_id")
+public class StockWithdrawalTmpDTO {
     private int id;
-
-    @Column(name = "trans_id")
     private int transId;
-
-    @Column(name = "trans_date")
     private java.sql.Date transDate;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="dept_id")
     private Department department;
-
-    @Column
-    @NotEmpty
     private String purpose;
-
-    @Column
     private String description;
-
-    @Column(name = "inv_loc_id")
     private int locationId;
-
-    @Column(name = "inv_cat_id")
     private int categoryId;
-
-    @Column(name = "user_id")
     private int userId;
-
-    @Column(name = "approved_by")
     private int approvedBy;
-
-    @Column(name = "received_by")
     private int receivedBy;
-
-    @Column
     private int requisitioned;
-
-    @Column(name = "prepared_by")
     private int preparedBy;
-
-    @Column(name = "noted_by")
     private int notedBy;
-
-    @Column(name = "issued_by")
     private int issuedBy;
-
-    @Column(name = "doc_status_id")
     private int docStatusId;
-
-    @Column
     private String remarks;
-
-    @Column(name = "trans_date_time")
     private java.sql.Date transDateTime;
-
-//    @Column(name = "request_type")
-//    private int requestTypeId;
-
-    @Enumerated(EnumType.ORDINAL)
-    private RequestType requestType;
-
-    @Column(name = "sw_number")
+    private int requestTypeId;
     private String referenceNo;
-
-    @OneToMany(mappedBy = "stockWithdrawal")
-    private List<StockWithdrawalDetailTmp> details;
+    private List<StockWithdrawalDetailTmp> details = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -114,14 +63,6 @@ public class StockWithdrawalTmp {
 
     public void setDepartment(Department department) {
         this.department = department;
-    }
-
-    public List<StockWithdrawalDetailTmp> getDetails() {
-        return details;
-    }
-
-    public void setDetails(List<StockWithdrawalDetailTmp> details) {
-        this.details = details;
     }
 
     public String getPurpose() {
@@ -236,13 +177,13 @@ public class StockWithdrawalTmp {
         this.transDateTime = transDateTime;
     }
 
-//    public RequestType getRequestType() {
-//        return RequestType.parse(this.requestTypeId);
-//    }
-//
-//    public void setRequestType(RequestType type) {
-//        this.requestTypeId = type.getId();
-//    }
+    public int getRequestTypeId() {
+        return requestTypeId;
+    }
+
+    public void setRequestTypeId(int requestTypeId) {
+        this.requestTypeId = requestTypeId;
+    }
 
     public String getReferenceNo() {
         return referenceNo;
@@ -252,12 +193,16 @@ public class StockWithdrawalTmp {
         this.referenceNo = referenceNo;
     }
 
-    public RequestType getRequestType() {
-        return requestType;
+    public List<StockWithdrawalDetailTmp> getDetails() {
+        return details;
     }
 
-    public void setRequestType(RequestType requestType) {
-        this.requestType = requestType;
+    public void setDetails(List<StockWithdrawalDetailTmp> details) {
+        this.details = details;
+    }
+
+    @Override
+    public String toString() {
+        return referenceNo;
     }
 }
-
