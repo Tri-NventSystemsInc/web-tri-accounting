@@ -1,12 +1,11 @@
 package com.tri.erp.spring.service.implementations;
 
-import com.tri.erp.spring.commons.Response;
-import com.tri.erp.spring.commons.beans.CreateAccountResponse;
+import com.tri.erp.spring.reponse.AccountResponse;
+import com.tri.erp.spring.reponse.CreateAccountAccountResponse;
 import com.tri.erp.spring.commons.helpers.Checker;
 import com.tri.erp.spring.commons.helpers.MessageFormatter;
 import com.tri.erp.spring.commons.helpers.StringFormatter;
-import com.tri.erp.spring.dto.AccountDTO;
-import com.tri.erp.spring.json_param.SegmentParam;
+import com.tri.erp.spring.reponse.AccountDto;
 import com.tri.erp.spring.model.*;
 import com.tri.erp.spring.repo.*;
 import com.tri.erp.spring.service.interfaces.AccountService;
@@ -29,7 +28,7 @@ import java.util.Set;
  */
 @Service
 public class AccountServiceImpl implements AccountService {
-    private List<AccountDTO> accountsDtoList;
+    private List<AccountDto> accountsDtoList;
 
     @Resource
     private AccountRepo accountRepo;
@@ -61,54 +60,54 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<AccountDTO> findAll() {
+    public List<AccountDto> findAll() {
         this.accountsDtoList = new ArrayList<>();
 
         List<Account> accountList = accountRepo.findAllByOrderByTitleAsc();
 
         for(Account account : accountList) {
-            AccountDTO accountDTO = new AccountDTO();
-            accountDTO.setCode(account.getCode());
-            accountDTO.setParentAccountId(account.getParentAccountId());
-            accountDTO.setId(account.getId());
-            accountDTO.setTitle(account.getTitle());
-            accountDTO.setLevel(account.getLevel());
+            AccountDto accountDto = new AccountDto();
+            accountDto.setCode(account.getCode());
+            accountDto.setParentAccountId(account.getParentAccountId());
+            accountDto.setId(account.getId());
+            accountDto.setTitle(account.getTitle());
+            accountDto.setLevel(account.getLevel());
             if (account.getAccountType() != null) {
-                accountDTO.setAccountType(account.getAccountType());
+                accountDto.setAccountType(account.getAccountType());
             }
-            accountsDtoList.add(accountDTO);
+            accountsDtoList.add(accountDto);
         }
         return accountsDtoList;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<AccountDTO> findAllTree() {
+    public List<AccountDto> findAllTree() {
         this.accountsDtoList = new ArrayList<>();
 
         List<Account> topLevelAccounts = accountRepo.findByParentAccountIdOrderByCodeAsc(0);// top level accounts
         for(Account account : topLevelAccounts) {
-            AccountDTO accountDTO = new AccountDTO();
-            accountDTO.setCode(account.getCode());
-            accountDTO.setId(account.getId());
-            accountDTO.setTitle(account.getTitle());
+            AccountDto accountDto = new AccountDto();
+            accountDto.setCode(account.getCode());
+            accountDto.setId(account.getId());
+            accountDto.setTitle(account.getTitle());
             if (account.getAccountType() != null) {
-                accountDTO.setAccountType(account.getAccountType());
+                accountDto.setAccountType(account.getAccountType());
             }
-            this.accountsDtoList.add(accountDTO);
+            this.accountsDtoList.add(accountDto);
             findDescendants(account);
         }
         return this.accountsDtoList;
     }
 
     @Override
-    public List<AccountDTO> findAllBySegment(String[] segmentIds) {
-        List<AccountDTO> list = new ArrayList<>();
+    public List<AccountDto> findAllBySegment(String[] segmentIds) {
+        List<AccountDto> list = new ArrayList<>();
         if (segmentIds != null && segmentIds.length > 0) {
             List<Object[]> result = accountRepo.findBySegmentIds(Arrays.asList(segmentIds));
             if (result != null) {
                 for(Object[] objects : result) {
-                    AccountDTO a = new AccountDTO();
+                    AccountDto a = new AccountDto();
                     a.setId((Integer) objects[0]);
                     a.setTitle((String) objects[1]);
                     a.setCode((String) objects[2]);
@@ -130,44 +129,44 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional(readOnly = true)
-    public AccountDTO findById(int id) {
-        AccountDTO accountDTO = new AccountDTO();
+    public AccountDto findById(int id) {
+        AccountDto accountDto = new AccountDto();
 
         Account account = accountRepo.findOne(id);
         if (account != null) {
-            accountDTO.setId(account.getId());
-            accountDTO.setTitle(account.getTitle());
-            accountDTO.setCode(account.getCode());
+            accountDto.setId(account.getId());
+            accountDto.setTitle(account.getTitle());
+            accountDto.setCode(account.getCode());
             if (account.getAccountType() != null) {
-                accountDTO.setAccountType(account.getAccountType());
+                accountDto.setAccountType(account.getAccountType());
             }
-            accountDTO.setLevel(account.getLevel());
-            accountDTO.setAuxAccount(account.getAuxiliaryAccount());
-            accountDTO.setGLAccount(account.getGLAccount());
+            accountDto.setLevel(account.getLevel());
+            accountDto.setAuxAccount(account.getAuxiliaryAccount());
+            accountDto.setGLAccount(account.getGLAccount());
             if (account.getAccountGroup() != null) {
-                accountDTO.setAccountGroup(account.getAccountGroup());
+                accountDto.setAccountGroup(account.getAccountGroup());
             }
-            accountDTO.hasSL(account.hasSL());
-            accountDTO.isActive(account.isActive());
+            accountDto.hasSL(account.hasSL());
+            accountDto.isActive(account.isActive());
 
             Account parentAccount = accountRepo.findOne(account.getParentAccountId());
             if (parentAccount != null) {
-                accountDTO.setParentAccount(parentAccount);
+                accountDto.setParentAccount(parentAccount);
             }
 
             List<SegmentAccount> segmentAccounts = segmentAccountRepo.findByAccountId(account.getId());
 
-            accountDTO.setSegmentAccounts(segmentAccounts);
-            accountDTO.setSLAccount(account.getSLAccount());
-            accountDTO.setNormalBalance(account.getNormalBalance());
-            accountDTO.setIsHeader(account.getIsHeader());
+            accountDto.setSegmentAccounts(segmentAccounts);
+            accountDto.setSLAccount(account.getSLAccount());
+            accountDto.setNormalBalance(account.getNormalBalance());
+            accountDto.setIsHeader(account.getIsHeader());
         }
-        return accountDTO;
+        return accountDto;
     }
 
     @Transactional
-    public Response processCreate(Account account, BindingResult bindingResult, MessageSource messageSource) {
-        Response response = new CreateAccountResponse();
+    public AccountResponse processCreate(Account account, BindingResult bindingResult, MessageSource messageSource) {
+        AccountResponse response = new CreateAccountAccountResponse();
         MessageFormatter messageFormatter = new MessageFormatter(bindingResult, messageSource, response);
 
         AccountValidator accountValidator = new AccountValidator();
@@ -243,7 +242,7 @@ public class AccountServiceImpl implements AccountService {
         return accountRepo.findByIdNotInOrderByTitleAsc(accountId);
     }
 
-    public Response processUpdate(Account account, BindingResult bindingResult, MessageSource messageSource) {
+    public AccountResponse processUpdate(Account account, BindingResult bindingResult, MessageSource messageSource) {
         return processCreate(account, bindingResult, messageSource);
     }
 
@@ -268,18 +267,18 @@ public class AccountServiceImpl implements AccountService {
         List<Account> children = accountRepo.findByParentAccountIdOrderByCodeAsc(currentAccount.getId());
 
         for (Account childAccount : children) {
-            AccountDTO accountDTO = new AccountDTO();
+            AccountDto accountDto = new AccountDto();
 
-            accountDTO.setCode(childAccount.getCode());
-            accountDTO.setId(childAccount.getId());
-            accountDTO.setTitle(childAccount.getTitle());
-            accountDTO.setParentAccountId(childAccount.getParentAccountId());
+            accountDto.setCode(childAccount.getCode());
+            accountDto.setId(childAccount.getId());
+            accountDto.setTitle(childAccount.getTitle());
+            accountDto.setParentAccountId(childAccount.getParentAccountId());
 
             if (childAccount.getAccountType() != null) {
-                accountDTO.setAccountType(childAccount.getAccountType());
+                accountDto.setAccountType(childAccount.getAccountType());
             }
 
-            this.accountsDtoList.add(accountDTO);
+            this.accountsDtoList.add(accountDto);
             findDescendants(childAccount);
         }
     }

@@ -1,21 +1,13 @@
 package com.tri.erp.spring.controller;
 
-import com.tri.erp.spring.commons.Response;
-import com.tri.erp.spring.commons.beans.CreateAccountResponse;
-import com.tri.erp.spring.commons.helpers.MessageFormatter;
-import com.tri.erp.spring.dto.AccountDTO;
-import com.tri.erp.spring.model.Account;
-import com.tri.erp.spring.service.interfaces.AccountService;
+import com.tri.erp.spring.reponse.StatusResponse;
+import com.tri.erp.spring.service.implementations.DownloadService;
+import com.tri.erp.spring.service.implementations.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by TSI Admin on 9/9/2014.
@@ -23,6 +15,12 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin/coa")
 public class ChartOfAccountsController {
+    @Autowired
+    private DownloadService downloadService;
+
+    @Autowired
+    private TokenService tokenService;
+
     private final String BASE_PATH = "admin/coa/partials/";
 
     // view providers
@@ -46,6 +44,27 @@ public class ChartOfAccountsController {
         return BASE_PATH + "account-details";
     }
     // end: view providers
+
+
+    // coa print
+
+    @RequestMapping(value="/download/progress")
+    public @ResponseBody
+    StatusResponse checkDownloadProgress(@RequestParam String token) {
+        return new StatusResponse(true, tokenService.check(token));
+    }
+
+    @RequestMapping(value="/download/token")
+    public @ResponseBody StatusResponse getDownloadToken() {
+        return new StatusResponse(true, tokenService.generate());
+    }
+
+    @RequestMapping(value="/download")
+    public void download(@RequestParam(value = "type") String type,
+                         @RequestParam(value = "token") String token,
+                         HttpServletResponse response) {
+        downloadService.download(type, token, response);
+    }
 }
 
 // TODO: work with parent account in hibernate to avoid workarounds

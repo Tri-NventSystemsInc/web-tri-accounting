@@ -1,7 +1,7 @@
 package com.tri.erp.spring.controller;
 
-import com.tri.erp.spring.model.AccountGroup;
-import com.tri.erp.spring.service.interfaces.AccountGroupService;
+import com.tri.erp.spring.model.Item;
+import com.tri.erp.spring.service.interfaces.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,16 +13,15 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("/account/group")
-public class AccountGroupController {
+@RequestMapping("/item")
+public class ItemController {
 
     @Autowired
-    AccountGroupService accountGroupService;
+    ItemService itemService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public List<AccountGroup> getAccountGroups() {
-        return accountGroupService.findAll();
+    public List<Item> itemList() {
+        return itemService.findAll();
     }
-
 }

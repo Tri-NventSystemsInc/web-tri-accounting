@@ -5,4 +5,5 @@ package com.tri.erp.spring.commons;
  */
 public class GlobalConstant {
     public final static String PIPE = " | ";
+    public final static String JASPER_BASE_PATH = "/jasper";
 }

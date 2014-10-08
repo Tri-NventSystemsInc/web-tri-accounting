@@ -187,7 +187,7 @@ coaControllers.controller('newAccountCtrl', ['$scope', '$routeParams', '$http', 
     };
 }]);
 
-coaControllers.controller('treeGridCtrl',  ['$scope', 'accountFactory', function($scope, accountFactory) {
+coaControllers.controller('treeGridCtrl',  ['$scope', 'accountFactory', '$http', function($scope, accountFactory, $http) {
     var tree, myTreeData;
     var rawTreeData;
 
@@ -206,6 +206,41 @@ coaControllers.controller('treeGridCtrl',  ['$scope', 'accountFactory', function
 
     $scope.accounts_tree_handler = function(branch){
         console.log('you clicked on', branch)
+    }
+
+    $scope.printCoa = function(type) {
+        toastr.info("Printing coa...");
+        $http.get('/admin/coa/download/token').success(function(response) {
+            // Store token
+            var token = response.message[0];
+
+            // Show progress dialog
+            $('#msgbox').text('Processing download...');
+            $('#msgbox').dialog(
+                {	title: 'Download',
+                    modal: true,
+                    buttons: {"Close": function()  {
+                        $(this).dialog("close");}
+                    }
+                });
+
+            // Start download
+            window.location = '/admin/coa/download'+'?token='+token+'&type='+type;
+
+            // Check periodically if download has started
+            var frequency = 1000;
+            var timer = setInterval(function() {
+                $.get('/admin/coa/download/progress', {token: token},
+                    function(response) {
+                        // If token is not returned, download has started
+                        // Close progress dialog if started
+                        if (response.message[0] != token) {
+                            $('#msgbox').dialog('close');
+                            clearInterval(timer);
+                        }
+                    });
+            }, frequency);
+        });
     }
 
     function getTree(data, primaryIdName, parentIdName){

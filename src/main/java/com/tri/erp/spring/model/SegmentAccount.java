@@ -27,7 +27,8 @@ public class SegmentAccount  implements java.io.Serializable {
     @JoinColumn(name = "acct_id")
     private Account account;
 
-    @ManyToOne
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bus_seg_id")
     private BusinessSegment businessSegment;
 

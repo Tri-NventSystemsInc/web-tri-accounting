@@ -4,7 +4,7 @@
 <button title="browse account"  class="btn btn-primary" data-toggle="modal" data-target="#accountWithSegmentModal"> {{ btnLabel }}</button>
 
 <div class="modal fade" id="accountWithSegmentModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" style="width: 90%"  ng-app="cmnAccountBrowserWithSegmentApp">
+    <div class="modal-dialog modal-lg" style="width: 90%">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>

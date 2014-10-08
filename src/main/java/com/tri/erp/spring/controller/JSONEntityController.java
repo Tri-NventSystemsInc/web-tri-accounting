@@ -6,24 +6,14 @@
 
 package com.tri.erp.spring.controller;
 
-import com.tri.erp.spring.dto.AccountDTO;
-import com.tri.erp.spring.model.AccountGroup;
-import com.tri.erp.spring.model.AccountType;
-import com.tri.erp.spring.model.BusinessSegment;
-import com.tri.erp.spring.service.interfaces.AccountGroupService;
-import com.tri.erp.spring.service.interfaces.AccountService;
-import com.tri.erp.spring.service.interfaces.AccountTypeService;
-import com.tri.erp.spring.service.interfaces.BusinessSegmentService;
+import com.tri.erp.spring.model.SlEntity;
+import com.tri.erp.spring.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -34,4 +24,14 @@ import java.util.List;
 @Controller
 @RequestMapping("/json")
 public class JSONEntityController {
+
+
+    @Autowired
+    SlEntityService slEntityService;
+
+    @RequestMapping(value = "/entities", method = RequestMethod.GET)
+    @ResponseBody
+    public List<SlEntity> getEntities() {
+        return slEntityService.findAll();
+    }
 }

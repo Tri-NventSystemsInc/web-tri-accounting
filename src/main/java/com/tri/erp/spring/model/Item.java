@@ -1,71 +1,66 @@
 package com.tri.erp.spring.model;
 
-import com.tri.erp.spring.model.enums.InventoryCategory;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 
 /**
- * Created by Ryan D. Repe on 10/5/2014.
+ * Created by TSI Admin on 10/6/2014.
  */
 @Entity
 @Table(name = "item")
 public class Item {
-
     @Id
     @GeneratedValue
     @Column(name = "item_id")
-    private int id;
+    private Integer id;
 
-    @Column(name = "nrc_no")
-    @Size(min = 2, max = 10)
-    private String nrcNo;
-
+    @NotEmpty
     @Column(name = "code_no")
-    @Size(min = 2, max = 10)
-    private String codeNo;
+    private String code;
 
+    @NotEmpty
     @Column(name = "item_desc")
-    @Size(min = 3, max = 1000)
     private String description;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "unit_id")
     private UnitMeasure unit;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seg_acct_id")
-    private SegmentAccount account;
+    private SegmentAccount segmentAccount;
 
-    @Column(name = "inv_cat_id")
-    private int categoryId;
-
-    private InventoryCategory getCategory(){
-        return InventoryCategory.parse(this.categoryId);
+    public Item(String code, String description, UnitMeasure unit, SegmentAccount segmentAccount) {
+        this.code = code;
+        this.description = description;
+        this.unit = unit;
+        this.segmentAccount = segmentAccount;
     }
 
-    public int getId() {
+    public Item(){}
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getNrcNo() {
-        return nrcNo;
+    public String getCode() {
+        return code;
     }
 
-    public void setNrcNo(String nrcNo) {
-        this.nrcNo = nrcNo;
-    }
-
-    public String getCodeNo() {
-        return codeNo;
-    }
-
-    public void setCodeNo(String codeNo) {
-        this.codeNo = codeNo;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getDescription() {
@@ -84,11 +79,11 @@ public class Item {
         this.unit = unit;
     }
 
-    public SegmentAccount getAccount() {
-        return account;
+    public SegmentAccount getSegmentAccount() {
+        return segmentAccount;
     }
 
-    public void setAccount(SegmentAccount account) {
-        this.account = account;
+    public void setSegmentAccount(SegmentAccount segmentAccount) {
+        this.segmentAccount = segmentAccount;
     }
 }

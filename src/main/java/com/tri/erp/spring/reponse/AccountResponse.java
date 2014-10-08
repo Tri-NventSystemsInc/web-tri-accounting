@@ -1,11 +1,11 @@
-package com.tri.erp.spring.commons;
+package com.tri.erp.spring.reponse;
 
 import java.util.ArrayList;
 
 /**
  * Created by TSI Admin on 9/10/2014.
  */
-public abstract class Response {
+public abstract class AccountResponse {
     private boolean success;
     private ArrayList<String> fields = new ArrayList<>();
     private ArrayList<String> messages = new ArrayList<>();

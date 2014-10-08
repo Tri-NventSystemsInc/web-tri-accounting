@@ -1,21 +1,17 @@
-package com.tri.erp.spring.dto;
+package com.tri.erp.spring.reponse;
 
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-import com.google.common.base.Objects;
 import com.tri.erp.spring.model.Account;
 import com.tri.erp.spring.model.AccountGroup;
 import com.tri.erp.spring.model.AccountType;
 import com.tri.erp.spring.model.SegmentAccount;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by arjayadong on 9/9/14.
  */
-public class AccountDTO {
+public class AccountDto {
 
     private int id;
     private String code;
