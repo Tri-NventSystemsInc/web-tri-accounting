@@ -70,4 +70,9 @@ public class SegmentAccount  implements java.io.Serializable {
     public void setBusinessSegment(BusinessSegment businessSegment) {
         this.businessSegment = businessSegment;
     }
+
+    @Override
+    public String toString() {
+        return this.getAccountCode() + " " + this.getAccount().getTitle();
+    }
 }

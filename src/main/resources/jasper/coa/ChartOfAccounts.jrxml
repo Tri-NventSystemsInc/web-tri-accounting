@@ -3,8 +3,8 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="COM_NAME" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="COM_ADDRESS" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="COMP_NAME" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="COMP_ADDRESS" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="SEGMENT" class="java.lang.String"/>
 	<parameter name="LOGO_PATH" class="java.lang.String"/>
 	<queryString>
@@ -13,32 +13,12 @@
 	<field name="title" class="java.lang.String">
 		<fieldDescription><![CDATA[title]]></fieldDescription>
 	</field>
+	<field name="type" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
-			<textField isBlankWhenNull="true">
-				<reportElement uuid="cceff68b-2749-43fb-b145-964804773e89" x="0" y="17" width="572" height="15"/>
-				<textElement textAlignment="Center">
-					<font fontName="Calibri Light" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{COM_ADDRESS}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement uuid="dc501aaf-3902-4ef7-8291-14cb213deef4" x="0" y="0" width="572" height="17"/>
-				<textElement textAlignment="Center">
-					<font fontName="Calibri Light" size="11" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{COM_NAME}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement uuid="5dd45294-4556-4a18-af85-a67c74926d1e" x="0" y="39" width="572" height="20"/>
-				<textElement textAlignment="Center">
-					<font fontName="Calibri Light" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[CHART OF ACCOUNTS]]></text>
-			</staticText>
 			<textField pattern="" isBlankWhenNull="true">
 				<reportElement uuid="bb0150b9-9db8-4831-8df5-3eafdf1c899e" mode="Transparent" x="0" y="59" width="572" height="16" forecolor="#000000" backcolor="#FFFFFF"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
@@ -47,9 +27,30 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{SEGMENT}]]></textFieldExpression>
 			</textField>
-			<image isLazy="true" onErrorType="Icon">
-				<reportElement uuid="68def9f2-77c5-4a6e-868f-b5e9000b453e" x="89" y="0" width="60" height="52"/>
-				<imageExpression><![CDATA[$P{LOGO_PATH}]]></imageExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="cceff68b-2749-43fb-b145-964804773e89" x="0" y="17" width="572" height="15"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri Light" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{COMP_ADDRESS}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="dc501aaf-3902-4ef7-8291-14cb213deef4" x="0" y="0" width="572" height="17"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri Light" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{COMP_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="5dd45294-4556-4a18-af85-a67c74926d1e" x="0" y="39" width="572" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri Light" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CHART OF ACCOUNTS]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="4a717a30-50b4-43e9-94f0-2153166e8027" x="89" y="0" width="60" height="52"/>
+				<imageExpression><![CDATA[$P{LOGO_PATH} + "/report-logo.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -77,16 +78,31 @@
 			<line>
 				<reportElement uuid="d00a72f3-751f-49c7-abd8-32a23915f9a9" x="0" y="20" width="572" height="1"/>
 			</line>
+			<staticText>
+				<reportElement uuid="ea7231c7-99d5-4207-8b3c-c2c7d48e06ab" mode="Transparent" x="442" y="1" width="106" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Calibri Light" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[TYPE]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="15" splitType="Stretch">
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="e6035b55-5419-4047-b38c-56a66de90a64" x="0" y="0" width="572" height="15"/>
+				<reportElement uuid="e6035b55-5419-4047-b38c-56a66de90a64" x="0" y="0" width="440" height="15"/>
 				<textElement verticalAlignment="Middle" markup="html">
 					<font fontName="Calibri Light"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="5ac4ec58-2e05-4da2-a359-d091fc0eb02f" x="442" y="-1" width="130" height="16"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font fontName="Calibri Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{type}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

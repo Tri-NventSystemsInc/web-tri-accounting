@@ -18,6 +18,7 @@
                     scope.$apply(function () {
                         itemFactory.getItems().success(function (data) {
                             scope.items = data;
+                            console.log(data);
                         });
                     });
                 });

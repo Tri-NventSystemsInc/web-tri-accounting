@@ -11,6 +11,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.JRXlsAbstractExporterParameter;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -86,7 +87,7 @@ public class ExporterService {
 	public void exportPdf(JasperPrint jp, ByteArrayOutputStream baos) {
 		// Create a JRXlsExporter instance
 		JRPdfExporter exporter = new JRPdfExporter();
-		 
+
 		// Here we assign the parameters jp and baos to the exporter
 		exporter.setParameter(JRExporterParameter.JASPER_PRINT, jp);
 		exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, baos);

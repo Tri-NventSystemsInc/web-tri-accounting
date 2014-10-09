@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 public class CoaPrintDto implements Serializable {
     private String title;
+    private String type;
 
     public String getTitle() {
         return this.title;
@@ -14,6 +15,14 @@ public class CoaPrintDto implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override

@@ -209,37 +209,17 @@ coaControllers.controller('treeGridCtrl',  ['$scope', 'accountFactory', '$http',
     }
 
     $scope.printCoa = function(type) {
-        toastr.info("Printing coa...");
+
+        toastr.options.extendedTimeOut = 0;
+        toastr.options.timeOut = 0;
+        toastr.info("Processing report...");
+
         $http.get('/admin/coa/download/token').success(function(response) {
             // Store token
             var token = response.message[0];
 
-            // Show progress dialog
-            $('#msgbox').text('Processing download...');
-            $('#msgbox').dialog(
-                {	title: 'Download',
-                    modal: true,
-                    buttons: {"Close": function()  {
-                        $(this).dialog("close");}
-                    }
-                });
-
             // Start download
-            window.location = '/admin/coa/download'+'?token='+token+'&type='+type;
-
-            // Check periodically if download has started
-            var frequency = 1000;
-            var timer = setInterval(function() {
-                $.get('/admin/coa/download/progress', {token: token},
-                    function(response) {
-                        // If token is not returned, download has started
-                        // Close progress dialog if started
-                        if (response.message[0] != token) {
-                            $('#msgbox').dialog('close');
-                            clearInterval(timer);
-                        }
-                    });
-            }, frequency);
+            window.location.href = '/admin/coa/download'+'?token='+token+'&type='+type;
         });
     }
 
