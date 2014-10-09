@@ -20,65 +20,7 @@
     <title>Firefly | Login</title>
 </head>
 <body class="gray-bg">
-<%--<div class="container">
-	<div class="row-top-buffer"></div>
-	<form  class="m-t" name="f" method="post" action="${pageContext.request.contextPath}/login">
-		<div class="row">
-			<div class="col-md-4 col-md-offset-4" style="border: solid 1px gray;"> 
-		            <fieldset>
-		                <legend>Please Login:</legend>
-		                <c:if test="${param.error != null}">
-			                <div class="alert alert-danger">    
-			                    Invalid username and password.
-			                </div>
-		                </c:if>
-		                 <c:if test="${param.logout != null}">
-			                <div class="alert alert-info">    
-			                    You have been logged out.
-			                </div>
-		                </c:if>   
-		                
-		                <div class="row">
-					      <div class="col-md-4">
-				      	    <label for="username">Username</label>
-				      	  </div>
-					      <div class="col-md-8">
-					      	<div class="input-group">
-								  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-								  <input class="form-control" type="text" id="username" name="username" placeholder="Username" />
-							</div>     
-					      </div>
-					    </div>  
-					    
-					    <div class="row row-top-buffer">
-					      <div class="col-md-4">
-					         <label for="password">Password</label>
-					      </div>
-					      <div class="col-md-8"> 
-						      <div class="input-group">
-								  <span class="input-group-addon">@</span>
-								  <input class="form-control" type="password" id="password" name="password" placeholder="Password" />
-							  </div>
-						  </div>
-					    </div>  
-					    
-					    <div class="row row-top-buffer">
-					      <div class="col-md-4">
-					         <label for="password">&nbsp;</label>
-					      </div>
-					      <div class="col-md-8 form-actions">
-		                    <button type="submit" class="btn btn-primary">Log in</button> 
-					      </div>
-					    </div>   
-					    
-					    <div class="row row-top-buffer"> 
-					    </div> 
-		            </fieldset>
-		        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
-	 		</div>
-	 	</div>
- 	</form>
-</div> --%>
+
 
 <div class="middle-box text-center loginscreen  animated fadeInDown">
     <div>
