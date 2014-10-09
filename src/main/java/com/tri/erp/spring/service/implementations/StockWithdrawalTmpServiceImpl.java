@@ -13,14 +13,15 @@ import java.util.List;
  * Created by Ryan D. Repe on 10/8/2014.
  */
 public class StockWithdrawalTmpServiceImpl implements StockWithdrawalTmpService {
+
     private List<StockWithdrawalTmpDto> tmpDtoList;
 
     @Resource
-    private StockWithdrawalTmpRepo tmpRepo;
+    private StockWithdrawalTmpRepo stockWithdrawalTmpRepo;
 
     @Override
     public StockWithdrawalTmp create(StockWithdrawalTmp tmp) {
-        return tmpRepo.save(tmp);
+        return stockWithdrawalTmpRepo.save(tmp);
     }
 
     @Override
@@ -33,7 +34,7 @@ public class StockWithdrawalTmpServiceImpl implements StockWithdrawalTmpService 
 
         tmpDtoList = new ArrayList<>();
 
-        List<StockWithdrawalTmp> tmpList = tmpRepo.findAll();
+        List<StockWithdrawalTmp> tmpList = stockWithdrawalTmpRepo.findAll();
 
         for (StockWithdrawalTmp tmp : tmpList){
 
@@ -61,11 +62,11 @@ public class StockWithdrawalTmpServiceImpl implements StockWithdrawalTmpService 
     }
 
     @Override
-    public List<StockWithdrawalTmpDto> findByDocStatus(int id) {
+    public List<StockWithdrawalTmpDto> findByStatus(int id) {
 
         tmpDtoList = new ArrayList<>();
 
-        List<StockWithdrawalTmp> tmpList = tmpRepo.findByDocStatus(id);
+        List<StockWithdrawalTmp> tmpList = stockWithdrawalTmpRepo.findByDocStatusId(id);
 
         for (StockWithdrawalTmp tmp : tmpList){
 
