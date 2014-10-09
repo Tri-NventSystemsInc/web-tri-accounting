@@ -1,4 +1,4 @@
-package com.tri.erp.spring.dto;
+package com.tri.erp.spring.reponse;
 
 import com.tri.erp.spring.model.Item;
 import com.tri.erp.spring.model.StockWithdrawalTmp;
@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 /**
  * Created by Ryan D. Repe on 10/5/2014.
  */
-public class StockWithdrawalDetailTmpDTO {
+public class StockWithdrawalDetailTmpDto {
 
     private int id;
     private StockWithdrawalTmp stockWithdrawal;

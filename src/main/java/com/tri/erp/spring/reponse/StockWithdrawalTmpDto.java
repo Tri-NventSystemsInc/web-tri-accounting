@@ -1,4 +1,4 @@
-package com.tri.erp.spring.dto;
+package com.tri.erp.spring.reponse;
 
 import com.tri.erp.spring.model.Department;
 import com.tri.erp.spring.model.StockWithdrawalDetailTmp;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Ryan D. Repe on 10/5/2014.
  */
-public class StockWithdrawalTmpDTO {
+public class StockWithdrawalTmpDto {
     private int id;
     private int transId;
     private java.sql.Date transDate;
