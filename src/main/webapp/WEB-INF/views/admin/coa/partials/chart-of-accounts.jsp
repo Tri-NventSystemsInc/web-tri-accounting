@@ -7,6 +7,7 @@
         <button class="btn btn-primary" ng-click="printCoa('pdf')">Print</button>
     </div>
 </div>
+<div id='msgbox' title='' style='display:none'></div>
 <div class="row">
     <div class="col-md-12 col-lg-12">
             <div id="search-div" class="col-md-4 col-lg-4">

@@ -6,9 +6,16 @@
 
 package com.tri.erp.spring.controller;
 
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod; 
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Collection;
 
 /**
  *
@@ -18,17 +25,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController { 
 
     @RequestMapping(value = {"/", "index"}, method = RequestMethod.GET)
-    public String index() {
-        return "home";
-    }  
-    
-    @RequestMapping(value = {"/admin"}, method = RequestMethod.GET)
-    public String admin() {
-        return "admin";
-    } 
+    public String index(HttpServletRequest request) {
+        if (request.isUserInRole("ADMIN")) {
+            return "redirect:admin/dashboard";
+        } else {
+            return "home";
+        }
+    }
     
     @RequestMapping(value = {"/403"}, method = RequestMethod.GET)
     public String fourZeroThree() {
         return "403";
-    } 
+    }
+
+    @RequestMapping(value = {"/logoutSuccess"}, method = RequestMethod.GET)
+    public String logoutSuccess() {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null) {
+            return  "logout";
+        } else {
+            System.out.println("Logging out...");
+            return "redirect:/logout";
+        }
+    }
 }

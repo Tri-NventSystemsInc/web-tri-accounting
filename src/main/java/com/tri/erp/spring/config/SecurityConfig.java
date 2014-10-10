@@ -1,6 +1,8 @@
 package com.tri.erp.spring.config;
 
 import javax.sql.DataSource;
+
+import com.jolbox.bonecp.BoneCPDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -23,26 +25,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     public void configure(WebSecurity builder) throws Exception {
-        builder
-            .ignoring()
-                .antMatchers("/resources/**");
+        builder .ignoring()
+                .antMatchers("/resources/**", "/logoutSuccess");
     }
     
     @Override
     protected void configure(HttpSecurity http) throws Exception { 
         http
-            .authorizeRequests()   
-            .antMatchers("/admin/**").hasRole("ADMIN")    
+            .authorizeRequests()
+            .antMatchers("/admin**").hasRole("ADMIN")
             .anyRequest().authenticated();
         http
             .formLogin().loginPage("/login")
             .permitAll();
         http
             .logout()
-            .permitAll()
-                .and()
-            .exceptionHandling()
-            .accessDeniedPage("/403"); 
+                .logoutSuccessUrl("/logoutSuccess")
+            .and()
+                .csrf();
+        http
+            .exceptionHandling().accessDeniedPage("/403");
     }
 
     @Autowired

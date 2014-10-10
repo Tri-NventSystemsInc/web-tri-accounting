@@ -23,7 +23,7 @@
         <spring-framework.version>4.1.0.RELEASE</spring-framework.version>
 
         <!-- Hibernate / JPA -->
-        <hibernate.version>4.3.5.Final</hibernate.version>
+        <hibernate.version>4.3.6.Final</hibernate.version>
 
         <!-- Logging -->
         <logback.version>1.1.2</logback.version>
@@ -131,8 +131,8 @@
         </dependency>
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.0-api</artifactId>
-            <version>1.0.1.Final</version>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>1.0.0.Final</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -159,7 +159,7 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
-            <version>1.5.2.RELEASE</version>
+            <version>1.6.0.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -204,6 +204,27 @@
             <artifactId>jackson-core</artifactId>
             <version>2.3.3</version>
         </dependency>
+
+        <!--jasper-->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>5.6.1</version>
+        </dependency>
+        <!--jasper includes -->
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>4.2.1</version>
+        </dependency>
+        <!--excel-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.7</version>
+        </dependency>
+
+
     </dependencies>
     <build>
         <finalName>tri-accounting</finalName>
