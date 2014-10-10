@@ -119,6 +119,35 @@
         <p class="m-t"> <small><strong>Copyright</strong> Company Name &copy; 2014</small> </p>
     </div>
 </div>
+<!-- jQuery and Bootstrap -->
+<script src="js/jquery/jquery-2.1.1.min.js"></script>
+<script src="js/plugins/jquery-ui/jquery-ui.js"></script>
+<script src="js/bootstrap/bootstrap.min.js"></script>
+
+<!-- MetsiMenu -->
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+<!-- Peace JS -->
+<script src="js/plugins/pace/pace.min.js"></script>
+
+<!-- SlimScroll -->
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="js/inspinia.js"></script>
+
+<!-- Angular scripts-->
+<script src="js/angular/angular.min.js"></script>
+<script src="js/ui-router/angular-ui-router.min.js"></script>
+<script src="js/bootstrap/ui-bootstrap-tpls-0.11.0.min.js"></script>
+
+<!-- Angular Dependiences -->
+
+<!-- Anglar App Script -->
+<script src="js/app.js"></script>
+<script src="js/config.js"></script>
+<script src="js/directives.js"></script>
+<script src="js/controllers.js"></script>
 
  <%--<script src="<c:url value="/resources/js/jquery/jquery-1.11.1.min.js" />"></script>
     <script src="<c:url value="/resources/js/bootstrap/bootstrap.min.js" />"></script> --%>
