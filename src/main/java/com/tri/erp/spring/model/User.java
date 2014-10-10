@@ -56,6 +56,8 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
+    public User() {}
+
     public Integer getId() {
         return id;
     }
