@@ -5,6 +5,7 @@ userManagementCtrls.controller('userListCtrl', ['$scope', '$http', 'userFactory'
 
     userFactory.getUsers()
             .success(function (data) {
+            console.log(data);
                 $scope.users = data;
             })
             .error(function (error) {

@@ -33,8 +33,8 @@
                 <tr data-dismiss="modal" ng-repeat="user in us = (users | filter:query)" style="cursor: pointer" ng-click="selectItem(item)">
                     <td style="width: 33%;">{{user.fullName}}</td>
                     <td style="width: 17%;">{{user.username}}</td>
-                    <td style="width: 33%;">{{user.createBy}}</td>
-                    <td style="width: 17%;">{{user.updatedAt}}</td>
+                    <td style="width: 33%;">{{user.createBy.fullName}}</td>
+                    <td style="width: 17%;">{{user.updatedAt | date:'MMM dd, yyyy HH:mm a'}}</td>
                 </tr>
                 <tr ng-show="us.length == 0"><td colspan="4" align="center">No records found</td></tr>
                 </tbody>

@@ -39,13 +39,13 @@ public class DbConfig {
 		boneCPDataSource.setUsername(env.getRequiredProperty("db.username"));
 		boneCPDataSource.setPassword(env.getRequiredProperty("db.password"));
 		boneCPDataSource.setIdleConnectionTestPeriodInMinutes(60);
-		boneCPDataSource.setIdleMaxAgeInMinutes(420);
+		boneCPDataSource.setIdleMaxAgeInMinutes(240);
 		boneCPDataSource.setMaxConnectionsPerPartition(30);
 		boneCPDataSource.setMinConnectionsPerPartition(10);
-		boneCPDataSource.setPartitionCount(3);
+		boneCPDataSource.setPartitionCount(1);
 		boneCPDataSource.setAcquireIncrement(5);
 		boneCPDataSource.setStatementsCacheSize(100);
-		
+
 		return boneCPDataSource; 
 	}
 	

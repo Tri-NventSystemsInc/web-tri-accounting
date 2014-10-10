@@ -39,12 +39,12 @@ public class User {
     @JoinColumn(name="FK_createdByUserId", nullable = true)
     private User createBy;
 
-    @Transient
-    @Column
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
     private Date createdAt;
 
-    @Transient
-    @Column
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
     private Date updatedAt;
 
     public User(String fullName, String username, String salt, User createBy, Date createdAt, Date updatedAt) {
