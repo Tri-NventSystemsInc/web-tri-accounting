@@ -35,15 +35,11 @@ public class User {
     @Column(unique = true)
     private String email;
 
-    @NotNull
-    @Length(min = 10, max = 512, message = "Password length is invalid")
     @Column
     private String password;
 
     @Transient
     @JsonIgnoreProperties(ignoreUnknown = true)
-    @NotNull
-    @Length(min = 10, max = 512, message = "Password length is invalid")
     @Column
     private String retypePassword;
 
@@ -54,7 +50,7 @@ public class User {
     @NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="FK_createdByUserId", nullable = true, columnDefinition = "0")
-    private User createBy;
+    private User createdBy;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
@@ -71,7 +67,7 @@ public class User {
         this.password = password;
         this.retypePassword = retypePassword;
         this.salt = salt;
-        this.createBy = createBy;
+        this.createdBy = createBy;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -126,12 +122,12 @@ public class User {
         this.salt = salt;
     }
 
-    public User getCreateBy() {
-        return createBy;
+    public User getCreatedBy() {
+        return createdBy;
     }
 
-    public void setCreateBy(User createBy) {
-        this.createBy = createBy;
+    public void setCreatedBy(User createBy) {
+        this.createdBy = createBy;
     }
 
     public Date getCreatedAt() {

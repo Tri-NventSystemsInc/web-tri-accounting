@@ -46,7 +46,7 @@
                     <label class="input-label">Created By</label>
                 </div>
                 <div class="col-md-9 col-lg-9">
-                    <label class="value-label">{{ user.createBy.fullName }}</label>
+                    <label class="value-label">{{ user.createdBy.fullName }}</label>
                 </div>
             </div>
 
@@ -55,7 +55,7 @@
                     <label class="input-label">Date created</label>
                 </div>
                 <div class="col-md-9 col-lg-9">
-                    <label class="value-label">{{ user.createdAt | date:'MMM dd, yyyy HH:mm a' }}></label>
+                    <label class="value-label">{{ user.createdAt | date:'MMM dd, yyyy HH:mm a' }}</label>
                 </div>
             </div>
 
@@ -64,7 +64,7 @@
                     <label class="input-label">Last updated</label>
                 </div>
                 <div class="col-md-9 col-lg-9">
-                    <label class="value-label">{{ user.updatedAt | date:'MMM dd, yyyy HH:mm a' }}</label>
+                    <label class="value-label">{{ user.createdAt | date:'MMM dd, yyyy HH:mm a' }}</label>
                 </div>
             </div>
         </div>

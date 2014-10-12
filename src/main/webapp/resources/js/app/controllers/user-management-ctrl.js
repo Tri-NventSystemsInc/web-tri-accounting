@@ -14,22 +14,53 @@ userManagementCtrls.controller('userListCtrl', ['$scope', '$http', 'userFactory'
 }]);
 
 
-userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$http', 'userFactory', 'errorToElementBinder',
-    function($scope,  $http, userFactory, errorToElementBinder) {
+userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$routeParams', '$http', 'userFactory', 'errorToElementBinder',
+    function($scope, $routeParams, $http, userFactory, errorToElementBinder) {
+        window.localStorage['userCurrentPassword'] = '';
+
         $scope.title = 'Add user';
         $scope.save = 'Save';
         $scope.showForm = true;
 
-
-        console.log($scope.user);
-
         $scope.user = {};
-
-        console.log($scope.user);
 
         var resourceURI = '/user/create';
 
+        if(!($routeParams.userId === undefined)) {  // update mode
+            $scope.title = 'Update user';
+            $scope.showForm = false;
+
+            $scope.userId = $routeParams.userId;
+
+            userFactory.getUser($scope.userId)
+                .success(function (data) {
+
+                    console.log(data);
+
+                    if (data === '' || data.id <= 0) {    // not found
+                        window.location.hash = '#/user/' + $scope.userId;
+                    } else {
+                        $scope.user = data;
+//                        window.localStorage['userCurrentPassword'] = $scope.user.password;
+                        $scope.user.password = "";
+                        $scope.showForm = true;
+                    }
+                })
+                .error(function (error) {
+                    toastr.warning('User not found!');
+                    window.location.hash = '#/users';
+                });
+
+            resourceURI = '/user/update';
+        }
+
         $scope.processForm = function() {
+
+//            if ($scope.userId > 0) {    // update mode
+//                if ($scope.user.password.length == 0) { // if no new password entered
+//                    $scope.user.password = window.localStorage['userCurrentPassword'];
+//                }
+//            }
 
             $scope.save ='Saving...';
 

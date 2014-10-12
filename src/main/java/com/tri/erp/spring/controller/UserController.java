@@ -1,8 +1,10 @@
 package com.tri.erp.spring.controller;
 
+import com.tri.erp.spring.model.Account;
 import com.tri.erp.spring.model.User;
 import com.tri.erp.spring.reponse.AccountDto;
 import com.tri.erp.spring.reponse.CreateResponse;
+import com.tri.erp.spring.reponse.UserDto;
 import com.tri.erp.spring.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -44,5 +46,11 @@ public class UserController {
     @ResponseBody
     public User getUser(@PathVariable Integer id) {
        return userService.findById(id);
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @ResponseBody
+    public CreateResponse updateUser(@Valid @RequestBody User user, BindingResult bindingResult) {
+        return userService.processUpdate(user, bindingResult, messageSource);
     }
 }

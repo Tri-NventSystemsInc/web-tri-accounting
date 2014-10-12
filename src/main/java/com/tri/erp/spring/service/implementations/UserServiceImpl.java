@@ -8,6 +8,7 @@ import com.tri.erp.spring.repo.UserRepo;
 import com.tri.erp.spring.reponse.CreateAccountResponse;
 import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.reponse.CreateUserResponse;
+import com.tri.erp.spring.reponse.UserDto;
 import com.tri.erp.spring.service.interfaces.UserService;
 import com.tri.erp.spring.validator.AccountValidator;
 import com.tri.erp.spring.validator.UserValidator;
@@ -49,7 +50,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(Integer id) {
-        return userRepo.findOne(id);
+        User user = userRepo.findOne(id);
+        return user;
+    }
+
+    @Override
+    public CreateResponse processUpdate(User user, BindingResult bindingResult, MessageSource messageSource) {
+        return processCreate(user, bindingResult, messageSource);
     }
 
     @Override
@@ -78,7 +85,7 @@ public class UserServiceImpl implements UserService {
             User createdBy = userRepo.findOneByUsername(curUsername);
 
             user.setSalt("EvelynSalt");
-            user.setCreateBy(createdBy);
+            user.setCreatedBy(createdBy);
             User newUser = create(user);
             response.setModelId(newUser.getId());
             response.setSuccessMessage("User successfully saved!");

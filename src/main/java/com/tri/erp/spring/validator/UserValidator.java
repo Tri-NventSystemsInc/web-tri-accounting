@@ -30,16 +30,36 @@ public class UserValidator implements Validator {
     public void validate(Object o, Errors errors) {
         User user = (User) o;
 
-        if (!(Checker.isStringNullAndEmpty(user.getRetypePassword()) && Checker.isStringNullAndEmpty(user.getPassword()))) {
-            if (!(user.getRetypePassword().equals(user.getPassword()))) {
-                errors.rejectValue("password", "user.password.mismatch");
+        // insert mode
+        if (user.getId() == null || user.getId() == 0) {
+            errors = this.validatePasswordMatching(errors, user.getPassword(), user.getRetypePassword());
+        } else {
+            // has new password when updating user
+            if (!Checker.isStringNullAndEmpty(user.getPassword()) || !Checker.isStringNullAndEmpty(user.getRetypePassword())) {
+                errors = this.validatePasswordMatching(errors, user.getPassword(), user.getRetypePassword());
             }
         }
 
+        // for email
         User u = this.service.findByEmail(user.getEmail());
-        if (u != null) {
+        if (u != null && u.getId() != user.getId()) { // diff user
             errors.rejectValue("email", "user.email.taken");
         }
+    }
+
+    private Errors validatePasswordMatching(Errors errors, String password, String retypePassword) {
+        if (Checker.isStringNullAndEmpty(password)) {
+            errors.rejectValue("password", "user.password.empty");
+        } else if (password.length() < 10) {
+            errors.rejectValue("password", "user.password.length.short");
+        } else if (password.length() > 50) {
+            errors.rejectValue("password", "user.password.length.long");
+        } else {
+            if (!(password.equals(retypePassword))) {
+                errors.rejectValue("retypePassword", "user.password.mismatch");
+            }
+        }
+        return errors;
     }
 
     public void setService(UserServiceImpl service) {

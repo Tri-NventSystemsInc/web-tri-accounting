@@ -35,7 +35,7 @@
                     <td style="width: 22%;">{{user.fullName}}</td>
                     <td style="width: 15%;">{{user.username}}</td>
                     <td style="width: 23%;">{{user.email}}</td>
-                    <td style="width: 15%;">{{user.createBy.username}}</td>
+                    <td style="width: 15%;">{{user.createdBy.username}}</td>
                     <td style="width: 15%;">{{user.updatedAt | date:'MMM dd, yyyy HH:mm a'}}</td>
                     <td style='width: 4%; vertical-align: middle'>
                         <a style='padding: 0' title='View' href="#/user/{{user.id}}"><i class='fa fa-search'></i></a>
