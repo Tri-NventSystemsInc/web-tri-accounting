@@ -30,6 +30,16 @@ public class User {
     @Column(unique = true)
     private String username;
 
+    @NotNull
+    @Length(min = 10, max = 128, message = "Email length is invalid")
+    @Column(unique = true)
+    private String email;
+
+    @NotNull
+    @Length(min = 10, max = 512, message = "Password length is invalid")
+    @Column
+    private String password;
+
     @Column
     private String salt;
 
@@ -47,9 +57,11 @@ public class User {
     @Column(nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
     private Date updatedAt;
 
-    public User(String fullName, String username, String salt, User createBy, Date createdAt, Date updatedAt) {
+    public User(String fullName, String username, String email, String password, String salt, User createBy, Date createdAt, Date updatedAt) {
         this.fullName = fullName;
         this.username = username;
+        this.email = email;
+        this.password = password;
         this.salt = salt;
         this.createBy = createBy;
         this.createdAt = createdAt;
@@ -80,6 +92,22 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getSalt() {

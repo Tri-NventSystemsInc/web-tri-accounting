@@ -11,6 +11,9 @@ coaApp.config(['$routeProvider',
             when('/users', {
                 templateUrl: 'user/user-list-page'
             }).
+            when('/new', {
+                templateUrl: 'user/new-user-page'
+            }).
             otherwise({
                 redirectTo:  '/users'
             });

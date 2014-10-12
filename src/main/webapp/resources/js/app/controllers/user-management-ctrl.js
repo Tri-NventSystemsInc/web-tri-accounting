@@ -12,3 +12,13 @@ userManagementCtrls.controller('userListCtrl', ['$scope', '$http', 'userFactory'
                 toastr.error('Failed to load users!');
             });
 }]);
+
+
+userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$http', 'userFactory',
+    function($scope,  $http, userFactory) {
+        $scope.title = 'Add user';
+        $scope.save = 'Save';
+        $scope.showForm = true;
+        $scope.user = {};
+
+    }]);
