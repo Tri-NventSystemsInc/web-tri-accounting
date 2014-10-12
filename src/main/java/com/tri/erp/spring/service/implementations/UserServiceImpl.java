@@ -1,5 +1,6 @@
 package com.tri.erp.spring.service.implementations;
 
+import com.tri.erp.spring.commons.facade.AuthenticationFacade;
 import com.tri.erp.spring.commons.helpers.MessageFormatter;
 import com.tri.erp.spring.model.User;
 import com.tri.erp.spring.repo.UserRepo;
@@ -11,6 +12,7 @@ import com.tri.erp.spring.validator.AccountValidator;
 import com.tri.erp.spring.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
@@ -24,6 +26,9 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private AuthenticationFacade authenticationFacade;
 
     @Autowired
     UserRepo userRepo;
@@ -54,7 +59,12 @@ public class UserServiceImpl implements UserService {
             response = messageFormatter.getResponse();
             response.setSuccess(false);
         } else {
+            Authentication authentication = authenticationFacade.getAuthentication();
+            String curUsername = authentication.getName();
+            User createdBy = userRepo.findOneByUsername(curUsername);
+
             user.setSalt("EvelynSalt");
+            user.setCreateBy(createdBy);
             User newUser = create(user);
             response.setModelId(newUser.getId());
             response.setSuccessMessage("User successfully saved!");
