@@ -48,6 +48,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findById(Integer id) {
+        return userRepo.findOne(id);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public List<User> findAll() {
         return userRepo.findAll();

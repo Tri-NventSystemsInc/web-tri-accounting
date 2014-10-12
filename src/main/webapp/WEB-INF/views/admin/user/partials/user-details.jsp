@@ -22,6 +22,51 @@
                     <label class="value-label">{{ user.fullName }}</label>
                 </div>
             </div>
+
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-3 col-lg-3">
+                    <label class="input-label">Username</label>
+                </div>
+                <div class="col-md-9 col-lg-9">
+                    <label class="value-label">{{ user.username }}</label>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-3 col-lg-3">
+                    <label class="input-label">Email</label>
+                </div>
+                <div class="col-md-9 col-lg-9">
+                    <label class="value-label"><a  href="mailto:{{ user.email }}">{{ user.email }}</a></label>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-3 col-lg-3">
+                    <label class="input-label">Created By</label>
+                </div>
+                <div class="col-md-9 col-lg-9">
+                    <label class="value-label">{{ user.createBy.fullName }}</label>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-3 col-lg-3">
+                    <label class="input-label">Date created</label>
+                </div>
+                <div class="col-md-9 col-lg-9">
+                    <label class="value-label">{{ user.createdAt | date:'MMM dd, yyyy HH:mm a' }}></label>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-3 col-lg-3">
+                    <label class="input-label">Last updated</label>
+                </div>
+                <div class="col-md-9 col-lg-9">
+                    <label class="value-label">{{ user.updatedAt | date:'MMM dd, yyyy HH:mm a' }}</label>
+                </div>
+            </div>
         </div>
     </div>
 </div>

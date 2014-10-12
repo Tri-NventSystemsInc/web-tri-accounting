@@ -58,8 +58,8 @@ userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$http', 'userFacto
         }
     }]);
 
-userManagementCtrls.controller('userDetailsCtrl', ['$scope', '$routeParams', '$http',
-    function($scope,  $routeParams, $http) {
+userManagementCtrls.controller('userDetailsCtrl', ['$scope', '$routeParams', '$http', 'userFactory',
+    function($scope,  $routeParams, $http, userFactory) {
 
         $scope.showDetails = false;
 
@@ -68,20 +68,23 @@ userManagementCtrls.controller('userDetailsCtrl', ['$scope', '$routeParams', '$h
 
             $scope.userId = $routeParams.userId;
             
-//            accountFactory.getAccount($scope.userId)
-//                .success(function (data) {
-//                    if (data === '' || data.id <= 0) {    // not found
-//                        toastr.warning('User not found!');
-//                        window.location.hash = '#/users';
-//                    } else {
-//                        $scope.account = data;
-//                        $scope.showDetails = true;
-//                    }
-//                })
-//                .error(function (error) {
-//                    toastr.warning('Account not found!');
-//                    window.location.hash = '#/accounts';
-//                });
+            userFactory.getUser($scope.userId)
+                .success(function (data) {
+
+                    console.log(data);
+
+                    if (data === '' || data.id <= 0) {    // not found
+                        toastr.warning('User not found!');
+                        window.location.hash = '#/users';
+                    } else {
+                        $scope.user = data;
+                        $scope.showDetails = true;
+                    }
+                })
+                .error(function (error) {
+                    toastr.warning('Account not found!');
+                    window.location.hash = '#/accounts';
+                });
 
         } else {
             toastr.warning('User not found!');
