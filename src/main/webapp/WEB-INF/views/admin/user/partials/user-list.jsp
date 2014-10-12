@@ -38,8 +38,8 @@
                     <td style="width: 15%;">{{user.createBy.username}}</td>
                     <td style="width: 15%;">{{user.updatedAt | date:'MMM dd, yyyy HH:mm a'}}</td>
                     <td style='width: 4%; vertical-align: middle'>
-                        <a style='padding: 0' title='View' href="#/user/{{row.branch['id']}}"><i class='fa fa-search'></i></a>
-                        <a style='padding: 0' title='Edit' href="#/user/{{row.branch['id']}}/edit"><i class='fa fa-edit'></i></a>
+                        <a style='padding: 0' title='View' href="#/user/{{user.id}}"><i class='fa fa-search'></i></a>
+                        <a style='padding: 0' title='Edit' href="#/user/{{user.id}}/edit"><i class='fa fa-edit'></i></a>
                     </td>
                 </tr>
                 <tr ng-show="us.length == 0"><td colspan="4" align="center">No records found</td></tr>

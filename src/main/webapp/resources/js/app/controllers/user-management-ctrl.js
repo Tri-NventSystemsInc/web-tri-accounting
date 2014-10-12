@@ -51,3 +51,38 @@ userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$http', 'userFacto
             });
         }
     }]);
+
+userManagementCtrls.controller('userDetailsCtrl', ['$scope', '$routeParams', '$http',
+    function($scope,  $routeParams, $http) {
+
+        $scope.showDetails = false;
+
+        if(!($routeParams.userId === undefined)) {
+            $scope.title = 'User details';
+
+            $scope.userId = $routeParams.userId;
+            
+//            accountFactory.getAccount($scope.userId)
+//                .success(function (data) {
+//                    if (data === '' || data.id <= 0) {    // not found
+//                        toastr.warning('User not found!');
+//                        window.location.hash = '#/users';
+//                    } else {
+//                        $scope.account = data;
+//                        $scope.showDetails = true;
+//                    }
+//                })
+//                .error(function (error) {
+//                    toastr.warning('Account not found!');
+//                    window.location.hash = '#/accounts';
+//                });
+
+        } else {
+            toastr.warning('User not found!');
+            window.location.hash = '#/users';
+        }
+
+        $scope.pointToEditForm = function() {
+            window.location.hash = '#/user/' + $scope.userId + "/edit";
+        }
+    }]);

@@ -37,4 +37,9 @@ public class UserManagementController {
         return BASE_PATH + "add-edit";
     }
 
+    @RequestMapping(value = "/user-details-page", method = RequestMethod.GET)
+    public String userDetails() {
+        return BASE_PATH + "user-details";
+    }
+
 }
