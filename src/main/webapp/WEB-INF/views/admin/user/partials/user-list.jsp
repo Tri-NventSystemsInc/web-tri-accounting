@@ -12,9 +12,10 @@
         <div class="row-top-buffer" style="margin-top: 15px"></div>
 
         <div style="border-top: 1px solid #dcdcdc; padding-top: 10px">
-            <div class="col-md-4 col-lg-4"><span style="font-weight: bold; padding-left: 2px;">Full name</span></div>
-            <div class="col-md-2 col-lg-2"><span style="font-weight: bold; padding-left: 2px;">Username</span></div>
-            <div class="col-md-4 col-lg-4"><span style="font-weight: bold">Created by</span></div>
+            <div class="col-md-3 col-lg-3"><span style="font-weight: bold; padding-left: 2px;">Full name</span></div>
+            <div class="col-md-2 col-lg-2"><span style="font-weight: bold; padding-left: 61px;">Username</span></div>
+            <div class="col-md-3 col-lg-3"><span style="font-weight: bold; padding-left: 61px;">Email</span></div>
+            <div class="col-md-2 col-lg-2"><span style="font-weight: bold; padding-left: 15px;">Created by</span></div>
             <div class="col-md-2 col-lg-2"><span style="font-weight: bold">Last updated</span></div>
         </div>
     </div>
@@ -31,9 +32,10 @@
                 </thead>
                 <tbody>
                 <tr data-dismiss="modal" ng-repeat="user in us = (users | filter:query)" style="cursor: pointer" ng-click="selectItem(item)">
-                    <td style="width: 33%;">{{user.fullName}}</td>
-                    <td style="width: 17%;">{{user.username}}</td>
-                    <td style="width: 33%;">{{user.createBy.fullName}}</td>
+                    <td style="width: 30%;">{{user.fullName}}</td>
+                    <td style="width: 15%;">{{user.username}}</td>
+                    <td style="width: 23%;">{{user.email}}</td>
+                    <td style="width: 15%;">{{user.createBy.username}}</td>
                     <td style="width: 17%;">{{user.updatedAt | date:'MMM dd, yyyy HH:mm a'}}</td>
                 </tr>
                 <tr ng-show="us.length == 0"><td colspan="4" align="center">No records found</td></tr>

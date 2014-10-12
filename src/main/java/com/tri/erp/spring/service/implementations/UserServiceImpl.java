@@ -1,6 +1,7 @@
 package com.tri.erp.spring.service.implementations;
 
 import com.tri.erp.spring.commons.facade.AuthenticationFacade;
+import com.tri.erp.spring.commons.helpers.Checker;
 import com.tri.erp.spring.commons.helpers.MessageFormatter;
 import com.tri.erp.spring.model.User;
 import com.tri.erp.spring.repo.UserRepo;
@@ -36,6 +37,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public User create(User user) {
         return userRepo.save(user);
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        List<User> users = userRepo.findByEmail(email);
+        if (!Checker.collectionIsEmpty(users)) {
+            return users.get(0);
+        } else return null;
     }
 
     @Override

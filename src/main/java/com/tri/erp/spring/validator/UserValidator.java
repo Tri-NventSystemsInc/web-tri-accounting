@@ -1,10 +1,10 @@
 package com.tri.erp.spring.validator;
 
 import com.tri.erp.spring.commons.helpers.Checker;
-import com.tri.erp.spring.model.Account;
 import com.tri.erp.spring.model.User;
-import com.tri.erp.spring.service.implementations.AccountServiceImpl;
+import com.tri.erp.spring.repo.UserRepo;
 import com.tri.erp.spring.service.implementations.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
@@ -34,6 +34,11 @@ public class UserValidator implements Validator {
             if (!(user.getRetypePassword().equals(user.getPassword()))) {
                 errors.rejectValue("password", "user.password.mismatch");
             }
+        }
+
+        User u = this.service.findByEmail(user.getEmail());
+        if (u != null) {
+            errors.rejectValue("email", "user.email.taken");
         }
     }
 
