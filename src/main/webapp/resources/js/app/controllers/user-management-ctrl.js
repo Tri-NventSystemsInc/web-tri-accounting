@@ -19,7 +19,13 @@ userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$http', 'userFacto
         $scope.title = 'Add user';
         $scope.save = 'Save';
         $scope.showForm = true;
+
+
+        console.log($scope.user);
+
         $scope.user = {};
+
+        console.log($scope.user);
 
         var resourceURI = '/user/create';
 

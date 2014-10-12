@@ -31,7 +31,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr data-dismiss="modal" ng-repeat="user in us = (users | filter:query)" style="cursor: pointer" ng-click="selectItem(item)">
+                <tr data-dismiss="modal" ng-repeat="user in us = (users | filter:query)" ng-click="selectItem(item)">
                     <td style="width: 22%;">{{user.fullName}}</td>
                     <td style="width: 15%;">{{user.username}}</td>
                     <td style="width: 23%;">{{user.email}}</td>

@@ -95,6 +95,7 @@
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+                        <input id="dummyPassword" type="password" style="display: none"/>
                         <input required maxlength="512" ng-model="user.password" id="password" name="password" class="form-control" type="password" placeholder="Enter password"/>
                     </div>
                 </div>
