@@ -120,7 +120,7 @@
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
-                        <input required maxlength="512" id="retypePassword" name="retypePassword" class="form-control" type="password" placeholder="Retype password"/>
+                        <input required  ng-model="user.retypePassword" maxlength="512" id="retypePassword" name="retypePassword" class="form-control" type="password" placeholder="Retype password"/>
                     </div>
                 </div>
                 <div class="col-md-5 col-lg-5">

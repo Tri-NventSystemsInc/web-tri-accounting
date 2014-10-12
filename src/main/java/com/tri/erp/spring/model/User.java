@@ -40,13 +40,20 @@ public class User {
     @Column
     private String password;
 
+    @Transient
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @NotNull
+    @Length(min = 10, max = 512, message = "Password length is invalid")
+    @Column
+    private String retypePassword;
+
     @Column
     private String salt;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     @NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="FK_createdByUserId", nullable = true)
+    @JoinColumn(name="FK_createdByUserId", nullable = true, columnDefinition = "0")
     private User createBy;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -57,11 +64,12 @@ public class User {
     @Column(nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
     private Date updatedAt;
 
-    public User(String fullName, String username, String email, String password, String salt, User createBy, Date createdAt, Date updatedAt) {
+    public User(String fullName, String username, String email, String password, String retypePassword, String salt, User createBy, Date createdAt, Date updatedAt) {
         this.fullName = fullName;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.retypePassword = retypePassword;
         this.salt = salt;
         this.createBy = createBy;
         this.createdAt = createdAt;
@@ -140,5 +148,13 @@ public class User {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getRetypePassword() {
+        return retypePassword;
+    }
+
+    public void setRetypePassword(String retypePassword) {
+        this.retypePassword = retypePassword;
     }
 }

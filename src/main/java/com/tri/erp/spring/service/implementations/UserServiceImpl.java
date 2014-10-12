@@ -7,6 +7,8 @@ import com.tri.erp.spring.reponse.CreateAccountResponse;
 import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.reponse.CreateUserResponse;
 import com.tri.erp.spring.service.interfaces.UserService;
+import com.tri.erp.spring.validator.AccountValidator;
+import com.tri.erp.spring.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
@@ -42,6 +44,10 @@ public class UserServiceImpl implements UserService {
     public CreateResponse processCreate(User user, BindingResult bindingResult, MessageSource messageSource) {
         CreateResponse response = new CreateUserResponse();
         MessageFormatter messageFormatter = new MessageFormatter(bindingResult, messageSource, response);
+
+        UserValidator validator = new UserValidator();
+        validator.setService(this);
+        validator.validate(user, bindingResult);
 
         if (bindingResult.hasErrors()) {
             messageFormatter.buildErrorMessages();
