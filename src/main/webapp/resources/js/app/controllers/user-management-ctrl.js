@@ -16,7 +16,6 @@ userManagementCtrls.controller('userListCtrl', ['$scope', '$http', 'userFactory'
 
 userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$routeParams', '$http', 'userFactory', 'errorToElementBinder',
     function($scope, $routeParams, $http, userFactory, errorToElementBinder) {
-        window.localStorage['userCurrentPassword'] = '';
 
         $scope.title = 'Add user';
         $scope.save = 'Save';
@@ -41,7 +40,6 @@ userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$routeParams', '$h
                         window.location.hash = '#/user/' + $scope.userId;
                     } else {
                         $scope.user = data;
-//                        window.localStorage['userCurrentPassword'] = $scope.user.password;
                         $scope.user.password = "";
                         $scope.showForm = true;
                     }
@@ -55,12 +53,6 @@ userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$routeParams', '$h
         }
 
         $scope.processForm = function() {
-
-//            if ($scope.userId > 0) {    // update mode
-//                if ($scope.user.password.length == 0) { // if no new password entered
-//                    $scope.user.password = window.localStorage['userCurrentPassword'];
-//                }
-//            }
 
             $scope.save ='Saving...';
 

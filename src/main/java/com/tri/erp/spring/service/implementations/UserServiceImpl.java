@@ -80,13 +80,18 @@ public class UserServiceImpl implements UserService {
             response = messageFormatter.getResponse();
             response.setSuccess(false);
         } else {
-            Authentication authentication = authenticationFacade.getAuthentication();
-            String curUsername = authentication.getName();
-            User createdBy = userRepo.findOneByUsername(curUsername);
 
-            user.setSalt("EvelynSalt");
-            user.setCreatedBy(createdBy);
+            Authentication authentication;
+            if (user.getId() == null || user.getId() == 0 ) {   // insert mode
+                authentication = authenticationFacade.getAuthentication();
+                String curUsername = authentication.getName();
+                User createdBy = userRepo.findOneByUsername(curUsername);
+                user.setCreatedBy(createdBy);
+                user.setSalt("EvelynSalt");
+            }
+
             User newUser = create(user);
+
             response.setModelId(newUser.getId());
             response.setSuccessMessage("User successfully saved!");
             response.setSuccess(true);
