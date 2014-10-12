@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by TSI Admin on 9/10/2014.
  */
-public abstract class AccountResponse {
+public abstract class CreateResponse {
     private boolean success;
     private ArrayList<String> fields = new ArrayList<>();
     private ArrayList<String> messages = new ArrayList<>();

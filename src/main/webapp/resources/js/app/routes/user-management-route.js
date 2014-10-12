@@ -2,7 +2,8 @@
 var coaApp = angular.module('userManagement', [
     'ngRoute',
     'userManagementCtrl',
-    'userManagementFactory'
+    'userManagementFactory',
+    'errorHandlerService'
 ]);
 
 coaApp.config(['$routeProvider',

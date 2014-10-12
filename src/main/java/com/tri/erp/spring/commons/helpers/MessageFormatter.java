@@ -1,6 +1,6 @@
 package com.tri.erp.spring.commons.helpers;
 
-import com.tri.erp.spring.reponse.AccountResponse;
+import com.tri.erp.spring.reponse.CreateResponse;
 import org.springframework.context.MessageSource;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -12,12 +12,12 @@ public class MessageFormatter {
 
     private MessageSource messageSource;
     private BindingResult bindingResult;
-    private AccountResponse response;
+    private CreateResponse response;
 
-    public MessageFormatter(AccountResponse response) {
+    public MessageFormatter(CreateResponse response) {
         this.response = response;
     }
-    public MessageFormatter(BindingResult bindingResult, MessageSource messageSource, AccountResponse response) {
+    public MessageFormatter(BindingResult bindingResult, MessageSource messageSource, CreateResponse response) {
         this.bindingResult = bindingResult;
         this.messageSource = messageSource;
         this.response = response;
@@ -40,7 +40,7 @@ public class MessageFormatter {
         }
     }
 
-    public AccountResponse getResponse() {
+    public CreateResponse getResponse() {
         return this.response;
     }
 }

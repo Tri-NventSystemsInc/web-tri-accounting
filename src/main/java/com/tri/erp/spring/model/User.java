@@ -21,7 +21,7 @@ public class User {
     private Integer id;
 
     @NotNull
-    @Length(min = 3, max = 512, message = "Invalid length for fullname (max=512, min=3)")
+    @Length(min = 3, max = 512, message = "Invalid length for full name (max=512, min=3)")
     @Column
     private String fullName;
 

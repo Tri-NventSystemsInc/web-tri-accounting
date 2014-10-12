@@ -22,7 +22,7 @@ import java.util.Collection;
  * @author TSI Admin
  */
 @Controller
-public class HomeController { 
+public class HomeController {
 
     @RequestMapping(value = {"/", "index"}, method = RequestMethod.GET)
     public String index(HttpServletRequest request) {
@@ -32,7 +32,7 @@ public class HomeController {
             return "home";
         }
     }
-    
+
     @RequestMapping(value = {"/403"}, method = RequestMethod.GET)
     public String fourZeroThree() {
         return "403";
