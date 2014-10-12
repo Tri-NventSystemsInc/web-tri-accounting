@@ -27,8 +27,7 @@ public class HomeController {
     @RequestMapping(value = {"/", "index"}, method = RequestMethod.GET)
     public String index(HttpServletRequest request) {
         if (request.isUserInRole("ADMIN")) {
-            return "home";
-    /**redirect:admin/dashboard*/
+            return "redirect:admin/dashboard";
         } else {
             return "home";
         }
