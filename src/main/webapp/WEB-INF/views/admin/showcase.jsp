@@ -19,8 +19,12 @@
             </div>
             <p></p>
             <div ng-controller="itemCtrl">
-                <p>You selected item: <b>{{selectedItem ? (selectedItem.code + ' ' + selectedItem.description) : 'None'}}</b></p>
-                <div item-browser btn_label="Browse items" handler="item_selection_handler(item)" />
+                <div>
+                    <p>You selected item: <b>{{selectedItem ? (selectedItem.code + ' ' + selectedItem.description) : 'None'}}</b></p>
+                    <div item-browser btn_label="Browse items" handler="item_selection_handler(item)" />
+                </div>
+                <p></p>
+                <button ng-click="export('xls')" title="export to excel" class="btn btn-primary">Export items to excel</button>
             </div>
         </div>
     </jsp:attribute>
@@ -53,9 +57,18 @@
             }
         }]);
 
-        app.controller('itemCtrl', ['$scope', function($scope) {
+        app.controller('itemCtrl', ['$scope', '$http', function($scope, $http) {
             $scope.item_selection_handler = function(item){
                 $scope.selectedItem = item;
+            }
+
+            $scope.export = function(type) {
+                $http.get('/item/download/token').success(function(response) {
+                    // Store token
+                    var token = response.message[0];
+                    // Start download
+                    window.location.href = '/item/download'+'?token='+token+'&type='+type;
+                });
             }
         }]);
 </script>

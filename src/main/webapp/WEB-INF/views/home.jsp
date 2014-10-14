@@ -8,16 +8,16 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>ILECO - Firefly 1.0.0</title>
-    </head>
-    <body>
-        <h1>Dashboard</h1>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>ILECO - Firefly 1.0.0</title>
+</head>
+<body>
+<h1>Dashboard</h1>
 
-        <form  action="${pageContext.request.contextPath}/logout" method="post">
-            <input type="submit" value="Log out" />
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
-    </body>
+<form  action="${pageContext.request.contextPath}/logout" method="post">
+    <input type="submit" value="Log out" />
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+</form>
+</body>
 </html>

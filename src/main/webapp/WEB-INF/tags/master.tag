@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <my:header/>
     <jsp:invoke fragment="head"/>
 </head>
@@ -13,7 +14,9 @@
     <my:nav />
     <hr/>
     <jsp:invoke fragment="body"/>
-    <my:footer />
+<my:footer />
 </div>
 </body>
 </html>
+
+

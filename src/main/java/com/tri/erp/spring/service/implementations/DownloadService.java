@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class DownloadService {
 	protected static Logger logger = Logger.getLogger("service");
-
 	
 	@Autowired
 	private ExporterService exporter;

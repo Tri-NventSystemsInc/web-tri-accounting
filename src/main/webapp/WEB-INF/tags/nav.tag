@@ -8,7 +8,7 @@
         </a>
         <ul class="dropdown-menu" role="menu">
             <li><a href="/admin/coa">Chart of Accounts</a></li>
-            <li><a href="#">Items</a></li>
+            <li><a href="/admin/user">Users</a></li>
             <li><a href="#">Suppliers</a></li>
         </ul>
     </li>

@@ -26,7 +26,6 @@ public class AdminController {
         return "admin/showcase";
     }
 
-
     private String getAdminHomeView() {
         return "admin/dashboard";
     }

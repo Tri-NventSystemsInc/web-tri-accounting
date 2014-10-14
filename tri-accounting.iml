@@ -21,8 +21,9 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="1.7" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="sass-stdlib" level="application" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:4.1.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:4.1.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-core:4.1.0.RELEASE" level="project" />
@@ -102,6 +103,7 @@
     <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk14:1.38" level="project" />
     <orderEntry type="library" name="Maven: org.bouncycastle:bcmail-jdk14:1.38" level="project" />
     <orderEntry type="library" name="Maven: org.swinglabs:pdf-renderer:1.0.5" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.poi:poi:3.7" level="project" />
   </component>
 </module>
 

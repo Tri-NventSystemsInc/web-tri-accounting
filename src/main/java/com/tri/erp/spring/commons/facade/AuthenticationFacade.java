@@ -1,0 +1,10 @@
+package com.tri.erp.spring.commons.facade;
+
+import org.springframework.security.core.Authentication;
+
+/**
+ * Created by TSI Admin on 10/12/2014.
+ */
+public interface AuthenticationFacade {
+    Authentication getAuthentication();
+}

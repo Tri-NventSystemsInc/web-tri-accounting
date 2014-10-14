@@ -6,6 +6,8 @@
 
 package com.tri.erp.spring.controller;
 
+import com.tri.erp.spring.commons.facade.AuthenticationFacade;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,7 +24,9 @@ import java.util.Collection;
  * @author TSI Admin
  */
 @Controller
-public class HomeController { 
+public class HomeController {
+    @Autowired
+    private AuthenticationFacade authenticationFacade;
 
     @RequestMapping(value = {"/", "index"}, method = RequestMethod.GET)
     public String index(HttpServletRequest request) {
@@ -32,7 +36,7 @@ public class HomeController {
             return "home";
         }
     }
-    
+
     @RequestMapping(value = {"/403"}, method = RequestMethod.GET)
     public String fourZeroThree() {
         return "403";
@@ -40,8 +44,7 @@ public class HomeController {
 
     @RequestMapping(value = {"/logoutSuccess"}, method = RequestMethod.GET)
     public String logoutSuccess() {
-
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Authentication auth = authenticationFacade.getAuthentication();
         if (auth == null) {
             return  "logout";
         } else {

@@ -1,48 +1,84 @@
 package com.tri.erp.spring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
-import java.sql.Date;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 /**
- * Created by Ryan D. Repe on 10/13/2014.
+ * Created by TSI Admin on 10/9/2014.
  */
+
 @Entity
-@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue
-    @Column(name = "user_id")
-    private int id;
-    @Column(name = "full_name")
-    private String fullName;
     @Column
+    private Integer id;
+
+    @NotNull
+    @Length(min = 3, max = 512, message = "Invalid length for full name (max=512, min=3)")
+    @Column
+    private String fullName;
+
+    @NotNull
+    @Length(min = 3, max = 64, message = "Invalid length for username (max=64, min=3)")
+    @Column(unique = true)
     private String username;
+
+    @NotNull
+    @Length(min = 10, max = 128, message = "Email length is invalid")
+    @Column(unique = true)
+    private String email;
+
     @Column
     private String password;
+
+    @Transient
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @Column
-    private int gender;
-    @Column(name = "emp_id")
-    private int empId;
-    @Column(name = "trans_date")
-    private Date transDate;
+    private String retypePassword;
 
-    public User() {
-    }
+    @Column
+    private String salt;
 
-    public User(String fullName, String username, String password, int gender, int empId, Date transDate) {
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="FK_createdByUserId", nullable = true, columnDefinition = "0")
+    private User createdBy;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
+    private Date createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
+    private Date updatedAt;
+
+    public User(String fullName, String username, String email, String password, String retypePassword, String salt, User createBy, Date createdAt, Date updatedAt) {
         this.fullName = fullName;
         this.username = username;
+        this.email = email;
         this.password = password;
-        this.gender = gender;
-        this.empId = empId;
-        this.transDate = transDate;
+        this.retypePassword = retypePassword;
+        this.salt = salt;
+        this.createdBy = createBy;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
-    public int getId() {
+    public User() {}
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -66,31 +102,55 @@ public class User {
         return password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public int getGender() {
-        return gender;
+    public String getSalt() {
+        return salt;
     }
 
-    public void setGender(int gender) {
-        this.gender = gender;
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
-    public int getEmpId() {
-        return empId;
+    public User getCreatedBy() {
+        return createdBy;
     }
 
-    public void setEmpId(int empId) {
-        this.empId = empId;
+    public void setCreatedBy(User createBy) {
+        this.createdBy = createBy;
     }
 
-    public Date getTransDate() {
-        return transDate;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setTransDate(Date transDate) {
-        this.transDate = transDate;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getRetypePassword() {
+        return retypePassword;
+    }
+
+    public void setRetypePassword(String retypePassword) {
+        this.retypePassword = retypePassword;
     }
 }

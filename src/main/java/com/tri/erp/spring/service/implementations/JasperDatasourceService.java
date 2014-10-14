@@ -85,7 +85,10 @@ public class JasperDatasourceService {
             itemDto.setCode(item.getCode());
             itemDto.setDescription(item.getDescription());
             itemDto.setUnit(item.getUnit().getDescription());
-            itemDto.setAccount(item.getSegmentAccount().getAccount().getTitle());
+
+            if (item.getSegmentAccount() != null) {
+                itemDto.setAccount(item.getSegmentAccount().getAccount().getTitle());
+            }
 
             itemsDto.add(itemDto);
 
