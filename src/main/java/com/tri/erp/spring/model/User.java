@@ -35,6 +35,7 @@ public class User {
     @Column(unique = true)
     private String email;
 
+    @Basic(fetch = FetchType.LAZY)
     @Column
     private String password;
 
@@ -42,9 +43,6 @@ public class User {
     @JsonIgnoreProperties(ignoreUnknown = true)
     @Column
     private String retypePassword;
-
-    @Column
-    private String salt;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     @NotFound(action = NotFoundAction.IGNORE)
@@ -60,13 +58,12 @@ public class User {
     @Column(nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
     private Date updatedAt;
 
-    public User(String fullName, String username, String email, String password, String retypePassword, String salt, User createBy, Date createdAt, Date updatedAt) {
+    public User(String fullName, String username, String email, String password, String retypePassword, User createBy, Date createdAt, Date updatedAt) {
         this.fullName = fullName;
         this.username = username;
         this.email = email;
         this.password = password;
         this.retypePassword = retypePassword;
-        this.salt = salt;
         this.createdBy = createBy;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -112,14 +109,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
     }
 
     public User getCreatedBy() {
