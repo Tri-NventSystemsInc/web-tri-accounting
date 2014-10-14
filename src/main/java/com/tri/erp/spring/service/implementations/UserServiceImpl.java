@@ -49,6 +49,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(Integer id) {
         User user = userRepo.findOne(id);
+        user.setPassword(""); // TODO: lazy load object property
         return user;
     }
 
