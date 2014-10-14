@@ -67,6 +67,15 @@
                     <label class="value-label">{{ user.createdAt | date:'MMM dd, yyyy HH:mm a' }}</label>
                 </div>
             </div>
+
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-3 col-lg-3">
+                    <label class="input-label">Enabled</label>
+                </div>
+                <div class="col-md-9 col-lg-9">
+                    <label class="value-label">{{ user.enabled ? 'Yes' : 'No' }}</label>
+                </div>
+            </div>
         </div>
     </div>
 </div>

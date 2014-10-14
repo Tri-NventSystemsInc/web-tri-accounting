@@ -1,6 +1,7 @@
 package com.tri.erp.spring.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.javafx.beans.annotations.Default;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.validator.constraints.Length;
@@ -58,15 +59,18 @@ public class User {
     @Column(nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
     private Date updatedAt;
 
-    public User(String fullName, String username, String email, String password, String retypePassword, User createBy, Date createdAt, Date updatedAt) {
+    @Column(nullable = false)
+    private Boolean enabled = false;
+
+    public User(String fullName, String username, String email, String password, User createdBy, Date createdAt, Date updatedAt, Boolean enabled) {
         this.fullName = fullName;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.retypePassword = retypePassword;
-        this.createdBy = createBy;
+        this.createdBy = createdBy;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.enabled = enabled;
     }
 
     public User() {}
@@ -141,5 +145,13 @@ public class User {
 
     public void setRetypePassword(String retypePassword) {
         this.retypePassword = retypePassword;
+    }
+
+    public Boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 }
