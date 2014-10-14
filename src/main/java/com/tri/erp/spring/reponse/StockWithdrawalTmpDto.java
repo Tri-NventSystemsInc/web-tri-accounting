@@ -2,6 +2,7 @@ package com.tri.erp.spring.reponse;
 
 import com.tri.erp.spring.model.Department;
 import com.tri.erp.spring.model.StockWithdrawalDetailTmp;
+import com.tri.erp.spring.model.User;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -19,13 +20,20 @@ public class StockWithdrawalTmpDto {
     private String description;
     private int locationId;
     private int categoryId;
-    private int userId;
-    private int approvedBy;
-    private int receivedBy;
-    private int requisitioned;
-    private int preparedBy;
-    private int notedBy;
-    private int issuedBy;
+//    private int userId;
+    private User user;
+//    private int approvedBy;
+    private User approved;
+//    private int receivedBy;
+    private User received;
+//    private int requisitioned;
+    private User requisitioned;
+//    private int preparedBy;
+    private User prepared;
+//    private int notedBy;
+    private User noted;
+//    private int issuedBy;
+    private User issued;
     private int docStatusId;
     private String remarks;
     private java.sql.Date transDateTime;
@@ -97,61 +105,116 @@ public class StockWithdrawalTmpDto {
         this.categoryId = categoryId;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public int getApprovedBy() {
-        return approvedBy;
+    public User getApproved() {
+        return approved;
     }
 
-    public void setApprovedBy(int approvedBy) {
-        this.approvedBy = approvedBy;
+    public void setApproved(User approved) {
+        this.approved = approved;
     }
 
-    public int getReceivedBy() {
-        return receivedBy;
+    public User getReceived() {
+        return received;
     }
 
-    public void setReceivedBy(int receivedBy) {
-        this.receivedBy = receivedBy;
+    public void setReceived(User received) {
+        this.received = received;
     }
 
-    public int getRequisitioned() {
+    public User getRequisitioned() {
         return requisitioned;
     }
 
-    public void setRequisitioned(int requisitioned) {
+    public void setRequisitioned(User requisitioned) {
         this.requisitioned = requisitioned;
     }
 
-    public int getPreparedBy() {
-        return preparedBy;
+    public User getPrepared() {
+        return prepared;
     }
 
-    public void setPreparedBy(int preparedBy) {
-        this.preparedBy = preparedBy;
+    public void setPrepared(User prepared) {
+        this.prepared = prepared;
     }
 
-    public int getNotedBy() {
-        return notedBy;
+    public User getNoted() {
+        return noted;
     }
 
-    public void setNotedBy(int notedBy) {
-        this.notedBy = notedBy;
+    public void setNoted(User noted) {
+        this.noted = noted;
     }
 
-    public int getIssuedBy() {
-        return issuedBy;
+    public User getIssued() {
+        return issued;
     }
 
-    public void setIssuedBy(int issuedBy) {
-        this.issuedBy = issuedBy;
+    public void setIssued(User issued) {
+        this.issued = issued;
     }
+    //    public int getUserId() {
+//        return userId;
+//    }
+//
+//    public void setUserId(int userId) {
+//        this.userId = userId;
+//    }
+
+//    public int getApprovedBy() {
+//        return approvedBy;
+//    }
+//
+//    public void setApprovedBy(int approvedBy) {
+//        this.approvedBy = approvedBy;
+//    }
+//
+//    public int getReceivedBy() {
+//        return receivedBy;
+//    }
+//
+//    public void setReceivedBy(int receivedBy) {
+//        this.receivedBy = receivedBy;
+//    }
+//
+//    public int getRequisitioned() {
+//        return requisitioned;
+//    }
+//
+//    public void setRequisitioned(int requisitioned) {
+//        this.requisitioned = requisitioned;
+//    }
+//
+//    public int getPreparedBy() {
+//        return preparedBy;
+//    }
+//
+//    public void setPreparedBy(int preparedBy) {
+//        this.preparedBy = preparedBy;
+//    }
+//
+//    public int getNotedBy() {
+//        return notedBy;
+//    }
+//
+//    public void setNotedBy(int notedBy) {
+//        this.notedBy = notedBy;
+//    }
+//
+//    public int getIssuedBy() {
+//        return issuedBy;
+//    }
+//
+//    public void setIssuedBy(int issuedBy) {
+//        this.issuedBy = issuedBy;
+//    }
 
     public int getDocStatusId() {
         return docStatusId;

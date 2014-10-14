@@ -42,26 +42,47 @@ public class StockWithdrawalTmp {
     @Column(name = "inv_cat_id")
     private int categoryId;
 
-    @Column(name = "user_id")
-    private int userId;
+//    @Column(name = "user_id")
+//    private int userId;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @Column(name = "approved_by")
-    private int approvedBy;
+//    @Column(name = "approved_by")
+//    private int approvedBy;
+@OneToOne(fetch = FetchType.EAGER)
+@JoinColumn(name = "approved_by")
+private User approved;
 
-    @Column(name = "received_by")
-    private int receivedBy;
+//    @Column(name = "received_by")
+//    private int receivedBy;
+@OneToOne(fetch = FetchType.EAGER)
+@JoinColumn(name = "received_by")
+private User received;
 
-    @Column
-    private int requisitioned;
+//    @Column
+//    private int requisitioned;
+@OneToOne(fetch = FetchType.EAGER)
+@JoinColumn(name = "requisitioned")
+private User requisitioned;
 
-    @Column(name = "prepared_by")
-    private int preparedBy;
+//    @Column(name = "prepared_by")
+//    private int preparedBy;
+@OneToOne(fetch = FetchType.EAGER)
+@JoinColumn(name = "prepared_by")
+private User prepared;
 
-    @Column(name = "noted_by")
-    private int notedBy;
+//    @Column(name = "noted_by")
+//    private int notedBy;
+@OneToOne(fetch = FetchType.EAGER)
+@JoinColumn(name = "noted_by")
+private User noted;
 
-    @Column(name = "issued_by")
-    private int issuedBy;
+//    @Column(name = "issued_by")
+//    private int issuedBy;
+@OneToOne(fetch = FetchType.EAGER)
+@JoinColumn(name = "issued_by")
+private User issued;
 
     @Column(name = "doc_status_id")
     private int docStatusId;
@@ -83,6 +104,31 @@ public class StockWithdrawalTmp {
 
     @OneToMany(mappedBy = "stockWithdrawal")
     private List<StockWithdrawalDetailTmp> details;
+
+    public StockWithdrawalTmp() {
+    }
+
+    public StockWithdrawalTmp(int transId, Date transDate, Department department, String purpose, String description, int locationId, int categoryId, User user, User approved, User received, User requisitioned, User prepared, User noted, User issued, int docStatusId, String remarks, Date transDateTime, RequestType requestType, String referenceNo) {
+        this.transId = transId;
+        this.transDate = transDate;
+        this.department = department;
+        this.purpose = purpose;
+        this.description = description;
+        this.locationId = locationId;
+        this.categoryId = categoryId;
+        this.user = user;
+        this.approved = approved;
+        this.received = received;
+        this.requisitioned = requisitioned;
+        this.prepared = prepared;
+        this.noted = noted;
+        this.issued = issued;
+        this.docStatusId = docStatusId;
+        this.remarks = remarks;
+        this.transDateTime = transDateTime;
+        this.requestType = requestType;
+        this.referenceNo = referenceNo;
+    }
 
     public int getId() {
         return id;
@@ -156,61 +202,116 @@ public class StockWithdrawalTmp {
         this.categoryId = categoryId;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public int getApprovedBy() {
-        return approvedBy;
+    public User getApproved() {
+        return approved;
     }
 
-    public void setApprovedBy(int approvedBy) {
-        this.approvedBy = approvedBy;
+    public void setApproved(User approved) {
+        this.approved = approved;
     }
 
-    public int getReceivedBy() {
-        return receivedBy;
+    public User getReceived() {
+        return received;
     }
 
-    public void setReceivedBy(int receivedBy) {
-        this.receivedBy = receivedBy;
+    public void setReceived(User received) {
+        this.received = received;
     }
 
-    public int getRequisitioned() {
+    public User getRequisitioned() {
         return requisitioned;
     }
 
-    public void setRequisitioned(int requisitioned) {
+    public void setRequisitioned(User requisitioned) {
         this.requisitioned = requisitioned;
     }
 
-    public int getPreparedBy() {
-        return preparedBy;
+    public User getPrepared() {
+        return prepared;
     }
 
-    public void setPreparedBy(int preparedBy) {
-        this.preparedBy = preparedBy;
+    public void setPrepared(User prepared) {
+        this.prepared = prepared;
     }
 
-    public int getNotedBy() {
-        return notedBy;
+    public User getNoted() {
+        return noted;
     }
 
-    public void setNotedBy(int notedBy) {
-        this.notedBy = notedBy;
+    public void setNoted(User noted) {
+        this.noted = noted;
     }
 
-    public int getIssuedBy() {
-        return issuedBy;
+    public User getIssued() {
+        return issued;
     }
 
-    public void setIssuedBy(int issuedBy) {
-        this.issuedBy = issuedBy;
+    public void setIssued(User issued) {
+        this.issued = issued;
     }
+    //    public int getUserId() {
+//        return userId;
+//    }
+//
+//    public void setUserId(int userId) {
+//        this.userId = userId;
+//    }
+
+//    public int getApprovedBy() {
+//        return approvedBy;
+//    }
+//
+//    public void setApprovedBy(int approvedBy) {
+//        this.approvedBy = approvedBy;
+//    }
+//
+//    public int getReceivedBy() {
+//        return receivedBy;
+//    }
+//
+//    public void setReceivedBy(int receivedBy) {
+//        this.receivedBy = receivedBy;
+//    }
+//
+//    public int getRequisitioned() {
+//        return requisitioned;
+//    }
+//
+//    public void setRequisitioned(int requisitioned) {
+//        this.requisitioned = requisitioned;
+//    }
+//
+//    public int getPreparedBy() {
+//        return preparedBy;
+//    }
+//
+//    public void setPreparedBy(int preparedBy) {
+//        this.preparedBy = preparedBy;
+//    }
+//
+//    public int getNotedBy() {
+//        return notedBy;
+//    }
+//
+//    public void setNotedBy(int notedBy) {
+//        this.notedBy = notedBy;
+//    }
+//
+//    public int getIssuedBy() {
+//        return issuedBy;
+//    }
+//
+//    public void setIssuedBy(int issuedBy) {
+//        this.issuedBy = issuedBy;
+//    }
 
     public int getDocStatusId() {
         return docStatusId;
