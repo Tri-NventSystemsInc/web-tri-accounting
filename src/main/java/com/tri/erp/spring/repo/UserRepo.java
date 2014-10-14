@@ -34,6 +34,23 @@ public interface UserRepo extends JpaRepository<User, Integer> {
 
     @Modifying
     @Transactional
+    @Query(value = "UPDATE User set " +
+            "fullName = :fullName, " +
+            "username = :username, " +
+            "email = :email, " +
+            "password = :password, " +
+            "enabled = :enabled " +
+            "WHERE id = :userId", nativeQuery = true)
+    public int saveWithPassword(@Param("userId") Integer userId,
+                              @Param("fullName") String fullName,
+                              @Param("username") String username,
+                              @Param("email") String email,
+                              @Param("enabled") Boolean enabled,
+                              @Param("password") String password
+    );
+
+    @Modifying
+    @Transactional
     @Query(value = "INSERT INTO User set " +
             "fullName = :fullName, " +
             "username = :username, " +
