@@ -1,6 +1,7 @@
 package com.tri.erp.spring.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.javafx.beans.annotations.Default;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.validator.constraints.Length;
@@ -21,7 +22,7 @@ public class User {
     private Integer id;
 
     @NotNull
-    @Length(min = 3, max = 512, message = "Invalid length for fullname (max=512, min=3)")
+    @Length(min = 3, max = 512, message = "Invalid length for full name (max=512, min=3)")
     @Column
     private String fullName;
 
@@ -30,31 +31,48 @@ public class User {
     @Column(unique = true)
     private String username;
 
+    @NotNull
+    @Length(min = 10, max = 128, message = "Email length is invalid")
+    @Column(unique = true)
+    private String email;
+
+    @Transient
     @Column
-    private String salt;
+    private String password;
+
+    @Transient
+    @Column
+    private String retypePassword;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     @NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="FK_createdByUserId", nullable = true)
-    private User createBy;
+    @JoinColumn(name="FK_createdByUserId", nullable = true, columnDefinition = "0")
+    private User createdBy;
 
-    @Transient
-    @Column
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
     private Date createdAt;
 
-    @Transient
-    @Column
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
     private Date updatedAt;
 
-    public User(String fullName, String username, String salt, User createBy, Date createdAt, Date updatedAt) {
+    @Column(nullable = false)
+    private Boolean enabled = false;
+
+    public User(String fullName, String username, String email, String password, User createdBy, Date createdAt, Date updatedAt, Boolean enabled) {
         this.fullName = fullName;
         this.username = username;
-        this.salt = salt;
-        this.createBy = createBy;
+        this.email = email;
+        this.password = password;
+        this.createdBy = createdBy;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.enabled = enabled;
     }
+
+    public User() {}
 
     public Integer getId() {
         return id;
@@ -80,20 +98,28 @@ public class User {
         this.username = username;
     }
 
-    public String getSalt() {
-        return salt;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSalt(String salt) {
-        this.salt = salt;
+    public String getEmail() {
+        return email;
     }
 
-    public User getCreateBy() {
-        return createBy;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setCreateBy(User createBy) {
-        this.createBy = createBy;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createBy) {
+        this.createdBy = createBy;
     }
 
     public Date getCreatedAt() {
@@ -110,5 +136,21 @@ public class User {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getRetypePassword() {
+        return retypePassword;
+    }
+
+    public void setRetypePassword(String retypePassword) {
+        this.retypePassword = retypePassword;
+    }
+
+    public Boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 }

@@ -10,4 +10,8 @@ public class Checker {
     public static boolean collectionIsEmpty(Collection<?> collection) {
         return collection == null || collection.size() == 0;
     }
+
+    public static boolean isStringNullAndEmpty(String str) {
+        return !(str != null && str.length() > 0);
+    }
 }

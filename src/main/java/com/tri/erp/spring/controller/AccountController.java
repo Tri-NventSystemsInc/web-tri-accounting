@@ -1,6 +1,6 @@
 package com.tri.erp.spring.controller;
 
-import com.tri.erp.spring.reponse.AccountResponse;
+import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.reponse.AccountDto;
 import com.tri.erp.spring.model.Account;
 import com.tri.erp.spring.service.interfaces.AccountService;
@@ -43,14 +43,14 @@ public class AccountController {
     // create account
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public AccountResponse createAccount(@Valid @RequestBody Account account, BindingResult bindingResult) {
+    public CreateResponse createAccount(@Valid @RequestBody Account account, BindingResult bindingResult) {
         return accountService.processCreate(account, bindingResult, messageSource);
     }
 
     // update account
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    public AccountResponse updateAccount(@Valid @RequestBody Account account, BindingResult bindingResult) {
+    public CreateResponse updateAccount(@Valid @RequestBody Account account, BindingResult bindingResult) {
         return accountService.processUpdate(account, bindingResult, messageSource);
     }
 

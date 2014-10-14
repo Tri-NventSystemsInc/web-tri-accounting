@@ -2,7 +2,8 @@
 var coaApp = angular.module('userManagement', [
     'ngRoute',
     'userManagementCtrl',
-    'userManagementFactory'
+    'userManagementFactory',
+    'errorHandlerService'
 ]);
 
 coaApp.config(['$routeProvider',
@@ -10,6 +11,16 @@ coaApp.config(['$routeProvider',
         $routeProvider.
             when('/users', {
                 templateUrl: 'user/user-list-page'
+            }).
+            when('/new', {
+                templateUrl: 'user/new-user-page'
+            }).
+            when('/user/:userId', {
+                templateUrl: 'user/user-details-page',
+                controller: 'userDetailsCtrl'
+            }).
+            when('/user/:userId/edit', {
+                templateUrl: 'user/new-user-page'
             }).
             otherwise({
                 redirectTo:  '/users'

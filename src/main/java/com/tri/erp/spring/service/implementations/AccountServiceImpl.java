@@ -1,7 +1,7 @@
 package com.tri.erp.spring.service.implementations;
 
-import com.tri.erp.spring.reponse.AccountResponse;
-import com.tri.erp.spring.reponse.CreateAccountAccountResponse;
+import com.tri.erp.spring.reponse.CreateAccountResponse;
+import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.commons.helpers.Checker;
 import com.tri.erp.spring.commons.helpers.MessageFormatter;
 import com.tri.erp.spring.commons.helpers.StringFormatter;
@@ -165,8 +165,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Transactional
-    public AccountResponse processCreate(Account account, BindingResult bindingResult, MessageSource messageSource) {
-        AccountResponse response = new CreateAccountAccountResponse();
+    public CreateResponse processCreate(Account account, BindingResult bindingResult, MessageSource messageSource) {
+        CreateResponse response = new CreateAccountResponse();
         MessageFormatter messageFormatter = new MessageFormatter(bindingResult, messageSource, response);
 
         AccountValidator accountValidator = new AccountValidator();
@@ -242,7 +242,7 @@ public class AccountServiceImpl implements AccountService {
         return accountRepo.findByIdNotInOrderByTitleAsc(accountId);
     }
 
-    public AccountResponse processUpdate(Account account, BindingResult bindingResult, MessageSource messageSource) {
+    public CreateResponse processUpdate(Account account, BindingResult bindingResult, MessageSource messageSource) {
         return processCreate(account, bindingResult, messageSource);
     }
 

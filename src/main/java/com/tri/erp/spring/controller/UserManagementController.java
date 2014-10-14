@@ -31,4 +31,15 @@ public class UserManagementController {
     public String getUserListPage() {
         return BASE_PATH + "user-list";
     }
+
+    @RequestMapping(value = "/new-user-page", method = RequestMethod.GET)
+    public String newUser() {
+        return BASE_PATH + "add-edit";
+    }
+
+    @RequestMapping(value = "/user-details-page", method = RequestMethod.GET)
+    public String userDetails() {
+        return BASE_PATH + "user-details";
+    }
+
 }
