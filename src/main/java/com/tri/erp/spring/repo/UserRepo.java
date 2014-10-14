@@ -22,11 +22,13 @@ public interface UserRepo extends JpaRepository<User, Integer> {
     @Query(value = "UPDATE User set " +
             "fullName = :fullName, " +
             "username = :username, " +
-            "email = :email " +
+            "email = :email, " +
+            "enabled = :enabled " +
             "WHERE id = :userId", nativeQuery = true)
     public int saveWoPassword(@Param("userId") Integer userId,
                              @Param("fullName") String fullName,
                              @Param("username") String username,
-                             @Param("email") String email
+                             @Param("email") String email,
+                             @Param("enabled") Boolean enabled
     );
 }

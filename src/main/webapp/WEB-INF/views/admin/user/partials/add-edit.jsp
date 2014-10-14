@@ -137,6 +137,19 @@
         </div>
 
         <div class="row-top-buffer"></div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-2 col-lg-2">
+                </div>
+                <div class="col-md-9 col-lg-9">
+                    <div class="inline-group">
+                        <label><input ng-model="user.enabled" type="checkbox" id="enabled" name="enabled"> Enabled</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row-top-buffer"></div>
 
         <div class="row">
             <div class="col-md-12 col-lg-12">

@@ -152,7 +152,6 @@ public class User {
     }
 
     public void setEnabled(Boolean enabled) {
-        if (enabled = null)enabled = false;
         this.enabled = enabled;
     }
 }

@@ -103,7 +103,8 @@ public class UserServiceImpl implements UserService {
                             user.getId(),
                             user.getFullName(),
                             user.getUsername(),
-                            user.getEmail()
+                            user.getEmail(),
+                            user.isEnabled()
                     );
                 }
             }
