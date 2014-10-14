@@ -35,7 +35,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(User user) {
-        return userRepo.save(user);
+        User newUser = null;
+        int row = userRepo.save(
+                user.getFullName(),
+                user.getUsername(),
+                user.getPassword(),
+                user.getEmail(),
+                user.isEnabled(),
+                user.getCreatedBy().getId());
+
+        if (row > 0) {
+            newUser = userRepo.findOneByUsername(user.getUsername());
+        }
+        return newUser;
     }
 
     @Override
@@ -49,7 +61,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(Integer id) {
         User user = userRepo.findOne(id);
-        user.setPassword(""); // TODO: lazy load object property
         return user;
     }
 
