@@ -5,12 +5,9 @@ import com.tri.erp.spring.commons.helpers.Checker;
 import com.tri.erp.spring.commons.helpers.MessageFormatter;
 import com.tri.erp.spring.model.User;
 import com.tri.erp.spring.repo.UserRepo;
-import com.tri.erp.spring.reponse.CreateAccountResponse;
 import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.reponse.CreateUserResponse;
-import com.tri.erp.spring.reponse.UserDto;
 import com.tri.erp.spring.service.interfaces.UserService;
-import com.tri.erp.spring.validator.AccountValidator;
 import com.tri.erp.spring.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -81,6 +78,8 @@ public class UserServiceImpl implements UserService {
             response = messageFormatter.getResponse();
             response.setSuccess(false);
         } else {
+            User newUser = user;
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
             Authentication authentication;
             if (user.getId() == null || user.getId() == 0 ) {   // insert mode
@@ -89,13 +88,25 @@ public class UserServiceImpl implements UserService {
                 User createdBy = userRepo.findOneByUsername(curUsername);
                 user.setCreatedBy(createdBy);
 
-                BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
                 String hashedPassword = passwordEncoder.encode(user.getPassword());
 
                 user.setPassword(hashedPassword);
-            }
 
-            User newUser = create(user);
+                newUser = create(user);
+            } else {    // update mode
+                if (!Checker.isStringNullAndEmpty(user.getPassword())) { // has new password
+                    String hashedPassword = passwordEncoder.encode(user.getPassword());
+                    user.setPassword(hashedPassword);
+                    newUser = create(user);
+                } else {
+                    userRepo.saveWoPassword(
+                            user.getId(),
+                            user.getFullName(),
+                            user.getUsername(),
+                            user.getEmail()
+                    );
+                }
+            }
 
             response.setModelId(newUser.getId());
             response.setSuccessMessage("User successfully saved!");

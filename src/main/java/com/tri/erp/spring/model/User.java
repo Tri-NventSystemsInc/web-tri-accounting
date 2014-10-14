@@ -35,6 +35,7 @@ public class User {
     @Column(unique = true)
     private String email;
 
+    @Basic(fetch = FetchType.LAZY)
     @Column
     private String password;
 
