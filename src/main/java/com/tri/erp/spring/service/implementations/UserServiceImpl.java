@@ -15,6 +15,7 @@ import com.tri.erp.spring.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
@@ -87,7 +88,11 @@ public class UserServiceImpl implements UserService {
                 String curUsername = authentication.getName();
                 User createdBy = userRepo.findOneByUsername(curUsername);
                 user.setCreatedBy(createdBy);
-                user.setSalt("EvelynSalt");
+
+                BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+                String hashedPassword = passwordEncoder.encode(user.getPassword());
+
+                user.setPassword(hashedPassword);
             }
 
             User newUser = create(user);
