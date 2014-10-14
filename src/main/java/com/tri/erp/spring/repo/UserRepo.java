@@ -31,4 +31,21 @@ public interface UserRepo extends JpaRepository<User, Integer> {
                              @Param("email") String email,
                              @Param("enabled") Boolean enabled
     );
+
+    @Modifying
+    @Transactional
+    @Query(value = "INSERT INTO User set " +
+            "fullName = :fullName, " +
+            "username = :username, " +
+            "password = :password, " +
+            "email = :email, " +
+            "FK_createdByUserId = :createdByUserId, " +
+            "enabled = :enabled", nativeQuery = true)
+    public int save(@Param("fullName") String fullName,
+                      @Param("username") String username,
+                      @Param("password") String password,
+                      @Param("email") String email,
+                      @Param("enabled") Boolean enabled,
+                      @Param("createdByUserId") Integer createdByUserId
+    );
 }

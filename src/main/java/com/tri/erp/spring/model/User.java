@@ -36,12 +36,11 @@ public class User {
     @Column(unique = true)
     private String email;
 
-    @Basic(fetch = FetchType.LAZY)
+    @Transient
     @Column
     private String password;
 
     @Transient
-    @JsonIgnoreProperties(ignoreUnknown = true)
     @Column
     private String retypePassword;
 
