@@ -64,7 +64,7 @@
                     <label class="input-label">Last updated</label>
                 </div>
                 <div class="col-md-9 col-lg-9">
-                    <label class="value-label">{{ user.createdAt | date:'MMM dd, yyyy HH:mm a' }}</label>
+                    <label class="value-label">{{ user.updatedAt | date:'MMM dd, yyyy HH:mm a' }}</label>
                 </div>
             </div>
 

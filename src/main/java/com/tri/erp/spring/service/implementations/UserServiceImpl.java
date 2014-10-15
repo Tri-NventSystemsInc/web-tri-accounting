@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
                 user.getPassword(),
                 user.getEmail(),
                 user.isEnabled(),
-                user.getCreatedBy() == null ? 0 :  user.getCreatedBy().getId());
+                user.getCreatedBy() == null ? 0 : user.getCreatedBy().getId());
 
         if (row > 0) {
             newUser = userRepo.findOneByUsername(user.getUsername());
@@ -109,6 +109,7 @@ public class UserServiceImpl implements UserService {
                 if (!Checker.isStringNullAndEmpty(user.getPassword())) { // has new password
                     String hashedPassword = passwordEncoder.encode(user.getPassword());
                     user.setPassword(hashedPassword);
+
                     userRepo.saveWithPassword(
                             user.getId(),
                             user.getFullName(),
@@ -117,6 +118,7 @@ public class UserServiceImpl implements UserService {
                             user.isEnabled(),
                             user.getPassword()
                     );
+
                 } else {
                     userRepo.saveWoPassword(
                             user.getId(),
