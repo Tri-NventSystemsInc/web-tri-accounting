@@ -5,16 +5,14 @@ import com.tri.erp.spring.commons.helpers.Checker;
 import com.tri.erp.spring.commons.helpers.MessageFormatter;
 import com.tri.erp.spring.model.User;
 import com.tri.erp.spring.repo.UserRepo;
-import com.tri.erp.spring.reponse.CreateAccountResponse;
 import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.reponse.CreateUserResponse;
-import com.tri.erp.spring.reponse.UserDto;
 import com.tri.erp.spring.service.interfaces.UserService;
-import com.tri.erp.spring.validator.AccountValidator;
 import com.tri.erp.spring.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
@@ -37,7 +35,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(User user) {
-        return userRepo.save(user);
+        User newUser = null;
+        int row = userRepo.save(
+                user.getFullName(),
+                user.getUsername(),
+                user.getPassword(),
+                user.getEmail(),
+                user.isEnabled(),
+                user.getCreatedBy() == null ? 0 :  user.getCreatedBy().getId());
+
+        if (row > 0) {
+            newUser = userRepo.findOneByUsername(user.getUsername());
+        }
+        return newUser;
     }
 
     @Override
@@ -80,6 +90,8 @@ public class UserServiceImpl implements UserService {
             response = messageFormatter.getResponse();
             response.setSuccess(false);
         } else {
+            User newUser = user;
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
             Authentication authentication;
             if (user.getId() == null || user.getId() == 0 ) {   // insert mode
@@ -87,10 +99,34 @@ public class UserServiceImpl implements UserService {
                 String curUsername = authentication.getName();
                 User createdBy = userRepo.findOneByUsername(curUsername);
                 user.setCreatedBy(createdBy);
-                user.setSalt("EvelynSalt");
-            }
 
-            User newUser = create(user);
+                String hashedPassword = passwordEncoder.encode(user.getPassword());
+
+                user.setPassword(hashedPassword);
+
+                newUser = create(user);
+            } else {    // update mode
+                if (!Checker.isStringNullAndEmpty(user.getPassword())) { // has new password
+                    String hashedPassword = passwordEncoder.encode(user.getPassword());
+                    user.setPassword(hashedPassword);
+                    userRepo.saveWithPassword(
+                            user.getId(),
+                            user.getFullName(),
+                            user.getUsername(),
+                            user.getEmail(),
+                            user.isEnabled(),
+                            user.getPassword()
+                    );
+                } else {
+                    userRepo.saveWoPassword(
+                            user.getId(),
+                            user.getFullName(),
+                            user.getUsername(),
+                            user.getEmail(),
+                            user.isEnabled()
+                    );
+                }
+            }
 
             response.setModelId(newUser.getId());
             response.setSuccessMessage("User successfully saved!");
