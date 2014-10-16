@@ -18,7 +18,7 @@
     <div>
         <div>
 
-            <img src="/resources/inspinia/img/firefly1.png">
+            <img src="/resources/images/main/firefly1.png">
 
         </div>
         <h3>Welcome to Company Name</h3>
