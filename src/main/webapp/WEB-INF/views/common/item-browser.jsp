@@ -37,9 +37,9 @@
                                     </thead>
                                     <tbody>
                                     <tr data-dismiss="modal" ng-repeat="item in its = (items | filter:query)" style="cursor: pointer" ng-click="selectItem(item)">
-                                        <td style="width: 100px;">{{item.code}}</td>
+                                        <td style="width: 120px;">{{item.code}}</td>
                                         <td style="width: 480px;">{{item.description}}</td>
-                                        <td>{{item.unit.code}}</td>
+                                        <td style="width: 90px;">{{item.unit.code}}</td>
                                         <td style="max-width: 300px;">{{item.segmentAccount.accountCode + ' ' + item.segmentAccount.account.title}}</td>
                                     </tr>
                                     <tr ng-show="its.length == 0"><td colspan="4" align="center">No records found</td></tr>
