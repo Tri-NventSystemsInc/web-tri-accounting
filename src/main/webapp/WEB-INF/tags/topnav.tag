@@ -20,7 +20,7 @@
         <ul class="nav navbar-top-links navbar-right">
             <li>
                 <a href="">
-                    <img src="./img/malemini.png"><small> LESTER JOHN PAUL CADIZ</small>
+                    <%--<img src="./img/malemini.png"><small> LESTER JOHN PAUL CADIZ</small>--%>
                 </a>
 
             </li>
