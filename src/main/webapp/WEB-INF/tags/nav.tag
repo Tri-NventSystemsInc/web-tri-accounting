@@ -1,5 +1,6 @@
 <%@ tag %>
-<div style="margin-top: 20px;"></div>
+
+<%--<div style="margin-top: 20px;"></div>
 <ul class="nav nav-pills">
     <li class="active"><a href="/">Home</a></li>
     <li class="dropdown">
@@ -16,12 +17,10 @@
     <li><a href="#">Test2</a></li>
     <li><a href="#">Test3</a></li>
 </ul>--%>
-
 <nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <ul side-navigation class="nav" id="side-menu">
             <li class="nav-header">
-
                 <div class="dropdown profile-element">
                     <!-- Picture of user -->
                     <!--<img alt="image" class="img-circle" src="img/profile_small.jpg"/>-->
@@ -40,19 +39,19 @@
 
             </li>
             <li ui-sref-active="active">
-                <a><i class="fa fa-laptop"></i> <span class="nav-label">Dashboard</span> </a>
+                <a ui-sref="main"><i class="fa fa-laptop"></i> <span class="nav-label">Dashboard</span> </a>
             </li>
             <li>
                 <a><i class="fa fa-th-large"></i> <span class="nav-label">Coop</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li ui-sref-active="active"><a href="/admin/coa">Chart of Accounts</a></li>
+                    <li ui-sref-active="active"><a href="/admin/user">Users</a></li>
+                    <li ui-sref-active="active"><a href="/admin/showcase">Showcase</a></li>
+
                 </ul>
             </li>
-
-
-
-
         </ul>
-
     </div>
 </nav>
+
+

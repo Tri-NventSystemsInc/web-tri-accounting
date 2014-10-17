@@ -15,7 +15,7 @@
 <body>
 <h1>Dashboard</h1>
 
-<form  action="${pageContext.request.contextPath}/logout" method="post">
+<form  action="${pageContext.request.contextPath}/login" method="post">
     <input type="submit" value="Log out" />
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>
