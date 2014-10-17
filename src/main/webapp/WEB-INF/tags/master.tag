@@ -1,11 +1,10 @@
 <%@ tag %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%@ attribute name="head" fragment="true" %>
-<%@ attribute name="nav" fragment="true" %>
 <%@ attribute name="topnav" fragment="true" %>
-<%@ attribute name="footer" fragment="true" %>
 <%@ attribute name="body" fragment="true" %>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <%--<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">--%>
@@ -29,28 +28,12 @@
 
 <html ng-app="inspinia">
 
+
 <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta charset="utf-8">
-
-
-
-    <!-- Page title set in pageTitle directive -->
-    <title page-title></title>
-    <!-- Bootstrap and Fonts -->
-    <link href="<c:url value="/resources/css/inspinia/bootstrap.min.css" />" rel="stylesheet">
-    <link href="<c:url value="/resources/fonts/inspinia/font-awesome/css/font-awesome.css" />" rel="stylesheet">
-
-    <!-- Main Inspinia CSS files -->
-    <link href="<c:url value="/resources/css/inspinia/animate.css" />" rel="stylesheet">
-    <link href="<c:url value="/resources/css/inspinia/style.css" />" rel="stylesheet">
-
+    <my:header/>
+    <jsp:invoke fragment="head"/>
 </head>
-
 <!-- ControllerAs syntax -->
 <!-- Main controller with serveral data used in Inspinia theme on diferent view -->
 <body ng-controller="MainCtrl as main">
@@ -61,7 +44,6 @@
     <!-- Navigation -->
     <div>
         <my:nav/>
-
     </div>
 
     <!-- Page wraper -->
@@ -71,11 +53,11 @@
         <!-- Page wrapper -->
         <div>
             <my:topnav/>
-
+            <jsp:invoke fragment="topnav"/>
         </div>
 
         <!-- Main view  -->
-        <!-- <div ui-view></div> -->
+         <div><jsp:invoke fragment="body"/> </div>
 
         <!-- Footer -->
         <div >
