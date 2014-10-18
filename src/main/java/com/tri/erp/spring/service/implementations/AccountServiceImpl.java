@@ -186,7 +186,7 @@ public class AccountServiceImpl implements AccountService {
             account.setCode(StringFormatter
                     .buildAccountCode(
                             accountType.getCode(),
-                            accountGroup.getAccountGroupCode(),
+                            accountGroup.getCode(),
                             account.getGLAccount(),
                             account.getSLAccount(),
                             account.getAuxiliaryAccount()

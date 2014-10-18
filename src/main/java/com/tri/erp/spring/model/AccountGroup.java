@@ -3,16 +3,12 @@ package com.tri.erp.spring.model;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
 
 /**
  * Created by TSI Admin on 9/9/2014.
  */
 
 @Entity
-@Table(name="account_group")
 public class AccountGroup implements java.io.Serializable {
 
     @Id
@@ -20,29 +16,29 @@ public class AccountGroup implements java.io.Serializable {
     private int id;
 
     @NotEmpty
-    @Column(name = "acct_group_id")
-    private String accountGroupCode;
+    @Column
+    private String code;
 
     @NotEmpty
-    @Column(name = "acct_group_desc")
+    @Column
     private String description;
 
-    public AccountGroup(String accountGroupCode, String description) {
-        this.accountGroupCode = accountGroupCode;
+    public AccountGroup(String code, String description) {
+        this.code = code;
         this.description = description;
     }
 
     public AccountGroup() {}
 
-    public String getAccountGroupCode() {
-        return accountGroupCode;
+    public String getCode() {
+        return code;
     }
 
     /**
-     * @param accountGroupCode
+     * @param code
      */
-    public void setAccountGroupCode(String accountGroupCode) {
-        this.accountGroupCode = accountGroupCode;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     /**
@@ -71,7 +67,7 @@ public class AccountGroup implements java.io.Serializable {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + accountGroupCode.hashCode();
+        result = 31 * result + code.hashCode();
         return result;
     }
 

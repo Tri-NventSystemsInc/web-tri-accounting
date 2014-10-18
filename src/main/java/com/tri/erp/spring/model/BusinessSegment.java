@@ -12,25 +12,24 @@ import java.util.Set;
  * Created by TSI Admin on 9/15/2014.
  */
 @Entity
-@Table(name="business_segment")
 public class BusinessSegment implements java.io.Serializable {
     @Id
     @GeneratedValue
-    @Column(name = "bus_seg_id")
+    @Column
     private int id;
 
-    @Column(name = "bus_seg_desc")
+    @Column
     private
     String description;
 
-    @Column(name = "bus_seg_code")
+    @Column
     private
     String code;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     @NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="bus_act_id")
+    @JoinColumn(name="FK_businessActivityId")
     private BusinessActivity businessActivity;
 
     public BusinessSegment(String description, String code, BusinessActivity businessActivity) {
