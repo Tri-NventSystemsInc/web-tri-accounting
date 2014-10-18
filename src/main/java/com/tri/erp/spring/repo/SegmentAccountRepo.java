@@ -18,11 +18,11 @@ public interface SegmentAccountRepo extends JpaRepository<SegmentAccount, Intege
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO segment_accounts  (bus_seg_id, acct_id, acct_code) "
+    @Query(value = "INSERT INTO SegmentAccount  (FK_businessSegmentId, FK_accountId, accountCode) "
             + "(SELECT :businessSegmentId, :accountId, :segmentAccountCode "
-            + "FROM segment_accounts s1 "
+            + "FROM SegmentAccount s1 "
             + "WHERE (:businessSegmentId NOT IN "
-            + "(SELECT s2.bus_seg_id FROM segment_accounts s2 WHERE s2.acct_id = :accountId)) LIMIT 1)", nativeQuery = true)
+            + "(SELECT s2.FK_businessSegmentId FROM SegmentAccount s2 WHERE s2.FK_accountId = :accountId)) LIMIT 1)", nativeQuery = true)
     public int saveWithExistenceCheck(@Param("businessSegmentId") Integer businessSegmentId,
                                       @Param("accountId") Integer accountId,
                                       @Param("segmentAccountCode") String segmentAccountCode

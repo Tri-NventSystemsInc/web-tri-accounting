@@ -12,7 +12,6 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name="account_type")
 public class AccountType implements java.io.Serializable {
 
     @Id

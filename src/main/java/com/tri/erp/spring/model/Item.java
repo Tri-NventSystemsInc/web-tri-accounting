@@ -11,31 +11,30 @@ import javax.persistence.*;
  * Created by TSI Admin on 10/6/2014.
  */
 @Entity
-@Table(name = "item")
 public class Item {
     @Id
     @GeneratedValue
-    @Column(name = "item_id")
+    @Column
     private Integer id;
 
     @NotEmpty
-    @Column(name = "code_no")
+    @Column
     private String code;
 
     @NotEmpty
-    @Column(name = "item_desc")
+    @Column
     private String description;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     @NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "unit_id")
+    @JoinColumn(name = "FK_unitId")
     private UnitMeasure unit;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     @NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seg_acct_id")
+    @JoinColumn(name = "FK_segmentAccountId")
     private SegmentAccount segmentAccount;
 
     public Item(String code, String description, UnitMeasure unit, SegmentAccount segmentAccount) {

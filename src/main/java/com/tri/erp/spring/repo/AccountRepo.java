@@ -22,12 +22,12 @@ public interface AccountRepo extends JpaRepository<Account, Integer> {
     @Transactional
     @Query(value = "SELECT Account.id, " +
             "Account.title, " +
-            "segment_accounts.acct_code, " +
-            "account_type.description " +
+            "SegmentAccount.accountCode, " +
+            "AccountType.description " +
             "FROM Account " +
-            "JOIN segment_accounts ON Account.id = segment_accounts.acct_id " +
-            "LEFT JOIN account_type ON Account.FK_accountTypeId = account_type.id " +
-            "WHERE segment_accounts.bus_seg_id IN (:segmentIds) " +
-            "ORDER BY Account.code ASC, segment_accounts.acct_code ASC", nativeQuery = true)
+            "JOIN SegmentAccount ON Account.id = SegmentAccount.FK_accountId " +
+            "LEFT JOIN AccountType ON Account.FK_accountTypeId = AccountType.id " +
+            "WHERE SegmentAccount.FK_businessSegmentId IN (:segmentIds) " +
+            "ORDER BY Account.code ASC, SegmentAccount.accountCode ASC", nativeQuery = true)
     public List<Object[]> findBySegmentIds(@Param("segmentIds") List<String> segmentIds);
 }

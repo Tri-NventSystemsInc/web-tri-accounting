@@ -6,18 +6,17 @@ import javax.persistence.*;
  * Created by TSI Admin on 9/15/2014.
  */
 @Entity
-@Table(name="business_activity")
 public class BusinessActivity implements java.io.Serializable {
     @Id
     @GeneratedValue
-    @Column(name = "bus_act_id")
-    private int id;
+    @Column
+    private Integer id;
 
-    @Column(name = "bus_act_desc")
+    @Column
     private
     String description;
 
-    @Column(name = "bus_act_code", unique = true)
+    @Column(unique = true)
     private
     String code;
 
