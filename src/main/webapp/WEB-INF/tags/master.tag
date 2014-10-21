@@ -57,9 +57,7 @@
         </div>
 
         <!-- Main view  -->
-         <div>
-             <jsp:invoke fragment="body"/>
-         </div>
+         <div><jsp:invoke fragment="body"/> </div>
 
         <!-- Footer -->
         <div >
