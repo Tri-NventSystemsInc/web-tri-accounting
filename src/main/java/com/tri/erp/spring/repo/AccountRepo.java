@@ -20,14 +20,14 @@ public interface AccountRepo extends JpaRepository<Account, Integer> {
     public List<Account> findByIdNotInOrderByTitleAsc(Integer... accountId);
 
     @Transactional
-    @Query(value = "SELECT accounts.acct_id, " +
-            "accounts.title, " +
-            "segment_accounts.acct_code, " +
-            "account_type.description " +
-            "FROM accounts " +
-            "JOIN segment_accounts ON accounts.acct_id = segment_accounts.acct_id " +
-            "LEFT JOIN account_type ON accounts.acct_type_id = account_type.id " +
-            "WHERE segment_accounts.bus_seg_id IN (:segmentIds) " +
-            "ORDER BY accounts.code ASC, segment_accounts.acct_code ASC", nativeQuery = true)
+    @Query(value = "SELECT Account.id, " +
+            "Account.title, " +
+            "SegmentAccount.accountCode, " +
+            "AccountType.description " +
+            "FROM Account " +
+            "JOIN SegmentAccount ON Account.id = SegmentAccount.FK_accountId " +
+            "LEFT JOIN AccountType ON Account.FK_accountTypeId = AccountType.id " +
+            "WHERE SegmentAccount.FK_businessSegmentId IN (:segmentIds) " +
+            "ORDER BY Account.code ASC, SegmentAccount.accountCode ASC", nativeQuery = true)
     public List<Object[]> findBySegmentIds(@Param("segmentIds") List<String> segmentIds);
 }
