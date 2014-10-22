@@ -3,12 +3,9 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="mytag" %>
 
 <mytag:master>
-    <jsp:attribute name="head">
-        <link href="<c:url value="/resources/css/treeGrid/treeGrid.css" />" rel="stylesheet">
-    </jsp:attribute>
     <jsp:attribute name="body">
         <div ng-app="account">
-            <div id="coa-content" ng-view>Loading...</div>
+            <div id="coa-content">Chart of Accounts</div>
         </div>
     </jsp:attribute>
 </mytag:master>

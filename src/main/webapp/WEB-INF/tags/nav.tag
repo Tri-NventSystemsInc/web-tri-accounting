@@ -21,12 +21,12 @@
     <div class="sidebar-collapse">
         <ul side-navigation class="nav" id="side-menu">
             <li class="nav-header">
-                <div class="dropdown profile-element">
+
+             <div class="dropdown profile-element">
                     <!-- Picture of user -->
                     <!--<img alt="image" class="img-circle" src="img/profile_small.jpg"/>-->
+                     <div><img src="/resources/images/main/ileco.png"></div>
                     <a class="dropdown-toggle" href>
-
-                        <small>Company Logo</small>
 
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
@@ -39,7 +39,7 @@
 
             </li>
             <li ui-sref-active="active">
-                <a ui-sref="main"><i class="fa fa-laptop"></i> <span class="nav-label">Dashboard</span> </a>
+                <a href="/admin/dashboard"><i class="fa fa-laptop"></i> <span class="nav-label">Dashboard</span> </a>
             </li>
             <li>
                 <a><i class="fa fa-th-large"></i> <span class="nav-label">Coop</span> <span class="fa arrow"></span></a>

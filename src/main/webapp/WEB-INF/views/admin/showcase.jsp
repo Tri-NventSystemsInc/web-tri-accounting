@@ -8,26 +8,28 @@
     </jsp:attribute>
     <jsp:attribute name="body">
         <div ng-app="myapp">
-            <div ng-controller="acbCtrl">
+           <div ng-controller="acbCtrl">
+
                 <p>You selected account: <b>{{selectedAccount ? (selectedAccount.code + ' ' + selectedAccount.title) : 'None'}}</b></p>
                 <div account-browser-s btn_label="Browse accounts" handler="accounts_selection_handler(account)" />
             </div>
             <p></p>
-            <div ng-controller="sleCtrl">
+         <div ng-controller="sleCtrl">
+
                 <p>You selected entity: <b>{{selectedEntity ? (selectedEntity.accountNo + ' ' + selectedEntity.name) : 'None'}}</b></p>
                 <div sl-entity-browser btn_label="Browse entities" handler="entity_selection_handler(entity)" />
+             </div>
+        <p></p>
+         <div ng-controller="itemCtrl">
+
+                <p>You selected item: <b>{{selectedItem ? (selectedItem.code + ' ' + selectedItem.description) : 'None'}}</b></p>
+                <div item-browser btn_label="Browse items" handler="item_selection_handler(item)" />
             </div>
             <p></p>
-            <div ng-controller="itemCtrl">
-                <div>
-                    <p>You selected item: <b>{{selectedItem ? (selectedItem.code + ' ' + selectedItem.description) : 'None'}}</b></p>
-                    <div item-browser btn_label="Browse items" handler="item_selection_handler(item)" />
-                </div>
-                <p></p>
-                <button ng-click="export('xls')" title="export to excel" class="btn btn-primary">Export items to excel</button>
-            </div>
+            <button ng-click="export('xls')" title="export to excel" class="btn btn-primary">Export items to excel</button>
         </div>
-    </jsp:attribute>
+    </div>
+</jsp:attribute>
 </mytag:master>
 
 <%--take note of the ff dependencies and their include order--%>
@@ -72,3 +74,4 @@
             }
         }]);
 </script>
+
