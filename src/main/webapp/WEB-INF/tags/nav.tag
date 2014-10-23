@@ -20,16 +20,19 @@
 <nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <ul side-navigation class="nav" id="side-menu">
-            <li class="nav-header">
+            <li>
 
              <div class="dropdown profile-element">
                     <!-- Picture of user -->
                     <!--<img alt="image" class="img-circle" src="img/profile_small.jpg"/>-->
-                     <div><img src="/resources/images/main/ileco.png"></div>
-                    <a class="dropdown-toggle" href>
 
-                    </a>
+                    <div align="center">
+                        <div class="row" style="height:30px;"></div>
+                        <div><img src="/resources/images/main/ileco.png"></div>
+                        <div class="row" style="height:30px;"></div>
+                    </div>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
+
                         <li><a href="">Logout</a></li>
                     </ul>
                 </div>
