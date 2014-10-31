@@ -18,7 +18,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
 @ComponentScan("com.tri.erp.spring")
-@Import(DbConfig.class)
+@Import({DbConfig.class, CachingConfig.class})
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 	@Autowired
