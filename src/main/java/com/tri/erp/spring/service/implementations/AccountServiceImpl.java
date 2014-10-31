@@ -10,6 +10,8 @@ import com.tri.erp.spring.model.*;
 import com.tri.erp.spring.repo.*;
 import com.tri.erp.spring.service.interfaces.AccountService;
 import com.tri.erp.spring.validator.AccountValidator;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -82,6 +84,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional(readOnly = true)
+    @Cacheable(value = "accountsTreeCache")
     public List<AccountDto> findAllTree() {
         this.accountsDtoList = new ArrayList<>();
 
@@ -165,6 +168,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Transactional
+    @CacheEvict(value = "accountsTreeCache", allEntries = true)
     public CreateResponse processCreate(Account account, BindingResult bindingResult, MessageSource messageSource) {
         CreateResponse response = new CreateAccountResponse();
         MessageFormatter messageFormatter = new MessageFormatter(bindingResult, messageSource, response);
@@ -242,6 +246,7 @@ public class AccountServiceImpl implements AccountService {
         return accountRepo.findByIdNotInOrderByTitleAsc(accountId);
     }
 
+    @CacheEvict(value = "accountsTreeCache")
     public CreateResponse processUpdate(Account account, BindingResult bindingResult, MessageSource messageSource) {
         return processCreate(account, bindingResult, messageSource);
     }

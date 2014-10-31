@@ -1,6 +1,6 @@
 package com.tri.erp.spring.config;
 
-import org.springframework.cache.CacheManager;
+
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
@@ -19,11 +19,12 @@ public class CachingConfig {
     @Bean
     public EhCacheManagerFactoryBean ehCacheManagerFactoryBean() {
         EhCacheManagerFactoryBean ehCacheManagerFactoryBean = new EhCacheManagerFactoryBean();
-        ehCacheManagerFactoryBean.setConfigLocation(new ClassPathResource("ehcache.xml"));
+        ehCacheManagerFactoryBean.setConfigLocation(new ClassPathResource("firefly-ehcache.xml"));
+        ehCacheManagerFactoryBean.setShared(true);
         return ehCacheManagerFactoryBean;
     }
     @Bean
-    public CacheManager cacheManager() {
+    public EhCacheCacheManager cacheManager() {
         EhCacheCacheManager cacheManager = new EhCacheCacheManager ();
         cacheManager.setCacheManager(ehCacheManagerFactoryBean().getObject());
         return cacheManager;
