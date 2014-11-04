@@ -90,6 +90,7 @@
     <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.8.0" level="project" />
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
     <orderEntry type="library" name="Maven: commons-digester:commons-digester:2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.lowagie:itext:4.2.1" level="project" />
     <orderEntry type="library" name="Maven: jfree:jcommon:1.0.15" level="project" />
     <orderEntry type="library" name="Maven: jfree:jfreechart:1.0.12" level="project" />
     <orderEntry type="library" name="Maven: eclipse:jdtcore:3.1.0" level="project" />
@@ -100,7 +101,7 @@
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-queries:4.5.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-sandbox:4.5.1" level="project" />
     <orderEntry type="library" name="Maven: jakarta-regexp:jakarta-regexp:1.4" level="project" />
-    <orderEntry type="library" name="Maven: com.lowagie:itext:4.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.olap4j:olap4j:0.9.7.309-JS-3" level="project" />
     <orderEntry type="library" name="Maven: org.bouncycastle:bctsp-jdk14:1.38" level="project" />
     <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk14:1.38" level="project" />
     <orderEntry type="library" name="Maven: org.bouncycastle:bcmail-jdk14:1.38" level="project" />

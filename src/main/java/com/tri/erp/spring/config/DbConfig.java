@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.jolbox.bonecp.BoneCPDataSource;
 
 
-@PropertySource(value = "classpath:application.properties")
+@PropertySource(value = "classpath:application-${profile}.properties")
 @EnableTransactionManagement()
 @EnableJpaRepositories("com.tri.erp.spring.repo")
 @Configuration
