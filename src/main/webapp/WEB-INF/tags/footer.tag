@@ -36,6 +36,6 @@
 
 <!-- Anglar App Script -->
 <script src="<c:url value="/resources/js/inspinia/app.js" />"></script>
-<script src="<c:url value="/resources/js/inspinia/config.js" />"></script>
+<%--<script src="<c:url value="/resources/js/inspinia/config.js" />"></script>--%>
 <script src="<c:url value="/resources/js/inspinia/directives.js" />"></script>
-<script src="<c:url value="/resources/js/inspinia/controllers.js" />"></script>
+<%--<script src="<c:url value="/resources/js/inspinia/controllers.js" />"></script>--%>
