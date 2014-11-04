@@ -40,6 +40,9 @@ public class Menu {
         this.parentMenu = parentMenu;
     }
 
+    public Menu() {
+    }
+
     public Integer getId() {
         return id;
     }
