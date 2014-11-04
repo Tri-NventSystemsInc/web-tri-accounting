@@ -10,6 +10,7 @@ import com.tri.erp.spring.commons.facade.AuthenticationFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,14 @@ public class HomeController {
 
     @RequestMapping(value = {"/", "index"}, method = RequestMethod.GET)
     public String index(HttpServletRequest request) {
+        Authentication auth = authenticationFacade.getAuthentication();
+
+        System.out.println("ROLES:");
+        Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
+        for (GrantedAuthority grantedAuthority : authorities) {
+            System.out.println(grantedAuthority.getAuthority());
+        }
+
         if (request.isUserInRole("ADMIN")) {
             return "redirect:admin/dashboard";
         } else {

@@ -1,6 +1,11 @@
 package com.tri.erp.spring.controller;
 
+import com.tri.erp.spring.commons.Debug;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -9,24 +14,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping("/admin")
-public class AdminController {
+public class AdminDashboardController {
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String index() {
-        return getAdminHomeView();
-    }
-
-    @RequestMapping(value = {"/dashboard"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/dashboard", "/"}, method = RequestMethod.GET)
     public String dashboard() {
-        return getAdminHomeView();
+        return "admin/dashboard";
     }
 
     @RequestMapping(value = {"/showcase"}, method = RequestMethod.GET)
     public String showcase() {
         return "admin/showcase";
-    }
-
-    private String getAdminHomeView() {
-        return "admin/dashboard";
     }
 }

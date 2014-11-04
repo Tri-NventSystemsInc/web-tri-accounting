@@ -6,6 +6,7 @@
 
 package com.tri.erp.spring.controller;
 
+import com.tri.erp.spring.model.Menu;
 import com.tri.erp.spring.model.SlEntity;
 import com.tri.erp.spring.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,10 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/json")
-public class JSONEntityController {
+public class AnyJsonController {
 
+    @Autowired
+    MenuService menuService;
 
     @Autowired
     SlEntityService slEntityService;
@@ -33,5 +36,11 @@ public class JSONEntityController {
     @ResponseBody
     public List<SlEntity> getEntities() {
         return slEntityService.findAll();
+    }
+
+    @RequestMapping(value = "/menus", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Menu> getMenus() {
+        return menuService.findAll();
     }
 }
