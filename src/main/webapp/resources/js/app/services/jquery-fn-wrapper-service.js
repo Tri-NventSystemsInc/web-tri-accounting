@@ -1,6 +1,6 @@
-var errorHandlerService = angular.module('jQueryFnWrapperService', []);
+var jQueryFnWrapperService = angular.module('jQueryFnWrapperService', []);
 
-errorHandlerService.service('modalToggler', function() {
+jQueryFnWrapperService.service('modalToggler', function() {
     this.show = function(modalId) {
         modalId = '#' + modalId
         $(modalId).modal('show');
@@ -10,4 +10,14 @@ errorHandlerService.service('modalToggler', function() {
         modalId = '#' + modalId
         $(modalId).modal('hide');
     };
+
+    this.getCsrfToken = function() {
+        return $('input[name=_csrf]').val();
+    }
+});
+
+jQueryFnWrapperService.service('csrf', function() {
+    this.getCsrfToken = function() {
+        return $('input[name=_csrf]').val();
+    }
 });
