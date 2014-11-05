@@ -11,6 +11,7 @@ import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.reponse.CreateUserResponse;
 import com.tri.erp.spring.service.interfaces.UserService;
 import com.tri.erp.spring.validator.UserValidator;
+import org.hibernate.annotations.Check;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.core.Authentication;
@@ -63,6 +64,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(Integer id) {
         User user = userRepo.findOne(id);
+
+        if (user != null) { // get roles
+            List<Object[]> rolesObj = userRepo.findRolesByUserId(user.getId());
+            if (!Checker.collectionIsEmpty(rolesObj)) {
+                for (Object[] obj : rolesObj) {
+                    Role role = new Role();
+                    role.setId((Integer)obj[0]);
+                    role.setName((String)obj[1]);
+
+                    user.getRoles().add(role);
+                }
+            }
+        }
         return user;
     }
 
