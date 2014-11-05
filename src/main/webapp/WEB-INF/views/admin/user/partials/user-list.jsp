@@ -95,8 +95,8 @@
                     <td style="width: 22%;">{{role.name}}</td>
                     <td style="width: 20%;">{{role.updatedAt | date:'MMM dd, yyyy HH:mm a'}}</td>
                     <td style='width: 4%; vertical-align: middle; text-align: center'>
-                        <a style='padding: 0' title='View' href="#/role/{{user.id}}"><i class='fa fa-search'></i></a>
-                        <a style='padding: 0' title='Edit' href="#/role/{{user.id}}/edit"><i class='fa fa-edit'></i></a>
+                        <a style='padding: 0' title='View' href="#/role/{{role.id}}"><i class='fa fa-search'></i></a>
+                        <a style='padding: 0' title='Edit' href="#/role/{{role.id}}/edit"><i class='fa fa-edit'></i></a>
                     </td>
                 </tr>
                 <tr ng-show="r.length == 0"><td colspan="4" align="center">No records found</td></tr>

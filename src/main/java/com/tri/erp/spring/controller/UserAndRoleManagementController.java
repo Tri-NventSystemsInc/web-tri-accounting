@@ -42,4 +42,9 @@ public class UserAndRoleManagementController {
         return BASE_PATH + "user-details";
     }
 
+    @RequestMapping(value = "/role-details-page", method = RequestMethod.GET)
+    public String roleDetails() {
+        return BASE_PATH + "role-details";
+    }
+
 }
