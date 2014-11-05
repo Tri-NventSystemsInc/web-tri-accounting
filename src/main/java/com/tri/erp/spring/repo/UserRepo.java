@@ -74,4 +74,9 @@ public interface UserRepo extends JpaRepository<User, Integer> {
     public int saveRoles(@Param("userId") Integer userId,
                             @Param("roleId") Integer roleId
     );
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM UserRole WHERE FK_userId = :userId", nativeQuery = true)
+    public int removeRoles(@Param("userId") Integer userId);
 }

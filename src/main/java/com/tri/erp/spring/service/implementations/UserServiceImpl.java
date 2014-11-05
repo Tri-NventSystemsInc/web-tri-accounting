@@ -139,6 +139,15 @@ public class UserServiceImpl implements UserService {
                             user.isEnabled()
                     );
                 }
+
+                // user roles
+                userRepo.removeRoles(user.getId());
+
+                if (!Checker.collectionIsEmpty(user.getRoles())) {
+                    for (Role role : user.getRoles()) {
+                        userRepo.saveRoles(newUser.getId(), role.getId());
+                    }
+                }
             }
 
             response.setModelId(newUser.getId());
