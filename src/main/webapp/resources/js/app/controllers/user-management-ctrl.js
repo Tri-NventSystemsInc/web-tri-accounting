@@ -5,13 +5,24 @@ userManagementCtrls.controller('userListCtrl', ['$scope', '$http', 'userFactory'
 
     userFactory.getUsers()
             .success(function (data) {
-            console.log(data);
                 $scope.users = data;
             })
             .error(function (error) {
                 toastr.error('Failed to load users!');
             });
 }]);
+
+userManagementCtrls.controller('roleListCtrl', ['$scope', '$http','roleFactory', function($scope,  $http, roleFactory) {
+
+    roleFactory.getRoles()
+        .success(function (data) {
+            $scope.roles = data;
+        })
+        .error(function (error) {
+            toastr.error('Failed to load roles.');
+        });
+}]);
+
 
 
 userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$routeParams', '$http', 'userFactory', 'errorToElementBinder',

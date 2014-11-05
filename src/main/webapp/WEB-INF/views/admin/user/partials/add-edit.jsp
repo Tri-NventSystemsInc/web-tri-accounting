@@ -1,7 +1,7 @@
 <div ng-controller="addEditUserCtrl">
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <button class="btn btn-primary" onclick="(window.location.href = '#/users')">Users</button>
+            <button class="btn btn-primary" onclick="(window.location.href = '#/users')">Users & Groups</button>
         </div>
     </div>
     <div class="row-top-buffer"></div>

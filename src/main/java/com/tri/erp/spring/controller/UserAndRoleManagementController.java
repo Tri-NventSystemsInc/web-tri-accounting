@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 @RequestMapping("/admin/user")
-public class UserManagementController {
+public class UserAndRoleManagementController {
 
     private final String BASE_PATH = "admin/user/partials/";
 
