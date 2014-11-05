@@ -51,6 +51,12 @@ userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$routeParams', '$h
                     } else {
                         $scope.user = data;
                         $scope.user.password = "";
+
+                        // roles
+                        angular.forEach(data.roles, function(role, key) {
+                            $scope.checkAssignedRole(role.id);
+                        });
+
                         $scope.showForm = true;
                     }
                 })
@@ -60,6 +66,16 @@ userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$routeParams', '$h
                 });
 
             resourceURI = '/user/update';
+        }
+
+        $scope.checkAssignedRole = function (roleId) {
+            angular.forEach($scope.roles, function(role, key) {
+                if (role.id == roleId) {
+                    role.selected = true;
+                    $scope.roles[key] = role;
+                    return;
+                }
+            });
         }
 
         $scope.processForm = function() {
@@ -100,12 +116,6 @@ userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$routeParams', '$h
                 $scope.submitting = false;
             });
         }
-
-        var newSelectedRoles = [];
-        $scope.toggleSelectedRole = function(idx, role) {
-            newSelectedRoles.push(role.id);
-        };
-
     }]);
 
 userManagementCtrls.controller('userDetailsCtrl', ['$scope', '$routeParams', '$http', 'userFactory',
