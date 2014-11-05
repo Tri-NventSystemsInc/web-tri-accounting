@@ -15,5 +15,6 @@
 
 <script src="<c:url value="/resources/js/app/routes/user-management-route.js" />"></script>
 <script src="<c:url value="/resources/js/app/factories/user-factory.js" />"></script>
+<script src="<c:url value="/resources/js/app/factories/role-factory.js" />"></script>
 <script src="<c:url value="/resources/js/app/controllers/user-management-ctrl.js" />"></script>
 <script src="<c:url value="/resources/js/app/services/error-handler-service.js" />"></script>

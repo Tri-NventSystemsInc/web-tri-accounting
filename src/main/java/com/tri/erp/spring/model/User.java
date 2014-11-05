@@ -9,6 +9,8 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by TSI Admin on 10/9/2014.
@@ -61,15 +63,22 @@ public class User {
     @Column(nullable = false)
     private Boolean enabled = false;
 
-    public User(String fullName, String username, String email, String password, User createdBy, Date createdAt, Date updatedAt, Boolean enabled) {
+    @Transient
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @NotFound(action = NotFoundAction.IGNORE)
+    private Set<Role> roles = new HashSet<>();
+
+    public User(String fullName, String username, String email, String password, String retypePassword, User createdBy, Date createdAt, Date updatedAt, Boolean enabled, Set<Role> roles) {
         this.fullName = fullName;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.retypePassword = retypePassword;
         this.createdBy = createdBy;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.enabled = enabled;
+        this.roles = roles;
     }
 
     public User() {}
@@ -152,5 +161,13 @@ public class User {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

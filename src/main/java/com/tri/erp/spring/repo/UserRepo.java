@@ -65,4 +65,13 @@ public interface UserRepo extends JpaRepository<User, Integer> {
                       @Param("enabled") Boolean enabled,
                       @Param("createdByUserId") Integer createdByUserId
     );
+
+    @Modifying
+    @Transactional
+    @Query(value = "INSERT INTO UserRole SET " +
+            "FK_userId = :userId, " +
+            "FK_roleId = :roleId", nativeQuery = true)
+    public int saveRoles(@Param("userId") Integer userId,
+                            @Param("roleId") Integer roleId
+    );
 }

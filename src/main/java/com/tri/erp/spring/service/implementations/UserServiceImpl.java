@@ -1,8 +1,10 @@
 package com.tri.erp.spring.service.implementations;
 
+import com.tri.erp.spring.commons.Debug;
 import com.tri.erp.spring.commons.facade.AuthenticationFacade;
 import com.tri.erp.spring.commons.helpers.Checker;
 import com.tri.erp.spring.commons.helpers.MessageFormatter;
+import com.tri.erp.spring.model.Role;
 import com.tri.erp.spring.model.User;
 import com.tri.erp.spring.repo.UserRepo;
 import com.tri.erp.spring.reponse.CreateResponse;
@@ -105,7 +107,16 @@ public class UserServiceImpl implements UserService {
                 user.setPassword(hashedPassword);
 
                 newUser = create(user);
+
+                // user roles
+                if (!Checker.collectionIsEmpty(user.getRoles())) {
+                    for (Role role : user.getRoles()) {
+                        userRepo.saveRoles(newUser.getId(), role.getId());
+                    }
+                }
+
             } else {    // update mode
+
                 if (!Checker.isStringNullAndEmpty(user.getPassword())) { // has new password
                     String hashedPassword = passwordEncoder.encode(user.getPassword());
                     user.setPassword(hashedPassword);

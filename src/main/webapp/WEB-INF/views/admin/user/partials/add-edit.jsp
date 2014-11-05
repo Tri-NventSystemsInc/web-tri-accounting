@@ -150,6 +150,22 @@
         </div>
 
         <div class="row-top-buffer"></div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-2 col-lg-2">
+                    <label>Roles</label>
+                </div>
+                <div class="col-md-5 col-lg-5">
+                    <ul style="list-style: none; padding-left: 2px; border: 1px solid lightgray">
+                        <li ng-repeat="role in roles">
+                            <label><input  ng-model="role.selected" type="checkbox" ng-change="toggleSelectedRole($index, role)" /> {{role.name}}</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row-top-buffer"></div>
 
         <div class="row">
             <div class="col-md-12 col-lg-12">

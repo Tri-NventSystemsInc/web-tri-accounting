@@ -15,15 +15,25 @@ userManagementCtrls.controller('userListCtrl', ['$scope', '$http', 'userFactory'
 
 
 userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$routeParams', '$http', 'userFactory', 'errorToElementBinder',
-    function($scope, $routeParams, $http, userFactory, errorToElementBinder) {
+        'roleFactory',
+    function($scope, $routeParams, $http, userFactory, errorToElementBinder, roleFactory) {
 
         $scope.title = 'Add user';
         $scope.save = 'Save';
         $scope.showForm = true;
 
         $scope.user = {};
+        $scope.roles = [];
 
         var resourceURI = '/user/create';
+
+        roleFactory.getRoles()
+            .success(function (data) {
+                $scope.roles = data;
+            })
+            .error(function (error) {
+                toastr.error('Failed to load roles.');
+            });
 
         if(!($routeParams.userId === undefined)) {  // update mode
             $scope.title = 'Update user';
@@ -60,7 +70,18 @@ userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$routeParams', '$h
             $scope.submitting = true;
             $http.defaults.headers.post['X-CSRF-TOKEN'] = $('input[name=_csrf]').val();
 
+            var userRoles = [];
+            var roles = angular.copy($scope.roles);
+            angular.forEach(roles, function(role, key) {
+                if (role.selected) {
+                    delete role['selected']; // hibernate will complain, so delete it
+                    userRoles.push(role);
+                }
+            });
+
+            $scope.user.roles = userRoles;
             console.log($scope.user);
+
             var res = $http.post(resourceURI, $scope.user);
             res.success(function(data) {
                 if (!data.success) {
@@ -79,6 +100,12 @@ userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$routeParams', '$h
                 $scope.submitting = false;
             });
         }
+
+        var newSelectedRoles = [];
+        $scope.toggleSelectedRole = function(idx, role) {
+            newSelectedRoles.push(role.id);
+        };
+
     }]);
 
 userManagementCtrls.controller('userDetailsCtrl', ['$scope', '$routeParams', '$http', 'userFactory',
@@ -90,7 +117,7 @@ userManagementCtrls.controller('userDetailsCtrl', ['$scope', '$routeParams', '$h
             $scope.title = 'User details';
 
             $scope.userId = $routeParams.userId;
-            
+
             userFactory.getUser($scope.userId)
                 .success(function (data) {
 
