@@ -19,9 +19,10 @@ public class Role implements Serializable {
     @Column
     private Integer id;
 
+
     @NotNull
     @Length(min = 3, max = 512, message = "Invalid length for username (max=512, min=3)")
-    @Column
+    @Column(unique = true)
     private String name;
 
     @Temporal(TemporalType.TIMESTAMP)

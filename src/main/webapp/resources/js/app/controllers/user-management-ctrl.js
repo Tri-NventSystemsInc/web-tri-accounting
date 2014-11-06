@@ -154,7 +154,6 @@ userManagementCtrls.controller('userDetailsCtrl', ['$scope', '$routeParams', '$h
     }
 }]);
 
-
 userManagementCtrls.controller('roleListCtrl', ['$scope', '$http','roleFactory', function($scope,  $http, roleFactory) {
 
     roleFactory.getRoles()
@@ -212,6 +211,8 @@ userManagementCtrls.controller('addEditRoleCtrl', ['$scope', '$routeParams', '$h
     $scope.save = 'Save';
     $scope.showForm = true;
 
+    $scope.role = {};
+
     var resourceURI = '/role/create';
 
     $scope.processForm = function() {
@@ -222,9 +223,7 @@ userManagementCtrls.controller('addEditRoleCtrl', ['$scope', '$routeParams', '$h
         $scope.submitting = true;
         $http.defaults.headers.post['X-CSRF-TOKEN'] = csrf.getCsrfToken();
 
-        return;
-
-        var res = $http.post(resourceURI, $scope.user);
+        var res = $http.post(resourceURI, $scope.role);
         res.success(function(data) {
             if (!data.success) {
                 $scope.errors = errorToElementBinder.bindToElements(data, $scope.errors);
@@ -232,7 +231,7 @@ userManagementCtrls.controller('addEditRoleCtrl', ['$scope', '$routeParams', '$h
                 $scope.submitting = false;
                 toastr.warning('Error found.');
             } else {
-                window.location.hash = '#/user/' + data.modelId;
+                window.location.hash = '#/role/' + data.modelId;
                 toastr.success('User successfully saved!');
             }
         });

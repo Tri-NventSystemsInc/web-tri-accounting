@@ -2,14 +2,15 @@ package com.tri.erp.spring.controller;
 
 import com.tri.erp.spring.model.Item;
 import com.tri.erp.spring.model.Role;
+import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.service.interfaces.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -23,6 +24,9 @@ public class RoleController {
     @Autowired
     RoleService roleService;
 
+    @Autowired
+    MessageSource messageSource;
+
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
     public List<Role> roles() {
@@ -33,5 +37,11 @@ public class RoleController {
     @ResponseBody
     public Role getRole(@PathVariable Integer id) {
         return roleService.findById(id);
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @ResponseBody
+    public CreateResponse createRole(@Valid @RequestBody Role role, BindingResult bindingResult) {
+        return roleService.processCreate(role, bindingResult, messageSource);
     }
 }
