@@ -46,7 +46,7 @@
                     <label class="input-label">Assigned modules</label>
                 </div>
                 <div class="col-md-9 col-lg-9">
-                    Modules here!
+                    <label class="value-label">Modules here!</label>
                 </div>
             </div>
         </div>

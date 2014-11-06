@@ -12,19 +12,6 @@ userManagementCtrls.controller('userListCtrl', ['$scope', '$http', 'userFactory'
             });
     }]);
 
-userManagementCtrls.controller('roleListCtrl', ['$scope', '$http','roleFactory', function($scope,  $http, roleFactory) {
-
-    roleFactory.getRoles()
-        .success(function (data) {
-            $scope.roles = data;
-        })
-        .error(function (error) {
-            toastr.error('Failed to load roles.');
-        });
-}]);
-
-
-
 userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$routeParams', '$http', 'userFactory', 'errorToElementBinder',
     'roleFactory',
     function($scope, $routeParams, $http, userFactory, errorToElementBinder, roleFactory) {
@@ -153,8 +140,8 @@ userManagementCtrls.controller('userDetailsCtrl', ['$scope', '$routeParams', '$h
                 }
             })
             .error(function (error) {
-                toastr.warning('Account not found!');
-                window.location.hash = '#/accounts';
+                toastr.warning('User not found!');
+                window.location.hash = '#/users';
             });
 
     } else {
@@ -166,3 +153,53 @@ userManagementCtrls.controller('userDetailsCtrl', ['$scope', '$routeParams', '$h
         window.location.hash = '#/user/' + $scope.userId + "/edit";
     }
 }]);
+
+
+userManagementCtrls.controller('roleListCtrl', ['$scope', '$http','roleFactory', function($scope,  $http, roleFactory) {
+
+    roleFactory.getRoles()
+        .success(function (data) {
+            $scope.roles = data;
+        })
+        .error(function (error) {
+            toastr.error('Failed to load roles.');
+        });
+}]);
+
+userManagementCtrls.controller('roleDetailsCtrl', ['$scope', '$routeParams', '$http', 'roleFactory',
+    function($scope,  $routeParams, $http, roleFactory) {
+
+        $scope.showDetails = false;
+
+        if(!($routeParams.roleId === undefined)) {
+            $scope.title = 'Role details';
+
+            $scope.roleId = $routeParams.roleId;
+
+            roleFactory.getRole($scope.roleId)
+                .success(function (data) {
+
+                    console.log(data);
+
+                    if (data === '' || data.id <= 0) {    // not found
+                        toastr.warning('Role not found!');
+                        window.location.hash = '#/users';
+                    } else {
+                        $scope.role = data;
+                        $scope.showDetails = true;
+                    }
+                })
+                .error(function (error) {
+                    toastr.warning('Role not found!');
+                    window.location.hash = '#/users';
+                });
+
+        } else {
+            toastr.warning('Role not found!');
+            window.location.hash = '#/users';
+        }
+
+        $scope.pointToEditForm = function() {
+            window.location.hash = '#/role/' + $scope.userId + "/edit";
+        }
+    }]);
