@@ -13,8 +13,8 @@ userManagementCtrls.controller('userListCtrl', ['$scope', '$http', 'userFactory'
     }]);
 
 userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$routeParams', '$http', 'userFactory', 'errorToElementBinder',
-    'roleFactory',
-    function($scope, $routeParams, $http, userFactory, errorToElementBinder, roleFactory) {
+    'roleFactory', 'csrf',
+    function($scope, $routeParams, $http, userFactory, errorToElementBinder, roleFactory, csrf) {
 
         $scope.title = 'Add user';
         $scope.save = 'Save';
@@ -82,7 +82,7 @@ userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$routeParams', '$h
 
             $scope.errors = {};
             $scope.submitting = true;
-            $http.defaults.headers.post['X-CSRF-TOKEN'] = $('input[name=_csrf]').val();
+            $http.defaults.headers.post['X-CSRF-TOKEN'] = csrf.getCsrfToken();
 
             var userRoles = [];
             var roles = angular.copy($scope.roles);
@@ -169,37 +169,77 @@ userManagementCtrls.controller('roleListCtrl', ['$scope', '$http','roleFactory',
 userManagementCtrls.controller('roleDetailsCtrl', ['$scope', '$routeParams', '$http', 'roleFactory',
     function($scope,  $routeParams, $http, roleFactory) {
 
-        $scope.showDetails = false;
+    $scope.showDetails = false;
 
-        if(!($routeParams.roleId === undefined)) {
-            $scope.title = 'Role details';
+    if(!($routeParams.roleId === undefined)) {
+        $scope.title = 'Role details';
 
-            $scope.roleId = $routeParams.roleId;
+        $scope.roleId = $routeParams.roleId;
 
-            roleFactory.getRole($scope.roleId)
-                .success(function (data) {
+        roleFactory.getRole($scope.roleId)
+            .success(function (data) {
 
-                    console.log(data);
+                console.log(data);
 
-                    if (data === '' || data.id <= 0) {    // not found
-                        toastr.warning('Role not found!');
-                        window.location.hash = '#/users';
-                    } else {
-                        $scope.role = data;
-                        $scope.showDetails = true;
-                    }
-                })
-                .error(function (error) {
+                if (data === '' || data.id <= 0) {    // not found
                     toastr.warning('Role not found!');
                     window.location.hash = '#/users';
-                });
+                } else {
+                    $scope.role = data;
+                    $scope.showDetails = true;
+                }
+            })
+            .error(function (error) {
+                toastr.warning('Role not found!');
+                window.location.hash = '#/users';
+            });
 
-        } else {
-            toastr.warning('Role not found!');
-            window.location.hash = '#/users';
-        }
+    } else {
+        toastr.warning('Role not found!');
+        window.location.hash = '#/users';
+    }
 
-        $scope.pointToEditForm = function() {
-            window.location.hash = '#/role/' + $scope.userId + "/edit";
-        }
-    }]);
+    $scope.pointToEditForm = function() {
+        window.location.hash = '#/role/' + $scope.userId + "/edit";
+    }
+}]);
+
+userManagementCtrls.controller('addEditRoleCtrl', ['$scope', '$routeParams', '$http', 'roleFactory', 'errorToElementBinder',
+    'csrf',
+    function($scope, $routeParams, $http, roleFactory, errorToElementBinder, csrf) {
+
+    $scope.title = 'Add role';
+    $scope.save = 'Save';
+    $scope.showForm = true;
+
+    var resourceURI = '/role/create';
+
+    $scope.processForm = function() {
+
+        $scope.save ='Saving...';
+
+        $scope.errors = {};
+        $scope.submitting = true;
+        $http.defaults.headers.post['X-CSRF-TOKEN'] = csrf.getCsrfToken();
+
+        return;
+
+        var res = $http.post(resourceURI, $scope.user);
+        res.success(function(data) {
+            if (!data.success) {
+                $scope.errors = errorToElementBinder.bindToElements(data, $scope.errors);
+                $scope.save ='Save';
+                $scope.submitting = false;
+                toastr.warning('Error found.');
+            } else {
+                window.location.hash = '#/user/' + data.modelId;
+                toastr.success('User successfully saved!');
+            }
+        });
+        res.error(function(data, status, headers, config) {
+            toastr.error('Something went wrong!');
+            $scope.save ='Save';
+            $scope.submitting = false;
+        });
+    }
+}]);

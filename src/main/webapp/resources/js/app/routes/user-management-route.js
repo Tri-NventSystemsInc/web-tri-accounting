@@ -4,7 +4,8 @@ var coaApp = angular.module('userManagement', [
     'userManagementCtrl',
     'userManagementFactory',
     'roleFactory',
-    'errorHandlerService'
+    'errorHandlerService',
+    'jQueryFnWrapperService'
 ]);
 
 coaApp.config(['$routeProvider',

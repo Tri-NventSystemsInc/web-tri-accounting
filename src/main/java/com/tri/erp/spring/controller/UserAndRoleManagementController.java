@@ -34,7 +34,7 @@ public class UserAndRoleManagementController {
 
     @RequestMapping(value = "/new-user-page", method = RequestMethod.GET)
     public String newUser() {
-        return BASE_PATH + "add-edit";
+        return BASE_PATH + "add-edit-user";
     }
 
     @RequestMapping(value = "/user-details-page", method = RequestMethod.GET)
@@ -45,6 +45,11 @@ public class UserAndRoleManagementController {
     @RequestMapping(value = "/role-details-page", method = RequestMethod.GET)
     public String roleDetails() {
         return BASE_PATH + "role-details";
+    }
+
+    @RequestMapping(value = "/new-role-page", method = RequestMethod.GET)
+    public String newRole() {
+        return BASE_PATH + "add-edit-role";
     }
 
 }
