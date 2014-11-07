@@ -273,27 +273,30 @@ userManagementCtrls.controller('addEditRoleCtrl',
 
         $scope.toggleParent = function(selectedMenu) {
 
+            // reverse checkbox state
             if (selectedMenu.selected === undefined) {
                 selectedMenu.selected = true;
             } else {
-                selectedMenu.selected = !selectedMenu.selected; // reverse state
+                selectedMenu.selected = !selectedMenu.selected;
             }
 
+            // check all children
             if (selectedMenu.parentMenu == null) {
-                angular.forEach($scope.menus, function(menu, key) { // check all children
+                angular.forEach($scope.menus, function(menu, key) {
                     if (menu.parentMenu != null) {
                         if (menu.parentMenu.id == selectedMenu.id) {
                             menu.selected = selectedMenu.selected;
                         }
                     }
                 });
-            } else {    // uncheck parent if no selected child
+            } else {
 
                 var parentMenu = {};
                 var unCheck = false;
 
+                // uncheck parent if no selected child
                 angular.forEach($scope.menus, function(menu, key) {
-                    if (menu.id == selectedMenu.parentMenu.id) { parentMenu = menu; }
+                    if (menu.id == selectedMenu.parentMenu.id) { parentMenu = menu; } // needed for binding
                     if (menu.parentMenu != null) {  // get menu with parent
 
                         if (menu.parentMenu.id == selectedMenu.parentMenu.id) {
@@ -306,7 +309,7 @@ userManagementCtrls.controller('addEditRoleCtrl',
                 });
 
                 parentMenu.selected = unCheck;
-            } 
+            }
         }
 
 }]);
