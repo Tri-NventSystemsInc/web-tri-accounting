@@ -53,11 +53,11 @@ public class User {
     private User createdBy;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
+    @Column(nullable = false)
     private Date createdAt;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
+    @Column(nullable = false)
     private Date updatedAt;
 
     @Column(nullable = false)

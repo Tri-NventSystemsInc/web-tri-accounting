@@ -14,4 +14,5 @@ public interface RoleService {
     public Role findById(Integer id);
     public CreateResponse processCreate(Role role, BindingResult bindingResult, MessageSource messageSource);
     public Role findByName(String str);
+    public CreateResponse processUpdate(Role role, BindingResult bindingResult, MessageSource messageSource);
 }

@@ -74,4 +74,10 @@ public class RoleServiceImpl implements RoleService {
             return roles.get(0);
         } else return null;
     }
+
+    @Override
+    @Transactional
+    public CreateResponse processUpdate(Role role, BindingResult bindingResult, MessageSource messageSource) {
+        return this.processCreate(role, bindingResult, messageSource);
+    }
 }

@@ -199,7 +199,7 @@ userManagementCtrls.controller('roleDetailsCtrl', ['$scope', '$routeParams', '$h
     }
 
     $scope.pointToEditForm = function() {
-        window.location.hash = '#/role/' + $scope.userId + "/edit";
+        window.location.hash = '#/role/' + $scope.roleId + "/edit";
     }
 }]);
 
@@ -214,6 +214,33 @@ userManagementCtrls.controller('addEditRoleCtrl', ['$scope', '$routeParams', '$h
     $scope.role = {};
 
     var resourceURI = '/role/create';
+
+    if(!($routeParams.roleId === undefined)) {
+
+        $scope.title = 'Update role';
+        $scope.showForm = false;
+
+        $scope.roleId = $routeParams.roleId;
+
+        roleFactory.getRole($scope.roleId)
+            .success(function (data) {
+
+                console.log(data);
+
+                if (data === '' || data.id <= 0) {    // not found
+                    window.location.hash = '#/role/' + $scope.roleId;
+                } else {
+                    $scope.role = data;
+                    $scope.showForm = true;
+                }
+            })
+            .error(function (error) {
+                toastr.warning('Role not found!');
+                window.location.hash = '#/users';
+            });
+
+        resourceURI = '/role/update';
+    }
 
     $scope.processForm = function() {
 

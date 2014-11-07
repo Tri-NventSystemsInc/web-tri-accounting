@@ -26,17 +26,21 @@ public class Role implements Serializable {
     private String name;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
+    @Column(nullable = false)
     private Date createdAt;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
+    @Column(nullable = false)
     private Date updatedAt;
 
     public Role(String name, Date createdAt, Date updatedAt) {
         this.name = name;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+    }
+
+    public Role(String name) {
+        this.name = name;
     }
 
     public Role() {}
@@ -61,6 +65,7 @@ public class Role implements Serializable {
         return createdAt;
     }
 
+    @Transient
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
@@ -69,6 +74,7 @@ public class Role implements Serializable {
         return updatedAt;
     }
 
+    @Transient
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }

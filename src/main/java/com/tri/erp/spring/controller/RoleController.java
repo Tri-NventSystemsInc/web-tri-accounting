@@ -44,4 +44,10 @@ public class RoleController {
     public CreateResponse createRole(@Valid @RequestBody Role role, BindingResult bindingResult) {
         return roleService.processCreate(role, bindingResult, messageSource);
     }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @ResponseBody
+    public CreateResponse updateUser(@Valid @RequestBody Role role, BindingResult bindingResult) {
+        return roleService.processUpdate(role, bindingResult, messageSource);
+    }
 }
