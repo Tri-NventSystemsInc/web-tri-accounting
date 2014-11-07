@@ -78,4 +78,14 @@
             </div>
         </div>
     </div>
+    <div class="col-md-5 col-lg-5">
+        <div class="row"><label class="input-label">Roles</label></div>
+        <div class="row">
+            <ul style="list-style: disc; padding-left: 10px;">
+                <li ng-repeat="role in user.roles">
+                    {{role.name}}
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>

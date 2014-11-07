@@ -3,6 +3,7 @@ var coaApp = angular.module('userManagement', [
     'ngRoute',
     'userManagementCtrl',
     'userManagementFactory',
+    'roleFactory',
     'errorHandlerService'
 ]);
 

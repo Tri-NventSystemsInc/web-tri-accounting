@@ -15,15 +15,25 @@ userManagementCtrls.controller('userListCtrl', ['$scope', '$http', 'userFactory'
 
 
 userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$routeParams', '$http', 'userFactory', 'errorToElementBinder',
-    function($scope, $routeParams, $http, userFactory, errorToElementBinder) {
+        'roleFactory',
+    function($scope, $routeParams, $http, userFactory, errorToElementBinder, roleFactory) {
 
         $scope.title = 'Add user';
         $scope.save = 'Save';
         $scope.showForm = true;
 
         $scope.user = {};
+        $scope.roles = [];
 
         var resourceURI = '/user/create';
+
+        roleFactory.getRoles()
+            .success(function (data) {
+                $scope.roles = data;
+            })
+            .error(function (error) {
+                toastr.error('Failed to load roles.');
+            });
 
         if(!($routeParams.userId === undefined)) {  // update mode
             $scope.title = 'Update user';
@@ -41,6 +51,12 @@ userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$routeParams', '$h
                     } else {
                         $scope.user = data;
                         $scope.user.password = "";
+
+                        // roles
+                        angular.forEach(data.roles, function(role, key) {
+                            $scope.checkAssignedRole(role.id);
+                        });
+
                         $scope.showForm = true;
                     }
                 })
@@ -52,6 +68,16 @@ userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$routeParams', '$h
             resourceURI = '/user/update';
         }
 
+        $scope.checkAssignedRole = function (roleId) {
+            angular.forEach($scope.roles, function(role, key) {
+                if (role.id == roleId) {
+                    role.selected = true;
+                    $scope.roles[key] = role;
+                    return;
+                }
+            });
+        }
+
         $scope.processForm = function() {
 
             $scope.save ='Saving...';
@@ -60,7 +86,18 @@ userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$routeParams', '$h
             $scope.submitting = true;
             $http.defaults.headers.post['X-CSRF-TOKEN'] = $('input[name=_csrf]').val();
 
+            var userRoles = [];
+            var roles = angular.copy($scope.roles);
+            angular.forEach(roles, function(role, key) {
+                if (role.selected) {
+                    delete role['selected']; // hibernate will complain, so delete it
+                    userRoles.push(role);
+                }
+            });
+
+            $scope.user.roles = userRoles;
             console.log($scope.user);
+
             var res = $http.post(resourceURI, $scope.user);
             res.success(function(data) {
                 if (!data.success) {
@@ -90,7 +127,7 @@ userManagementCtrls.controller('userDetailsCtrl', ['$scope', '$routeParams', '$h
             $scope.title = 'User details';
 
             $scope.userId = $routeParams.userId;
-            
+
             userFactory.getUser($scope.userId)
                 .success(function (data) {
 
