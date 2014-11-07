@@ -203,46 +203,48 @@ userManagementCtrls.controller('roleDetailsCtrl', ['$scope', '$routeParams', '$h
     }
 }]);
 
-userManagementCtrls.controller('addEditRoleCtrl', ['$scope', '$routeParams', '$http', 'roleFactory', 'errorToElementBinder',
-    'csrf',
-    function($scope, $routeParams, $http, roleFactory, errorToElementBinder, csrf) {
+userManagementCtrls.controller('addEditRoleCtrl',
+    ['$scope', '$routeParams', '$http', 'roleFactory', 'errorToElementBinder', 'csrf', 'menuFactory',
+    function($scope, $routeParams, $http, roleFactory, errorToElementBinder, csrf, menuFactory) {
 
-    $scope.title = 'Add role';
-    $scope.save = 'Save';
-    $scope.showForm = true;
+        $scope.title = 'Add role';
+        $scope.save = 'Save';
+        $scope.showForm = true;
 
-    $scope.role = {};
+        $scope.role = {};
 
-    var resourceURI = '/role/create';
+        var resourceURI = '/role/create';
 
-    if(!($routeParams.roleId === undefined)) {
+        menuFactory.getMenus().success(function (data) { $scope.menus = data; });
 
-        $scope.title = 'Update role';
-        $scope.showForm = false;
+        if(!($routeParams.roleId === undefined)) {
 
-        $scope.roleId = $routeParams.roleId;
+            $scope.title = 'Update role';
+            $scope.showForm = false;
 
-        roleFactory.getRole($scope.roleId)
-            .success(function (data) {
+            $scope.roleId = $routeParams.roleId;
 
-                console.log(data);
+            roleFactory.getRole($scope.roleId)
+                .success(function (data) {
 
-                if (data === '' || data.id <= 0) {    // not found
-                    window.location.hash = '#/role/' + $scope.roleId;
-                } else {
-                    $scope.role = data;
-                    $scope.showForm = true;
-                }
-            })
-            .error(function (error) {
-                toastr.warning('Role not found!');
-                window.location.hash = '#/users';
-            });
+                    console.log(data);
 
-        resourceURI = '/role/update';
-    }
+                    if (data === '' || data.id <= 0) {    // not found
+                        window.location.hash = '#/role/' + $scope.roleId;
+                    } else {
+                        $scope.role = data;
+                        $scope.showForm = true;
+                    }
+                })
+                .error(function (error) {
+                    toastr.warning('Role not found!');
+                    window.location.hash = '#/users';
+                });
 
-    $scope.processForm = function() {
+            resourceURI = '/role/update';
+        }
+
+        $scope.processForm = function() {
 
         $scope.save ='Saving...';
 
@@ -268,4 +270,43 @@ userManagementCtrls.controller('addEditRoleCtrl', ['$scope', '$routeParams', '$h
             $scope.submitting = false;
         });
     }
+
+        $scope.toggleParent = function(selectedMenu) {
+
+            if (selectedMenu.selected === undefined) {
+                selectedMenu.selected = true;
+            } else {
+                selectedMenu.selected = !selectedMenu.selected; // reverse state
+            }
+
+            if (selectedMenu.parentMenu == null) {
+                angular.forEach($scope.menus, function(menu, key) { // check all children
+                    if (menu.parentMenu != null) {
+                        if (menu.parentMenu.id == selectedMenu.id) {
+                            menu.selected = selectedMenu.selected;
+                        }
+                    }
+                });
+            } else {    // uncheck parent if no selected child
+
+                var parentMenu = {};
+                var unCheck = false;
+
+                angular.forEach($scope.menus, function(menu, key) {
+                    if (menu.id == selectedMenu.parentMenu.id) { parentMenu = menu; }
+                    if (menu.parentMenu != null) {  // get menu with parent
+
+                        if (menu.parentMenu.id == selectedMenu.parentMenu.id) {
+                            if (menu.selected) {
+                                unCheck = true;
+                                return;
+                            }
+                        }
+                    }
+                });
+
+                parentMenu.selected = unCheck;
+            } 
+        }
+
 }]);

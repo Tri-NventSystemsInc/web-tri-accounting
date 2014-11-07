@@ -25,3 +25,8 @@
  .type-col {
      width: 223px;
  }
+
+ /*sub menu indention*/
+ .sub-menu {
+     margin-left: 20px;
+ }
