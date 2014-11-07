@@ -82,7 +82,7 @@ userManagementCtrls.controller('addEditUserCtrl', ['$scope', '$routeParams', '$h
 
             $scope.errors = {};
             $scope.submitting = true;
-            $http.defaults.headers.post['X-CSRF-TOKEN'] = csrf.getCsrfToken();
+            csrf.setCsrfToken();
 
             var userRoles = [];
             var roles = angular.copy($scope.roles);
@@ -248,7 +248,7 @@ userManagementCtrls.controller('addEditRoleCtrl', ['$scope', '$routeParams', '$h
 
         $scope.errors = {};
         $scope.submitting = true;
-        $http.defaults.headers.post['X-CSRF-TOKEN'] = csrf.getCsrfToken();
+        csrf.setCsrfToken();
 
         var res = $http.post(resourceURI, $scope.role);
         res.success(function(data) {
