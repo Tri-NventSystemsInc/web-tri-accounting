@@ -144,7 +144,7 @@ public class User {
     }
 
     public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
+        this.updatedAt = null;
     }
 
     public String getRetypePassword() {

@@ -65,7 +65,6 @@ public class Role implements Serializable {
         return createdAt;
     }
 
-    @Transient
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
@@ -74,8 +73,7 @@ public class Role implements Serializable {
         return updatedAt;
     }
 
-    @Transient
     public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
+        this.updatedAt = null;
     }
 }
