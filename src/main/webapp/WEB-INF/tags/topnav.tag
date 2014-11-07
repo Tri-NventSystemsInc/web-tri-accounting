@@ -19,11 +19,20 @@
             </li>
         </ul>
         <ul class="nav navbar-top-links navbar-right">
-            <li>
-                <a href="">
-                    <%--<img src="./img/malemini.png"><small> LESTER JOHN PAUL CADIZ</small>--%>
+            <li class="dropdown">
+                <a class="dropdown-toggle count-info" href>
+                    <i class="fa fa-bell"></i> <span class="label label-primary">8</span>
                 </a>
-
+                <ul class="dropdown-menu dropdown-alerts">
+                    <li>
+                        <div class="text-center link-block">
+                            <a ui-sref="notifications_tooltips">
+                                <strong>See All Pendings</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
             </li>
         </ul>
 

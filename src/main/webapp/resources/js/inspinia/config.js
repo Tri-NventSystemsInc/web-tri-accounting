@@ -8,11 +8,11 @@
  *
  */
 function config($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise("admin/dashboard");
+    $urlRouterProvider.otherwise("main");
     $stateProvider
     .state('lockscreen', {
-            url: "/lockscreen",
-            templateUrl: "lockscreen.jsp",
+            url: "/#/lockscreen",
+            templateUrl: "views/lockscreen.jsp",
             data: { pageTitle: 'Lock Screen' }
         })
 
@@ -25,3 +25,4 @@ angular
     .run(function($rootScope, $state) {
         $rootScope.$state = $state;
     });
+

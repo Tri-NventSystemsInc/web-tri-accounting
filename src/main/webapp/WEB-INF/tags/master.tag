@@ -57,7 +57,7 @@
         </div>
 
         <!-- Main view  -->
-         <div ng-view><jsp:invoke fragment="body"/> </div>
+         <div ui-view><jsp:invoke fragment="body"/> </div>
 
         <!-- Footer -->
         <div >

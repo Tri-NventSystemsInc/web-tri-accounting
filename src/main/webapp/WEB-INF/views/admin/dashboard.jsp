@@ -7,34 +7,57 @@
     <jsp:attribute name="body">
       <div class="row  border-bottom white-bg dashboard-header">
     <div class="col-sm-3">
-        <h2>Welcome Amelia</h2>
-        <small>You have 42 messages and 6 notifications.</small>
-        <ul class="list-group clear-list m-t">
-            <li class="list-group-item fist-item">
-
-                <span class="label label-success">10</span> Requisition Issue Voucher
-            </li>
-            <li class="list-group-item">
-
-                <span class="label label-info">05</span> Check Voucher
-            </li>
-            <li class="list-group-item">
-
-                <span class="label label-primary">02</span> Account Payable Voucher
-            </li>
-            <li class="list-group-item">
-
-                <span class="label label-default">05</span> Job Order
-            </li>
-            <li class="list-group-item">
-
-                <span class="label label-primary">04</span> Purchase Order
-            </li>
-        </ul>
+        <h2>Welcome Lester</h2>
+        <small>You have 42 pending tasks</small>
     </div>
-    <div class="col-sm-6">
-    </div>
-
-
+        <div class="col-lg-6">
+        <div>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-danger m-r-sm">12</button>
+                        Requisition
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary m-r-sm">28</button>
+                        Check Voucher
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-info m-r-sm">15</button>
+                        Accounts Payable
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-info m-r-sm">20</button>
+                        Job Order
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-success m-r-sm">40</button>
+                        Purchase Order
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger m-r-sm">30</button>
+                        Canvass
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-warning m-r-sm">20</button>
+                        Acceptance
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default m-r-sm">40</button>
+                        Withdrawal
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-warning m-r-sm">30</button>
+                        Journal Voucher
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </jsp:attribute>
 </mytag:master>
