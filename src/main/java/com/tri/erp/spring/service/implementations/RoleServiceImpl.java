@@ -1,5 +1,6 @@
 package com.tri.erp.spring.service.implementations;
 
+import com.tri.erp.spring.commons.Debug;
 import com.tri.erp.spring.commons.helpers.Checker;
 import com.tri.erp.spring.commons.helpers.MessageFormatter;
 import com.tri.erp.spring.model.Item;
@@ -23,7 +24,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by TSI Admin on 9/9/2014.
@@ -48,6 +51,7 @@ public class RoleServiceImpl implements RoleService {
         if (role != null) { // get roles
             List<Object[]> rolesObj = roleRepo.findMenusByRoleId(role.getId());
             if (!Checker.collectionIsEmpty(rolesObj)) {
+
                 for (Object[] obj : rolesObj) {
 
                     Menu menu = new Menu();

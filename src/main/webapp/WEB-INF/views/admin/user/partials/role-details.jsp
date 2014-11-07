@@ -46,7 +46,11 @@
                     <label class="input-label">Assigned modules</label>
                 </div>
                 <div class="col-md-9 col-lg-9">
-                    <label class="value-label">Modules here!</label>
+                    <ul style="padding-top: 8px; padding-left: 20px;">
+                        <li class="{{menu.parentMenu.id > 0 ? 'sub-menu' : ''}}"  ng-repeat="menu in role.menus">
+                            <label style="font-weight: normal">{{menu.title}}</label>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

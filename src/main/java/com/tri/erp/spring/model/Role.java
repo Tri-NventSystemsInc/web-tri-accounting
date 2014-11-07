@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -41,9 +42,9 @@ public class Role implements Serializable {
     @Transient
     @JsonIgnoreProperties(ignoreUnknown = true)
     @NotFound(action = NotFoundAction.IGNORE)
-    private Set<Menu> menus = new HashSet<>();
+    private ArrayList<Menu> menus = new ArrayList<>();
 
-    public Role(String name, Date createdAt, Date updatedAt, Set<Menu> menus) {
+    public Role(String name, Date createdAt, Date updatedAt, ArrayList<Menu> menus) {
         this.name = name;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -94,11 +95,11 @@ public class Role implements Serializable {
         this.updatedAt = null;
     }
 
-    public Set<Menu> getMenus() {
+    public ArrayList<Menu> getMenus() {
         return menus;
     }
 
-    public void setMenus(Set<Menu> menus) {
+    public void setMenus(ArrayList<Menu> menus) {
         this.menus = menus;
     }
 }

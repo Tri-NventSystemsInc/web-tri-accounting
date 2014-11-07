@@ -36,6 +36,7 @@ public interface RoleRepo extends JpaRepository<Role, Integer> {
             "Menu.id, Menu.title, Menu.FK_parentMenuId " +
             "FROM RoleMenu " +
             "JOIN Menu ON RoleMenu.FK_menuId = Menu.id " +
-            "WHERE FK_roleId = :roleId", nativeQuery = true)
+            "WHERE FK_roleId = :roleId " +
+            "ORDER BY Menu.order ASC, Menu.id ASC", nativeQuery = true)
     public List<Object[]> findMenusByRoleId(@Param("roleId") Integer roleId);
 }
