@@ -3,6 +3,7 @@ package com.tri.erp.spring.service.implementations;
 import com.tri.erp.spring.commons.helpers.Checker;
 import com.tri.erp.spring.commons.helpers.MessageFormatter;
 import com.tri.erp.spring.model.Item;
+import com.tri.erp.spring.model.Menu;
 import com.tri.erp.spring.model.Role;
 import com.tri.erp.spring.model.User;
 import com.tri.erp.spring.repo.ItemRepo;
@@ -14,6 +15,7 @@ import com.tri.erp.spring.service.interfaces.ItemService;
 import com.tri.erp.spring.service.interfaces.RoleService;
 import com.tri.erp.spring.validator.RoleValidator;
 import com.tri.erp.spring.validator.UserValidator;
+import org.hibernate.dialect.Ingres10Dialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
@@ -40,7 +42,28 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role findById(Integer roleId) {
-        return roleRepo.findOne(roleId);
+
+        Role role = roleRepo.findOne(roleId);
+
+        if (role != null) { // get roles
+            List<Object[]> rolesObj = roleRepo.findMenusByRoleId(role.getId());
+            if (!Checker.collectionIsEmpty(rolesObj)) {
+                for (Object[] obj : rolesObj) {
+
+                    Menu menu = new Menu();
+                    menu.setId((Integer)obj[0]);
+                    menu.setTitle((String)obj[1]);
+
+                    Menu parentMenu = new Menu();
+                    parentMenu.setId((Integer)obj[2]);
+                    menu.setParentMenu(parentMenu);
+
+                    role.getMenus().add(menu);
+                }
+            }
+        }
+
+        return role;
     }
 
     @Override
@@ -59,6 +82,17 @@ public class RoleServiceImpl implements RoleService {
             response.setSuccess(false);
         } else {
             Role newRole = roleRepo.save(role);
+
+            if (role.getId() != null && role.getId() > 0) { // update mode
+                roleRepo.removeMenus(role.getId());
+            }
+
+            // insert role menus
+            if (!Checker.collectionIsEmpty(role.getMenus())) {
+                for (Menu menu : role.getMenus()) {
+                    roleRepo.saveMenus(role.getId(), menu.getId());
+                }
+            }
 
             response.setModelId(newRole.getId());
             response.setSuccessMessage("Role successfully saved!");

@@ -252,6 +252,18 @@ userManagementCtrls.controller('addEditRoleCtrl',
         $scope.submitting = true;
         csrf.setCsrfToken();
 
+        var roleMenus = [];
+        var menus = angular.copy($scope.menus);
+        angular.forEach(menus, function(menu, key) {
+            if (menu.selected) {
+                delete menu['selected']; // hibernate will complain, so delete it
+                roleMenus.push(menu);
+            }
+        });
+
+        $scope.role.menus = roleMenus;
+        console.log($scope.role);
+
         var res = $http.post(resourceURI, $scope.role);
         res.success(function(data) {
             if (!data.success) {
