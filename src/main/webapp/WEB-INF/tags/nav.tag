@@ -53,6 +53,9 @@
 
                 </ul>
             </li>
+            <li ui-sref-active="active">
+                <a href="${pageContext.request.contextPath}/lockscreen"><i class="fa fa-laptop"></i> <span class="nav-label">Lock Screen</span> </a>
+            </li>
         </ul>
     </div>
 </nav>

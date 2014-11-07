@@ -8,19 +8,17 @@
  *
  */
 function config($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise("/dashboard");
+    $urlRouterProvider.otherwise("admin/dashboard");
     $stateProvider
-        .state('main', {
-            url: "/dashboard",
-            templateUrl: "",
-            data: { pageTitle: 'Example view' }
+    .state('lockscreen', {
+            url: "/lockscreen",
+            templateUrl: "lockscreen.jsp",
+            data: { pageTitle: 'Lock Screen' }
         })
-/**    .state('minor', {
-            url: "/minor",
-            templateUrl: "views/admin/minor.html",
-            data: { pageTitle: 'Example view' }
-        })*/
+
 }
+
+
 angular
     .module('inspinia')
     .config(config)
