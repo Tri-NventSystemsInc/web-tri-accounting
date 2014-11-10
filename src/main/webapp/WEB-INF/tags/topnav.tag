@@ -19,9 +19,12 @@
             </li>
         </ul>
         <ul class="nav navbar-top-links navbar-right">
+            <li>
+                <span class="m-r-sm text-muted welcome-message"><span class="label label-primary"><strong>Firefly v1.0</strong></span></span>
+            </li>
             <li class="dropdown">
                 <a class="dropdown-toggle count-info" href>
-                    <i class="fa fa-bell"></i> <span class="label label-primary">8</span>
+                    <i class="fa fa-bell"></i> <span class="label label-danger">8</span>
                 </a>
                 <ul class="dropdown-menu dropdown-alerts">
                     <li>
@@ -34,6 +37,7 @@
                     </li>
                 </ul>
             </li>
+
         </ul>
 
     </nav>
