@@ -1,4 +1,4 @@
-<div ng-controller="addEditRoleCtrl">
+<div>
     <div class="row">
         <div class="col-md-12 col-lg-12">
             <button class="btn btn-primary" onclick="(window.location.href = '#/users')">Users & Groups</button>

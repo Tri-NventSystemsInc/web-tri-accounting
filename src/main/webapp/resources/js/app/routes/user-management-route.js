@@ -26,14 +26,16 @@ coaApp.config(['$routeProvider',
                 templateUrl: 'user/new-user-page'
             }).
             when('/new-role', {
-                templateUrl: 'user/new-role-page'
+                templateUrl: 'user/new-role-page',
+                controller: 'addEditRoleCtrl'
             }).
             when('/role/:roleId', {
                 templateUrl: 'user/role-details-page',
                 controller: 'roleDetailsCtrl'
             }).
             when('/role/:roleId/edit', {
-                templateUrl: 'user/new-role-page'
+                templateUrl: 'user/new-role-page',
+                controller: 'addEditRoleCtrl'
             }).
             otherwise({
                 redirectTo:  '/users'

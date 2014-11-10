@@ -215,7 +215,30 @@ userManagementCtrls.controller('addEditRoleCtrl',
 
         var resourceURI = '/role/create';
 
-        menuFactory.getMenus().success(function (data) { $scope.menus = data; });
+        function loadMenus() {
+            menuFactory.getMenus().success(function (data) {
+                $scope.menus = data;
+
+                if ($scope.role != undefined) {
+                    setSelectedMenu();
+                }
+            });
+        }
+
+        function setSelectedMenu() {
+            if ($scope.menus == undefined) return;
+
+            angular.forEach($scope.menus, function(menu, key) {
+                angular.forEach($scope.role.menus, function(roleMenu, key) {
+                    if (menu.id == roleMenu.id) {
+                        menu.selected = true;
+                        return;
+                    }
+                });
+            });
+        }
+
+        loadMenus();
 
         if(!($routeParams.roleId === undefined)) {
 
@@ -233,17 +256,7 @@ userManagementCtrls.controller('addEditRoleCtrl',
                         window.location.hash = '#/role/' + $scope.roleId;
                     } else {
                         $scope.role = data;
-
-                        // set selected modules
-                        angular.forEach($scope.role.menus, function(roleMenu, key) {
-                            angular.forEach($scope.menus, function(menu, key) {
-                                if (menu.id == roleMenu.id) {
-                                    menu.selected = true;
-                                    return;
-                                }
-                            });
-                        });
-
+                        setSelectedMenu();
                         $scope.showForm = true;
                     }
                 })
@@ -254,6 +267,7 @@ userManagementCtrls.controller('addEditRoleCtrl',
 
             resourceURI = '/role/update';
         }
+
 
         $scope.processForm = function() {
 
@@ -273,7 +287,6 @@ userManagementCtrls.controller('addEditRoleCtrl',
         });
 
         $scope.role.menus = roleMenus;
-        console.log($scope.role);
 
         var res = $http.post(resourceURI, $scope.role);
         res.success(function(data) {
@@ -334,5 +347,4 @@ userManagementCtrls.controller('addEditRoleCtrl',
                 parentMenu.selected = unCheck;
             }
         }
-
 }]);
