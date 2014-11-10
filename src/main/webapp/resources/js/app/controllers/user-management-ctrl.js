@@ -233,6 +233,17 @@ userManagementCtrls.controller('addEditRoleCtrl',
                         window.location.hash = '#/role/' + $scope.roleId;
                     } else {
                         $scope.role = data;
+
+                        // set selected modules
+                        angular.forEach($scope.role.menus, function(roleMenu, key) {
+                            angular.forEach($scope.menus, function(menu, key) {
+                                if (menu.id == roleMenu.id) {
+                                    menu.selected = true;
+                                    return;
+                                }
+                            });
+                        });
+
                         $scope.showForm = true;
                     }
                 })
