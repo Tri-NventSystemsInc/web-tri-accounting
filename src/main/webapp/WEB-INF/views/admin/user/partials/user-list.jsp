@@ -11,6 +11,17 @@
         <div class="alert alert-info" style="margin-bottom: 5px;">Users <span class="pull-right" style="cursor: pointer"><i class="fa fa-plus" title="Add user" onclick="(window.location.href = '#/new')"></i></span></div>
     </div>
 </div>
+
+<div class="row-top-buffer" style="margin-top: 15px"></div>
+
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="input-group" style="width: 300px">
+            <input class="form-control" placeholder="Search" ng-model="query_u" />
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-12 col-lg-12">
 
@@ -36,7 +47,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr data-dismiss="modal" ng-repeat="user in us = (users | filter:query)">
+                <tr data-dismiss="modal" ng-repeat="user in us = (users | filter:query_u)">
                     <td style="width: 22%;">{{user.fullName}}</td>
                     <td style="width: 15%;">{{user.username}}</td>
                     <td style="width: 23%;">{{user.email}}</td>
@@ -69,6 +80,18 @@
         <div class="alert alert-info" style="margin-bottom: 5px;">Roles <span class="pull-right" style="cursor: pointer"><i class="fa fa-plus" title="Add role" onclick="(window.location.href = '#/new-role')"></i></span></div>
     </div>
 </div>
+
+<div class="row-top-buffer" style="margin-top: 15px"></div>
+
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="input-group" style="width: 300px">
+            <input class="form-control" placeholder="Search" ng-model="query_r" />
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-md-12 col-lg-12">
 
@@ -91,7 +114,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr data-dismiss="modal" ng-repeat="role in r = (roles | filter:query)">
+                <tr data-dismiss="modal" ng-repeat="role in r = (roles | filter:query_r)">
                     <td style="width: 22%;">{{role.name}}</td>
                     <td style="width: 20%;">{{role.updatedAt | date:'MMM dd, yyyy HH:mm a'}}</td>
                     <td style='width: 4%; vertical-align: middle; text-align: center'>
