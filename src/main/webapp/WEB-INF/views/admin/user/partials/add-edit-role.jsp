@@ -70,6 +70,3 @@
         </div>
     </form>
 </div>
-
-
-<%--TODO: Set selected roles --%>
