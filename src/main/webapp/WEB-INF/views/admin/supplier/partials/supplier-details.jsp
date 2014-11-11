@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12 col-lg-12">
-        <button class="btn btn-primary" onclick="(window.location.href = '#/users')">Users & Groups</button>
+        <button class="btn btn-primary" onclick="(window.location.href = '#/suppliers')">Suppliers</button>
         <button class="btn btn-primary" onclick="(window.location.href = '#/new')">Add</button>
         <button class="btn btn-primary" ng-click="pointToEditForm()">Edit</button>
     </div>
@@ -12,23 +12,23 @@
     </div>
 </div>
 <div class="row" ng-show="showDetails">
-    <div class="col-md-7 col-lg-7">
+    <div class="col-md-6 col-lg-6">
         <div class="row">
             <div class="col-md-12 col-lg-12">
                 <div class="col-md-3 col-lg-3">
-                    <label class="input-label">Full name</label>
+                    <label class="input-label">Account Code</label>
                 </div>
                 <div class="col-md-9 col-lg-9">
-                    <label class="value-label">{{ user.fullName }}</label>
+                    <label class="value-label">{{ supplier.accountNumber }}</label>
                 </div>
             </div>
 
             <div class="col-md-12 col-lg-12">
                 <div class="col-md-3 col-lg-3">
-                    <label class="input-label">Username</label>
+                    <label class="input-label">Name</label>
                 </div>
                 <div class="col-md-9 col-lg-9">
-                    <label class="value-label">{{ user.username }}</label>
+                    <label class="value-label">{{ supplier.name }}</label>
                 </div>
             </div>
 
@@ -37,16 +37,95 @@
                     <label class="input-label">Email</label>
                 </div>
                 <div class="col-md-9 col-lg-9">
-                    <label class="value-label"><a  href="mailto:{{ user.email }}">{{ user.email }}</a></label>
+                    <label class="value-label"><a  href="mailto:{{ user.email }}">{{ supplier.email }}</a></label>
                 </div>
             </div>
 
             <div class="col-md-12 col-lg-12">
                 <div class="col-md-3 col-lg-3">
+                    <label class="input-label">Address</label>
+                </div>
+                <div class="col-md-9 col-lg-9">
+                    <label class="value-label">{{ supplier.address }}</label>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-3 col-lg-3">
+                    <label class="input-label">Contact Person</label>
+                </div>
+                <div class="col-md-9 col-lg-9">
+                    <label class="value-label">{{ supplier.contactPerson }} - {{ supplier.contactPersonPosition }}</label>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-3 col-lg-3">
+                    <label class="input-label">Credit Limit</label>
+                </div>
+                <div class="col-md-9 col-lg-9">
+                    <label class="value-label">{{ supplier.creditLimit }}</label>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-3 col-lg-3">
+                    <label class="input-label">Fax</label>
+                </div>
+                <div class="col-md-9 col-lg-9">
+                    <label class="value-label">{{ supplier.fax }}</label>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-3 col-lg-3">
+                    <label class="input-label">Phone</label>
+                </div>
+                <div class="col-md-9 col-lg-9">
+                    <label class="value-label">{{ supplier.phone }}</label>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-3 col-lg-3">
+                    <label class="input-label">TIN</label>
+                </div>
+                <div class="col-md-9 col-lg-9">
+                    <label class="value-label">{{ supplier.tin }}</label>
+                </div>
+            </div>
+
+
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-3 col-lg-3">
+                    <label class="input-label">Status</label>
+                </div>
+                <div class="col-md-9 col-lg-9">
+                    <label class="value-label">{{ supplier.status }}</label>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-3 col-lg-3">
+                    <label class="input-label">VATable</label>
+                </div>
+                <div class="col-md-9 col-lg-9">
+                    <label class="value-label">{{ supplier.isVatable == 1 ? 'Yes' : 'No' }}</label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <%--second column--%>
+    <div class="col-md-6 col-lg-6">
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-3 col-lg-3">
                     <label class="input-label">Created By</label>
                 </div>
                 <div class="col-md-9 col-lg-9">
-                    <label class="value-label">{{ user.createdBy.fullName }}</label>
+                    <label class="value-label">{{ supplier.createdBy.fullName }}</label>
                 </div>
             </div>
 
@@ -55,7 +134,7 @@
                     <label class="input-label">Date created</label>
                 </div>
                 <div class="col-md-9 col-lg-9">
-                    <label class="value-label">{{ user.createdAt | date:'MMM dd, yyyy HH:mm a' }}</label>
+                    <label class="value-label">{{ supplier.createdAt | date:'MMM dd, yyyy HH:mm a' }}</label>
                 </div>
             </div>
 
@@ -64,28 +143,9 @@
                     <label class="input-label">Last updated</label>
                 </div>
                 <div class="col-md-9 col-lg-9">
-                    <label class="value-label">{{ user.updatedAt | date:'MMM dd, yyyy HH:mm a' }}</label>
+                    <label class="value-label">{{ supplier.updatedAt | date:'MMM dd, yyyy HH:mm a' }}</label>
                 </div>
             </div>
-
-            <div class="col-md-12 col-lg-12">
-                <div class="col-md-3 col-lg-3">
-                    <label class="input-label">Enabled</label>
-                </div>
-                <div class="col-md-9 col-lg-9">
-                    <label class="value-label">{{ user.enabled ? 'Yes' : 'No' }}</label>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-5 col-lg-5">
-        <div class="row"><label class="input-label">Roles</label></div>
-        <div class="row">
-            <ul style="list-style: disc; padding-left: 10px;">
-                <li ng-repeat="role in user.roles">
-                    {{role.name}}
-                </li>
-            </ul>
         </div>
     </div>
 </div>

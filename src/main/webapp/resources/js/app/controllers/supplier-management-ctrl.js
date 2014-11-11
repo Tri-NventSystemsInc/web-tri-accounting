@@ -121,35 +121,30 @@ supplierManagementCtrls.controller('supplierDetailsCtrl', ['$scope', '$routePara
 
     $scope.showDetails = false;
 
-//    if(!($routeParams.userId === undefined)) {
-//        $scope.title = 'User details';
-//
-//        $scope.userId = $routeParams.userId;
-//
-//        userFactory.getUser($scope.userId)
-//            .success(function (data) {
-//
-//                console.log(data);
-//
-//                if (data === '' || data.id <= 0) {    // not found
-//                    toastr.warning('User not found!');
-//                    window.location.hash = '#/users';
-//                } else {
-//                    $scope.user = data;
-//                    $scope.showDetails = true;
-//                }
-//            })
-//            .error(function (error) {
-//                toastr.warning('User not found!');
-//                window.location.hash = '#/users';
-//            });
-//
-//    } else {
-//        toastr.warning('User not found!');
-//        window.location.hash = '#/users';
-//    }
-//
-//    $scope.pointToEditForm = function() {
-//        window.location.hash = '#/user/' + $scope.userId + "/edit";
-//    }
+    if(!($routeParams.supplierId === undefined)) {
+        $scope.title = 'Supplier details';
+
+        $scope.supplierId = $routeParams.supplierId;
+
+        supplierFactory.getSupplier( $scope.supplierId)
+            .success(function (data) {
+
+                console.log(data);
+
+                if (data === '' || data.id <= 0) {    // not found
+                    toastr.warning('Supplier not found!');
+                    window.location.hash = '#/suppliers';
+                } else {
+                    $scope.supplier = data;
+                    $scope.showDetails = true;
+                }
+        });
+    } else {
+        toastr.warning('Supplier not found!');
+        window.location.hash = '#/suppliers';
+    }
+
+    $scope.pointToEditForm = function() {
+        window.location.hash = '#/supplier/' + $scope.supplierId + "/edit";
+    }
 }]);
