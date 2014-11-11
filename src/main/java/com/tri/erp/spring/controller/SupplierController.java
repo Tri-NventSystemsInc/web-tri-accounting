@@ -16,7 +16,8 @@ import java.util.List;
  * Created by TSI Admin on 11/11/2014.
  */
 
-@Controller(value = "/supplier")
+@Controller
+@RequestMapping(value = "/supplier")
 public class SupplierController {
 
     @Autowired

@@ -1,17 +1,18 @@
 
-var app = angular.module('supplierManagement', [
+var supApp = angular.module('supplierManagement', [
     'ngRoute',
     'supplierManagementCtrl',
+    'jQueryFnWrapperService',
     'supplierFactory',
-    'errorHandlerService',
-    'jQueryFnWrapperService'
+    'errorHandlerService'
 ]);
 
-app.config(['$routeProvider',
+supApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
             when('/suppliers', {
-                templateUrl: 'supplier/supplier-list-page'
+                templateUrl: 'supplier/supplier-list-page',
+                controller: 'supplierListCtrl'
             }).
             when('/new', {
                 templateUrl: 'supplier/new-supplier-page'
@@ -24,6 +25,6 @@ app.config(['$routeProvider',
                 templateUrl: 'supplier/new-supplier-page'
             }).
             otherwise({
-                redirectTo:  '/suppliers'
-            });
+                redirectTo: '/suppliers'
+            })
     }]);

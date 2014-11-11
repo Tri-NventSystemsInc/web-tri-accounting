@@ -12,11 +12,11 @@ supplierManagementCtrls.controller('supplierListCtrl', ['$scope', '$http', 'supp
             });
     }]);
 
-supplierManagementCtrls.controller('addEditSupplierCtrl',
-    ['$scope', '$routeParams', '$http', 'supplierFactory', 'errorToElementBinder', 'csrf',
+supplierManagementCtrls.controller('addEditSupplierCtrl', ['$scope', '$routeParams', '$http', 'supplierFactory', 'errorToElementBinder',
+    'csrf',
     function($scope, $routeParams, $http, supplierFactory, errorToElementBinder, csrf) {
 
-        $scope.title = 'Add user';
+        $scope.title = 'Add supplier';
         $scope.save = 'Save';
         $scope.showForm = true;
 

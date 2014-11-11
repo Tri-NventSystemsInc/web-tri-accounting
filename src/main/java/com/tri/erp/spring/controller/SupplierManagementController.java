@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by TSI Admin on 11/11/2014.
  */
 
-@Controller(value = "/admin/supplier")
+@Controller
+@RequestMapping(value = "/admin/supplier")
 public class SupplierManagementController {
 
     private final String BASE_PATH = "admin/supplier/partials/";
