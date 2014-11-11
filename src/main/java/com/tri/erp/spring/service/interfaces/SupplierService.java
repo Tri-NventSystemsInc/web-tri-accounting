@@ -11,7 +11,7 @@ import java.util.List;
  * Created by TSI Admin on 11/11/2014.
  */
 public interface SupplierService {
-
+    public Supplier findByName(String name);
     public Supplier create(Supplier supplier);
     public Supplier findById(Integer id);
     public CreateResponse processUpdate(Supplier supplier, BindingResult bindingResult, MessageSource messageSource);

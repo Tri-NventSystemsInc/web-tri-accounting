@@ -3,8 +3,10 @@ package com.tri.erp.spring.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -21,6 +23,8 @@ public class Supplier implements Serializable {
     @Column
     private Integer id;
 
+    @NotNull
+    @Length(min = 3, max = 512, message = "Invalid length for full name (max=512, min=3)")
     @Column
     private String name;
 

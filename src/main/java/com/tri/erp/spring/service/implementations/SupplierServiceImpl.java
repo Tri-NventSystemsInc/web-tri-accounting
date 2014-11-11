@@ -1,10 +1,12 @@
 package com.tri.erp.spring.service.implementations;
 
+import com.tri.erp.spring.commons.helpers.Checker;
 import com.tri.erp.spring.commons.helpers.MessageFormatter;
 import com.tri.erp.spring.model.Supplier;
 import com.tri.erp.spring.repo.SupplierRepo;
 import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.service.interfaces.SupplierService;
+import com.tri.erp.spring.validator.SupplierValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,16 @@ public class SupplierServiceImpl implements SupplierService {
     SupplierRepo supplierRepo;
 
     @Override
+    public Supplier findByName(String name) {
+
+        List<Supplier> suppliers = supplierRepo.findByName(name);
+
+        if (!Checker.collectionIsEmpty(suppliers)) {
+            return suppliers.get(0);
+        } else return null;
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public Supplier create(Supplier supplier) {
         return supplierRepo.save(supplier);
@@ -40,6 +52,10 @@ public class SupplierServiceImpl implements SupplierService {
     public CreateResponse processUpdate(Supplier supplier, BindingResult bindingResult, MessageSource messageSource) {
         CreateResponse response = new CreateResponse();
         MessageFormatter messageFormatter = new MessageFormatter(bindingResult, messageSource, response);
+
+        SupplierValidator validator = new SupplierValidator();
+        validator.setService(this);
+        validator.validate(supplier, bindingResult);
 
         if (bindingResult.hasErrors()) {
             messageFormatter.buildErrorMessages();

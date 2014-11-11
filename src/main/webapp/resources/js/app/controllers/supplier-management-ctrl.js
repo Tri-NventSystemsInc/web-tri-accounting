@@ -20,20 +20,10 @@ supplierManagementCtrls.controller('addEditSupplierCtrl', ['$scope', '$routePara
         $scope.save = 'Save';
         $scope.showForm = true;
 
-//        $scope.user = {};
-//        $scope.roles = [];
-//
-//        var resourceURI = '/user/create';
-//
-//        roleFactory.getRoles()
-//            .success(function (data) {
-//                $scope.roles = data;
-//            })
-//            .error(function (error) {
-//                toastr.error('Failed to load roles.');
-//            });
-//
-//        if(!($routeParams.userId === undefined)) {  // update mode
+        $scope.supplier = {};
+
+        var resourceURI = '/supplier/create';
+        if(!($routeParams.supplierId === undefined)) {  // update mode
 //            $scope.title = 'Update user';
 //            $scope.showForm = false;
 //
@@ -63,20 +53,11 @@ supplierManagementCtrls.controller('addEditSupplierCtrl', ['$scope', '$routePara
 //                    window.location.hash = '#/users';
 //                });
 //
-//            resourceURI = '/user/update';
-//        }
-//
-//        $scope.checkAssignedRole = function (roleId) {
-//            angular.forEach($scope.roles, function(role, key) {
-//                if (role.id == roleId) {
-//                    role.selected = true;
-//                    $scope.roles[key] = role;
-//                    return;
-//                }
-//            });
-//        }
-//
-//        $scope.processForm = function() {
+            resourceURI = '/supplier/update';
+        }
+
+
+        $scope.processForm = function() {
 //
 //            $scope.save ='Saving...';
 //
@@ -113,7 +94,7 @@ supplierManagementCtrls.controller('addEditSupplierCtrl', ['$scope', '$routePara
 //                $scope.save ='Save';
 //                $scope.submitting = false;
 //            });
-//        }
+        }
     }]);
 
 supplierManagementCtrls.controller('supplierDetailsCtrl', ['$scope', '$routeParams', '$http', 'supplierFactory',
