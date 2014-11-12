@@ -23,15 +23,7 @@
                         <input required maxlength="512" ng-model="role.name" id="name" name="name" class="form-control" type="text" placeholder="Enter role name"/>
                     </div>
                 </div>
-                <div class="col-md-5 col-lg-5">
-                    <span style="color: red !important;" ng-show="errors.err_name">
-                        <ul class="error-list">
-                            <li ng-repeat="err in errors.err_name">
-                                {{ err }}
-                            </li>
-                        </ul>
-                    </span>
-                </div>
+                <form-error err_field="errors.err_name"></form-error>
             </div>
         </div>
 

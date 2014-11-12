@@ -19,3 +19,4 @@
 <script src="<c:url value="/resources/js/app/controllers/user-management-ctrl.js" />"></script>
 <script src="<c:url value="/resources/js/app/services/error-handler-service.js" />"></script>
 <script src="<c:url value="/resources/js/app/services/jquery-fn-wrapper-service.js" />"></script>
+<script src="<c:url value="/resources/js/app/directives/form-error.js" />"></script>
