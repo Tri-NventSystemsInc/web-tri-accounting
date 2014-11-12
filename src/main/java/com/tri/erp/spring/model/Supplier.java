@@ -59,7 +59,7 @@ public class Supplier implements Serializable {
     private String bankAccountNumber;
 
     @Column
-    private Integer status;
+    private Boolean status;
 
     @Column
     private BigDecimal creditLimit;
@@ -80,7 +80,8 @@ public class Supplier implements Serializable {
 
     public Supplier() {}
 
-    public Supplier(String name, String address, String phone, String fax, String contactPerson, String contactPersonPosition, Integer accountNumber, String email, String tin, Boolean isVatable, String bankAccountNumber, Integer status, BigDecimal creditLimit, User createdBy, Date createdAt, Date updatedAt) {
+    public Supplier(String name, String address, String phone, String fax, String contactPerson, String contactPersonPosition,
+                    Integer accountNumber, String email, String tin, Boolean isVatable, String bankAccountNumber, Boolean status, BigDecimal creditLimit, User createdBy, Date createdAt, Date updatedAt) {
         this.name = name;
         this.address = address;
         this.phone = phone;
@@ -195,11 +196,11 @@ public class Supplier implements Serializable {
         this.bankAccountNumber = bankAccountNumber;
     }
 
-    public Integer getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 
