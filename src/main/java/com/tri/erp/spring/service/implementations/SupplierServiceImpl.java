@@ -1,5 +1,6 @@
 package com.tri.erp.spring.service.implementations;
 
+import com.tri.erp.spring.commons.EntityAccountNumberGenerator;
 import com.tri.erp.spring.commons.facade.AuthenticationFacade;
 import com.tri.erp.spring.commons.helpers.Checker;
 import com.tri.erp.spring.commons.helpers.MessageFormatter;
@@ -29,6 +30,9 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Autowired
     SupplierRepo supplierRepo;
+
+    @Autowired
+    EntityAccountNumberGenerator accountNumberGenerator;
 
     @Override
     public Supplier findByName(String name) {
@@ -79,9 +83,11 @@ public class SupplierServiceImpl implements SupplierService {
             response.setSuccess(false);
         } else {
 
-            if (supplier.getId() == null || supplier.getId() == 0) {
+            if (supplier.getId() == null || supplier.getId() == 0) {    // when inserting
                 User createdBy = authenticationFacade.getLoggedIn();
                 supplier.setCreatedBy(createdBy);
+
+                supplier.setAccountNumber(accountNumberGenerator.get());
             }
 
             Supplier newSupplier = this.create(supplier);
