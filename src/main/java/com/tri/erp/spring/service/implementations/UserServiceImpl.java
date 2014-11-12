@@ -56,6 +56,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByEmail(String email) {
         List<User> users = userRepo.findByEmail(email);
+        return this.getOne(users);
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        User user =  userRepo.findOneByUsername(username);
+        return user;
+    }
+
+    private User getOne(List<User> users) {
         if (!Checker.collectionIsEmpty(users)) {
             return users.get(0);
         } else return null;
@@ -109,7 +119,6 @@ public class UserServiceImpl implements UserService {
             User newUser = user;
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-            Authentication authentication;
             if (user.getId() == null || user.getId() == 0 ) {   // insert mode
                 User createdBy = authenticationFacade.getLoggedIn();
                 user.setCreatedBy(createdBy);
