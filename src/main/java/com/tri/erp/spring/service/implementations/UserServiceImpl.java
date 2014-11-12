@@ -111,9 +111,7 @@ public class UserServiceImpl implements UserService {
 
             Authentication authentication;
             if (user.getId() == null || user.getId() == 0 ) {   // insert mode
-                authentication = authenticationFacade.getAuthentication();
-                String curUsername = authentication.getName();
-                User createdBy = userRepo.findOneByUsername(curUsername);
+                User createdBy = authenticationFacade.getLoggedIn();
                 user.setCreatedBy(createdBy);
 
                 String hashedPassword = passwordEncoder.encode(user.getPassword());

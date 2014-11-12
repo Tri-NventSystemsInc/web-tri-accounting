@@ -58,42 +58,32 @@ supplierManagementCtrls.controller('addEditSupplierCtrl', ['$scope', '$routePara
 
 
         $scope.processForm = function() {
-//
-//            $scope.save ='Saving...';
-//
-//            $scope.errors = {};
-//            $scope.submitting = true;
-//            csrf.setCsrfToken();
-//
-//            var userRoles = [];
-//            var roles = angular.copy($scope.roles);
-//            angular.forEach(roles, function(role, key) {
-//                if (role.selected) {
-//                    delete role['selected']; // hibernate will complain, so delete it
-//                    userRoles.push(role);
-//                }
-//            });
-//
-//            $scope.user.roles = userRoles;
-//            console.log($scope.user);
-//
-//            var res = $http.post(resourceURI, $scope.user);
-//            res.success(function(data) {
-//                if (!data.success) {
-//                    $scope.errors = errorToElementBinder.bindToElements(data, $scope.errors);
-//                    $scope.save ='Save';
-//                    $scope.submitting = false;
-//                    toastr.warning('Error found.');
-//                } else {
-//                    window.location.hash = '#/user/' + data.modelId;
-//                    toastr.success('User successfully saved!');
-//                }
-//            });
-//            res.error(function(data, status, headers, config) {
-//                toastr.error('Something went wrong!');
-//                $scope.save ='Save';
-//                $scope.submitting = false;
-//            });
+
+            $scope.save ='Saving...';
+
+            $scope.errors = {};
+            $scope.submitting = true;
+            csrf.setCsrfToken();
+
+            console.log($scope.supplier);
+
+            var res = $http.post(resourceURI, $scope.supplier);
+            res.success(function(data) {
+                if (!data.success) {
+                    $scope.errors = errorToElementBinder.bindToElements(data, $scope.errors);
+                    $scope.save ='Save';
+                    $scope.submitting = false;
+                    toastr.warning('Error found.');
+                } else {
+                    window.location.hash = '#/supplier/' + data.modelId;
+                    toastr.success('Supplier successfully saved!');
+                }
+            });
+            res.error(function(data, status, headers, config) {
+                toastr.error('Something went wrong!');
+                $scope.save ='Save';
+                $scope.submitting = false;
+            });
         }
     }]);
 

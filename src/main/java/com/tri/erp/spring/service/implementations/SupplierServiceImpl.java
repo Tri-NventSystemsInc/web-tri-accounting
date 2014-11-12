@@ -1,8 +1,10 @@
 package com.tri.erp.spring.service.implementations;
 
+import com.tri.erp.spring.commons.facade.AuthenticationFacade;
 import com.tri.erp.spring.commons.helpers.Checker;
 import com.tri.erp.spring.commons.helpers.MessageFormatter;
 import com.tri.erp.spring.model.Supplier;
+import com.tri.erp.spring.model.User;
 import com.tri.erp.spring.repo.SupplierRepo;
 import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.service.interfaces.SupplierService;
@@ -21,6 +23,9 @@ import java.util.List;
 
 @Service
 public class SupplierServiceImpl implements SupplierService {
+
+    @Autowired
+    private AuthenticationFacade authenticationFacade;
 
     @Autowired
     SupplierRepo supplierRepo;
@@ -48,8 +53,19 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    @Transactional
     public CreateResponse processUpdate(Supplier supplier, BindingResult bindingResult, MessageSource messageSource) {
+        return processCreate(supplier, bindingResult, messageSource);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Supplier> findAll() {
+        return supplierRepo.findAll();
+    }
+
+    @Override
+    @Transactional
+    public CreateResponse processCreate(Supplier supplier, BindingResult bindingResult, MessageSource messageSource) {
         CreateResponse response = new CreateResponse();
         MessageFormatter messageFormatter = new MessageFormatter(bindingResult, messageSource, response);
 
@@ -62,6 +78,12 @@ public class SupplierServiceImpl implements SupplierService {
             response = messageFormatter.getResponse();
             response.setSuccess(false);
         } else {
+
+            if (supplier.getId() == null || supplier.getId() == 0) {
+                User createdBy = authenticationFacade.getLoggedIn();
+                supplier.setCreatedBy(createdBy);
+            }
+
             Supplier newSupplier = this.create(supplier);
             response.setModelId(newSupplier.getId());
             response.setSuccessMessage("Supplier successfully saved!");
@@ -69,16 +91,5 @@ public class SupplierServiceImpl implements SupplierService {
         }
 
         return response;
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<Supplier> findAll() {
-        return supplierRepo.findAll();
-    }
-
-    @Override
-    public CreateResponse processCreate(Supplier supplier, BindingResult bindingResult, MessageSource messageSource) {
-        return processCreate(supplier, bindingResult, messageSource);
     }
 }
