@@ -28,7 +28,6 @@ public class Account  implements java.io.Serializable {
     @Column
     private String code;
 
-    @NotEmpty
     @Size(
             min = 3,
             max = 500,
@@ -37,17 +36,14 @@ public class Account  implements java.io.Serializable {
     @Column(unique = true)
     private String title;
 
-    @NotEmpty
     @Length(min = 3, max = 3, message = "GL account must be a 3-character code")
     @Column
     private String GLAccount;
-
-    @NotEmpty
+ 
     @Length(min = 2, max = 2, message = "SL account must be a 2-character code")
     @Column
     private String SLAccount;
 
-    @NotEmpty
     @Length(min = 3, max = 3, message = "Auxiliary account must be a 3-character code")
     @Column
     private String auxiliaryAccount;
