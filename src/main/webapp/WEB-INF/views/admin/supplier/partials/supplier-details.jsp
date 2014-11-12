@@ -110,7 +110,7 @@
                     <label class="input-label">VATable</label>
                 </div>
                 <div class="col-md-9 col-lg-9">
-                    <label class="value-label">{{ supplier.isVatable == 1 ? 'Yes' : 'No' }}</label>
+                    <label class="value-label">{{ supplier.vatable == 1 ? 'Yes' : 'No' }}</label>
                 </div>
             </div>
 

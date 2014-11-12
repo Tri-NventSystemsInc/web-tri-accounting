@@ -276,7 +276,7 @@
                 </div>
                 <div class="col-md-9 col-lg-9">
                     <div class="inline-group">
-                        <label><input ng-model="supplier.isVatable" type="checkbox" id="isVatable" name="enabled"> VATable</label>
+                        <label><input ng-model="supplier.vatable" type="checkbox" id="vatable" name="vatable"> VATable</label>
                     </div>
                 </div>
             </div>

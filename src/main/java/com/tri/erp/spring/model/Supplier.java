@@ -53,7 +53,7 @@ public class Supplier implements Serializable {
     private String tin;
 
     @Column
-    private Boolean isVatable;
+    private Boolean vatable;
 
     @Column
     private String bankAccountNumber;
@@ -81,7 +81,7 @@ public class Supplier implements Serializable {
     public Supplier() {}
 
     public Supplier(String name, String address, String phone, String fax, String contactPerson, String contactPersonPosition,
-                    Integer accountNumber, String email, String tin, Boolean isVatable, String bankAccountNumber, Boolean status, BigDecimal creditLimit, User createdBy, Date createdAt, Date updatedAt) {
+                    Integer accountNumber, String email, String tin, Boolean vatable, String bankAccountNumber, Boolean status, BigDecimal creditLimit, User createdBy, Date createdAt, Date updatedAt) {
         this.name = name;
         this.address = address;
         this.phone = phone;
@@ -91,7 +91,7 @@ public class Supplier implements Serializable {
         this.accountNumber = accountNumber;
         this.email = email;
         this.tin = tin;
-        this.isVatable = isVatable;
+        this.vatable = vatable;
         this.bankAccountNumber = bankAccountNumber;
         this.status = status;
         this.creditLimit = creditLimit;
@@ -181,11 +181,11 @@ public class Supplier implements Serializable {
     }
 
     public Boolean isVatable() {
-        return isVatable;
+        return vatable;
     }
 
-    public void isVatable(Boolean isVatable) {
-        this.isVatable = isVatable;
+    public void isVatable(Boolean vatable) {
+        this.vatable = vatable;
     }
 
     public String getBankAccountNumber() {

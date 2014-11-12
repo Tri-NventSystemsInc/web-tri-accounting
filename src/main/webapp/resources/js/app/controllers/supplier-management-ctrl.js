@@ -24,35 +24,27 @@ supplierManagementCtrls.controller('addEditSupplierCtrl', ['$scope', '$routePara
 
         var resourceURI = '/supplier/create';
         if(!($routeParams.supplierId === undefined)) {  // update mode
-//            $scope.title = 'Update user';
-//            $scope.showForm = false;
-//
-//            $scope.userId = $routeParams.userId;
-//
-//            userFactory.getUser($scope.userId)
-//                .success(function (data) {
-//
-//                    console.log(data);
-//
-//                    if (data === '' || data.id <= 0) {    // not found
-//                        window.location.hash = '#/user/' + $scope.userId;
-//                    } else {
-//                        $scope.user = data;
-//                        $scope.user.password = "";
-//
-//                        // roles
-//                        angular.forEach(data.roles, function(role, key) {
-//                            $scope.checkAssignedRole(role.id);
-//                        });
-//
-//                        $scope.showForm = true;
-//                    }
-//                })
-//                .error(function (error) {
-//                    toastr.warning('User not found!');
-//                    window.location.hash = '#/users';
-//                });
-//
+            $scope.title = 'Update user';
+            $scope.showForm = false;
+
+            $scope.supplierId = $routeParams.supplierId;
+
+            supplierFactory.getSupplier($scope.supplierId).success(function (data) {
+                if (data === '' || data.id <= 0) {    // not found
+                    window.location.hash = '#/suppliers';
+                } else {
+                    $scope.supplier = data;
+
+                    console.log(data);
+
+                    $scope.showForm = true;
+                }
+            })
+                .error(function (error) {
+                    toastr.warning('Supplier not found!');
+                    window.location.hash = '#/suppliers';
+                });
+
             resourceURI = '/supplier/update';
         }
 
