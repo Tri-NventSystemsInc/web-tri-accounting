@@ -77,6 +77,10 @@ supplierManagementCtrls.controller('addEditSupplierCtrl', ['$scope', '$routePara
                 $scope.submitting = false;
             });
         }
+
+        $scope.showError = function(val) {
+            console.log(val);
+        }
     }]);
 
 supplierManagementCtrls.controller('supplierDetailsCtrl', ['$scope', '$routeParams', '$http', 'supplierFactory',

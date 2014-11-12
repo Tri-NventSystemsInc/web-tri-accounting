@@ -1,3 +1,4 @@
+
 <div ng-controller="addEditSupplierCtrl">
     <div class="row">
         <div class="col-md-12 col-lg-12">
@@ -24,15 +25,7 @@
                                type="text" placeholder="Enter name"/>
                     </div>
                 </div>
-                <div class="col-md-5 col-lg-5">
-                    <span style="color: red !important;" ng-show="errors.err_name">
-                        <ul class="error-list">
-                            <li ng-repeat="err in errors.err_name">
-                                {{ err }}
-                            </li>
-                        </ul>
-                    </span>
-                </div>
+                <form-error err_field="errors.err_name"></form-error>
             </div>
         </div>
 
@@ -48,15 +41,6 @@
                         <textarea  maxlength="1024" rows="5" cols="63" ng-model="supplier.address" id="address"
                                    name="address" placeholder="Enter address"></textarea>
                     </div>
-                </div>
-                <div class="col-md-5 col-lg-5">
-                    <span style="color: red !important;" ng-show="errors.err_address">
-                        <ul class="error-list">
-                            <li ng-repeat="err in errors.err_address">
-                                {{ err }}
-                            </li>
-                        </ul>
-                    </span>
                 </div>
             </div>
         </div>
@@ -75,15 +59,6 @@
                                class="form-control" type="text" placeholder="Enter contact person"/>
                     </div>
                 </div>
-                <div class="col-md-5 col-lg-5">
-                    <span style="color: red !important;" ng-show="errors.err_contactPerson">
-                        <ul class="error-list">
-                            <li ng-repeat="err in errors.err_contactPerson">
-                                {{ err }}
-                            </li>
-                        </ul>
-                    </span>
-                </div>
             </div>
         </div>
 
@@ -100,15 +75,6 @@
                         <input maxlength="255" ng-model="supplier.contactPersonPosition" id="contactPersonPosition"
                                name="contactPersonPosition" class="form-control" type="text" placeholder="Enter contact person position"/>
                     </div>
-                </div>
-                <div class="col-md-5 col-lg-5">
-                    <span style="color: red !important;" ng-show="errors.err_contactPersonPosition">
-                        <ul class="error-list">
-                            <li ng-repeat="err in errors.err_contactPersonPosition">
-                                {{ err }}
-                            </li>
-                        </ul>
-                    </span>
                 </div>
             </div>
         </div>
@@ -127,15 +93,6 @@
                                name="bankAccountNumber" class="form-control" type="text" placeholder="Enter bank account number"/>
                     </div>
                 </div>
-                <div class="col-md-5 col-lg-5">
-                    <span style="color: red !important;" ng-show="errors.err_bankAccountNumber">
-                        <ul class="error-list">
-                            <li ng-repeat="err in errors.err_bankAccountNumber">
-                                {{ err }}
-                            </li>
-                        </ul>
-                    </span>
-                </div>
             </div>
         </div>
 
@@ -150,17 +107,8 @@
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
                         <input maxlength="255" ng-model="supplier.email" id="email" name="email" class="form-control"
-                               type="text" placeholder="Enter email"/>
+                               type="email" placeholder="Enter email"/>
                     </div>
-                </div>
-                <div class="col-md-5 col-lg-5">
-                    <span style="color: red !important;" ng-show="errors.err_email">
-                        <ul class="error-list">
-                            <li ng-repeat="err in errors.err_email">
-                                {{ err }}
-                            </li>
-                        </ul>
-                    </span>
                 </div>
             </div>
         </div>
@@ -179,15 +127,6 @@
                                type="number"  step="any" placeholder="Enter credit limit"/>
                     </div>
                 </div>
-                <div class="col-md-5 col-lg-5">
-                    <span style="color: red !important;" ng-show="errors.err_creditLimit">
-                        <ul class="error-list">
-                            <li ng-repeat="err in errors.err_creditLimit">
-                                {{ err }}
-                            </li>
-                        </ul>
-                    </span>
-                </div>
             </div>
         </div>
 
@@ -204,15 +143,6 @@
                         <input maxlength="255" ng-model="supplier.fax" id="fax" name="fax" class="form-control"
                                type="text" placeholder="Enter fax"/>
                     </div>
-                </div>
-                <div class="col-md-5 col-lg-5">
-                    <span style="color: red !important;" ng-show="errors.err_fax">
-                        <ul class="error-list">
-                            <li ng-repeat="err in errors.err_fax">
-                                {{ err }}
-                            </li>
-                        </ul>
-                    </span>
                 </div>
             </div>
         </div>
@@ -231,15 +161,6 @@
                                type="text" placeholder="Enter phone"/>
                     </div>
                 </div>
-                <div class="col-md-5 col-lg-5">
-                    <span style="color: red !important;" ng-show="errors.err_phone">
-                        <ul class="error-list">
-                            <li ng-repeat="err in errors.err_phone">
-                                {{ err }}
-                            </li>
-                        </ul>
-                    </span>
-                </div>
             </div>
         </div>
 
@@ -256,15 +177,6 @@
                         <input maxlength="255" ng-model="supplier.tin" id="tin" name="tin" class="form-control"
                                type="text" placeholder="Enter tin"/>
                     </div>
-                </div>
-                <div class="col-md-5 col-lg-5">
-                    <span style="color: red !important;" ng-show="errors.err_phone">
-                        <ul class="error-list">
-                            <li ng-repeat="err in errors.err_phone">
-                                {{ err }}
-                            </li>
-                        </ul>
-                    </span>
                 </div>
             </div>
         </div>

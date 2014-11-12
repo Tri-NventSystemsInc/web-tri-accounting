@@ -4,7 +4,8 @@ var supApp = angular.module('supplierManagement', [
     'supplierManagementCtrl',
     'jQueryFnWrapperService',
     'supplierFactory',
-    'errorHandlerService'
+    'errorHandlerService',
+    'cmnFormErrorApp'
 ]);
 
 supApp.config(['$routeProvider',
