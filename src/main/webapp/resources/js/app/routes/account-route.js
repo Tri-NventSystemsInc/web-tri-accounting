@@ -7,7 +7,8 @@ var coaApp = angular.module('account', [
     'jQueryFnWrapperService',
     'accountService',
     'accountFactory',
-    'businessSegmentFactory'
+    'businessSegmentFactory',
+    'cmnFormErrorApp'
 ]);
 
 coaApp.config(['$routeProvider',

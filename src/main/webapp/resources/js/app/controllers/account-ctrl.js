@@ -162,7 +162,7 @@ coaControllers.controller('newAccountCtrl', ['$scope', '$routeParams', '$http', 
 
             $scope.errors = {};
             $scope.submitting = true;
-            $http.defaults.headers.post['X-CSRF-TOKEN'] = csrf.getCsrfToken();
+            csrf.setCsrfToken();
 
             // create json to be posted to the server
             var jAccount = accountService.createAccountJson($scope);
