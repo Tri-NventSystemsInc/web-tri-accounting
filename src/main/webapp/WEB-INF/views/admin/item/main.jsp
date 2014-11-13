@@ -13,8 +13,10 @@
     </jsp:attribute>
 </mytag:master>
 
+<script src="<c:url value="/resources/js/app/factories/business-segment-factory.js" />"></script>
+<script src="<c:url value="/resources/js/app/factories/account-factory.js" />"></script>
 
-
+<script src="<c:url value="/resources/js/app/directives/account-browser-s.js" />"></script>
 <script src="<c:url value="/resources/js/app/routes/item-management-route.js" />"></script>
 <script src="<c:url value="/resources/js/app/controllers/item-management-ctrl.js" />"></script>
 <script src="<c:url value="/resources/js/app/factories/item-factory.js" />"></script>

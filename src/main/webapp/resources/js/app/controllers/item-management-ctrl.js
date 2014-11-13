@@ -35,8 +35,7 @@ itemManagementCtrls.controller('addEditItemCtrl', ['$scope', '$routeParams', '$h
                     window.location.hash = '#/items';
                 } else {
                     $scope.item = data;
-
-                    console.log(data);
+                    $scope.selectedAccount = $scope.item.segmentAccount.accountCode + ' ' + $scope.item.segmentAccount.account.title;
 
                     $scope.showForm = true;
                 }
@@ -77,6 +76,11 @@ itemManagementCtrls.controller('addEditItemCtrl', ['$scope', '$routeParams', '$h
                 $scope.save ='Save';
                 $scope.submitting = false;
             });
+        }
+
+        $scope.accounts_selection_handler = function(segmentAccount){
+            $scope.item.segmentAccount = segmentAccount;
+            $scope.selectedAccount = segmentAccount.accountCode + ' ' + segmentAccount.account.title;
         }
     }]);
 

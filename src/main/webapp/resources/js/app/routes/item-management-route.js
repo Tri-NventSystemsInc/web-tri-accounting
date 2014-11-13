@@ -1,6 +1,7 @@
 
 var supApp = angular.module('itemManagement', [
     'ngRoute',
+    'cmnAccountBrowserWithSegmentApp',
     'itemManagementCtrl',
     'jQueryFnWrapperService',
     'itemFactory',
