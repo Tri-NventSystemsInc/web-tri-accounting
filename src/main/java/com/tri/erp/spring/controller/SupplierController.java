@@ -28,7 +28,7 @@ public class SupplierController {
 
     @RequestMapping(value = "/list")
     @ResponseBody
-    public List<Supplier> getUsers() {
+    public List<Supplier> getSuppliers() {
         return supplierService.findAll();
     }
 

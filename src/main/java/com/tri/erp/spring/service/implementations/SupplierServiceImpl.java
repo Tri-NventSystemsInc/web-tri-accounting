@@ -45,7 +45,7 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public Supplier create(Supplier supplier) {
         return supplierRepo.save(supplier);
     }

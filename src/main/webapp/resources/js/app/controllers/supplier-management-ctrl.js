@@ -24,7 +24,7 @@ supplierManagementCtrls.controller('addEditSupplierCtrl', ['$scope', '$routePara
 
         var resourceURI = '/supplier/create';
         if(!($routeParams.supplierId === undefined)) {  // update mode
-            $scope.title = 'Update user';
+            $scope.title = 'Update supplier';
             $scope.showForm = false;
 
             $scope.supplierId = $routeParams.supplierId;

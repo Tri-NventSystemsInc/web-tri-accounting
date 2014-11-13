@@ -30,6 +30,12 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public Item findById(Integer id) {
+        return itemRepo.findOne(id);
+    }
+
+    @Override
     public CreateResponse processUpdate(Item item, BindingResult bindingResult, MessageSource messageSource) {
         return null;
     }
