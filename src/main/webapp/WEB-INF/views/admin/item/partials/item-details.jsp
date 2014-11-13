@@ -37,7 +37,7 @@
                     <label class="input-label">Account</label>
                 </div>
                 <div class="col-md-9 col-lg-9">
-                    <label class="value-label">{{ item.segmentAccount}}</label>
+                    <label class="value-label">{{item.segmentAccount.accountCode + ' ' + item.segmentAccount.account.title}}</label>
                 </div>
             </div>
 
@@ -46,7 +46,7 @@
                     <label class="input-label">Unit</label>
                 </div>
                 <div class="col-md-9 col-lg-9">
-                    <label class="value-label">{{ item.unit }}</label>
+                    <label class="value-label">{{ item.unit.code }}</label>
                 </div>
             </div>
         </div>
