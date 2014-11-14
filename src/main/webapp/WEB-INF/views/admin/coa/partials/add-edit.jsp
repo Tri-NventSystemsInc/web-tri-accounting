@@ -1,7 +1,7 @@
 <div ng-controller="newAccountCtrl">
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <button class="btn btn-primary" onclick="(window.location.href = '#/accounts')">Chart of Accounts</button>
+            <a ui-sref="coa" class="btn btn-primary">Chart of Accounts</a>
         </div>
     </div>
     <div class="row-top-buffer"></div>
