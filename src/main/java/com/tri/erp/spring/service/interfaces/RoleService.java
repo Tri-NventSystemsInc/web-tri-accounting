@@ -11,4 +11,8 @@ import java.util.List;
 
 public interface RoleService {
     public List<Role> findAll();
+    public Role findById(Integer id);
+    public CreateResponse processCreate(Role role, BindingResult bindingResult, MessageSource messageSource);
+    public Role findByName(String str);
+    public CreateResponse processUpdate(Role role, BindingResult bindingResult, MessageSource messageSource);
 }

@@ -16,6 +16,7 @@ import java.util.List;
 public interface UserService {
     public User create(User user);
     public User findByEmail(String email);
+    public User findByUsername(String username);
     public User findById(Integer id);
     public CreateResponse processUpdate(User user, BindingResult bindingResult, MessageSource messageSource);
     public List<User> findAll();

@@ -4,7 +4,10 @@ var coaApp = angular.module('userManagement', [
     'userManagementCtrl',
     'userManagementFactory',
     'roleFactory',
-    'errorHandlerService'
+    'errorHandlerService',
+    'jQueryFnWrapperService',
+    'menuFactory',
+    'cmnFormErrorApp'
 ]);
 
 coaApp.config(['$routeProvider',
@@ -22,6 +25,18 @@ coaApp.config(['$routeProvider',
             }).
             when('/user/:userId/edit', {
                 templateUrl: 'user/new-user-page'
+            }).
+            when('/new-role', {
+                templateUrl: 'user/new-role-page',
+                controller: 'addEditRoleCtrl'
+            }).
+            when('/role/:roleId', {
+                templateUrl: 'user/role-details-page',
+                controller: 'roleDetailsCtrl'
+            }).
+            when('/role/:roleId/edit', {
+                templateUrl: 'user/new-role-page',
+                controller: 'addEditRoleCtrl'
             }).
             otherwise({
                 redirectTo:  '/users'

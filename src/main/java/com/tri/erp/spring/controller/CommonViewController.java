@@ -31,4 +31,9 @@ public class CommonViewController {
     public String getItemBrowser() {
         return "common/item-browser";
     }
+
+    @RequestMapping("/form-field-error-msg")
+    public String getErrorViewer() {
+        return "common/form-field-error-msg";
+    }
 }

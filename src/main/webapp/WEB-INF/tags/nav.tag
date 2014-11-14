@@ -10,7 +10,8 @@
         <ul class="dropdown-menu" role="menu">
             <li><a href="/admin/coa">Chart of Accounts</a></li>
             <li><a href="/admin/user">Users</a></li>
-            <li><a href="#">Suppliers</a></li>
+            <li><a href="/admin/supplier">Suppliers</a></li>
+            <li><a href="/admin/item">Items</a></li>
         </ul>
     </li>
     <li><a href="/admin/showcase">Showcase</a></li>

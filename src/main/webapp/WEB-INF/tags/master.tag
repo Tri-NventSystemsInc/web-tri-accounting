@@ -12,7 +12,7 @@
 <%--<html lang="en">
 <head>
 
-    <my:header/>
+    <my:header title="Firefly" />
     <jsp:invoke fragment="head"/>
 </head>
 <body>

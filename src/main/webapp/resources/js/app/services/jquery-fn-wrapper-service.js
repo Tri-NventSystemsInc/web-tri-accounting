@@ -10,14 +10,10 @@ jQueryFnWrapperService.service('modalToggler', function() {
         modalId = '#' + modalId
         $(modalId).modal('hide');
     };
-
-    this.getCsrfToken = function() {
-        return $('input[name=_csrf]').val();
-    }
 });
 
-jQueryFnWrapperService.service('csrf', function() {
-    this.getCsrfToken = function() {
-        return $('input[name=_csrf]').val();
+jQueryFnWrapperService.service('csrf', ['$http', function($http) {
+    this.setCsrfToken = function() {
+        $http.defaults.headers.post['X-CSRF-TOKEN'] = $('input[name=_csrf]').val();
     }
-});
+}]);

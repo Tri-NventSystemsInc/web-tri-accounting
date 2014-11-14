@@ -1,5 +1,6 @@
 package com.tri.erp.spring.commons.facade;
 
+import com.tri.erp.spring.model.User;
 import org.springframework.security.core.Authentication;
 
 /**
@@ -7,4 +8,5 @@ import org.springframework.security.core.Authentication;
  */
 public interface AuthenticationFacade {
     Authentication getAuthentication();
+    User getLoggedIn();
 }

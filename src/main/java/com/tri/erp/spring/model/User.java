@@ -53,11 +53,11 @@ public class User {
     private User createdBy;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP")
+    @Column(nullable = false)
     private Date createdAt;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false, columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
+    @Column(nullable = false)
     private Date updatedAt;
 
     @Column(nullable = false)
@@ -144,7 +144,7 @@ public class User {
     }
 
     public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
+        this.updatedAt = null;
     }
 
     public String getRetypePassword() {

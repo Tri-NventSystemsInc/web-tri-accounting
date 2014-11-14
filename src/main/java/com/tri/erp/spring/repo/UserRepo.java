@@ -15,6 +15,7 @@ import java.util.List;
 public interface UserRepo extends JpaRepository<User, Integer> {
 
     public User findOneByUsername(String username);
+    public List<User> findByUsername(String username);
     public List<User> findByEmail(String email);
 
     @Modifying
