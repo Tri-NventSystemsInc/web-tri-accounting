@@ -19,8 +19,15 @@ function config($stateProvider, $urlRouterProvider) {
 
         .state('coa', {
             url: '/coa',
-            templateUrl: '/common/coa'
+            templateUrl: '/admin/coa',
+            controller: 'treeGridCtrl'
         })
+
+        .state('coa.new', {
+            url: '/new',
+            templateUrl: 'coa/new-account-page'
+        })
+
 
         .state('users', {
             url: '/users',

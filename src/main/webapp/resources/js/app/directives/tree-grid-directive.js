@@ -18,7 +18,7 @@
                       </div>\
                       <div class='row'>\
                           <div class=\"col-md-7 col-lg-7\"><span style=\"font-weight: bold; padding-left: 80px;\">Title</span></div>\
-                          <div class=\"col-md-2 col-lg-2\"><span style=\"font-weight: bold; padding-left: 7px;\">Code</span></div>\
+                          <div class=\"col-md-2 col-lg-2\"><span style=\"font-weight: bold; padding-left: 30px;\">Code</span></div>\
                           <div class=\"col-md-2 col-lg-2\"><span style=\"font-weight: bold\">Type</span></div>\
                           <div class=\"col-md-1 col-lg-1\"><span style=\"font-weight: bold\">&nbsp;</span></div>\
                       </div>\

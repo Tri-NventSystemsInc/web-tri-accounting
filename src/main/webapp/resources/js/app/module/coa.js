@@ -1,6 +1,14 @@
-var coaApp = angular.module('accountCtrl', ['ngResource', 'ngSanitize']);
+var coaApp = angular.module('coa', [
+    'treeGrid',
+    'errorHandlerService',
+    'jQueryFnWrapperService',
+    'accountService',
+    'accountFactory',
+    'businessSegmentFactory',
+    'cmnFormErrorApp'
+]);
 
-coaApp.controller('accountDetailsCtrl', ['$scope', '$routeParams', '$http', 'accountFactory',
+/*coaApp.controller('accountDetailsCtrl', ['$scope', '$routeParams', '$http', 'accountFactory',
     function($scope,  $routeParams, $http, accountFactory) {
 
         $scope.showDetails = false;
@@ -185,7 +193,7 @@ coaApp.controller('newAccountCtrl', ['$scope', '$routeParams', '$http', 'errorTo
                 $scope.submitting = false;
             });
         };
-    }]);
+    }]);*/
 
 coaApp.controller('treeGridCtrl',  ['$scope', 'accountFactory', '$http', function($scope, accountFactory, $http) {
     var tree, myTreeData;
