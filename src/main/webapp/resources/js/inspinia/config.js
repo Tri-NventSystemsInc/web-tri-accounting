@@ -11,12 +11,6 @@ function config($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("main");
     $stateProvider
 
-        .state('lockscreen', {
-            url: "/#/lockscreen",
-            templateUrl: "views/lockscreen.jsp",
-            data: { pageTitle: 'Lock Screen' }
-        })
-
         .state('coa', {
             url: '/coa',
             templateUrl: '/admin/coa',
@@ -28,6 +22,17 @@ function config($stateProvider, $urlRouterProvider) {
             templateUrl: 'coa/new-account-page'
         })
 
+        .state('coa.account', {
+            url: '/account/{accountId}',
+            templateUrl: 'coa/account-details-page',
+            controller: 'accountDetailsCtrl'
+        })
+
+        .state('lockscreen', {
+            url: "/#/lockscreen",
+            templateUrl: "views/lockscreen.jsp",
+            data: { pageTitle: 'Lock Screen' }
+        })
 
         .state('users', {
             url: '/users',

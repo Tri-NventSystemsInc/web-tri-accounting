@@ -8,21 +8,22 @@ var coaApp = angular.module('coa', [
     'cmnFormErrorApp'
 ]);
 
-coaApp.controller('accountDetailsCtrl', ['$scope', '$routeParams', '$http', 'accountFactory',
-    function($scope,  $routeParams, $http, accountFactory) {
+coaApp.controller('accountDetailsCtrl', ['$scope', '$stateParams', '$http', 'accountFactory',
+    function($scope,  $stateParams, $http, accountFactory) {
 
         $scope.showDetails = false;
 
-        if(!($routeParams.accountId === undefined)) {
+        if(!($stateParams.accountId === undefined)) {
             $scope.title = 'Account details';
 
-            $scope.accountId = $routeParams.accountId;
+            $scope.accountId = $stateParams.accountId;
 
-            accountFactory.getAccount($scope.accountId)
+            accountFactory.getAccount($stateParams.accountId)
                 .success(function (data) {
+
                     if (data === '' || data.id <= 0) {    // not found
                         toastr.warning('Account not found!');
-                        window.location.hash = '#/accounts';
+                        window.location.hash = '#/coa';
                     } else {
                         $scope.account = data;
                         $scope.showDetails = true;
@@ -30,12 +31,12 @@ coaApp.controller('accountDetailsCtrl', ['$scope', '$routeParams', '$http', 'acc
                 })
                 .error(function (error) {
                     toastr.warning('Account not found!');
-                    window.location.hash = '#/accounts';
+                    window.location.hash = '#/coa';
                 });
 
         } else {
             toastr.warning('Account not found!');
-            window.location.hash = '#/accounts';
+            window.location.hash = '#/coa';
         }
 
         $scope.pointToEditForm = function() {
@@ -43,9 +44,9 @@ coaApp.controller('accountDetailsCtrl', ['$scope', '$routeParams', '$http', 'acc
         }
     }]);
 
-coaApp.controller('newAccountCtrl', ['$scope', '$http', 'errorToElementBinder', 'accountFactory',
+coaApp.controller('newAccountCtrl', ['$scope', '$stateParams', '$http', 'errorToElementBinder', 'accountFactory',
     'modalToggler', 'businessSegmentFactory', 'accountService', 'csrf',
-    function($scope, $http, errorToElementBinder, accountFactory, modalToggler, businessSegmentFactory,
+    function($scope, $stateParams, $http, errorToElementBinder, accountFactory, modalToggler, businessSegmentFactory,
              accountService, csrf) {
 
         $scope.account = {};
@@ -76,7 +77,7 @@ coaApp.controller('newAccountCtrl', ['$scope', '$http', 'errorToElementBinder', 
         accountFactory.getAccountTypes().success(function (data) { $scope.accountTypes = data; });
         accountFactory.getAccountGroups().success(function (data) { $scope.accountGroups = data; });
 
-        var updateMode = false;
+        var updateMode = $stateParams.accountId === undefined;
         if(updateMode) {
 //            $scope.title = 'Update account';
 //            $scope.showForm = false;
