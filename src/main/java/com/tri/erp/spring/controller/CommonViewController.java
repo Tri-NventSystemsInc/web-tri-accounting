@@ -36,4 +36,11 @@ public class CommonViewController {
     public String getErrorViewer() {
         return "common/form-field-error-msg";
     }
+
+
+    // test views
+    @RequestMapping("/coa")
+    public String testCoa() {
+        return "test/coa";
+    }
 }
