@@ -79,8 +79,7 @@
 <script src="<c:url value="/resources/js/app/factories/business-segment-factory.js" />"></script>
 <script src="<c:url value="/resources/js/app/services/error-handler-service.js" />"></script>
 <script src="<c:url value="/resources/js/app/services/account-service.js" />"></script>
-<script src="<c:url value="/resources/js/app/services/jquery-fn-wrapper-service.js" />"></script>
-<script src="<c:url value="/resources/js/app/controllers/account-ctrl.js" />"></script>
+<script src="<c:url value="/resources/js/app/services/jquery-fn-wrapper-service.js" />"></script> 
 <script src="<c:url value="/resources/js/app/directives/tree-grid-directive.js" />"></script>
 <script src="<c:url value="/resources/js/app/directives/form-error.js" />"></script>
 
