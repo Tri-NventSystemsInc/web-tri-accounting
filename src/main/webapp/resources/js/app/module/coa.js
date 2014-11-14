@@ -76,7 +76,8 @@ coaApp.controller('newAccountCtrl', ['$scope', '$http', 'errorToElementBinder', 
         accountFactory.getAccountTypes().success(function (data) { $scope.accountTypes = data; });
         accountFactory.getAccountGroups().success(function (data) { $scope.accountGroups = data; });
 
-//        if(!($routeParams.accountId === undefined)) {  // update mode
+        var updateMode = false;
+        if(updateMode) {
 //            $scope.title = 'Update account';
 //            $scope.showForm = false;
 //
@@ -118,15 +119,16 @@ coaApp.controller('newAccountCtrl', ['$scope', '$http', 'errorToElementBinder', 
 //                });
 //
 //            resourceURI = '/account/update';
-//        } else {
-//            accountFactory.getAccounts()
-//                .success(function (data) {
-//                    $scope.parentAccounts = data;
-//                })
-//                .error(function (error) {
-//                    alert('Failed to load accounts.');
-//                });
-//        }
+        } else {
+            accountFactory.getAccounts()
+                .success(function (data) {
+                    $scope.parentAccounts = data;
+                })
+                .error(function (error) {
+                    toastr.warning('Failed to load accounts.');
+                });
+        }
+
         $scope.checkAssignedSegment = function (businessSegmentId) {
             angular.forEach($scope.segments, function(segment, key) {
                 if (segment.id == businessSegmentId) {
@@ -183,7 +185,8 @@ coaApp.controller('newAccountCtrl', ['$scope', '$http', 'errorToElementBinder', 
                     $scope.submitting = false;
                     toastr.warning('Error found.');
                 } else {
-                    window.location.hash = '#/account/' + data.modelId;
+                    window.location.hash = '#/coa';
+//                    window.location.hash = '#/account/' + data.modelId;
                     toastr.success('Account successfully saved!');
                 }
             });
@@ -228,7 +231,6 @@ coaApp.controller('treeGridCtrl',  ['$scope', 'accountFactory', '$http', functio
 
             // Start download
             $scope.url = '/admin/coa/download'+'?token='+token+'&type='+type;
-//            window.location.href = '/admin/coa/download'+'?token='+token+'&type='+type;
         });
     }
 
