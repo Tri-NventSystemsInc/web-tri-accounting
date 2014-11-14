@@ -1,11 +1,12 @@
 package com.tri.erp.spring.reponse;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by TSI Admin on 9/10/2014.
  */
-public class CreateResponse {
+public class CreateResponse implements Serializable {
     private boolean success;
     private ArrayList<String> fields = new ArrayList<>();
     private ArrayList<String> messages = new ArrayList<>();
