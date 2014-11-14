@@ -102,8 +102,11 @@
 <script src="<c:url value="/resources/js/inspinia/directives.js" />"></script>
 <script src="<c:url value="/resources/js/inspinia/controllers.js" />"></script>
 
+ <%--toaster--%>
+<script src="<c:url value="/resources/js/toastr/toastr.min.js" />"></script>
 
-
+ <%--firefly--%>
+<script src="<c:url value="/resources/js/app/common/firefly.js" />"></script>
 
 </body>
 </html>
