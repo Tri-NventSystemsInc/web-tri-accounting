@@ -8,7 +8,7 @@ var coaApp = angular.module('coa', [
     'cmnFormErrorApp'
 ]);
 
-/*coaApp.controller('accountDetailsCtrl', ['$scope', '$routeParams', '$http', 'accountFactory',
+coaApp.controller('accountDetailsCtrl', ['$scope', '$routeParams', '$http', 'accountFactory',
     function($scope,  $routeParams, $http, accountFactory) {
 
         $scope.showDetails = false;
@@ -43,9 +43,9 @@ var coaApp = angular.module('coa', [
         }
     }]);
 
-coaApp.controller('newAccountCtrl', ['$scope', '$routeParams', '$http', 'errorToElementBinder', 'accountFactory',
+coaApp.controller('newAccountCtrl', ['$scope', '$http', 'errorToElementBinder', 'accountFactory',
     'modalToggler', 'businessSegmentFactory', 'accountService', 'csrf',
-    function($scope, $routeParams, $http, errorToElementBinder, accountFactory, modalToggler, businessSegmentFactory,
+    function($scope, $http, errorToElementBinder, accountFactory, modalToggler, businessSegmentFactory,
              accountService, csrf) {
 
         $scope.account = {};
@@ -76,57 +76,57 @@ coaApp.controller('newAccountCtrl', ['$scope', '$routeParams', '$http', 'errorTo
         accountFactory.getAccountTypes().success(function (data) { $scope.accountTypes = data; });
         accountFactory.getAccountGroups().success(function (data) { $scope.accountGroups = data; });
 
-        if(!($routeParams.accountId === undefined)) {  // update mode
-            $scope.title = 'Update account';
-            $scope.showForm = false;
-
-            $scope.accountId = $routeParams.accountId;
-
-            accountFactory.getAccountsExcept($scope.accountId)
-                .success(function (data) {
-                    $scope.parentAccounts = data;
-                })
-                .error(function (error) {
-                    alert('Failed to load accounts.');
-                });
-
-            accountFactory.getAccount($scope.accountId)
-                .success(function (data) {
-                    if (data === '' || data.id <= 0) {    // not found
-                        window.location.hash = '#/account/' + $scope.accountId;
-                    } else {
-                        data.isActive = (data.isActive == 1);
-                        data.isHeader = (data.isHeader == 1);
-                        data.hasSL = (data.hasSL == 1);
-
-                        $scope.account = data;
-
-                        $scope.accountType = data.accountType;
-                        $scope.accountGroup = data.accountGroup;
-                        $scope.parentAccount = data.parentAccount;
-                        // segments
-                        angular.forEach(data.segmentAccounts, function(segmentAccount, key) {
-                            $scope.checkAssignedSegment(segmentAccount.businessSegment.id);
-                        });
-
-                        $scope.showForm = true;
-                    }
-                })
-                .error(function (error) {
-                    toastr.warning('Account not found!');
-                    window.location.hash = '#/accounts';
-                });
-
-            resourceURI = '/account/update';
-        } else {
-            accountFactory.getAccounts()
-                .success(function (data) {
-                    $scope.parentAccounts = data;
-                })
-                .error(function (error) {
-                    alert('Failed to load accounts.');
-                });
-        }
+//        if(!($routeParams.accountId === undefined)) {  // update mode
+//            $scope.title = 'Update account';
+//            $scope.showForm = false;
+//
+//            $scope.accountId = $routeParams.accountId;
+//
+//            accountFactory.getAccountsExcept($scope.accountId)
+//                .success(function (data) {
+//                    $scope.parentAccounts = data;
+//                })
+//                .error(function (error) {
+//                    alert('Failed to load accounts.');
+//                });
+//
+//            accountFactory.getAccount($scope.accountId)
+//                .success(function (data) {
+//                    if (data === '' || data.id <= 0) {    // not found
+//                        window.location.hash = '#/account/' + $scope.accountId;
+//                    } else {
+//                        data.isActive = (data.isActive == 1);
+//                        data.isHeader = (data.isHeader == 1);
+//                        data.hasSL = (data.hasSL == 1);
+//
+//                        $scope.account = data;
+//
+//                        $scope.accountType = data.accountType;
+//                        $scope.accountGroup = data.accountGroup;
+//                        $scope.parentAccount = data.parentAccount;
+//                        // segments
+//                        angular.forEach(data.segmentAccounts, function(segmentAccount, key) {
+//                            $scope.checkAssignedSegment(segmentAccount.businessSegment.id);
+//                        });
+//
+//                        $scope.showForm = true;
+//                    }
+//                })
+//                .error(function (error) {
+//                    toastr.warning('Account not found!');
+//                    window.location.hash = '#/accounts';
+//                });
+//
+//            resourceURI = '/account/update';
+//        } else {
+//            accountFactory.getAccounts()
+//                .success(function (data) {
+//                    $scope.parentAccounts = data;
+//                })
+//                .error(function (error) {
+//                    alert('Failed to load accounts.');
+//                });
+//        }
         $scope.checkAssignedSegment = function (businessSegmentId) {
             angular.forEach($scope.segments, function(segment, key) {
                 if (segment.id == businessSegmentId) {
@@ -193,7 +193,7 @@ coaApp.controller('newAccountCtrl', ['$scope', '$routeParams', '$http', 'errorTo
                 $scope.submitting = false;
             });
         };
-    }]);*/
+    }]);
 
 coaApp.controller('treeGridCtrl',  ['$scope', 'accountFactory', '$http', function($scope, accountFactory, $http) {
     var tree, myTreeData;
@@ -227,7 +227,8 @@ coaApp.controller('treeGridCtrl',  ['$scope', 'accountFactory', '$http', functio
             var token = response.message[0];
 
             // Start download
-            window.location.href = '/admin/coa/download'+'?token='+token+'&type='+type;
+            $scope.url = '/admin/coa/download'+'?token='+token+'&type='+type;
+//            window.location.href = '/admin/coa/download'+'?token='+token+'&type='+type;
         });
     }
 

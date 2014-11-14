@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-md-12 col-lg-12">
         <a ui-sref=".new" class="btn btn-primary">Add</a>
-        <button class="btn btn-primary" ng-click="printCoa('pdf')">Print</button>
+        <a class="btn btn-primary" target="_blank" ng-href="{{url}}"  ng-mousedown="printCoa('pdf')">Print</a>
     </div>
 </div>
 <div class="row">
@@ -32,4 +32,8 @@
     </div>
 </div>
 
-<div ui-view></div>
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div ui-view></div>
+    </div>
+</div>
