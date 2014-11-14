@@ -10,12 +10,31 @@
 function config($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("main");
     $stateProvider
-    .state('lockscreen', {
+
+        .state('lockscreen', {
             url: "/#/lockscreen",
             templateUrl: "views/lockscreen.jsp",
             data: { pageTitle: 'Lock Screen' }
         })
 
+        .state('coa', {
+            url: '/coa',
+            templateUrl: '/common/coa'
+        })
+
+        .state('users', {
+            url: '/users',
+            templateUrl: '/common/users'
+        })
+
+        .state('showcase', {
+            url: '/showcase',
+            templateUrl: '/common/showcase'
+        })
+
+        .state('dashboard', {
+            url:  '/main'
+        })
 }
 
 

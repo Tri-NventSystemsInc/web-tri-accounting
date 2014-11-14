@@ -42,21 +42,21 @@
                 </div>
 
             </li>
-            <li ui-sref-active="active">
-                <a href="/admin/dashboard"><i class="fa fa-laptop"></i> <span class="nav-label">Dashboard</span> </a>
+            <li  ui-sref-active="active">
+                <a  ui-sref="dashboard"><i class="fa fa-laptop"></i> <span class="nav-label">Dashboard</span> </a>
             </li>
             <li>
                 <a><i class="fa fa-th-large"></i> <span class="nav-label">Coop</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li ui-sref-active="active"><a href="/admin/coa">Chart of Accounts</a></li>
-                    <li ui-sref-active="active"><a href="/admin/user">Users</a></li>
-                    <li ui-sref-active="active"><a href="/admin/showcase">Showcase</a></li>
+                    <li ui-sref-active="active"><a ui-sref="coa">Chart of Accounts</a></li>
+                    <li ui-sref-active="active"><a ui-sref="users">Users</a></li>
+                    <li ui-sref-active="active"><a ui-sref="showcase">Showcase</a></li>
 
                 </ul>
             </li>
-            <li ui-sref-active="active">
-                <a href="${pageContext.request.contextPath}/lockscreen"><i class="fa fa-laptop"></i> <span class="nav-label">Lock Screen</span> </a>
-            </li>
+            <%--<li ui-sref-active="active">--%>
+                <%--<a href="${pageContext.request.contextPath}/lockscreen"><i class="fa fa-laptop"></i> <span class="nav-label">Lock Screen</span> </a>--%>
+            <%--</li>--%>
         </ul>
     </div>
 </nav>

@@ -43,4 +43,14 @@ public class CommonViewController {
     public String testCoa() {
         return "test/coa";
     }
+
+    @RequestMapping("/users")
+    public String testUsers() {
+        return "test/users";
+    }
+
+    @RequestMapping("/showcase")
+    public String testShowcase() {
+        return "test/showcase";
+    }
 }
