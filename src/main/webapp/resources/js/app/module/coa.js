@@ -120,14 +120,6 @@ coaApp.controller('newAccountCtrl', ['$scope', '$stateParams', '$http', 'errorTo
 //                });
 //
 //            resourceURI = '/account/update';
-        } else {
-            accountFactory.getAccounts()
-                .success(function (data) {
-                    $scope.parentAccounts = data;
-                })
-                .error(function (error) {
-                    toastr.warning('Failed to load accounts.');
-                });
         }
 
         $scope.checkAssignedSegment = function (businessSegmentId) {
@@ -148,7 +140,18 @@ coaApp.controller('newAccountCtrl', ['$scope', '$stateParams', '$http', 'errorTo
         }
 
         $scope.showAccountBrowser = function () {
-            modalToggler.show('myModal');
+            if (angular.isUndefined($scope.parentAccounts) || $scope.parentAccounts.length == 0) {
+                accountFactory.getAccounts()
+                    .success(function (data) {
+                        $scope.parentAccounts = data;
+                        modalToggler.show('myModal');
+                    })
+                    .error(function (error) {
+                        toastr.warning('Failed to load accounts.');
+                    });
+            }  else {
+                modalToggler.show('myModal');
+            }
         }
 
         $scope.accountSelectedFromBrowser = function (selectedAccount) {
