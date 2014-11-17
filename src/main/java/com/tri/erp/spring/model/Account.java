@@ -2,13 +2,13 @@ package com.tri.erp.spring.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
+import org.hibernate.annotations.*;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -20,17 +20,14 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name="accounts")
 public class Account  implements java.io.Serializable {
     @Id
     @GeneratedValue
-    @Column(name = "acct_id")
     private int id;
 
     @Column
     private String code;
 
-    @NotEmpty
     @Size(
             min = 3,
             max = 500,
@@ -39,43 +36,40 @@ public class Account  implements java.io.Serializable {
     @Column(unique = true)
     private String title;
 
-    @NotEmpty
     @Length(min = 3, max = 3, message = "GL account must be a 3-character code")
-    @Column(name = "gl_acct")
+    @Column
     private String GLAccount;
-
-    @NotEmpty
+ 
     @Length(min = 2, max = 2, message = "SL account must be a 2-character code")
-    @Column(name = "sl_acct")
+    @Column
     private String SLAccount;
 
-    @NotEmpty
     @Length(min = 3, max = 3, message = "Auxiliary account must be a 3-character code")
-    @Column(name = "auxiliary_acct")
+    @Column
     private String auxiliaryAccount;
 
     @Range(min = 1, max = 2)
-    @Column(name = "normal_balance")
+    @Column
     private int normalBalance;
 
     @Range(min = 0, max = 999)
-    @Column(name = "level")
+    @Column
     private int level;
 
     @Range(min = 0, max = 1)
-    @Column(name = "isActive")
+    @Column
     private int active;
 
     @Range(min = 0, max = 1)
-    @Column(name = "is_header")
+    @Column
     private int isHeader;
 
     @Range(min = 0, max = 1)
-    @Column(name = "has_sl")
+    @Column
     private int hasSL;
 
     @Range(min = 0, max = 999, message = "Select a valid account")
-    @Column(name = "parent_acct_id")
+    @Column
     private Integer parentAccountId;
 
     @Transient
@@ -86,13 +80,13 @@ public class Account  implements java.io.Serializable {
     @JsonIgnoreProperties(ignoreUnknown = true)
     @NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="acct_type_id")
+    @JoinColumn(name="FK_accountTypeId")
     private AccountType accountType;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     @NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="acct_group_id")
+    @JoinColumn(name="FK_accountGroupId")
     private AccountGroup accountGroup;
 
     @JsonIgnoreProperties(ignoreUnknown = true)

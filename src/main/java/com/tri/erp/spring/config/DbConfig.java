@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.jolbox.bonecp.BoneCPDataSource;
 
 
-@PropertySource(value = "classpath:application.properties")
+@PropertySource(value = "classpath:application-${spring.profiles.active}.properties")
 @EnableTransactionManagement()
 @EnableJpaRepositories("com.tri.erp.spring.repo")
 @Configuration
@@ -71,10 +71,11 @@ public class DbConfig {
 
         Properties properties = new Properties();
         properties.setProperty("hibernate.cache.use_second_level_cache", "true");
-        properties.setProperty("hibernate.cache.region.factory_class", "org.hibernate.cache.ehcache.EhCacheRegionFactory");
+        properties.setProperty("hibernate.cache.region.factory_class", "org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory");
         properties.setProperty("hibernate.cache.use_query_cache", "true");
         properties.setProperty("hibernate.generate_statistics", "true");
-        
+        properties.setProperty("net.sf.ehcache.configurationResourceName", "/firefly-ehcache.xml");
+
         factory.setJpaProperties(properties);
         
         factory.afterPropertiesSet();

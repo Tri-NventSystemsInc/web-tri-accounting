@@ -45,6 +45,12 @@ public class UserValidator implements Validator {
         if (u != null && u.getId() != user.getId()) { // diff user
             errors.rejectValue("email", "user.email.taken");
         }
+
+        // for username
+        u = this.service.findByUsername(user.getUsername());
+        if (u != null && u.getId() != user.getId()) { // diff user
+            errors.rejectValue("username", "user.username.taken");
+        }
     }
 
     private Errors validatePasswordMatching(Errors errors, String password, String retypePassword) {

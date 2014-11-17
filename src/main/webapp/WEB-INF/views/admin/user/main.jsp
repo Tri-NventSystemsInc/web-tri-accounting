@@ -4,16 +4,19 @@
 
 <mytag:master>
     <jsp:attribute name="head">
-        <link href="<c:url value="/resources/css/treeGrid/treeGrid.css" />" rel="stylesheet">
     </jsp:attribute>
     <jsp:attribute name="body">
         <div ng-app="userManagement">
-            <div id="coa-content" ng-view>Loading...</div>
+            <div id="content" ng-view>Loading...</div>
         </div>
     </jsp:attribute>
 </mytag:master>
 
 <script src="<c:url value="/resources/js/app/routes/user-management-route.js" />"></script>
 <script src="<c:url value="/resources/js/app/factories/user-factory.js" />"></script>
+<script src="<c:url value="/resources/js/app/factories/role-factory.js" />"></script>
+<script src="<c:url value="/resources/js/app/factories/menu-factory.js" />"></script>
 <script src="<c:url value="/resources/js/app/controllers/user-management-ctrl.js" />"></script>
 <script src="<c:url value="/resources/js/app/services/error-handler-service.js" />"></script>
+<script src="<c:url value="/resources/js/app/services/jquery-fn-wrapper-service.js" />"></script>
+<script src="<c:url value="/resources/js/app/directives/form-error.js" />"></script>

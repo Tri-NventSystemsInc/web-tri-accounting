@@ -5,13 +5,14 @@ import com.tri.erp.spring.model.AccountGroup;
 import com.tri.erp.spring.model.AccountType;
 import com.tri.erp.spring.model.SegmentAccount;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by arjayadong on 9/9/14.
  */
-public class AccountDto {
+public class AccountDto implements Serializable {
 
     private int id;
     private String code;

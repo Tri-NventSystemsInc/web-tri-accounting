@@ -15,6 +15,7 @@ import java.util.List;
 public interface UserRepo extends JpaRepository<User, Integer> {
 
     public User findOneByUsername(String username);
+    public List<User> findByUsername(String username);
     public List<User> findByEmail(String email);
 
     @Modifying
@@ -65,4 +66,26 @@ public interface UserRepo extends JpaRepository<User, Integer> {
                       @Param("enabled") Boolean enabled,
                       @Param("createdByUserId") Integer createdByUserId
     );
+
+    @Modifying
+    @Transactional
+    @Query(value = "INSERT INTO UserRole SET " +
+            "FK_userId = :userId, " +
+            "FK_roleId = :roleId", nativeQuery = true)
+    public int saveRoles(@Param("userId") Integer userId,
+                            @Param("roleId") Integer roleId
+    );
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM UserRole WHERE FK_userId = :userId", nativeQuery = true)
+    public int removeRoles(@Param("userId") Integer userId);
+
+    @Transactional(readOnly = true)
+    @Query(value = "SELECT " +
+                "Role.id, Role.name " +
+                "FROM UserRole " +
+                "JOIN Role ON UserRole.FK_roleId = Role.id " +
+                "WHERE UserRole.FK_userId = :userId", nativeQuery = true)
+    public List<Object[]> findRolesByUserId(@Param("userId") Integer userId);
 }

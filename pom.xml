@@ -20,7 +20,7 @@
 
 
         <!-- Spring --> 
-        <spring-framework.version>4.1.0.RELEASE</spring-framework.version>
+        <spring-framework.version>4.1.1.RELEASE</spring-framework.version>
 
         <!-- Hibernate / JPA -->
         <hibernate.version>4.3.6.Final</hibernate.version>
@@ -143,6 +143,14 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-ehcache</artifactId>
             <version>${hibernate.version}</version>
+
+            <exclusions>
+                <exclusion>
+                    <groupId>net.sf.ehcache</groupId>
+                    <artifactId>ehcache-core</artifactId>
+                </exclusion>
+            </exclusions>
+
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -222,6 +230,17 @@
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>3.7</version>
+        </dependency>
+         <!--ehcache-->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+            <version>2.6.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring-framework.version}</version>
         </dependency>
 
     </dependencies>

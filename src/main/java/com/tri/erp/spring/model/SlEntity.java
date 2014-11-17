@@ -10,15 +10,15 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "entities")
+@Table(name = "slentity")
 public class SlEntity {
 
     @Id
     @GeneratedValue
-    @Column(name = "acct_no")
+    @Column
     Integer accountNo;
 
-    @Column(name = "name")
+    @Column
     String name;
 
     @Column

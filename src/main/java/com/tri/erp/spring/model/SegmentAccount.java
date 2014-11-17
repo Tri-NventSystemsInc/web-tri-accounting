@@ -12,24 +12,23 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "segment_accounts")
 public class SegmentAccount  implements java.io.Serializable {
 
     @Id
     @GeneratedValue
-    @Column(name = "seg_acct_id")
+    @Column
     private int id;
 
-    @Column(name = "acct_code")
+    @Column
     private String accountCode;
 
     @ManyToOne
-    @JoinColumn(name = "acct_id")
+    @JoinColumn(name = "FK_accountId")
     private Account account;
 
     @NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bus_seg_id")
+    @JoinColumn(name = "FK_businessSegmentId")
     private BusinessSegment businessSegment;
 
     public SegmentAccount(String accountCode, Account account, BusinessSegment businessSegment) {

@@ -36,9 +36,9 @@ coaControllers.controller('accountDetailsCtrl', ['$scope', '$routeParams', '$htt
     }]);
 
 coaControllers.controller('newAccountCtrl', ['$scope', '$routeParams', '$http', 'errorToElementBinder', 'accountFactory',
-    'modalToggler', 'businessSegmentFactory', 'accountService',
+    'modalToggler', 'businessSegmentFactory', 'accountService', 'csrf',
     function($scope, $routeParams, $http, errorToElementBinder, accountFactory, modalToggler, businessSegmentFactory,
-             accountService) {
+             accountService, csrf) {
 
         $scope.account = {};
         $scope.showForm = true;
@@ -162,7 +162,7 @@ coaControllers.controller('newAccountCtrl', ['$scope', '$routeParams', '$http', 
 
             $scope.errors = {};
             $scope.submitting = true;
-            $http.defaults.headers.post['X-CSRF-TOKEN'] = $('input[name=_csrf]').val();
+            csrf.setCsrfToken();
 
             // create json to be posted to the server
             var jAccount = accountService.createAccountJson($scope);

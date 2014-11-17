@@ -23,15 +23,7 @@
                         <input required ng-model="account.title" id="title" name="title" class="form-control" type="text" placeholder="Enter account title"/>
                     </div>
                 </div>
-                <div class="col-md-5 col-lg-5">
-                    <span style="color: red !important;" ng-show="errors.err_title">
-                        <ul class="error-list">
-                            <li ng-repeat="err in errors.err_title">
-                                {{ err }}
-                            </li>
-                        </ul>
-                    </span>
-                </div>
+                <form-error err_field="errors.err_title"></form-error>
             </div>
         </div>
 
@@ -47,15 +39,7 @@
                         <input required ng-model="account.glaccount" id="gl_acct" name="gl_acct" class="form-control" type="text"  pattern="[0-9]{3,3}" maxlength="3" placeholder="(000)"/>
                     </div>
                 </div>
-                <div class="col-md-4 col-lg-4 input-label">
-                    <span style="color: red !important;" ng-show="errors.err_GLAccount">
-                        <ul class="error-list">
-                            <li ng-repeat="err in errors.err_GLAccount">
-                                {{ err }}
-                            </li>
-                        </ul>
-                    </span>
-                </div>
+                <form-error err_field="errors.err_GLAccount"></form-error>
             </div>
         </div>
         <div class="row-top-buffer"></div>
@@ -70,15 +54,7 @@
                         <input required ng-model="account.slaccount" id="sl_acct" name="sl_acct" class="form-control"  type="text" pattern="[0-9]{2,2}" maxlength="2" placeholder="(00)"/>
                     </div>
                 </div>
-                <div class="col-md-4 col-lg-4 input-label">
-                    <span style="color: red !important;" ng-show="errors.err_SLAccount">
-                        <ul class="error-list">
-                            <li ng-repeat="err in errors.err_SLAccount">
-                                {{ err }}
-                            </li>
-                        </ul>
-                    </span>
-                </div>
+                <form-error err_field="errors.err_SLAccount"></form-error>
             </div>
         </div>
 
@@ -94,15 +70,7 @@
                         <input required ng-model="account.auxAccount" id="auxilliary_acct" name="auxilliary_acct" class="form-control"  type="text" pattern="[0-9]{3,3}" maxlength="3" placeholder="(000)"/>
                     </div>
                 </div>
-                <div class="col-md-4 col-lg-4 input-label">
-                    <span style="color: red !important;" ng-show="errors.err_auxiliaryAccount">
-                        <ul class="error-list">
-                            <li ng-repeat="err in errors.err_auxiliaryAccount">
-                                {{ err }}
-                            </li>
-                        </ul>
-                    </span>
-                </div>
+                <form-error err_field="errors.err_auxiliaryAccount"></form-error>
             </div>
         </div>
 
@@ -121,15 +89,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-4 col-lg-4 input-label">
-                    <span style="color: red !important;" ng-show="errors.err_normalBalance">
-                        <ul class="error-list">
-                            <li ng-repeat="err in errors.err_normalBalance">
-                                {{ err }}
-                            </li>
-                        </ul>
-                    </span>
-                </div>
+                <form-error err_field="errors.err_normalBalance"></form-error>
             </div>
         </div>
 
@@ -148,15 +108,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-4 col-lg-4 input-label">
-                    <span style="color: red !important;" ng-show="errors.err_accountGroup">
-                        <ul class="error-list">
-                            <li ng-repeat="err in errors.err_accountGroup">
-                                {{ err }}
-                            </li>
-                        </ul>
-                    </span>
-                </div>
+                <form-error err_field="errors.err_accountGroup"></form-error>
             </div>
         </div>
 
@@ -176,15 +128,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-4 col-lg-4 input-label">
-                    <span style="color: red !important;" ng-show="errors.err_accountType">
-                        <ul class="error-list">
-                            <li ng-repeat="err in errors.err_accountType">
-                                {{ err }}
-                            </li>
-                        </ul>
-                    </span>
-                </div>
+                <form-error err_field="errors.err_accountType"></form-error>
             </div>
         </div>
 
@@ -207,15 +151,7 @@
                             <button title="clear account" type="button" class="btn btn-primary glyphicon glyphicon-remove" ng-click="clearAccountSelectedFromBrowser()"></button>
                         </div>
                 </div>
-                <div class="col-md-3 col-lg-3 input-label">
-                    <span style="color: red !important;" ng-show="errors.err_parentAccountId">
-                        <ul class="error-list">
-                            <li ng-repeat="err in errors.err_parentAccountId">
-                                {{ err }}
-                            </li>
-                        </ul>
-                    </span>
-                </div>
+                <form-error err_field="errors.err_parentAccountId"></form-error>
             </div>
         </div>
 
@@ -244,7 +180,7 @@
                 <div class="col-md-5 col-lg-5">
                     <ul style="list-style: none; padding-left: 2px; border: 1px solid lightgray">
                         <li ng-repeat="segment in segments">
-                            <label><input ng-disabled="segment.assigned" ng-model="segment.selected" type="checkbox" ng-change="toggleSegment($index, segment)" /> {{segment.description}}</label>
+                            <label><input ng-disabled="segment.assigned" ng-model="segment.selected" type="checkbox" /> {{segment.description}}</label>
                         </li>
                     </ul>
                 </div>

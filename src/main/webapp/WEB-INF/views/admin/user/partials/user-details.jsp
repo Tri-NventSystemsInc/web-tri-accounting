@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12 col-lg-12">
-        <button class="btn btn-primary" onclick="(window.location.href = '#/users')">Users</button>
+        <button class="btn btn-primary" onclick="(window.location.href = '#/users')">Users & Groups</button>
         <button class="btn btn-primary" onclick="(window.location.href = '#/new')">Add</button>
         <button class="btn btn-primary" ng-click="pointToEditForm()">Edit</button>
     </div>
@@ -76,6 +76,16 @@
                     <label class="value-label">{{ user.enabled ? 'Yes' : 'No' }}</label>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-lg-5">
+        <div class="row"><label class="input-label">Roles</label></div>
+        <div class="row">
+            <ul style="list-style: disc; padding-left: 10px;">
+                <li ng-repeat="role in user.roles">
+                    {{role.name}}
+                </li>
+            </ul>
         </div>
     </div>
 </div>
