@@ -1,6 +1,6 @@
 <%@ tag %>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
-<div class="row border-bottom">
+<div class="row border-bottom ng-scope">
     <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <span minimaliza-sidebar></span>

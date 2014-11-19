@@ -18,7 +18,7 @@
     <li><a href="#">Test2</a></li>
     <li><a href="#">Test3</a></li>
 </ul>--%>
-<nav class="navbar-default navbar-static-side" role="navigation">
+<nav class="navbar-default navbar-static-side ng-scope" role="navigation">
     <div class="sidebar-collapse">
         <ul side-navigation class="nav" id="side-menu">
             <li>

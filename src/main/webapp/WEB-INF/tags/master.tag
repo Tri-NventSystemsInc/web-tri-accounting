@@ -7,20 +7,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en" ng-app="inspinia">
+<html lang="en" ng-app="inspinia" class="ng-scope">
 <head>
     <my:header/>
     <jsp:invoke fragment="head"/>
 </head>
 <!-- ControllerAs syntax -->
 <!-- Main controller with serveral data used in Inspinia theme on diferent view -->
-<body ng-controller="MainCtrl as main">
+<body ng-controller="MainCtrl as main" >
 
 <!-- Wrapper-->
 <div id="wrapper">
 
     <!-- Navigation -->
-    <div>
+    <div class="ng-scope">
         <my:nav/>
     </div>
 
