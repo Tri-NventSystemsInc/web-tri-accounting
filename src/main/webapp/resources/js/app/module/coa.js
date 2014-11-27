@@ -77,49 +77,49 @@ coaApp.controller('newAccountCtrl', ['$scope', '$stateParams', '$http', 'errorTo
         accountFactory.getAccountTypes().success(function (data) { $scope.accountTypes = data; });
         accountFactory.getAccountGroups().success(function (data) { $scope.accountGroups = data; });
 
-        var updateMode = $stateParams.accountId === undefined;
+        var updateMode = $stateParams.accountId !== undefined;
         if(updateMode) {
-//            $scope.title = 'Update account';
-//            $scope.showForm = false;
-//
-//            $scope.accountId = $routeParams.accountId;
-//
-//            accountFactory.getAccountsExcept($scope.accountId)
-//                .success(function (data) {
-//                    $scope.parentAccounts = data;
-//                })
-//                .error(function (error) {
-//                    alert('Failed to load accounts.');
-//                });
-//
-//            accountFactory.getAccount($scope.accountId)
-//                .success(function (data) {
-//                    if (data === '' || data.id <= 0) {    // not found
-//                        window.location.hash = '#/account/' + $scope.accountId;
-//                    } else {
-//                        data.isActive = (data.isActive == 1);
-//                        data.isHeader = (data.isHeader == 1);
-//                        data.hasSL = (data.hasSL == 1);
-//
-//                        $scope.account = data;
-//
-//                        $scope.accountType = data.accountType;
-//                        $scope.accountGroup = data.accountGroup;
-//                        $scope.parentAccount = data.parentAccount;
-//                        // segments
-//                        angular.forEach(data.segmentAccounts, function(segmentAccount, key) {
-//                            $scope.checkAssignedSegment(segmentAccount.businessSegment.id);
-//                        });
-//
-//                        $scope.showForm = true;
-//                    }
-//                })
-//                .error(function (error) {
-//                    toastr.warning('Account not found!');
-//                    window.location.hash = '#/accounts';
-//                });
-//
-//            resourceURI = '/account/update';
+            $scope.title = 'Update account';
+            $scope.showForm = false;
+
+            $scope.accountId = $stateParams.accountId;
+
+            accountFactory.getAccountsExcept($scope.accountId)
+                .success(function (data) {
+                    $scope.parentAccounts = data;
+                })
+                .error(function (error) {
+                    toastr.warning('Failed to load accounts.');
+                });
+
+            accountFactory.getAccount($scope.accountId)
+                .success(function (data) {
+                    if (data === '' || data.id <= 0) {    // not found
+                        window.location.hash = '#/coa/account/' + $scope.accountId;
+                    } else {
+                        data.isActive = (data.isActive == 1);
+                        data.isHeader = (data.isHeader == 1);
+                        data.hasSL = (data.hasSL == 1);
+
+                        $scope.account = data;
+
+                        $scope.accountType = data.accountType;
+                        $scope.accountGroup = data.accountGroup;
+                        $scope.parentAccount = data.parentAccount;
+                        // segments
+                        angular.forEach(data.segmentAccounts, function(segmentAccount, key) {
+                            $scope.checkAssignedSegment(segmentAccount.businessSegment.id);
+                        });
+
+                        $scope.showForm = true;
+                    }
+                })
+                .error(function (error) {
+                    toastr.warning('Account not found!');
+                    window.location.hash = '#/coa';
+                });
+
+            resourceURI = '/account/update';
         }
 
         $scope.checkAssignedSegment = function (businessSegmentId) {
@@ -189,8 +189,7 @@ coaApp.controller('newAccountCtrl', ['$scope', '$stateParams', '$http', 'errorTo
                     $scope.submitting = false;
                     toastr.warning('Error found.');
                 } else {
-                    window.location.hash = '#/coa';
-//                    window.location.hash = '#/account/' + data.modelId;
+                    window.location.hash = '#/coa/account/' + data.modelId;
                     toastr.success('Account successfully saved!');
                 }
             });

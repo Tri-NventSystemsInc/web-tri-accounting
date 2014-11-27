@@ -2,7 +2,7 @@
     <div class="col-md-12 col-lg-12">
         <a ui-sref="coa" class="btn btn-primary">Chart of Accounts</a>
         <a ui-sref="coa.new" class="btn btn-primary">Add</a>
-        <button class="btn btn-primary" ng-click="pointToEditForm()">Edit</button>
+        <a ui-sref="coa.edit({accountId: accountId})" class="btn btn-primary">Edit</a>
     </div>
 </div>
 <div style="margin-top: 20px;"></div>

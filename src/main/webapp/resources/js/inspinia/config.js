@@ -28,6 +28,11 @@ function config($stateProvider, $urlRouterProvider) {
             controller: 'accountDetailsCtrl'
         })
 
+        .state('coa.edit', {
+            url: '/account/{accountId}/edit',
+            templateUrl: 'coa/new-account-page'
+        })
+
         .state('lockscreen', {
             url: "/#/lockscreen",
             templateUrl: "views/lockscreen.jsp",

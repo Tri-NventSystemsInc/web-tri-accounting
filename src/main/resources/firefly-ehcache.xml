@@ -10,13 +10,13 @@
                   overflowToDisk="false">
     </defaultCache>
 
-    <cache name="accountsTreeCache" maxEntriesLocalHeap="2000" eternal="false"
-           timeToIdleSeconds="3600" timeToLiveSeconds="86400">
+    <cache name="accountsTreeCache" maxEntriesLocalHeap="20000" eternal="false"
+           timeToIdleSeconds="28800" timeToLiveSeconds="86400">
         <persistence strategy="localTempSwap" />
     </cache>
 
-    <cache name="accountsCache" maxEntriesLocalHeap="2000" eternal="false"
-           timeToIdleSeconds="3600" timeToLiveSeconds="86400">
+    <cache name="accountsCache" maxEntriesLocalHeap="20000" eternal="false"
+           timeToIdleSeconds="28800" timeToLiveSeconds="86400">
         <persistence strategy="localTempSwap" />
     </cache>
 

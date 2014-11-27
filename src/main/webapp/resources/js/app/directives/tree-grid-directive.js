@@ -36,7 +36,7 @@
                                 <td class='code-col'> {{row.branch['code']}}</td>\
                                 <td class='type-col'> {{row.branch['accountType'].description}}</td>\
                                 <td style='width: 60px; padding: 0'><a style='padding: 0' title='View' ui-sref=\".account({accountId: row.branch['id'] })\"><i class='fa fa-search'></i></a>\
-                                    <a style='padding: 0' title='Edit' ui-sref=\".account/{{row.branch['id']}}/edit\">&nbsp;&nbsp;<i class='fa fa-edit'></i></a>\
+                                    <a style='padding: 0' title='Edit' ui-sref=\".edit({accountId: row.branch['id'] })\">&nbsp;&nbsp;<i class='fa fa-edit'></i></a>\
                                 </td>\
                             </tr>\
                             </tbody>\
