@@ -191,6 +191,7 @@ coaApp.controller('newAccountCtrl', ['$scope', '$stateParams', '$http', 'errorTo
                 } else {
                     window.location.hash = '#/coa/account/' + data.modelId;
                     toastr.success('Account successfully saved!');
+                    accountUpdated = true;
                 }
             });
             res.error(function(data, status, headers, config) {
