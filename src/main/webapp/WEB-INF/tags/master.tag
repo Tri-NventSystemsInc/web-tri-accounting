@@ -60,28 +60,18 @@
 
 <!-- SlimScroll -->
 <script src="<c:url value="/resources/js/plugins/slimscroll/jquery.slimscroll.min.js" />"></script>
-
 <!-- Custom and plugin javascript -->
 <script src="<c:url value="/resources/js/inspinia/inspinia.js" />"></script>
 
 <!-- Angular scripts-->
-
 <script src="<c:url value="/resources/js/angular/inspinia/angular.min.js" />"></script>
 <script src="<c:url value="/resources/js/ui-router/angular-ui-router.min.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap/inspinia/ui-bootstrap-tpls-0.11.0.min.js" />"></script>
 
+<!-- ocLazyLoad -->
+<script src="<c:url value="/resources/js/plugins/ocLazyLoad.js" />"></script>
+
 <!-- Angular Dependiences -->
-
-
-    <%--Chart of accounts--%>
-<script src="<c:url value="/resources/js/app/module/coa.js" />"></script>
-<script src="<c:url value="/resources/js/app/factories/account-factory.js" />"></script>
-<script src="<c:url value="/resources/js/app/factories/business-segment-factory.js" />"></script>
-<script src="<c:url value="/resources/js/app/services/error-handler-service.js" />"></script>
-<script src="<c:url value="/resources/js/app/services/account-service.js" />"></script>
-<script src="<c:url value="/resources/js/app/services/jquery-fn-wrapper-service.js" />"></script> 
-<script src="<c:url value="/resources/js/app/directives/tree-grid-directive.js" />"></script>
-<script src="<c:url value="/resources/js/app/directives/form-error.js" />"></script>
 
 <!-- Anglar App Script -->
 <script src="<c:url value="/resources/js/inspinia/app.js" />"></script>
@@ -94,6 +84,9 @@
 
  <%--firefly--%>
 <script src="<c:url value="/resources/js/app/common/firefly.js" />"></script>
+<script src="<c:url value="/resources/js/app/services/error-handler-service.js" />"></script>
+<script src="<c:url value="/resources/js/app/services/jquery-fn-wrapper-service.js" />"></script>
+<script src="<c:url value="/resources/js/app/directives/form-error.js" />"></script>
 
 </body>
 </html>

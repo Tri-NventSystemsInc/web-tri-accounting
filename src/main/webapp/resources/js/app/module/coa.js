@@ -27,6 +27,9 @@ coaApp.controller('accountDetailsCtrl', ['$scope', '$stateParams', '$http', 'acc
                     } else {
                         $scope.account = data;
                         $scope.showDetails = true;
+
+
+                        console.log($scope.account);
                     }
                 })
                 .error(function (error) {
@@ -171,15 +174,20 @@ coaApp.controller('newAccountCtrl', ['$scope', '$stateParams', '$http', 'errorTo
         };
 
         $scope.processForm = function() {
-
             $scope.save ='Saving...';
 
             $scope.errors = {};
             $scope.submitting = true;
             csrf.setCsrfToken();
 
+
+            console.log($scope.segments);
+
             // create json to be posted to the server
             var jAccount = accountService.createAccountJson($scope);
+
+
+            console.log(jAccount);
 
             var res = $http.post(resourceURI, jAccount);
             res.success(function(data) {
@@ -191,7 +199,6 @@ coaApp.controller('newAccountCtrl', ['$scope', '$stateParams', '$http', 'errorTo
                 } else {
                     window.location.hash = '#/coa/account/' + data.modelId;
                     toastr.success('Account successfully saved!');
-                    accountUpdated = true;
                 }
             });
             res.error(function(data, status, headers, config) {

@@ -14,7 +14,23 @@ function config($stateProvider, $urlRouterProvider) {
         .state('coa', {
             url: '/coa',
             templateUrl: '/admin/coa',
-            controller: 'treeGridCtrl'
+            controller: 'treeGridCtrl',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "coa",
+                            files: [
+                                "/resources/js/app/module/coa.js",
+                                "/resources/js/app/factories/account-factory.js",
+                                "/resources/js/app/factories/business-segment-factory.js",
+                                "/resources/js/app/services/account-service.js",
+                                "/resources/js/app/directives/tree-grid-directive.js"
+                            ]
+                        }
+                    )
+                }
+            }
         })
 
         .state('coa.new', {
@@ -31,12 +47,6 @@ function config($stateProvider, $urlRouterProvider) {
         .state('coa.edit', {
             url: '/account/{accountId}/edit',
             templateUrl: 'coa/new-account-page'
-        })
-
-        .state('lockscreen', {
-            url: "/#/lockscreen",
-            templateUrl: "views/lockscreen.jsp",
-            data: { pageTitle: 'Lock Screen' }
         })
 
         .state('users', {

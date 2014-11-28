@@ -7,6 +7,6 @@
     angular.module('inspinia', [
         'ui.router',
         'ui.bootstrap',
-        'coa'
+        'oc.lazyLoad'
     ])
 })();
