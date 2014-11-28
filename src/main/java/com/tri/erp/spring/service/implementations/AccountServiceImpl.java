@@ -261,11 +261,8 @@ public class AccountServiceImpl implements AccountService {
     private void persistSegmentAccounts(Account account) {
         if (!Checker.collectionIsEmpty(account.getSegmentAccounts())) {
             Set<SegmentAccount> segmentAccounts = account.getSegmentAccounts();
-            Debug.print("SEG_ACCOUNTS");
+
             for(SegmentAccount segmentAccount : segmentAccounts) {
-
-                Debug.print(segmentAccount.getBusinessSegment().getDescription());
-
                 BusinessSegment businessSegment = businessSegmentRepo.findOne(segmentAccount.getBusinessSegment().getId());
                 String code = generateSegmentAccountCode(businessSegment, account);
                 segmentAccount.setAccount(account);

@@ -27,9 +27,6 @@ coaApp.controller('accountDetailsCtrl', ['$scope', '$stateParams', '$http', 'acc
                     } else {
                         $scope.account = data;
                         $scope.showDetails = true;
-
-
-                        console.log($scope.account);
                     }
                 })
                 .error(function (error) {
@@ -180,14 +177,8 @@ coaApp.controller('newAccountCtrl', ['$scope', '$stateParams', '$http', 'errorTo
             $scope.submitting = true;
             csrf.setCsrfToken();
 
-
-            console.log($scope.segments);
-
             // create json to be posted to the server
             var jAccount = accountService.createAccountJson($scope);
-
-
-            console.log(jAccount);
 
             var res = $http.post(resourceURI, jAccount);
             res.success(function(data) {
