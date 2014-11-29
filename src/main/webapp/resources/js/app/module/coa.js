@@ -8,8 +8,8 @@ var coaApp = angular.module('coa', [
     'cmnFormErrorApp'
 ]);
 
-coaApp.controller('accountDetailsCtrl', ['$scope', '$stateParams', '$http', 'accountFactory',
-    function($scope,  $stateParams, $http, accountFactory) {
+coaApp.controller('accountDetailsCtrl', ['$scope', '$state', '$stateParams', '$http', 'accountFactory',
+    function($scope, $state, $stateParams, $http, accountFactory) {
 
         $scope.showDetails = false;
 
@@ -42,11 +42,16 @@ coaApp.controller('accountDetailsCtrl', ['$scope', '$stateParams', '$http', 'acc
         $scope.pointToEditForm = function() {
             window.location.hash = '#/account/' + $scope.accountId + "/edit";
         }
+
+        $scope.gotoCoa = function() {
+            $state.go('^', $state.params, { reload: true });
+        }
+
     }]);
 
-coaApp.controller('newAccountCtrl', ['$scope', '$stateParams', '$http', 'errorToElementBinder', 'accountFactory',
+coaApp.controller('newAccountCtrl', ['$scope', '$state', '$stateParams', '$http', 'errorToElementBinder', 'accountFactory',
     'modalToggler', 'businessSegmentFactory', 'accountService', 'csrf',
-    function($scope, $stateParams, $http, errorToElementBinder, accountFactory, modalToggler, businessSegmentFactory,
+    function($scope, $state, $stateParams, $http, errorToElementBinder, accountFactory, modalToggler, businessSegmentFactory,
              accountService, csrf) {
 
         $scope.account = {};
@@ -169,6 +174,10 @@ coaApp.controller('newAccountCtrl', ['$scope', '$stateParams', '$http', 'errorTo
         $scope.toggleSegment = function(idx, segment) {
             newSelectedSegment.push(segment.id);
         };
+
+        $scope.gotoCoa = function() {
+            $state.go('^', $state.params, { reload: true });
+        }
 
         $scope.processForm = function() {
             $scope.save ='Saving...';

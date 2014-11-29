@@ -171,7 +171,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Transactional
-    @CachePut(value = {"accountsTreeCache", "accountsCache"}, key = "#account.id")
+    @CacheEvict(value =  {"accountsTreeCache", "accountsCache"}, allEntries = true)
     public CreateResponse processCreate(Account account, BindingResult bindingResult, MessageSource messageSource) {
         CreateResponse response = new CreateAccountResponse();
         MessageFormatter messageFormatter = new MessageFormatter(bindingResult, messageSource, response);
