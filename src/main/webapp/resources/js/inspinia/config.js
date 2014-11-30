@@ -35,18 +35,18 @@ function config($stateProvider, $urlRouterProvider) {
 
         .state('coa.new', {
             url: '/new',
-            templateUrl: 'coa/new-account-page'
+            templateUrl: 'admin/coa/new-account-page'
         })
 
         .state('coa.account', {
             url: '/account/{accountId}',
-            templateUrl: 'coa/account-details-page',
+            templateUrl: 'admin/coa/account-details-page',
             controller: 'accountDetailsCtrl'
         })
 
         .state('coa.edit', {
             url: '/account/{accountId}/edit',
-            templateUrl: 'coa/new-account-page'
+            templateUrl: 'admin/coa/new-account-page'
         })
 
         .state('users', {
