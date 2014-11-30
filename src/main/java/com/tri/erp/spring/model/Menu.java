@@ -5,7 +5,6 @@ import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * Created by TSI Admin on 11/1/2014.
@@ -22,7 +21,7 @@ public class Menu {
     private String title;
 
     @Column
-    private String url;
+    private String state;
 
     @Column
     private String iconClass;
@@ -33,9 +32,9 @@ public class Menu {
     @JoinColumn(name="FK_parentMenuId", nullable = true, columnDefinition = "0")
     private Menu parentMenu;
 
-    public Menu(String title, String url, String iconClass, Menu parentMenu) {
+    public Menu(String title, String state, String iconClass, Menu parentMenu) {
         this.title = title;
-        this.url = url;
+        this.state = state;
         this.iconClass = iconClass;
         this.parentMenu = parentMenu;
     }
@@ -59,12 +58,12 @@ public class Menu {
         this.title = title;
     }
 
-    public String getUrl() {
-        return url;
+    public String getState() {
+        return state;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getIconClass() {

@@ -7,6 +7,7 @@
 package com.tri.erp.spring.controller;
 
 import com.tri.erp.spring.commons.facade.AuthenticationFacade;
+import com.tri.erp.spring.service.interfaces.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,6 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
@@ -29,9 +31,15 @@ public class HomeController {
     @Autowired
     private AuthenticationFacade authenticationFacade;
 
+    @Autowired
+    MenuService menuService;
+
     @RequestMapping(value = {"/", "index"}, method = RequestMethod.GET)
-    public String index(HttpServletRequest request) {
-        return "home";
+    public ModelAndView index() {
+        ModelAndView modelAndView = new ModelAndView("home");
+        modelAndView.addObject("menus", menuService.findAll());
+
+        return modelAndView;
     }
 
     @RequestMapping(value = {"/403"}, method = RequestMethod.GET)
