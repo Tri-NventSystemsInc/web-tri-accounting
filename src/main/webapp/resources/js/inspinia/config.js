@@ -56,7 +56,27 @@ function config($stateProvider, $urlRouterProvider) {
 
         .state('showcase', {
             url: '/showcase',
-            templateUrl: '/common/showcase'
+            templateUrl: '/admin/showcase',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "showcase",
+                            files: [
+                                "/resources/js/app/module/showcase.js",
+                                "/resources/js/app/factories/account-factory.js",
+                                "/resources/js/app/factories/business-segment-factory.js",
+                                "/resources/js/app/services/util-service.js",
+                                "/resources/js/app/directives/account-browser-s.js",
+                                "/resources/js/app/factories/entity-factory.js",
+                                "/resources/js/app/factories/item-factory.js",
+                                "/resources/js/app/directives/sl-entity-browser.js",
+                                "/resources/js/app/directives/item-browser.js"
+                            ]
+                        }
+                    )
+                }
+            }
         })
 
         .state('dashboard', {
