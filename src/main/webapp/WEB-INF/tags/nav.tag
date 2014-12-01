@@ -28,18 +28,37 @@
             <li  ui-sref-active="active">
                 <a ui-sref="dashboard"><i class="fa fa-laptop"></i> <span class="nav-label">Dashboard</span> </a>
             </li>
-            <li>
-                <a><i class="fa fa-th-large"></i> <span class="nav-label">Coop</span> <span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <c:forEach items="${menus}" var="menu">
-                        <c:if test="${menu.state != null && fn:length(menu.state) > 0}">
-                            <li ui-sref-active="active">
-                                <a ui-sref="${menu.state}"><i class="${menu.iconClass}"></i><span class="nav-label">${menu.title}</span></a>
+
+            <c:forEach begin="0" end="${fn:length(menus)}" varStatus="loop">
+                <c:if test="${menus[loop.index].state != null && fn:length(menus[loop.index].state) > 0}">
+
+                    <c:set var="parentMenuId">${menus[loop.index].parentMenu.id}</c:set>
+                    <c:set var="subMenusCount">${fn:length(menus[loop.index].subMenus)}</c:set>
+                    <c:choose>
+                        <c:when test='${subMenusCount > 0}'>
+                            <li>
+                                <a><i class="${menus[loop.index].iconClass}"></i> <span class="nav-label">${menus[loop.index].title}</span> <span class="fa arrow"></span></a>
+
+                                <ul class="nav nav-second-level">
+                                    <c:forEach items="${menus[loop.index].subMenus}" var="subMenu">
+                                        <c:if test="${subMenu.state != null && fn:length(subMenu.state) > 0}">
+                                            <li ui-sref-active="active">
+                                            <a ui-sref="${subMenu.state}"><i class="${subMenu.iconClass}"></i><span class="nav-label">${subMenu.title}</span></a>
+                                            </li>
+                                        </c:if>
+                                    </c:forEach>
+                                </ul>
                             </li>
-                        </c:if>
-                    </c:forEach>
-                </ul>
-            </li>
+
+                        </c:when>
+                        <c:when test='${parentMenuId == ""}'>
+                            <li ui-sref-active="active">
+                                <a ui-sref="${menus[loop.index].state}"><i class="${menus[loop.index].iconClass}"></i><span class="nav-label">${menus[loop.index].title}</span></a>
+                            </li>
+                        </c:when>
+                    </c:choose>
+                </c:if>
+            </c:forEach>
         </ul>
     </div>
 </nav>
