@@ -49,10 +49,28 @@ function config($stateProvider, $urlRouterProvider) {
             templateUrl: 'admin/coa/new-account-page'
         })
 
-        .state('users', {
-            url: '/users',
-            templateUrl: '/common/users'
+        .state('item', {
+            url: '/items',
+            templateUrl: '/admin/item',
+            controller: 'itemListCtrl',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "item",
+                            files: [
+                                "/resources/js/app/module/item.js",
+                                "/resources/js/app/factories/business-segment-factory.js",
+                                "/resources/js/app/factories/account-factory.js",
+                                "/resources/js/app/directives/account-browser-s.js",
+                                "/resources/js/app/factories/item-factory.js"
+                            ]
+                        }
+                    )
+                }
+            }
         })
+
 
         .state('showcase', {
             url: '/showcase',
