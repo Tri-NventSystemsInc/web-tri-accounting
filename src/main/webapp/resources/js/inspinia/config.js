@@ -71,6 +71,21 @@ function config($stateProvider, $urlRouterProvider) {
             }
         })
 
+        .state('item.detail', {
+            url: '/detail/{itemId}',
+            templateUrl: 'admin/item/item-details-page',
+            controller: 'itemDetailsCtrl'
+        })
+
+        .state('item.new', {
+            url: '/new',
+            templateUrl: 'admin/item/new-item-page'
+        })
+
+        .state('item.edit', {
+            url: '/account/{itemId}/edit',
+            templateUrl: 'admin/item/new-item-page'
+        })
 
         .state('showcase', {
             url: '/showcase',

@@ -2,12 +2,6 @@
 
 
 <div ui-view>
-
-    <div class="row">
-        <div class="col-md-12 col-lg-12">
-
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-12 col-lg-12">
             <div class="alert alert-info" style="margin-bottom: 5px;">Items <span class="pull-right" style="cursor: pointer"><i class="fa fa-plus" title="Add supplier" onclick="(window.location.href = '#/new')"></i></span></div>
@@ -54,7 +48,7 @@
                         <td style="width: 25%;">{{item.segmentAccount.accountCode + ' ' + item.segmentAccount.account.title}}</td>
                         <td style="width: 6%;">{{item.unit.code}}</td>
                         <td style="width: 3%;">
-                            <a style='padding: 0' title='View' href="#/item/{{item.id}}"><i class='fa fa-search'></i></a>
+                            <a style='padding: 0' title='View' ui-sref=".detail({itemId:item.id})"><i class='fa fa-search'></i></a>
                             <a style='padding: 0' title='Edit' href="#/item/{{item.id}}/edit"><i class='fa fa-edit'></i></a>
                         </td>
                     </tr>

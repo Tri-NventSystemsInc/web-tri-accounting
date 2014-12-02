@@ -2,7 +2,7 @@
 <div ng-controller="addEditItemCtrl">
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <button class="btn btn-primary" onclick="(window.location.href = '#/items')">Items</button>
+            <a ui-sref="item" class="btn btn-primary">Items</a>
         </div>
     </div>
     <div class="row-top-buffer"></div>
