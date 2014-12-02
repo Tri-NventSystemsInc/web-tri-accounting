@@ -23,11 +23,13 @@ itemApp.controller('addEditItemCtrl', ['$scope', '$stateParams', '$http', 'itemF
     'csrf',
     function($scope, $stateParams, $http, itemFactory, errorToElementBinder, csrf) {
 
+        $scope.units = [{id:1, code: 'M', description: 'Meter'}];
         $scope.title = 'Add item';
         $scope.save = 'Save';
         $scope.showForm = true;
 
         $scope.item = {};
+        $scope.unit = {};
 
         var resourceURI = '/item/create';
         if(!($stateParams.itemId === undefined)) {  // update mode
@@ -41,9 +43,7 @@ itemApp.controller('addEditItemCtrl', ['$scope', '$stateParams', '$http', 'itemF
                     window.location.hash = '#/items';
                 } else {
                     $scope.item = data;
-
-
-                    console.log(data);
+                    $scope.unit = data.unit;
                     try{
                         $scope.selectedAccount = $scope.item.segmentAccount.accountCode + ' ' + $scope.item.segmentAccount.account.title;
                     }catch (e) {}
@@ -91,7 +91,7 @@ itemApp.controller('addEditItemCtrl', ['$scope', '$stateParams', '$http', 'itemF
 
         $scope.accounts_selection_handler = function(segmentAccount){
             $scope.item.segmentAccount = segmentAccount;
-            $scope.selectedAccount = segmentAccount.accountCode + ' ' + segmentAccount.account.title;
+            $scope.selectedAccount = segmentAccount.code + ' ' + segmentAccount.title;
         }
     }]);
 

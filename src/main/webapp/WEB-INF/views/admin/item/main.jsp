@@ -49,7 +49,7 @@
                         <td style="width: 6%;">{{item.unit.code}}</td>
                         <td style="width: 3%;">
                             <a style='padding: 0' title='View' ui-sref=".detail({itemId:item.id})"><i class='fa fa-search'></i></a>
-                            <a style='padding: 0' title='Edit' href="#/item/{{item.id}}/edit"><i class='fa fa-edit'></i></a>
+                            <a style='padding: 0' title='Edit' ui-sref=".edit({itemId:item.id})"><i class='fa fa-edit'></i></a>
                         </td>
                     </tr>
                     <tr ng-show="its.length == 0"><td colspan="4" align="center">No records found</td></tr>
