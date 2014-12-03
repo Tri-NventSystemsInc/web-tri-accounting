@@ -57,8 +57,8 @@
                         <td style="width: 13%;">{{supplier.phone}}</td>
                         <td style="width: 15%;">{{supplier.updatedAt | date:'MMM dd, yyyy HH:mm a'}}</td>
                         <td style='width: 4%; vertical-align: middle'>
-                            <a style='padding: 0' title='View' href="#/supplier/{{supplier.id}}"><i class='fa fa-search'></i></a>
-                            <a style='padding: 0' title='Edit' href="#/supplier/{{supplier.id}}/edit"><i class='fa fa-edit'></i></a>
+                            <a style='padding: 0' title='View' ui-sref=".detail({supplierId:supplier.id})"><i class='fa fa-search'></i></a>
+                            <a style='padding: 0' title='Edit' ui-sref=".edit({supplierId:supplier.id})"><i class='fa fa-edit'></i></a>
                         </td>
                     </tr>
                     <tr ng-show="sup.length == 0"><td colspan="4" align="center">No records found</td></tr>
