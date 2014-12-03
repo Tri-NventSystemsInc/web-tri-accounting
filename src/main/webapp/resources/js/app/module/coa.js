@@ -5,11 +5,16 @@ var coaApp = angular.module('coa', [
     'accountService',
     'accountFactory',
     'businessSegmentFactory',
-    'cmnFormErrorApp'
+    'cmnFormErrorApp',
+    'utilService'
 ]);
 
-coaApp.controller('accountDetailsCtrl', ['$scope', '$state', '$stateParams', '$http', 'accountFactory',
-    function($scope, $state, $stateParams, $http, accountFactory) {
+coaApp.controller('accountDetailsCtrl', ['$scope', '$state', '$stateParams', '$http', 'accountFactory', '$state', 'routeUtil',
+    function($scope, $state, $stateParams, $http, accountFactory, $state, routeUtil) {
+
+        $scope.main = function() {
+            routeUtil.gotoMain($state);
+        }
 
         $scope.showDetails = false;
 
