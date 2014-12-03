@@ -4,7 +4,7 @@
 <div ui-view>
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <div class="alert alert-info" style="margin-bottom: 5px;">Items <span class="pull-right" style="cursor: pointer"><i class="fa fa-plus" title="Add supplier" onclick="(window.location.href = '#/new')"></i></span></div>
+            <div class="alert alert-info" style="margin-bottom: 5px;">Items <span class="pull-right" style="cursor: pointer"><a ui-sref="item.new"><i class="fa fa-plus" title="Add item"></i></a></span></div>
         </div>
     </div>
 

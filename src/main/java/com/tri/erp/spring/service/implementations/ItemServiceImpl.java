@@ -39,6 +39,11 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public Item findByDescription(String desc) {
+        return itemRepo.findOneByDescription(desc);
+    }
+
+    @Override
     public CreateResponse processUpdate(Item item, BindingResult bindingResult, MessageSource messageSource) {
         CreateResponse response = new CreateRoleResponse();
         MessageFormatter messageFormatter = new MessageFormatter(bindingResult, messageSource, response);

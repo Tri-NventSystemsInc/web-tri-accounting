@@ -24,20 +24,20 @@ public class ItemValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
-        Item role = (Item) o;
+        Item item = (Item) o;
 
-//        Role r = this.service.findByName(role.getName());
-//        // insert mode
-//        if (role.getId() == null || role.getId() == 0) {
-//            if (r != null) {
-//                errors.rejectValue("name", "role.name.taken");
-//            }
-//        } else {
-//            // update role
-//            if (r != null && r.getId() != role.getId()) { // diff role
-//                errors.rejectValue("name", "role.name.taken");
-//            }
-//        }
+        Item i = this.service.findByDescription(item.getDescription());
+        // insert mode
+        if (item.getId() == null || item.getId() == 0) {
+            if (i != null) {
+                errors.rejectValue("description", "item.description.taken");
+            }
+        } else {
+            // update role
+            if (i != null && i.getId() != item.getId()) { // diff item
+                errors.rejectValue("description", "item.description.taken");
+            }
+        }
     }
 
     public void setService(ItemServiceImpl service) {
