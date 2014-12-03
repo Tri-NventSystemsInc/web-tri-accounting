@@ -6,6 +6,3 @@ toastr.options.positionClass = 'toast-top-right';
 toastr.options.closeButton = true;
 toastr.options.extendedTimeOut = 1000;
 toastr.options.timeOut = 5000;
-
-// coa flags
-var accountUpdated = false;

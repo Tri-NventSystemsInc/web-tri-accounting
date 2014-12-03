@@ -83,7 +83,7 @@ function config($stateProvider, $urlRouterProvider) {
         })
 
         .state('item.edit', {
-            url: '/account/{itemId}/edit',
+            url: '/{itemId}/edit',
             templateUrl: 'admin/item/new-item-page'
         })
 

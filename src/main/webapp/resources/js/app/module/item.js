@@ -23,13 +23,17 @@ itemApp.controller('addEditItemCtrl', ['$scope', '$stateParams', '$http', 'itemF
     'csrf',
     function($scope, $stateParams, $http, itemFactory, errorToElementBinder, csrf) {
 
-        $scope.units = [{id:1, code: 'M', description: 'Meter'}];
+        $scope.units = [
+            {id:1, code: 'M', description: 'Meter'},
+            {id:2, code: 'PCS', description: 'Pieces'}
+        ];
         $scope.title = 'Add item';
         $scope.save = 'Save';
         $scope.showForm = true;
 
         $scope.item = {};
         $scope.unit = {};
+        $scope.submit = false;
 
         var resourceURI = '/item/create';
         if(!($stateParams.itemId === undefined)) {  // update mode
@@ -62,23 +66,29 @@ itemApp.controller('addEditItemCtrl', ['$scope', '$stateParams', '$http', 'itemF
 
         $scope.processForm = function() {
 
+            if (!$scope.submit) return; // check if save button is clicked
+
             $scope.save ='Saving...';
 
             $scope.errors = {};
             $scope.submitting = true;
             csrf.setCsrfToken();
 
+            $scope.item.unit = $scope.unit;
+
             console.log($scope.item);
 
             var res = $http.post(resourceURI, $scope.item);
+
             res.success(function(data) {
+
                 if (!data.success) {
                     $scope.errors = errorToElementBinder.bindToElements(data, $scope.errors);
                     $scope.save ='Save';
                     $scope.submitting = false;
                     toastr.warning('Error found.');
                 } else {
-                    window.location.hash = '#/item/' + data.modelId;
+                    window.location.hash = '#/items/detail/' + data.modelId;
                     toastr.success('Item successfully saved!');
                 }
             });
@@ -89,9 +99,11 @@ itemApp.controller('addEditItemCtrl', ['$scope', '$stateParams', '$http', 'itemF
             });
         }
 
-        $scope.accounts_selection_handler = function(segmentAccount){
+        $scope.accounts_selection_handler = function(sa){
+            var segmentAccount = {};
+            segmentAccount['id'] =  sa.segmentAccountId;
             $scope.item.segmentAccount = segmentAccount;
-            $scope.selectedAccount = segmentAccount.code + ' ' + segmentAccount.title;
+            $scope.selectedAccount = sa. + ' ' + sa.title;
         }
     }]);
 

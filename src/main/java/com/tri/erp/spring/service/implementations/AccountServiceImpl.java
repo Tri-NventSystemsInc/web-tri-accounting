@@ -9,6 +9,7 @@ import com.tri.erp.spring.commons.helpers.StringFormatter;
 import com.tri.erp.spring.reponse.AccountDto;
 import com.tri.erp.spring.model.*;
 import com.tri.erp.spring.repo.*;
+import com.tri.erp.spring.reponse.SegmentAccountDto;
 import com.tri.erp.spring.service.interfaces.AccountService;
 import com.tri.erp.spring.validator.AccountValidator;
 import org.springframework.cache.annotation.CacheEvict;
@@ -107,18 +108,21 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public List<AccountDto> findAllBySegment(String[] segmentIds) {
-        List<AccountDto> list = new ArrayList<>();
+    public List<SegmentAccountDto> findAllBySegment(String[] segmentIds) {
+        List<SegmentAccountDto> list = new ArrayList<>();
         if (segmentIds != null && segmentIds.length > 0) {
             List<Object[]> result = accountRepo.findBySegmentIds(Arrays.asList(segmentIds));
             if (result != null) {
                 for(Object[] objects : result) {
-                    AccountDto a = new AccountDto();
-                    a.setId((Integer) objects[0]);
+                    SegmentAccountDto a = new SegmentAccountDto();
+                    a.setAccountId((Integer) objects[0]);
                     a.setTitle((String) objects[1]);
-                    a.setCode((String) objects[2]);
+                    a.setSegmentAccountId((Integer) objects[2]);
+                    a.setSegmentAccountCode((String) objects[3]);
 
-                    AccountType at = new AccountType((String) objects[3], null);
+                    AccountType at = new AccountType();
+                    at.setId((Integer) objects[4]);
+                    at.setDescription((String) objects[5]);
                     a.setAccountType(at);
 
                     list.add(a);

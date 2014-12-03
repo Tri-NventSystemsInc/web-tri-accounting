@@ -47,10 +47,14 @@
 
 </div>
 <!-- End wrapper-->
+
 <!-- jQuery and Bootstrap -->
 <script src="<c:url value="/resources/js/jquery/inspinia/jquery-2.1.1.min.js" />"></script>
 <script src="<c:url value="/resources/js/plugins/jquery-ui/jquery-ui.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap/inspinia/bootstrap.min.js" />"></script>
+
+<%--toaster--%>
+<script src="<c:url value="/resources/js/toastr/toastr.min.js" />"></script>
 
 <!-- MetsiMenu -->
 <script src="<c:url value="/resources/js/plugins/metisMenu/jquery.metisMenu.js" />"></script>
@@ -78,9 +82,6 @@
 <script src="<c:url value="/resources/js/inspinia/config.js" />"></script>
 <script src="<c:url value="/resources/js/inspinia/directives.js" />"></script>
 <script src="<c:url value="/resources/js/inspinia/controllers.js" />"></script>
-
- <%--toaster--%>
-<script src="<c:url value="/resources/js/toastr/toastr.min.js" />"></script>
 
  <%--firefly--%>
 <script src="<c:url value="/resources/js/app/common/firefly.js" />"></script>
