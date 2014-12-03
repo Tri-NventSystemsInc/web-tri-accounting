@@ -134,7 +134,6 @@ function config($stateProvider, $urlRouterProvider) {
                                 "/resources/js/app/module/showcase.js",
                                 "/resources/js/app/factories/account-factory.js",
                                 "/resources/js/app/factories/business-segment-factory.js",
-                                "/resources/js/app/services/util-service.js",
                                 "/resources/js/app/directives/account-browser-s.js",
                                 "/resources/js/app/factories/entity-factory.js",
                                 "/resources/js/app/factories/item-factory.js",
@@ -157,6 +156,8 @@ function decorator($provide) {
 
         // let's locally use 'state' name
         var state = $delegate;
+
+        console.log(state);
 
         // let's extend this object with new function
         // 'baseGo', which in fact, will keep the reference
@@ -188,7 +189,6 @@ function decorator($provide) {
 angular
     .module('inspinia')
     .config(config)
-    .config(decorator)
     .run(function($rootScope, $state) {
         $rootScope.$state = $state;
     });

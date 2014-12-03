@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12 col-lg-12">
-        <a ui-sref="supplier" class="btn btn-primary">Suppliers</a>
+        <a ng-click="main()" class="btn btn-primary">Suppliers</a>
         <a ui-sref="supplier.new" class="btn btn-primary">Add</a>
         <a ui-sref="supplier.edit({supplierId: supplierId})" class="btn btn-primary">Edit</a>
     </div>

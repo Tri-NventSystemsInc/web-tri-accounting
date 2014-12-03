@@ -2,7 +2,7 @@
 <div ng-controller="addEditSupplierCtrl">
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <button class="btn btn-primary" onclick="(window.location.href = '#/suppliers')">Suppliers</button>
+            <button class="btn btn-primary" ng-click="main()">Suppliers</button>
         </div>
     </div>
     <div class="row-top-buffer"></div>

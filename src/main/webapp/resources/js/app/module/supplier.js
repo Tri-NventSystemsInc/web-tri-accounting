@@ -2,7 +2,8 @@ var supplierApp = angular.module('supplier', [
     'jQueryFnWrapperService',
     'supplierFactory',
     'errorHandlerService',
-    'cmnFormErrorApp'
+    'cmnFormErrorApp',
+    'utilService'
 ]);
 
 
@@ -18,9 +19,13 @@ supplierApp.controller('supplierListCtrl', ['$scope', '$http', 'supplierFactory'
             });
     }]);
 
-supplierApp.controller('addEditSupplierCtrl', ['$scope', '$stateParams', '$http', 'supplierFactory', 'errorToElementBinder',
-    'csrf',
-    function($scope, $stateParams, $http, supplierFactory, errorToElementBinder, csrf) {
+supplierApp.controller('addEditSupplierCtrl', ['$scope', '$state', '$stateParams', '$http', 'supplierFactory',
+    'errorToElementBinder', 'csrf', 'routeUtil',
+    function($scope, $state, $stateParams, $http, supplierFactory, errorToElementBinder, csrf, routeUtil) {
+
+        $scope.main = function() {
+            routeUtil.gotoMain($state);
+        }
 
         $scope.title = 'Add supplier';
         $scope.save = 'Save';
@@ -86,10 +91,14 @@ supplierApp.controller('addEditSupplierCtrl', ['$scope', '$stateParams', '$http'
         }
     }]);
 
-supplierApp.controller('supplierDetailsCtrl', ['$scope', '$stateParams', '$http', 'supplierFactory',
-function($scope,  $stateParams, $http, supplierFactory) {
+supplierApp.controller('supplierDetailsCtrl', ['$scope', '$state', '$stateParams', '$http', 'supplierFactory', 'routeUtil',
+function($scope, $state, $stateParams, $http, supplierFactory, routeUtil) {
 
     $scope.showDetails = false;
+
+    $scope.main = function() {
+        routeUtil.gotoMain($state);
+    }
 
     if(!($stateParams.supplierId === undefined)) {
         $scope.title = 'Supplier details';
