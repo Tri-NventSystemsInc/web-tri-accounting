@@ -3,7 +3,8 @@ var itemApp = angular.module('item', [
     'jQueryFnWrapperService',
     'itemFactory',
     'errorHandlerService',
-    'cmnFormErrorApp'
+    'cmnFormErrorApp',
+    'utilService'
 ]);
 
 
@@ -111,8 +112,12 @@ itemApp.controller('addEditItemCtrl', ['$scope', '$stateParams', '$http', 'itemF
         }
     }]);
 
-itemApp.controller('itemDetailsCtrl', ['$scope', '$stateParams', '$http', 'itemFactory',
-    function($scope,  $stateParams, $http, itemFactory) {
+itemApp.controller('itemDetailsCtrl', ['$scope', '$state', '$stateParams', '$http', 'itemFactory', 'routeUtil',
+    function($scope, $state, $stateParams, $http, itemFactory, routeUtil) {
+
+        $scope.main = function() {
+            routeUtil.gotoMain($state);
+        }
 
         $scope.showDetails = false;
 
