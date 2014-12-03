@@ -103,7 +103,7 @@ itemApp.controller('addEditItemCtrl', ['$scope', '$stateParams', '$http', 'itemF
             var segmentAccount = {};
             segmentAccount['id'] =  sa.segmentAccountId;
             $scope.item.segmentAccount = segmentAccount;
-            $scope.selectedAccount = sa. + ' ' + sa.title;
+            $scope.selectedAccount = sa.segmentAccountCode + ' ' + sa.title;
         }
     }]);
 
