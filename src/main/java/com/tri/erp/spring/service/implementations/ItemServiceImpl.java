@@ -44,7 +44,14 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    @Transactional
     public CreateResponse processUpdate(Item item, BindingResult bindingResult, MessageSource messageSource) {
+        return this.processCreate(item, bindingResult, messageSource);
+    }
+
+    @Override
+    @Transactional
+    public CreateResponse processCreate(Item item, BindingResult bindingResult, MessageSource messageSource) {
         CreateResponse response = new CreateRoleResponse();
         MessageFormatter messageFormatter = new MessageFormatter(bindingResult, messageSource, response);
 
@@ -64,10 +71,5 @@ public class ItemServiceImpl implements ItemService {
             response.setSuccess(true);
         }
         return response;
-    }
-
-    @Override
-    public CreateResponse processCreate(Item item, BindingResult bindingResult, MessageSource messageSource) {
-        return null;
     }
 }

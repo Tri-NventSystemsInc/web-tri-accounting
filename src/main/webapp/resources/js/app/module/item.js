@@ -81,11 +81,13 @@ itemApp.controller('addEditItemCtrl', ['$scope', '$stateParams', '$http', 'itemF
             var res = $http.post(resourceURI, $scope.item);
 
             res.success(function(data) {
-
+ 
                 if (!data.success) {
                     $scope.errors = errorToElementBinder.bindToElements(data, $scope.errors);
                     $scope.save ='Save';
+                    // flags
                     $scope.submitting = false;
+                    $scope.submit = false;
                     toastr.warning('Error found.');
                 } else {
                     window.location.hash = '#/items/detail/' + data.modelId;
@@ -95,7 +97,9 @@ itemApp.controller('addEditItemCtrl', ['$scope', '$stateParams', '$http', 'itemF
             res.error(function(data, status, headers, config) {
                 toastr.error('Something went wrong!');
                 $scope.save ='Save';
+                // flags
                 $scope.submitting = false;
+                $scope.submit = false;
             });
         }
 

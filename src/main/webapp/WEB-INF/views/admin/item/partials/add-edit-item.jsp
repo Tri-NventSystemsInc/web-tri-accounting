@@ -56,7 +56,7 @@
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
-                        <select class="form-control" id="unit" ng-model="unit"
+                        <select required="" class="form-control" id="unit" ng-model="unit"
                                 ng-options="unit.code for unit in units track by unit.id">
                             <option value="">Select unit</option>
                         </select>
