@@ -87,6 +87,41 @@ function config($stateProvider, $urlRouterProvider) {
             templateUrl: 'admin/item/new-item-page'
         })
 
+        .state('supplier', {
+            url: '/suppliers',
+            templateUrl: '/admin/supplier',
+            controller: 'supplierListCtrl',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "supplier",
+                            files: [
+                                "/resources/js/app/module/supplier.js",
+                                "/resources/js/app/factories/supplier-factory.js"
+                            ]
+                        }
+                    )
+                }
+            }
+        })
+
+        .state('supplier.detail', {
+            url: '/detail/{supplierId}',
+            templateUrl: 'admin/supplier/supplier-details-page',
+            controller: 'supplierDetailsCtrl'
+        })
+
+        .state('supplier.new', {
+            url: '/new',
+            templateUrl: 'admin/supplier/new-supplier-page'
+        })
+
+        .state('supplier.edit', {
+            url: '/{supplierId}/edit',
+            templateUrl: 'admin/supplier/new-supplier-page'
+        })
+
         .state('showcase', {
             url: '/showcase',
             templateUrl: '/admin/showcase',
