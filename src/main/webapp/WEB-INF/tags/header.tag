@@ -16,3 +16,6 @@
 
 <%-- toaster --%>
 <link href="<c:url value="/resources/css/toastr/toastr.min.css" />" rel="stylesheet">
+
+<%--firefly--%>
+<link href="<c:url value="/resources/css/custom/app.css" />" rel="stylesheet">

@@ -254,7 +254,7 @@ userApp.controller('addEditRoleCtrl', ['$scope', '$stateParams', '$http', 'roleF
     }
 
     loadMenus();
- 
+
     if(!($stateParams.roleId === undefined)) {
 
         $scope.title = 'Update role';
