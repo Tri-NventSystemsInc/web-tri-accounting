@@ -176,17 +176,20 @@ userApp.controller('roleListCtrl', ['$scope', '$http','roleFactory', function($s
             toastr.error('Failed to load roles.');
         });
 }]);
-/*
 
-userApp.controller('roleDetailsCtrl', ['$scope', '$routeParams', '$http', 'roleFactory',
-    function($scope,  $routeParams, $http, roleFactory) {
+userApp.controller('roleDetailsCtrl', ['$scope', '$state', '$stateParams', '$http', 'roleFactory', 'routeUtil',
+    function($scope, $state,  $stateParams, $http, roleFactory, routeUtil) {
+
+        $scope.main = function() {
+            routeUtil.gotoMain($state);
+        }
 
         $scope.showDetails = false;
 
-        if(!($routeParams.roleId === undefined)) {
+        if(!($stateParams.roleId === undefined)) {
             $scope.title = 'Role details';
 
-            $scope.roleId = $routeParams.roleId;
+            $scope.roleId = $stateParams.roleId;
 
             roleFactory.getRole($scope.roleId)
                 .success(function (data) {
@@ -218,147 +221,146 @@ userApp.controller('roleDetailsCtrl', ['$scope', '$routeParams', '$http', 'roleF
 
 userApp.controller('addEditRoleCtrl',
     ['$scope', '$routeParams', '$http', 'roleFactory', 'errorToElementBinder', 'csrf', 'menuFactory',
-        function($scope, $routeParams, $http, roleFactory, errorToElementBinder, csrf, menuFactory) {
+function($scope, $routeParams, $http, roleFactory, errorToElementBinder, csrf, menuFactory) {
 
-            $scope.title = 'Add role';
-            $scope.save = 'Save';
-            $scope.showForm = true;
+    $scope.title = 'Add role';
+    $scope.save = 'Save';
+    $scope.showForm = true;
 
-            $scope.role = {};
+    $scope.role = {};
 
-            var resourceURI = '/role/create';
+    var resourceURI = '/role/create';
 
-            function loadMenus() {
-                menuFactory.getMenus().success(function (data) {
-                    $scope.menus = data;
+    function loadMenus() {
+        menuFactory.getMenus().success(function (data) {
+            $scope.menus = data;
 
-                    if ($scope.role != undefined) {
-                        setSelectedMenu();
-                    }
-                });
+            if ($scope.role != undefined) {
+                setSelectedMenu();
             }
+        });
+    }
 
-            function setSelectedMenu() {
-                if ($scope.menus == undefined) return;
+    function setSelectedMenu() {
+        if ($scope.menus == undefined) return;
 
-                angular.forEach($scope.menus, function(menu, key) {
-                    angular.forEach($scope.role.menus, function(roleMenu, key) {
-                        if (menu.id == roleMenu.id) {
-                            menu.selected = true;
+        angular.forEach($scope.menus, function(menu, key) {
+            angular.forEach($scope.role.menus, function(roleMenu, key) {
+                if (menu.id == roleMenu.id) {
+                    menu.selected = true;
+                    return;
+                }
+            });
+        });
+    }
+
+    loadMenus();
+
+    if(!($routeParams.roleId === undefined)) {
+
+        $scope.title = 'Update role';
+        $scope.showForm = false;
+
+        $scope.roleId = $routeParams.roleId;
+
+        roleFactory.getRole($scope.roleId)
+            .success(function (data) {
+
+                console.log(data);
+
+                if (data === '' || data.id <= 0) {    // not found
+                    window.location.hash = '#/role/' + $scope.roleId;
+                } else {
+                    $scope.role = data;
+                    setSelectedMenu();
+                    $scope.showForm = true;
+                }
+            })
+            .error(function (error) {
+                toastr.warning('Role not found!');
+                window.location.hash = '#/users';
+            });
+
+        resourceURI = '/role/update';
+    }
+
+
+    $scope.processForm = function() {
+
+        $scope.save ='Saving...';
+
+        $scope.errors = {};
+        $scope.submitting = true;
+        csrf.setCsrfToken();
+
+        var roleMenus = [];
+        var menus = angular.copy($scope.menus);
+        angular.forEach(menus, function(menu, key) {
+            if (menu.selected) {
+                delete menu['selected']; // hibernate will complain, so delete it
+                roleMenus.push(menu);
+            }
+        });
+
+        $scope.role.menus = roleMenus;
+
+        var res = $http.post(resourceURI, $scope.role);
+        res.success(function(data) {
+            if (!data.success) {
+                $scope.errors = errorToElementBinder.bindToElements(data, $scope.errors);
+                $scope.save ='Save';
+                $scope.submitting = false;
+                toastr.warning('Error found.');
+            } else {
+                window.location.hash = '#/role/' + data.modelId;
+                toastr.success('User successfully saved!');
+            }
+        });
+        res.error(function(data, status, headers, config) {
+            toastr.error('Something went wrong!');
+            $scope.save ='Save';
+            $scope.submitting = false;
+        });
+    }
+
+    $scope.toggleParent = function(selectedMenu) {
+
+        // reverse checkbox state
+        if (selectedMenu.selected === undefined) {
+            selectedMenu.selected = true;
+        } else {
+            selectedMenu.selected = !selectedMenu.selected;
+        }
+
+        // check all children
+        if (selectedMenu.parentMenu == null) {
+            angular.forEach($scope.menus, function(menu, key) {
+                if (menu.parentMenu != null) {
+                    if (menu.parentMenu.id == selectedMenu.id) {
+                        menu.selected = selectedMenu.selected;
+                    }
+                }
+            });
+        } else {
+
+            var parentMenu = {};
+            var unCheck = false;
+
+            // uncheck parent if no selected child
+            angular.forEach($scope.menus, function(menu, key) {
+                if (menu.id == selectedMenu.parentMenu.id) { parentMenu = menu; } // needed for binding
+                if (menu.parentMenu != null) {  // get menu with parent
+
+                    if (menu.parentMenu.id == selectedMenu.parentMenu.id) {
+                        if (menu.selected) {
+                            unCheck = true;
                             return;
                         }
-                    });
-                });
-            }
-
-            loadMenus();
-
-            if(!($routeParams.roleId === undefined)) {
-
-                $scope.title = 'Update role';
-                $scope.showForm = false;
-
-                $scope.roleId = $routeParams.roleId;
-
-                roleFactory.getRole($scope.roleId)
-                    .success(function (data) {
-
-                        console.log(data);
-
-                        if (data === '' || data.id <= 0) {    // not found
-                            window.location.hash = '#/role/' + $scope.roleId;
-                        } else {
-                            $scope.role = data;
-                            setSelectedMenu();
-                            $scope.showForm = true;
-                        }
-                    })
-                    .error(function (error) {
-                        toastr.warning('Role not found!');
-                        window.location.hash = '#/users';
-                    });
-
-                resourceURI = '/role/update';
-            }
-
-
-            $scope.processForm = function() {
-
-                $scope.save ='Saving...';
-
-                $scope.errors = {};
-                $scope.submitting = true;
-                csrf.setCsrfToken();
-
-                var roleMenus = [];
-                var menus = angular.copy($scope.menus);
-                angular.forEach(menus, function(menu, key) {
-                    if (menu.selected) {
-                        delete menu['selected']; // hibernate will complain, so delete it
-                        roleMenus.push(menu);
                     }
-                });
-
-                $scope.role.menus = roleMenus;
-
-                var res = $http.post(resourceURI, $scope.role);
-                res.success(function(data) {
-                    if (!data.success) {
-                        $scope.errors = errorToElementBinder.bindToElements(data, $scope.errors);
-                        $scope.save ='Save';
-                        $scope.submitting = false;
-                        toastr.warning('Error found.');
-                    } else {
-                        window.location.hash = '#/role/' + data.modelId;
-                        toastr.success('User successfully saved!');
-                    }
-                });
-                res.error(function(data, status, headers, config) {
-                    toastr.error('Something went wrong!');
-                    $scope.save ='Save';
-                    $scope.submitting = false;
-                });
-            }
-
-            $scope.toggleParent = function(selectedMenu) {
-
-                // reverse checkbox state
-                if (selectedMenu.selected === undefined) {
-                    selectedMenu.selected = true;
-                } else {
-                    selectedMenu.selected = !selectedMenu.selected;
                 }
+            });
 
-                // check all children
-                if (selectedMenu.parentMenu == null) {
-                    angular.forEach($scope.menus, function(menu, key) {
-                        if (menu.parentMenu != null) {
-                            if (menu.parentMenu.id == selectedMenu.id) {
-                                menu.selected = selectedMenu.selected;
-                            }
-                        }
-                    });
-                } else {
-
-                    var parentMenu = {};
-                    var unCheck = false;
-
-                    // uncheck parent if no selected child
-                    angular.forEach($scope.menus, function(menu, key) {
-                        if (menu.id == selectedMenu.parentMenu.id) { parentMenu = menu; } // needed for binding
-                        if (menu.parentMenu != null) {  // get menu with parent
-
-                            if (menu.parentMenu.id == selectedMenu.parentMenu.id) {
-                                if (menu.selected) {
-                                    unCheck = true;
-                                    return;
-                                }
-                            }
-                        }
-                    });
-
-                    parentMenu.selected = unCheck;
-                }
-            }
-        }]);
-*/
+            parentMenu.selected = unCheck;
+        }
+    }
+}]);

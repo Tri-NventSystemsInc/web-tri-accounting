@@ -170,6 +170,34 @@ function config($stateProvider, $urlRouterProvider) {
             }
         })
 
+        .state('user.newRole', {
+            url: '/new-role',
+            views : {
+                'rolePartial@user': {
+                    templateUrl: 'admin/user/new-role-page'
+                }
+            }
+        })
+
+        .state('user.roleDetail', {
+            url: '/role/{roleId}',
+            views : {
+                'rolePartial@user': {
+                    templateUrl: 'admin/user/role-details-page',
+                    controller: 'roleDetailsCtrl'
+                }
+            }
+        })
+
+        .state('user.roleEdit', {
+            url: '/role/{roleId}/edit',
+            views : {
+                'rolePartial@user': {
+                    templateUrl: 'admin/user/new-role-page'
+                }
+            }
+        })
+
         .state('showcase', {
             url: '/showcase',
             templateUrl: '/admin/showcase',

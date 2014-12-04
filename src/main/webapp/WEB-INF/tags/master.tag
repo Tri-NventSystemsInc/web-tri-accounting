@@ -26,7 +26,7 @@
 
     <!-- Page wraper -->
     <!-- ng-class with current state name give you the ability to extended customization your view -->
-    <div id="page-wrapper" class="gray-bg">
+    <div id="page-wrapper" style="height: 100% !important;" class="gray-bg">
 
         <!-- Page wrapper -->
         <div>
