@@ -1,22 +1,133 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="mytag" %>
+<div ui-view="userPartial">
+    <div ng-controller="userListCtrl">
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
 
-<mytag:master>
-    <jsp:attribute name="head">
-    </jsp:attribute>
-    <jsp:attribute name="body">
-        <div ng-app="userManagement">
-            <div id="content" ng-view>Loading...</div>
+            </div>
         </div>
-    </jsp:attribute>
-</mytag:master>
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="alert alert-info" style="margin-bottom: 5px;">Users <span class="pull-right" style="cursor: pointer"><a ui-sref="user.new"><i class="fa fa-plus" title="Add user"></i></a></span></div>
+            </div>
+        </div>
 
-<script src="<c:url value="/resources/js/app/routes/user-management-route.js" />"></script>
-<script src="<c:url value="/resources/js/app/factories/user-factory.js" />"></script>
-<script src="<c:url value="/resources/js/app/factories/role-factory.js" />"></script>
-<script src="<c:url value="/resources/js/app/factories/menu-factory.js" />"></script>
-<script src="<c:url value="/resources/js/app/controllers/user-management-ctrl.js" />"></script>
-<script src="<c:url value="/resources/js/app/services/error-handler-service.js" />"></script>
-<script src="<c:url value="/resources/js/app/services/jquery-fn-wrapper-service.js" />"></script>
-<script src="<c:url value="/resources/js/app/directives/form-error.js" />"></script>
+        <div class="row-top-buffer" style="margin-top: 15px"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="input-group" style="width: 300px">
+                    <input class="form-control" placeholder="Search" ng-model="query_u" />
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+
+                <div class="row-top-buffer" style="margin-top: 15px"></div>
+
+                <div style="border-top: 1px solid #dcdcdc; padding-top: 10px">
+                    <div class="col-md-3 col-lg-3"><span style="font-weight: bold; padding-right: 0;">Full name</span></div>
+                    <div class="col-md-2 col-lg-2" style="padding-left: 0"><span style="font-weight: bold;">Username</span></div>
+                    <div class="col-md-3 col-lg-3" style="padding-left: 0"><span style="font-weight: bold;">Email</span></div>
+                    <div class="col-md-2 col-lg-2" style="padding-left: 0; padding-right: 0;"><span style="font-weight: bold;">Created by</span></div>
+                    <div class="col-md-2 col-lg-2" style="padding-left: 0"><span style="font-weight: bold;">Last updated</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="row-top-buffer" style="margin-top: 5px"/>
+                <div style='max-height: 500px; overflow: auto;' ng-controller="userListCtrl">
+                    <div ng-show="!users">Loading items...</div>
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                        <tr>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr data-dismiss="modal" ng-repeat="user in us = (users | filter:query_u)">
+                            <td style="width: 22%;">{{user.fullName}}</td>
+                            <td style="width: 15%;">{{user.username}}</td>
+                            <td style="width: 23%;">{{user.email}}</td>
+                            <td style="width: 15%;">{{user.createdBy.username}}</td>
+                            <td style="width: 15%;">{{user.updatedAt | date:'MMM dd, yyyy HH:mm a'}}</td>
+                            <td style='width: 4%; vertical-align: middle'>
+                                <a style='padding: 0' title='View' ui-sref=".userDetail({userId: user.id})"><i class='fa fa-search'></i></a>
+                                <a style='padding: 0' title='Edit' ui-sref=".userEdit({userId: user.id})"><i class='fa fa-edit'></i></a>
+                            </td>
+                        </tr>
+                        <tr ng-show="us.length == 0"><td colspan="4" align="center">No records found</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <%--roles here--%>
+
+<div ui-view="rolePartial">
+
+    <div ng-controller="roleListCtrl">
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="alert alert-info" style="margin-bottom: 5px;">Roles <span class="pull-right" style="cursor: pointer"><i class="fa fa-plus" title="Add role" onclick="(window.location.href = '#/new-role')"></i></span></div>
+            </div>
+        </div>
+
+        <div class="row-top-buffer" style="margin-top: 15px"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="input-group" style="width: 300px">
+                    <input class="form-control" placeholder="Search" ng-model="query_r" />
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+
+                <div class="row-top-buffer" style="margin-top: 15px"></div>
+
+                <div style="border-top: 1px solid #dcdcdc; padding-top: 10px">
+                    <div class="col-md-6 col-lg-6"><span style="font-weight: bold; padding-right: 10;">Name</span></div>
+                    <div class="col-md-2 col-lg-2" style="padding-left: 0"><span style="font-weight: bold; padding-right: 150;">Last updated</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="row-top-buffer" style="margin-top: 5px"/>
+                <div style='max-height: 500px; overflow: auto;' ng-controller="roleListCtrl">
+                    <div ng-show="!roles">Loading roles...</div>
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                        <tr>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr data-dismiss="modal" ng-repeat="role in r = (roles | filter:query_r)">
+                            <td style="width: 22%;">{{role.name}}</td>
+                            <td style="width: 20%;">{{role.updatedAt | date:'MMM dd, yyyy HH:mm a'}}</td>
+                            <td style='width: 4%; vertical-align: middle; text-align: center'>
+                                <a style='padding: 0' title='View' href="#/role/{{role.id}}"><i class='fa fa-search'></i></a>
+                                <a style='padding: 0' title='Edit' href="#/role/{{role.id}}/edit"><i class='fa fa-edit'></i></a>
+                            </td>
+                        </tr>
+                        <tr ng-show="r.length == 0"><td colspan="4" align="center">No records found</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

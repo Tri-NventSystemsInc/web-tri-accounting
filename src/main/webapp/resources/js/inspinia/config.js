@@ -122,6 +122,54 @@ function config($stateProvider, $urlRouterProvider) {
             templateUrl: 'admin/supplier/new-supplier-page'
         })
 
+        .state('user', {
+            url: '/users-and-roles',
+            templateUrl: '/admin/user',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "user",
+                            files: [
+                                "/resources/js/app/module/user.js",
+                                "/resources/js/app/factories/user-factory.js",
+                                "/resources/js/app/factories/role-factory.js",
+                                "/resources/js/app/factories/menu-factory.js"
+                            ]
+                        }
+                    )
+                }
+            }
+        })
+
+        .state('user.new', {
+            url: '/new',
+            views : {
+                'userPartial@user': {
+                    templateUrl: 'admin/user/new-user-page'
+                }
+            }
+        })
+
+        .state('user.userDetail', {
+            url: '/user/{userId}',
+            views : {
+                'userPartial@user': {
+                    templateUrl: 'admin/user/user-details-page',
+                    controller: 'userDetailsCtrl'
+                }
+            }
+        })
+
+        .state('user.userEdit', {
+            url: '/user/{userId}/edit',
+            views : {
+                'userPartial@user': {
+                    templateUrl: 'admin/user/new-user-page'
+                }
+            }
+        })
+
         .state('showcase', {
             url: '/showcase',
             templateUrl: '/admin/showcase',
