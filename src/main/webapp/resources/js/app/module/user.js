@@ -219,9 +219,8 @@ userApp.controller('roleDetailsCtrl', ['$scope', '$state', '$stateParams', '$htt
         }
     }]);
 
-userApp.controller('addEditRoleCtrl',
-    ['$scope', '$routeParams', '$http', 'roleFactory', 'errorToElementBinder', 'csrf', 'menuFactory',
-function($scope, $routeParams, $http, roleFactory, errorToElementBinder, csrf, menuFactory) {
+userApp.controller('addEditRoleCtrl', ['$scope', '$stateParams', '$http', 'roleFactory', 'errorToElementBinder', 'csrf', 'menuFactory',
+    function($scope, $stateParams, $http, roleFactory, errorToElementBinder, csrf, menuFactory) {
 
     $scope.title = 'Add role';
     $scope.save = 'Save';
@@ -255,13 +254,13 @@ function($scope, $routeParams, $http, roleFactory, errorToElementBinder, csrf, m
     }
 
     loadMenus();
-
-    if(!($routeParams.roleId === undefined)) {
+ 
+    if(!($stateParams.roleId === undefined)) {
 
         $scope.title = 'Update role';
         $scope.showForm = false;
 
-        $scope.roleId = $routeParams.roleId;
+        $scope.roleId = $stateParams.roleId;
 
         roleFactory.getRole($scope.roleId)
             .success(function (data) {
@@ -269,7 +268,7 @@ function($scope, $routeParams, $http, roleFactory, errorToElementBinder, csrf, m
                 console.log(data);
 
                 if (data === '' || data.id <= 0) {    // not found
-                    window.location.hash = '#/role/' + $scope.roleId;
+                    window.location.hash = '#/users-and-roles';
                 } else {
                     $scope.role = data;
                     setSelectedMenu();
@@ -278,7 +277,7 @@ function($scope, $routeParams, $http, roleFactory, errorToElementBinder, csrf, m
             })
             .error(function (error) {
                 toastr.warning('Role not found!');
-                window.location.hash = '#/users';
+                window.location.hash = '#/users-and-roles';
             });
 
         resourceURI = '/role/update';
@@ -312,7 +311,7 @@ function($scope, $routeParams, $http, roleFactory, errorToElementBinder, csrf, m
                 $scope.submitting = false;
                 toastr.warning('Error found.');
             } else {
-                window.location.hash = '#/role/' + data.modelId;
+                window.location.hash = '#/users-and-roles/role/' + data.modelId;
                 toastr.success('User successfully saved!');
             }
         });
