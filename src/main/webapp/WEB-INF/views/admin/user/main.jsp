@@ -9,7 +9,7 @@
         <div class="panel-body">
             <tabset>
                 <tab heading="Users">
-                    <div ui-view="userPartial"  autoscroll="false">
+                    <div ui-view="userPartial">
                         <div ng-controller="userListCtrl">
                             <div class="row">
                                 <div class="col-md-12 col-lg-12">
@@ -49,29 +49,27 @@
                             <div class="row">
                                 <div class="col-md-12 col-lg-12">
                                     <div class="row-top-buffer" style="margin-top: 5px"/>
-                                    <div ng-controller="userListCtrl">
-                                        <div ng-show="!users">Loading items...</div>
-                                        <table class="table table-striped table-hover table-bordered">
-                                            <thead>
-                                            <tr>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr data-dismiss="modal" ng-repeat="user in us = (users | filter:query_u)">
-                                                <td style="width: 22%;">{{user.fullName}}</td>
-                                                <td style="width: 15%;">{{user.username}}</td>
-                                                <td style="width: 23%;">{{user.email}}</td>
-                                                <td style="width: 15%;">{{user.createdBy.username}}</td>
-                                                <td style="width: 15%;">{{user.updatedAt | date:'MMM dd, yyyy HH:mm a'}}</td>
-                                                <td style='width: 4%; vertical-align: middle'>
-                                                    <a style='padding: 0' title='View' ui-sref=".userDetail({userId: user.id})"><i class='fa fa-search'></i></a>
-                                                    <a style='padding: 0' title='Edit' ui-sref=".userEdit({userId: user.id})"><i class='fa fa-edit'></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr ng-show="us.length == 0"><td colspan="4" align="center">No records found</td></tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                    <div ng-show="!users">Loading items...</div>
+                                    <table class="table table-striped table-hover table-bordered">
+                                        <thead>
+                                        <tr>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr data-dismiss="modal" ng-repeat="user in us = (users | filter:query_u)">
+                                            <td style="width: 22%;">{{user.fullName}}</td>
+                                            <td style="width: 15%;">{{user.username}}</td>
+                                            <td style="width: 23%;">{{user.email}}</td>
+                                            <td style="width: 15%;">{{user.createdBy.username}}</td>
+                                            <td style="width: 15%;">{{user.updatedAt | date:'MMM dd, yyyy HH:mm a'}}</td>
+                                            <td style='width: 4%; vertical-align: middle'>
+                                                <a style='padding: 0' title='View' ui-sref=".userDetail({userId: user.id})"><i class='fa fa-search'></i></a>
+                                                <a style='padding: 0' title='Edit' ui-sref=".userEdit({userId: user.id})"><i class='fa fa-edit'></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr ng-show="us.length == 0"><td colspan="4" align="center">No records found</td></tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +77,7 @@
                 </tab>
                 <tab heading="Roles">
 
-                    <div ui-view="rolePartial" autoscroll="false">
+                    <div ui-view="rolePartial">
 
                         <div ng-controller="roleListCtrl">
                             <div class="row">
@@ -118,26 +116,24 @@
                             <div class="row">
                                 <div class="col-md-12 col-lg-12">
                                     <div class="row-top-buffer" style="margin-top: 5px"/>
-                                    <div ng-controller="roleListCtrl">
-                                        <div ng-show="!roles">Loading roles...</div>
-                                        <table class="table table-striped table-hover table-bordered">
-                                            <thead>
-                                            <tr>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr data-dismiss="modal" ng-repeat="role in r = (roles | filter:query_r)">
-                                                <td style="width: 22%;">{{role.name}}</td>
-                                                <td style="width: 20%;">{{role.updatedAt | date:'MMM dd, yyyy HH:mm a'}}</td>
-                                                <td style='width: 4%; vertical-align: middle; text-align: center'>
-                                                    <a style='padding: 0' title='View' ui-sref=".roleDetail({roleId: role.id})"><i class='fa fa-search'></i></a>
-                                                    <a style='padding: 0' title='Edit' ui-sref=".roleEdit({roleId: role.id})"><i class='fa fa-edit'></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr ng-show="r.length == 0"><td colspan="4" align="center">No records found</td></tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                    <div ng-show="!roles">Loading roles...</div>
+                                    <table class="table table-striped table-hover table-bordered">
+                                        <thead>
+                                        <tr>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr data-dismiss="modal" ng-repeat="role in r = (roles | filter:query_r)">
+                                            <td style="width: 22%;">{{role.name}}</td>
+                                            <td style="width: 20%;">{{role.updatedAt | date:'MMM dd, yyyy HH:mm a'}}</td>
+                                            <td style='width: 4%; vertical-align: middle; text-align: center'>
+                                                <a style='padding: 0' title='View' ui-sref=".roleDetail({roleId: role.id})"><i class='fa fa-search'></i></a>
+                                                <a style='padding: 0' title='Edit' ui-sref=".roleEdit({roleId: role.id})"><i class='fa fa-edit'></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr ng-show="r.length == 0"><td colspan="4" align="center">No records found</td></tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

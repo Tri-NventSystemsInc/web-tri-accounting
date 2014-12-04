@@ -12,6 +12,7 @@ var userApp = angular.module('user', [
 userApp.controller('userListCtrl', ['$scope', '$http', 'userFactory',
     function($scope,  $http, userFactory) {
 
+        console.log(this);
         userFactory.getUsers()
             .success(function (data) {
                 $scope.users = data;
@@ -19,6 +20,7 @@ userApp.controller('userListCtrl', ['$scope', '$http', 'userFactory',
             .error(function (error) {
                 toastr.error('Failed to load users!');
             });
+
     }]);
 
 userApp.controller('addEditUserCtrl', ['$scope', '$stateParams', '$http', 'userFactory', 'errorToElementBinder',
