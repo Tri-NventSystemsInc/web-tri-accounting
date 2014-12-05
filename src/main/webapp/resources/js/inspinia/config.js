@@ -142,60 +142,52 @@ function config($stateProvider, $urlRouterProvider) {
             }
         })
 
+        .state('user.list', {
+            url: '/users',
+            templateUrl: '/admin/user/user-list-page',
+            controller: 'userListCtrl'
+        })
+
         .state('user.new', {
-            url: '/new',
-            views : {
-                'userPartial@user': {
-                    templateUrl: 'admin/user/new-user-page'
-                }
-            }
+            url: '/user/new',
+            templateUrl: 'admin/user/new-user-page'
         })
 
-        .state('user.userDetail', {
-            url: '/user/{userId}',
-            views : {
-                'userPartial@user': {
-                    templateUrl: 'admin/user/user-details-page',
-                    controller: 'userDetailsCtrl'
-                }
-            }
+        .state('user.detail', {
+            url: '/user/{userId}/detail',
+            templateUrl: 'admin/user/user-details-page',
+            controller: 'userDetailsCtrl'
         })
 
-        .state('user.userEdit', {
+        .state('user.edit', {
             url: '/user/{userId}/edit',
             views : {
-                'userPartial@user': {
+                '': {
                     templateUrl: 'admin/user/new-user-page'
                 }
             }
+        })
+
+        .state('user.roles', {
+            url: '/roles',
+            templateUrl: '/admin/user/role-list-page',
+            controller: 'roleListCtrl'
         })
 
         .state('user.newRole', {
-            url: '/new-role',
-            views : {
-                'rolePartial@user': {
-                    templateUrl: 'admin/user/new-role-page'
-                }
-            }
+            url: '/role/new',
+            templateUrl: 'admin/user/new-role-page'
         })
 
         .state('user.roleDetail', {
-            url: '/role/{roleId}',
-            views : {
-                'rolePartial@user': {
-                    templateUrl: 'admin/user/role-details-page',
-                    controller: 'roleDetailsCtrl'
-                }
-            }
+            url: '/role/{roleId}/detail',
+            templateUrl: 'admin/user/role-details-page',
+            controller: 'roleDetailsCtrl'
         })
 
         .state('user.roleEdit', {
             url: '/role/{roleId}/edit',
-            views : {
-                'rolePartial@user': {
-                    templateUrl: 'admin/user/new-role-page'
-                }
-            }
+            templateUrl: 'admin/user/new-role-page'
         })
 
         .state('showcase', {

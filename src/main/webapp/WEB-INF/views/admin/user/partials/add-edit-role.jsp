@@ -1,9 +1,4 @@
 <div ng-controller="addEditRoleCtrl">
-    <div class="row">
-        <div class="col-md-12 col-lg-12">
-            <a ui-sref="user" class="btn btn-primary">Back to Roles</a>
-        </div>
-    </div>
     <div class="row-top-buffer"></div>
     <div class="row">
         <div class="col-md-12 col-lg-12">
