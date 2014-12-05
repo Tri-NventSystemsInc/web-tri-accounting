@@ -1,24 +1,7 @@
-<%@ tag %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<%--<div style="margin-top: 20px;"></div>
-<ul class="nav nav-pills">
-    <li class="active"><a href="/">Home</a></li>
-    <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            Setup <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="/admin/coa">Chart of Accounts</a></li>
-            <li><a href="/admin/user">Users</a></li>
-            <li><a href="/admin/supplier">Suppliers</a></li>
-            <li><a href="/admin/item">Items</a></li>
-        </ul>
-    </li>
-    <li><a href="/admin/showcase">Showcase</a></li>
-    <li><a href="#">Test2</a></li>
-    <li><a href="#">Test3</a></li>
-</ul>--%>
-<nav class="navbar-default navbar-static-side ng-scope" role="navigation">
+<nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <ul side-navigation class="nav" id="side-menu">
             <li>
@@ -43,20 +26,39 @@
 
             </li>
             <li  ui-sref-active="active">
-                <a  ui-sref="dashboard"><i class="fa fa-laptop"></i> <span class="nav-label">Dashboard</span> </a>
+                <a ui-sref="dashboard"><i class="fa fa-laptop"></i> <span class="nav-label">Dashboard</span> </a>
             </li>
-            <li>
-                <a><i class="fa fa-th-large"></i> <span class="nav-label">Coop</span> <span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li ui-sref-active="active"><a ui-sref="coa">Chart of Accounts</a></li>
-                    <li ui-sref-active="active"><a ui-sref="users">Users</a></li>
-                    <li ui-sref-active="active"><a ui-sref="showcase">Showcase</a></li>
 
-                </ul>
-            </li>
-            <%--<li ui-sref-active="active">--%>
-                <%--<a href="${pageContext.request.contextPath}/lockscreen"><i class="fa fa-laptop"></i> <span class="nav-label">Lock Screen</span> </a>--%>
-            <%--</li>--%>
+            <c:forEach begin="0" end="${fn:length(menus)}" varStatus="loop">
+                <c:if test="${menus[loop.index].state != null && fn:length(menus[loop.index].state) > 0}">
+
+                    <c:set var="parentMenuId">${menus[loop.index].parentMenu.id}</c:set>
+                    <c:set var="subMenusCount">${fn:length(menus[loop.index].subMenus)}</c:set>
+                    <c:choose>
+                        <c:when test='${subMenusCount > 0}'>
+                            <li>
+                                <a><i class="${menus[loop.index].iconClass}"></i> <span class="nav-label">${menus[loop.index].title}</span> <span class="fa arrow"></span></a>
+
+                                <ul class="nav nav-second-level">
+                                    <c:forEach items="${menus[loop.index].subMenus}" var="subMenu">
+                                        <c:if test="${subMenu.state != null && fn:length(subMenu.state) > 0}">
+                                            <li ui-sref-active="active">
+                                            <a ui-sref="${subMenu.state}"><i class="${subMenu.iconClass}"></i><span class="nav-label">${subMenu.title}</span></a>
+                                            </li>
+                                        </c:if>
+                                    </c:forEach>
+                                </ul>
+                            </li>
+
+                        </c:when>
+                        <c:when test='${parentMenuId == ""}'>
+                            <li ui-sref-active="active">
+                                <a ui-sref="${menus[loop.index].state}"><i class="${menus[loop.index].iconClass}"></i><span class="nav-label">${menus[loop.index].title}</span></a>
+                            </li>
+                        </c:when>
+                    </c:choose>
+                </c:if>
+            </c:forEach>
         </ul>
     </div>
 </nav>

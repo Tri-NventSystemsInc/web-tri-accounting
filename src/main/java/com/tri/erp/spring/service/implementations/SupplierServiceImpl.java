@@ -88,6 +88,8 @@ public class SupplierServiceImpl implements SupplierService {
                 supplier.setCreatedBy(createdBy);
 
                 supplier.setAccountNumber(accountNumberGenerator.get());
+            } else {
+                supplier.setUpdatedAt(null); // use mysql's default
             }
 
             Supplier newSupplier = this.create(supplier);

@@ -116,6 +116,9 @@ public class UserServiceImpl implements UserService {
             response = messageFormatter.getResponse();
             response.setSuccess(false);
         } else {
+
+            user.setUpdatedAt(null); // use mysql's default
+
             User newUser = user;
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 

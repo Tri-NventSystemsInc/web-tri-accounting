@@ -5,11 +5,16 @@ var coaApp = angular.module('coa', [
     'accountService',
     'accountFactory',
     'businessSegmentFactory',
-    'cmnFormErrorApp'
+    'cmnFormErrorApp',
+    'utilService'
 ]);
 
-coaApp.controller('accountDetailsCtrl', ['$scope', '$stateParams', '$http', 'accountFactory',
-    function($scope,  $stateParams, $http, accountFactory) {
+coaApp.controller('accountDetailsCtrl', ['$scope', '$state', '$stateParams', '$http', 'accountFactory', '$state', 'routeUtil',
+    function($scope, $state, $stateParams, $http, accountFactory, $state, routeUtil) {
+
+        $scope.main = function() {
+            routeUtil.gotoMain($state);
+        }
 
         $scope.showDetails = false;
 
@@ -44,9 +49,9 @@ coaApp.controller('accountDetailsCtrl', ['$scope', '$stateParams', '$http', 'acc
         }
     }]);
 
-coaApp.controller('newAccountCtrl', ['$scope', '$stateParams', '$http', 'errorToElementBinder', 'accountFactory',
+coaApp.controller('newAccountCtrl', ['$scope', '$state', '$stateParams', '$http', 'errorToElementBinder', 'accountFactory',
     'modalToggler', 'businessSegmentFactory', 'accountService', 'csrf',
-    function($scope, $stateParams, $http, errorToElementBinder, accountFactory, modalToggler, businessSegmentFactory,
+    function($scope, $state, $stateParams, $http, errorToElementBinder, accountFactory, modalToggler, businessSegmentFactory,
              accountService, csrf) {
 
         $scope.account = {};
@@ -171,7 +176,6 @@ coaApp.controller('newAccountCtrl', ['$scope', '$stateParams', '$http', 'errorTo
         };
 
         $scope.processForm = function() {
-
             $scope.save ='Saving...';
 
             $scope.errors = {};
@@ -191,7 +195,6 @@ coaApp.controller('newAccountCtrl', ['$scope', '$stateParams', '$http', 'errorTo
                 } else {
                     window.location.hash = '#/coa/account/' + data.modelId;
                     toastr.success('Account successfully saved!');
-                    accountUpdated = true;
                 }
             });
             res.error(function(data, status, headers, config) {

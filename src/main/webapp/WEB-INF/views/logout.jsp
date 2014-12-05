@@ -14,7 +14,7 @@
         <div class="alert alert-info">
             You have been logged out.
         </div>
-        <a href="<c:url value="/"/>">Home</a>
+        <c:redirect url="/"/>
 	</div>
 </div>
 </body>
