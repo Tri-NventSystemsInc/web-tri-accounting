@@ -10,3 +10,9 @@ utilService.service('slEntityUtil', function() {
         if (marker == 6) return {type : "Petty Cash Fund", class: "label-primary"};
     }
 });
+
+utilService.service('routeUtil', function() {
+    this.gotoMain = function($state) {
+        $state.go('^', $state.params, { reload: true });
+    }
+});

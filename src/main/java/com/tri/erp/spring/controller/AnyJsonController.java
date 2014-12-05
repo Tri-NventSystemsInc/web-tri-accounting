@@ -8,6 +8,7 @@ package com.tri.erp.spring.controller;
 
 import com.tri.erp.spring.model.Menu;
 import com.tri.erp.spring.model.SlEntity;
+import com.tri.erp.spring.reponse.MenuDto;
 import com.tri.erp.spring.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,7 +41,7 @@ public class AnyJsonController {
 
     @RequestMapping(value = "/menus", method = RequestMethod.GET)
     @ResponseBody
-    public List<Menu> getMenus() {
+    public List<MenuDto> getMenus() {
         return menuService.findAll();
     }
 }

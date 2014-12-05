@@ -3,6 +3,7 @@ package com.tri.erp.spring.service.interfaces;
 import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.reponse.AccountDto;
 import com.tri.erp.spring.model.Account;
+import com.tri.erp.spring.reponse.SegmentAccountDto;
 import org.springframework.context.MessageSource;
 import org.springframework.validation.BindingResult;
 
@@ -19,5 +20,5 @@ public interface AccountService {
     public List<Account> findByTitle(String title);
     public List<Account> findByIdNotIn(Integer... accountId);
     public List<AccountDto> findAllTree();
-    public List<AccountDto> findAllBySegment(String[] segmentIds);
+    public List<SegmentAccountDto> findAllBySegment(String[] segmentIds);
 }

@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col-md-12 col-lg-12">
-        <button class="btn btn-primary" onclick="(window.location.href = '#/suppliers')">Suppliers</button>
-        <button class="btn btn-primary" onclick="(window.location.href = '#/new')">Add</button>
-        <button class="btn btn-primary" ng-click="pointToEditForm()">Edit</button>
+        <a ng-click="main()" class="btn btn-primary">Suppliers</a>
+        <a ui-sref="supplier.new" class="btn btn-primary">Add</a>
+        <a ui-sref="supplier.edit({supplierId: supplierId})" class="btn btn-primary">Edit</a>
     </div>
 </div>
 <div style="margin-top: 20px;"></div>

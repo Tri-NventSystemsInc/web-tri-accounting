@@ -14,9 +14,8 @@
 <link href="<c:url value="/resources/css/inspinia/animate.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/inspinia/style.css" />" rel="stylesheet">
 
+<%-- toaster --%>
+<link href="<c:url value="/resources/css/toastr/toastr.min.css" />" rel="stylesheet">
 
-<!-- FancyBox -->
-<link href="<c:url value="/resources/js/plugins/fancybox/jquery.fancybox.css" />" rel="stylesheet">
-
-<!-- Data Tables -->
-<link href="<c:url value="/resources/css/inspinia/plugins/dataTables/dataTables.bootstrap.css" />" rel="stylesheet">
+<%--firefly--%>
+<link href="<c:url value="/resources/css/custom/app.css" />" rel="stylesheet">
