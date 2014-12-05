@@ -95,6 +95,12 @@
  <%--firefly--%>
 <script src="<c:url value="/resources/js/app/common/firefly.js" />"></script>
 
+<!-- Data Tables -->
+
+<script src="<c:url value="/resources/js/plugins/dataTables/jquery.dataTables.js" />"></script>
+<script src="<c:url value="/resources/js/plugins/dataTables/dataTables.bootstrap.js" />"></script>
+
+
 </body>
 </html>
 

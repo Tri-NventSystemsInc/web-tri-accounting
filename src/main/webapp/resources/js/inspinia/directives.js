@@ -42,7 +42,7 @@ function iboxTools($timeout) {
     return {
         restrict: 'A',
         scope: true,
-        templateUrl: '/WEB-INF/tags/ibox_tools.tag',
+        templateUrl: '/WEB-INF/views/common/ibox_tools.jsp',
         controller: function ($scope, $element) {
             // Function for collapse ibox
             $scope.showhide = function () {

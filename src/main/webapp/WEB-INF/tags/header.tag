@@ -13,3 +13,10 @@
 <!-- Main Inspinia CSS files -->
 <link href="<c:url value="/resources/css/inspinia/animate.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/inspinia/style.css" />" rel="stylesheet">
+
+
+<!-- FancyBox -->
+<link href="<c:url value="/resources/js/plugins/fancybox/jquery.fancybox.css" />" rel="stylesheet">
+
+<!-- Data Tables -->
+<link href="<c:url value="/resources/css/inspinia/plugins/dataTables/dataTables.bootstrap.css" />" rel="stylesheet">
