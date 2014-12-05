@@ -148,12 +148,6 @@ function config($stateProvider, $urlRouterProvider) {
             controller: 'userListCtrl'
         })
 
-        .state('user.roles', {
-            url: '/roles',
-            templateUrl: '/admin/user/role-list-page',
-            controller: 'roleListCtrl'
-        })
-
         .state('user.new', {
             url: '/user/new',
             templateUrl: 'admin/user/new-user-page'
@@ -173,34 +167,28 @@ function config($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-//
-//        .state('user.newRole', {
-//            url: '/new-role',
-//            views : {
-//                'rolePartial@user': {
-//                    templateUrl: 'admin/user/new-role-page'
-//                }
-//            }
-//        })
-//
-//        .state('user.roleDetail', {
-//            url: '/role/{roleId}',
-//            views : {
-//                'rolePartial@user': {
-//                    templateUrl: 'admin/user/role-details-page',
-//                    controller: 'roleDetailsCtrl'
-//                }
-//            }
-//        })
-//
-//        .state('user.roleEdit', {
-//            url: '/role/{roleId}/edit',
-//            views : {
-//                'rolePartial@user': {
-//                    templateUrl: 'admin/user/new-role-page'
-//                }
-//            }
-//        })
+
+        .state('user.roles', {
+            url: '/roles',
+            templateUrl: '/admin/user/role-list-page',
+            controller: 'roleListCtrl'
+        })
+
+        .state('user.newRole', {
+            url: '/role/new',
+            templateUrl: 'admin/user/new-role-page'
+        })
+
+        .state('user.roleDetail', {
+            url: '/role/{roleId}/detail',
+            templateUrl: 'admin/user/role-details-page',
+            controller: 'roleDetailsCtrl'
+        })
+
+        .state('user.roleEdit', {
+            url: '/role/{roleId}/edit',
+            templateUrl: 'admin/user/new-role-page'
+        })
 
         .state('showcase', {
             url: '/showcase',

@@ -269,7 +269,7 @@ userApp.controller('addEditRoleCtrl', ['$scope', '$stateParams', '$http', 'roleF
                 console.log(data);
 
                 if (data === '' || data.id <= 0) {    // not found
-                    window.location.hash = '#/users-and-roles';
+                    window.location.hash = '#/users-and-roles/roles';
                 } else {
                     $scope.role = data;
                     setSelectedMenu();
@@ -278,7 +278,7 @@ userApp.controller('addEditRoleCtrl', ['$scope', '$stateParams', '$http', 'roleF
             })
             .error(function (error) {
                 toastr.warning('Role not found!');
-                window.location.hash = '#/users-and-roles';
+                window.location.hash = '#/users-and-roles/roles';
             });
 
         resourceURI = '/role/update';
@@ -312,7 +312,7 @@ userApp.controller('addEditRoleCtrl', ['$scope', '$stateParams', '$http', 'roleF
                 $scope.submitting = false;
                 toastr.warning('Error found.');
             } else {
-                window.location.hash = '#/users-and-roles/role/' + data.modelId;
+                window.location.hash = '#/users-and-roles/role/' + data.modelId + '/detail';
                 toastr.success('User successfully saved!');
             }
         });

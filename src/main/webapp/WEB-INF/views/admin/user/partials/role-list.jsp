@@ -46,8 +46,8 @@
                     <td style="width: 22%;">{{role.name}}</td>
                     <td style="width: 20%;">{{role.updatedAt | date:'MMM dd, yyyy HH:mm a'}}</td>
                     <td style='width: 4%; vertical-align: middle; text-align: center'>
-                        <a style='padding: 0' title='View' ui-sref=".roleDetail({roleId: role.id})"><i class='fa fa-search'></i></a>
-                        <a style='padding: 0' title='Edit' ui-sref=".roleEdit({roleId: role.id})"><i class='fa fa-edit'></i></a>
+                        <a style='padding: 0' title='View' ui-sref="user.roleDetail({roleId: role.id})"><i class='fa fa-search'></i></a>
+                        <a style='padding: 0' title='Edit' ui-sref="user.roleEdit({roleId: role.id})"><i class='fa fa-edit'></i></a>
                     </td>
                 </tr>
                 <tr ng-show="r.length == 0"><td colspan="4" align="center">No records found</td></tr>
