@@ -1,8 +1,7 @@
 <div class="row">
     <div class="col-md-12 col-lg-12">
-        <a ui-sref="user" class="btn btn-primary">Back to Users</a>
         <a ui-sref="user.new" class="btn btn-primary">Add</a>
-        <a ui-sref="user.userEdit({userId: userId})" class="btn btn-primary">Edit</a>
+        <a ui-sref="user.edit({userId: userId})" class="btn btn-primary">Edit</a>
     </div>
 </div>
 <div style="margin-top: 20px;"></div>

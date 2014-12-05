@@ -8,7 +8,6 @@ var userApp = angular.module('user', [
     'utilService'
 ]);
 
-
 userApp.controller('userListCtrl', ['$scope', '$http', 'userFactory',
     function($scope,  $http, userFactory) {
 
@@ -55,7 +54,7 @@ userApp.controller('addEditUserCtrl', ['$scope', '$stateParams', '$http', 'userF
 
                     if (data === '' || data.id <= 0) {    // not found
                         toastr.warning('User not found!');
-                        window.location.hash = '#/users-and-roles';
+                        window.location.hash = '#/users-and-roles/users';
                     } else {
                         $scope.user = data;
                         $scope.user.password = "";
@@ -70,7 +69,7 @@ userApp.controller('addEditUserCtrl', ['$scope', '$stateParams', '$http', 'userF
                 })
                 .error(function (error) {
                     toastr.warning('User not found!');
-                    window.location.hash = '#/users-and-roles';
+                    window.location.hash = '#/users-and-roles/users';
                 });
 
             resourceURI = '/user/update';
@@ -114,7 +113,7 @@ userApp.controller('addEditUserCtrl', ['$scope', '$stateParams', '$http', 'userF
                     $scope.submitting = false;
                     toastr.warning('Error found.');
                 } else {
-                    window.location.hash = '#/users-and-roles/user/' + data.modelId;
+                    window.location.hash = '#/users-and-roles/user/' + data.modelId + '/detail';
                     toastr.success('User successfully saved!');
                 }
             });

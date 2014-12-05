@@ -1,20 +1,6 @@
-<style>
-    #users li {display: inline}
-</style>
 <div style="margin-bottom: 50px;">
-    <ul id="users">
-        <li  ui-sref-active="active">
-            <a ui-sref="user.list"><i class="fa fa-laptop"></i> <span class="nav-label">Users</span> </a>
-        </li>
 
-        <li  ui-sref-active="active">
-            <a ui-sref="user.roles"><i class="fa fa-laptop"></i> <span class="nav-label">Roles</span> </a>
-        </li>
-    </ul>
-
-    <div ui-view></div>
-
-   <%-- <div class="panel blank-panel ui-tab">
+    <div class="panel blank-panel ui-tab">
 
         <div class="panel-heading">
             <div class="panel-title m-b-md"><h4>Users & Roles</h4></div>
@@ -24,7 +10,7 @@
             <tabset>
                 <tab heading="Users">
                     <div ui-view="userPartial">
-                        <div &lt;%&ndash;ng-controller="userListCtrl"&ndash;%&gt;>
+                        <div ng-controller="userListCtrl">
                             <div class="row">
                                 <div class="col-md-12 col-lg-12">
 
@@ -93,7 +79,7 @@
 
                     <div ui-view="rolePartial">
 
-                        <div &lt;%&ndash;ng-controller="roleListCtrl"&ndash;%&gt;>
+                        <div ng-controller="roleListCtrl">
                             <div class="row">
                                 <div class="col-md-12 col-lg-12">
 
@@ -157,6 +143,6 @@
 
         </div>
 
-    </div>--%>
+    </div>
 
 </div>
