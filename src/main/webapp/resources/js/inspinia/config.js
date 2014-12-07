@@ -130,12 +130,7 @@ function config($stateProvider, $urlRouterProvider) {
                     return $ocLazyLoad.load(
                         {
                             name: "user",
-                            files: [
-                                "/resources/js/app/module/user.js",
-                                "/resources/js/app/factories/user-factory.js",
-                                "/resources/js/app/factories/role-factory.js",
-                                "/resources/js/app/factories/menu-factory.js"
-                            ]
+                            files: getUserDependencies("/resources/js/app/module/user.js")
                         }
                     )
                 }
@@ -214,9 +209,40 @@ function config($stateProvider, $urlRouterProvider) {
             }
         })
 
+        .state('profile', {
+            url:  '/user/profile',
+            templateUrl:  '/user/profile-page',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "profile",
+                            files: getUserDependencies("/resources/js/app/module/profile.js")
+                        }
+                    )
+                }
+            }
+        })
+
+        .state('profile.edit', {
+            url:  '/edit',
+            templateUrl:  '/user/edit-profile-page'
+        })
+
         .state('dashboard', {
             url:  '/main'
         })
+
+
+}
+
+function getUserDependencies(moduleJs) {
+     return [
+         moduleJs,
+        "/resources/js/app/factories/user-factory.js",
+        "/resources/js/app/factories/role-factory.js",
+        "/resources/js/app/factories/menu-factory.js"
+    ]
 }
 
 function decorator($provide) {
