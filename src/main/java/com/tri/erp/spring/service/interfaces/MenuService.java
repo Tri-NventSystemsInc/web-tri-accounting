@@ -15,4 +15,5 @@ import java.util.List;
  */
 public interface MenuService {
     public List<MenuDto> findAll();
+    public List<MenuDto> findAllByUser();
 }
