@@ -11,10 +11,10 @@ import java.util.List;
 public interface StockWithdrawalTmpService {
     public StockWithdrawalTmp create(StockWithdrawalTmp tmp);
     public StockWithdrawalTmp delete(int id);
-    public List<StockWithdrawalTmpDto> findAll();
+    public List<StockWithdrawalTmp> findAll();
     public StockWithdrawalTmp update(StockWithdrawalTmp tmp);
-    public StockWithdrawalTmpDto findById(int id);
+    public StockWithdrawalTmp findById(int id);
 //    public AccountResponse processCreate(Account account, BindingResult bindingResult, MessageSource messageSource);
 //    public AccountResponse processUpdate(Account account, BindingResult bindingResult, MessageSource messageSource);
-    public List<StockWithdrawalTmpDto> findByStatus(int id);
+    public List<StockWithdrawalTmp> findByStatus(int id);
 }

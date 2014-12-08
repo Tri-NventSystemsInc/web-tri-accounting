@@ -8,8 +8,8 @@
     </jsp:attribute>
     <jsp:attribute name="body">
         <h4>List of Stock Withdrawal Requests</h4>
-        <div ng-app="tmpApp">
-            <div ng-controller="tmpCreatedListCtrl">
+        <div ng-app="withdrawalApp">
+            <div ng-controller="createdListCtrl">
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
                     <tr>
@@ -32,12 +32,12 @@
                         <td>{{row.transDate}}</td>
                         <td>{{row.purpose}}</td>
                         <td>{{row.note}}</td>
-                        <td>{{row.prepared.fullName}}</td>
+                        <td>{{row.preparedBy.fullName}}</td>
                         <td>{{row.requisitioned.fullName}}</td>
-                        <td>{{row.noted.fullName}}</td>
-                        <td>{{row.approved.fullName}}</td>
-                        <td>{{row.issued.fullName}}</td>
-                        <td>{{row.received.fullName}}</td>
+                        <td>{{row.notedBy.fullName}}</td>
+                        <td>{{row.approvedBy.fullName}}</td>
+                        <td>{{row.issuedBy.fullName}}</td>
+                        <td>{{row.receivedBy.fullName}}</td>
                         <td style='width: 60px; padding: 3'>
                             <a style='padding: 0' title='View' href="#/created-list/{{row.id}}">
                                 <i class='fa fa-search'></i>
@@ -55,10 +55,11 @@
 </mytag:master>
 
 <script>
-    var tmpApp = angular.module('tmpApp', []);
 
-    tmpApp.controller('tmpCreatedListCtrl', function ($scope, $http) {
-        $http.get('/inventory/withdrawal/list?status=1').success(function(data) {
+    var withdrawalApp = angular.module('withdrawalApp', []);
+
+    withdrawalApp.controller('createdListCtrl', function ($scope, $http) {
+        $http.get('/withdrawal/list').success(function(data) {
             $scope.createdList = data;
         });
     });

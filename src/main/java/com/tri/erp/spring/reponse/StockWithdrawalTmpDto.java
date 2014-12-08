@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by Ryan D. Repe on 10/5/2014.
  */
-public class StockWithdrawalTmpDto {
+public class  StockWithdrawalTmpDto {
     private int id;
     private int transId;
     private java.sql.Date transDate;

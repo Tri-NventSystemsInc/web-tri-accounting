@@ -9,31 +9,41 @@ import java.math.BigDecimal;
  * Created by Ryan D. Repe on 10/5/2014.
  */
 @Entity
-@Table(name = "stock_withdrawal_detail_tmp")
+@Table
 public class StockWithdrawalDetailTmp {
+    public StockWithdrawalDetailTmp() {
+    }
+
+    public StockWithdrawalDetailTmp(StockWithdrawalTmp stockWithdrawal, Item item, UnitMeasure unit, BigDecimal quantity, int invCatId) {
+        this.stockWithdrawal = stockWithdrawal;
+        this.item = item;
+        this.unit = unit;
+        this.quantity = quantity;
+        this.invCatId = invCatId;
+    }
 
     @Id
     @GeneratedValue
-    @Column(name = "stock_withdrawal_detail_id")
+    @Column
     private int id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="stock_withdrawal_id")
+    @JoinColumn(name = "stockWithdrawalId")
     private StockWithdrawalTmp stockWithdrawal;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "item_id")
+    @JoinColumn(name = "itemId")
     private Item item;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "unit_id")
+    @JoinColumn(name = "unitId")
     private UnitMeasure unit;
 
     @Column
     private BigDecimal quantity;
 
-    @Column(name = "inv_cat_id")
-    private int categoryId;
+    @Column(name = "invCatId")
+    private int invCatId;
 
     public int getId() {
         return id;
@@ -75,10 +85,11 @@ public class StockWithdrawalDetailTmp {
         this.quantity = quantity;
     }
 
-    private InventoryCategory category(){
-        return InventoryCategory.parse(this.categoryId);
+    private InventoryCategory category() {
+        return InventoryCategory.parse(this.invCatId);
     }
-    private void setCategory(InventoryCategory category){
-        this.categoryId = category.getId();
+
+    private void setCategory(InventoryCategory category) {
+        this.invCatId = category.getId();
     }
 }
