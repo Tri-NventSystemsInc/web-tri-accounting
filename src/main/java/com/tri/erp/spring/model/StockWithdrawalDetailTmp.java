@@ -14,10 +14,10 @@ public class StockWithdrawalDetailTmp {
     public StockWithdrawalDetailTmp() {
     }
 
-    public StockWithdrawalDetailTmp(StockWithdrawalTmp stockWithdrawal, Item item, UnitMeasure unit, BigDecimal quantity, int invCatId) {
-        this.stockWithdrawal = stockWithdrawal;
-        this.item = item;
-        this.unit = unit;
+    public StockWithdrawalDetailTmp(int stockWithdrawalId, int itemId, int unitId, BigDecimal quantity, int invCatId) {
+        this.stockWithdrawalId = stockWithdrawalId;
+        this.itemId = itemId;
+        this.unitId = unitId;
         this.quantity = quantity;
         this.invCatId = invCatId;
     }
@@ -27,22 +27,31 @@ public class StockWithdrawalDetailTmp {
     @Column
     private int id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "stockWithdrawalId")
-    private StockWithdrawalTmp stockWithdrawal;
+    @Column
+    private int stockWithdrawalId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "itemId")
-    private Item item;
+    @Column
+    private int itemId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "unitId")
-    private UnitMeasure unit;
+    @Column
+    private int unitId;
+
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "stockWithdrawalId")
+//    private StockWithdrawalTmp stockWithdrawal;
+//
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "itemId")
+//    private Item item;
+//
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "unitId")
+//    private UnitMeasure unit;
 
     @Column
     private BigDecimal quantity;
 
-    @Column(name = "invCatId")
+    @Column
     private int invCatId;
 
     public int getId() {
@@ -53,29 +62,29 @@ public class StockWithdrawalDetailTmp {
         this.id = id;
     }
 
-    public StockWithdrawalTmp getStockWithdrawal() {
-        return stockWithdrawal;
-    }
+//    public StockWithdrawalTmp getStockWithdrawal() {
+//        return stockWithdrawal;
+//    }
+//
+//    public void setStockWithdrawal(StockWithdrawalTmp stockWithdrawal) {
+//        this.stockWithdrawal = stockWithdrawal;
+//    }
 
-    public void setStockWithdrawal(StockWithdrawalTmp stockWithdrawal) {
-        this.stockWithdrawal = stockWithdrawal;
-    }
-
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
-    public UnitMeasure getUnit() {
-        return unit;
-    }
-
-    public void setUnit(UnitMeasure unit) {
-        this.unit = unit;
-    }
+//    public Item getItem() {
+//        return item;
+//    }
+//
+//    public void setItem(Item item) {
+//        this.item = item;
+//    }
+//
+//    public UnitMeasure getUnit() {
+//        return unit;
+//    }
+//
+//    public void setUnit(UnitMeasure unit) {
+//        this.unit = unit;
+//    }
 
     public BigDecimal getQuantity() {
         return quantity;

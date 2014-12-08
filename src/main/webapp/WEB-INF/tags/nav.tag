@@ -18,7 +18,7 @@
             Inventory <span class="caret"></span>
         </a>
         <ul class="dropdown-menu" role="menu">
-            <li><a href="/withdrawal">Stock Withdrawal</a></li>
+            <li><a href="/inv/stockwith">Stock Withdrawal</a></li>
             <li><a href="javascript:void(0);">Stock Approval</a></li>
             <li><a href="javascript:void(0);">Stock Release</a></li>
         </ul>

@@ -17,27 +17,16 @@ public class StockWithdrawalTmp {
     public StockWithdrawalTmp() {
     }
 
-    public StockWithdrawalTmp(int transId, Date transDate, Department department, String purpose, String description, int invLocId, int invCatId, User user, User approvedBy, User receivedBy, User requisitioned, User preparedBy, User notedBy, User issuedBy, int docStatusId, String remarks, Date transDateTime, RequestType requestType, String referenceNo, List<StockWithdrawalDetailTmp> details) {
+    public StockWithdrawalTmp(int transId, Date transDate, String purpose, String description, int invLocId, int invCatId, int docStatusId, String remarks, String swNumber) {
         this.transId = transId;
         this.transDate = transDate;
-        this.department = department;
         this.purpose = purpose;
         this.description = description;
         this.invLocId = invLocId;
         this.invCatId = invCatId;
-        this.user = user;
-        this.approvedBy = approvedBy;
-        this.receivedBy = receivedBy;
-        this.requisitioned = requisitioned;
-        this.preparedBy = preparedBy;
-        this.notedBy = notedBy;
-        this.issuedBy = issuedBy;
         this.docStatusId = docStatusId;
         this.remarks = remarks;
-        this.transDateTime = transDateTime;
-        this.requestType = requestType;
-        this.referenceNo = referenceNo;
-        this.details = details;
+        this.swNumber = swNumber;
     }
 
     @Id
@@ -48,9 +37,9 @@ public class StockWithdrawalTmp {
     private int transId;
     @Column
     private java.sql.Date transDate;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "deptId")
-    private Department department;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "deptId")
+//    private Department department;
     @Column
     @NotEmpty
     private String purpose;
@@ -60,39 +49,37 @@ public class StockWithdrawalTmp {
     private int invLocId;
     @Column
     private int invCatId;
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "userId")
-    private User user;
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "approvedBy")
-    private User approvedBy;
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "receivedBy")
-    private User receivedBy;
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "requisitioned")
-    private User requisitioned;
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "preparedBy")
-    private User preparedBy;
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "notedBy")
-    private User notedBy;
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "issuedBy")
-    private User issuedBy;
+//    @OneToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "userId")
+//    private User user;
+//    @OneToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "approvedBy")
+//    private User approvedBy;
+//    @OneToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "receivedBy")
+//    private User receivedBy;
+//    @OneToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "requisitioned")
+//    private User requisitioned;
+//    @OneToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "preparedBy")
+//    private User preparedBy;
+//    @OneToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "notedBy")
+//    private User notedBy;
+//    @OneToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "issuedBy")
+//    private User issuedBy;
     @Column
     private int docStatusId;
     @Column
     private String remarks;
+//    @Enumerated(EnumType.ORDINAL)
+//    private RequestType requestType;
     @Column
-    private java.sql.Date transDateTime;
-    @Enumerated(EnumType.ORDINAL)
-    private RequestType requestType;
-    @Column
-    private String referenceNo;
-    @OneToMany(mappedBy = "stockWithdrawal")
-    private List<StockWithdrawalDetailTmp> details;
+    private String swNumber;
+//    @OneToMany(mappedBy = "stockWithdrawal")
+//    private List<StockWithdrawalDetailTmp> details;
 
     public int getId() {
         return id;
@@ -118,13 +105,13 @@ public class StockWithdrawalTmp {
         this.transDate = transDate;
     }
 
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
+//    public Department getDepartment() {
+//        return department;
+//    }
+//
+//    public void setDepartment(Department department) {
+//        this.department = department;
+//    }
 
     public String getPurpose() {
         return purpose;
@@ -158,61 +145,61 @@ public class StockWithdrawalTmp {
         this.invCatId = invCatId;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public User getApprovedBy() {
-        return approvedBy;
-    }
-
-    public void setApprovedBy(User approvedBy) {
-        this.approvedBy = approvedBy;
-    }
-
-    public User getReceivedBy() {
-        return receivedBy;
-    }
-
-    public void setReceivedBy(User receivedBy) {
-        this.receivedBy = receivedBy;
-    }
-
-    public User getRequisitioned() {
-        return requisitioned;
-    }
-
-    public void setRequisitioned(User requisitioned) {
-        this.requisitioned = requisitioned;
-    }
-
-    public User getPreparedBy() {
-        return preparedBy;
-    }
-
-    public void setPreparedBy(User preparedBy) {
-        this.preparedBy = preparedBy;
-    }
-
-    public User getNotedBy() {
-        return notedBy;
-    }
-
-    public void setNotedBy(User notedBy) {
-        this.notedBy = notedBy;
-    }
-
-    public User getIssuedBy() {
-        return issuedBy;
-    }
-
-    public void setIssuedBy(User issuedBy) {
-        this.issuedBy = issuedBy;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
+//
+//    public User getApprovedBy() {
+//        return approvedBy;
+//    }
+//
+//    public void setApprovedBy(User approvedBy) {
+//        this.approvedBy = approvedBy;
+//    }
+//
+//    public User getReceivedBy() {
+//        return receivedBy;
+//    }
+//
+//    public void setReceivedBy(User receivedBy) {
+//        this.receivedBy = receivedBy;
+//    }
+//
+//    public User getRequisitioned() {
+//        return requisitioned;
+//    }
+//
+//    public void setRequisitioned(User requisitioned) {
+//        this.requisitioned = requisitioned;
+//    }
+//
+//    public User getPreparedBy() {
+//        return preparedBy;
+//    }
+//
+//    public void setPreparedBy(User preparedBy) {
+//        this.preparedBy = preparedBy;
+//    }
+//
+//    public User getNotedBy() {
+//        return notedBy;
+//    }
+//
+//    public void setNotedBy(User notedBy) {
+//        this.notedBy = notedBy;
+//    }
+//
+//    public User getIssuedBy() {
+//        return issuedBy;
+//    }
+//
+//    public void setIssuedBy(User issuedBy) {
+//        this.issuedBy = issuedBy;
+//    }
 
     public int getDocStatusId() {
         return docStatusId;
@@ -230,36 +217,28 @@ public class StockWithdrawalTmp {
         this.remarks = remarks;
     }
 
-    public Date getTransDateTime() {
-        return transDateTime;
+//    public RequestType getRequestType() {
+//        return requestType;
+//    }
+//
+//    public void setRequestType(RequestType requestType) {
+//        this.requestType = requestType;
+//    }
+
+    public String getSwNumber() {
+        return swNumber;
     }
 
-    public void setTransDateTime(Date transDateTime) {
-        this.transDateTime = transDateTime;
+    public void setSwNumber(String swNumber) {
+        this.swNumber = swNumber;
     }
 
-    public RequestType getRequestType() {
-        return requestType;
-    }
-
-    public void setRequestType(RequestType requestType) {
-        this.requestType = requestType;
-    }
-
-    public String getReferenceNo() {
-        return referenceNo;
-    }
-
-    public void setReferenceNo(String referenceNo) {
-        this.referenceNo = referenceNo;
-    }
-
-    public List<StockWithdrawalDetailTmp> getDetails() {
-        return details;
-    }
-
-    public void setDetails(List<StockWithdrawalDetailTmp> details) {
-        this.details = details;
-    }
+//    public List<StockWithdrawalDetailTmp> getDetails() {
+//        return details;
+//    }
+//
+//    public void setDetails(List<StockWithdrawalDetailTmp> details) {
+//        this.details = details;
+//    }
 }
 
