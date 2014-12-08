@@ -14,37 +14,32 @@ checkApp.controller('checkListCtrl', ['$scope', '$http', 'checkFactory', functio
 
 }]);
 
-checkApp.controller('addEditCheckCtrl', ['$scope', '$stateParams', '$http', 'itemFactory', 'errorToElementBinder',
+checkApp.controller('addEditCheckCtrl', ['$scope', '$stateParams', '$http', 'checkFactory', 'errorToElementBinder',
     'csrf',
-    function($scope, $stateParams, $http, itemFactory, errorToElementBinder, csrf) {
+    function($scope, $stateParams, $http, checkFactory, errorToElementBinder, csrf) {
 
-        $scope.units = [
-            {id:1, code: 'M', description: 'Meter'},
-            {id:2, code: 'PCS', description: 'Pieces'}
-        ];
         $scope.title = 'Add check';
         $scope.save = 'Save';
         $scope.showForm = true;
 
-        $scope.item = {};
-        $scope.unit = {};
-        $scope.submit = false;
+        $scope.check = {};
 
-        var resourceURI = '/item/create';
-        if(!($stateParams.itemId === undefined)) {  // update mode
+        var resourceURI = '/check/create';
+
+        if(!($stateParams.checkId === undefined)) {  // update mode
             $scope.title = 'Update check';
             $scope.showForm = false;
 
-            $scope.itemId = $stateParams.itemId;
+            $scope.checkId = $stateParams.checkId;
 
-            itemFactory.getItem($scope.itemId).success(function (data) {
+            checkFactory.getCheck($scope.checkId).success(function (data) {
                 if (data === '' || data.id <= 0) {    // not found
-                    window.location.hash = '#/items';
+                    window.location.hash = '#/checks';
                 } else {
-                    $scope.item = data;
-                    $scope.unit = data.unit;
+                    console.log(data);
+                    $scope.check = data;
                     try{
-                        $scope.selectedAccount = $scope.item.segmentAccount.accountCode + ' ' + $scope.item.segmentAccount.account.title;
+                        $scope.selectedAccount = $scope.check.bankSegmentAccount.accountCode + ' ' + $scope.check.bankSegmentAccount.account.title;
                     }catch (e) {}
 
                     $scope.showForm = true;
@@ -52,16 +47,14 @@ checkApp.controller('addEditCheckCtrl', ['$scope', '$stateParams', '$http', 'ite
             })
                 .error(function (error) {
                     toastr.warning('Item not found!');
-                    window.location.hash = '#/items';
+                    window.location.hash = '#/checks';
                 });
 
-            resourceURI = '/item/update';
+            resourceURI = '/check/update';
         }
 
 
         $scope.processForm = function() {
-
-            if (!$scope.submit) return; // check if save button is clicked
 
             $scope.save ='Saving...';
 
@@ -69,11 +62,9 @@ checkApp.controller('addEditCheckCtrl', ['$scope', '$stateParams', '$http', 'ite
             $scope.submitting = true;
             csrf.setCsrfToken();
 
-            $scope.item.unit = $scope.unit;
+             console.log($scope.check);
 
-            console.log($scope.item);
-
-            var res = $http.post(resourceURI, $scope.item);
+            var res = $http.post(resourceURI, $scope.check);
 
             res.success(function(data) {
 
@@ -82,10 +73,9 @@ checkApp.controller('addEditCheckCtrl', ['$scope', '$stateParams', '$http', 'ite
                     $scope.save ='Save';
                     // flags
                     $scope.submitting = false;
-                    $scope.submit = false;
                     toastr.warning('Error found.');
                 } else {
-                    window.location.hash = '#/items/detail/' + data.modelId;
+                    window.location.hash = '#/checks/' + data.modelId + '/detail';
                     toastr.success('Item successfully saved!');
                 }
             });
@@ -94,14 +84,13 @@ checkApp.controller('addEditCheckCtrl', ['$scope', '$stateParams', '$http', 'ite
                 $scope.save ='Save';
                 // flags
                 $scope.submitting = false;
-                $scope.submit = false;
             });
         }
 
         $scope.accounts_selection_handler = function(sa){
             var segmentAccount = {};
             segmentAccount['id'] =  sa.segmentAccountId;
-            $scope.item.segmentAccount = segmentAccount;
+            $scope.check.bankSegmentAccount = segmentAccount;
             $scope.selectedAccount = sa.segmentAccountCode + ' ' + sa.title;
         }
     }]);

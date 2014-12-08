@@ -2,14 +2,15 @@ package com.tri.erp.spring.controller;
 
 import com.tri.erp.spring.model.CheckConfig;
 import com.tri.erp.spring.model.Item;
+import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.service.interfaces.CheckConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -21,6 +22,9 @@ import java.util.List;
 public class CheckConfigController {
 
     private final String BASE_PATH = "admin/check/partials/";
+
+    @Autowired
+    MessageSource messageSource;
 
     @Autowired
     CheckConfigService checkConfigService;
@@ -42,7 +46,19 @@ public class CheckConfigController {
     }
 
 
-    // data providers
+    // data providers and processors
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @ResponseBody
+    public CreateResponse updateCheckConfig(@Valid @RequestBody CheckConfig config, BindingResult bindingResult) {
+        return checkConfigService.processUpdate(config, bindingResult, messageSource);
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @ResponseBody
+    public CreateResponse createCheckConfig(@Valid @RequestBody CheckConfig config, BindingResult bindingResult) {
+        return checkConfigService.processCreate(config, bindingResult, messageSource);
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
