@@ -249,6 +249,18 @@ function config($stateProvider, $urlRouterProvider) {
             controller: 'checkDetailsCtrl'
         })
 
+        .state('check.edit', {
+            url: '/{checkId}/edit',
+            templateUrl: '/check/edit-check-page',
+            controller: 'addEditCheckCtrl'
+        })
+
+        .state('check.new', {
+            url: '/new',
+            templateUrl: '/check/edit-check-page',
+            controller: 'addEditCheckCtrl'
+        })
+
         .state('profile.edit', {
             url:  '/edit',
             templateUrl:  '/user/edit-profile-page'

@@ -36,6 +36,11 @@ public class CheckConfigController {
         return BASE_PATH + "check-details";
     }
 
+    @RequestMapping(value = "/edit-check-page", method = RequestMethod.GET)
+    public String getAddCheckPage() {
+        return BASE_PATH + "add-edit-check";
+    }
+
 
     // data providers
 

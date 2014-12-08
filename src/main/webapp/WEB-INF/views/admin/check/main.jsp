@@ -9,7 +9,7 @@
     </div>
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <div class="alert alert-info" style="margin-bottom: 5px;">Check Configurations <span class="pull-right" style="cursor: pointer"><a ui-sref="supplier.new"><i class="fa fa-plus" title="Add supplier"></i></a></span></div>
+            <div class="alert alert-info" style="margin-bottom: 5px;">Check Configurations <span class="pull-right" style="cursor: pointer"><a ui-sref="check.new"><i class="fa fa-plus" title="Add check config"></i></a></span></div>
         </div>
     </div>
 
