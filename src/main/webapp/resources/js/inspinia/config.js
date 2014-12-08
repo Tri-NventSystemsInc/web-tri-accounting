@@ -243,6 +243,12 @@ function config($stateProvider, $urlRouterProvider) {
             }
         })
 
+        .state('check.detail', {
+            url: '/{checkId}/detail',
+            templateUrl: '/check/check-details-page',
+            controller: 'checkDetailsCtrl'
+        })
+
         .state('profile.edit', {
             url:  '/edit',
             templateUrl:  '/user/edit-profile-page'

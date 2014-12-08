@@ -1,10 +1,10 @@
 var checkApp = angular.module('check', [
     'cmnAccountBrowserWithSegmentApp',
+    'checkFactory',
     'jQueryFnWrapperService',
     'errorHandlerService',
     'cmnFormErrorApp',
-    'utilService',
-    'checkFactory'
+    'utilService'
 ]);
 
 
@@ -106,37 +106,32 @@ checkApp.controller('checkListCtrl', ['$scope', '$http', 'checkFactory', functio
 //        }
 //    }]);
 //
-//checkApp.controller('itemDetailsCtrl', ['$scope', '$state', '$stateParams', '$http', 'itemFactory', 'routeUtil',
-//    function($scope, $state, $stateParams, $http, itemFactory, routeUtil) {
-//
-//        $scope.main = function() {
-//            routeUtil.gotoMain($state);
-//        }
-//
-//        $scope.showDetails = false;
-//
-//        if(!($stateParams.itemId === undefined)) {
-//            $scope.title = 'Item details';
-//
-//            $scope.itemId = $stateParams.itemId;
-//
-//            itemFactory.getItem( $scope.itemId)
-//                .success(function (data) {
-//
-//                    if (data === '' || data.id <= 0) {    // not found
-//                        toastr.warning('Item not found!');
-//                        window.location.hash = '#/items';
-//                    } else {
-//                        $scope.item = data;
-//                        $scope.showDetails = true;
-//                    }
-//                });
-//        } else {
-//            toastr.warning('Item not found!');
-//            window.location.hash = '#/items';
-//        }
-//
-//        $scope.pointToEditForm = function() {
-//            window.location.hash = '#/item/' + $scope.itemId + "/edit";
-//        }
-//    }]);
+checkApp.controller('checkDetailsCtrl', ['$scope', '$state', '$stateParams', '$http', 'checkFactory', 'routeUtil',
+    function($scope, $state, $stateParams, $http, checkFactory, routeUtil) {
+
+        $scope.main = function() {
+            routeUtil.gotoMain($state);
+        }
+
+        $scope.showDetails = false;
+
+        if(!($stateParams.checkId === undefined)) {
+            $scope.title = 'Check details';
+
+            $scope.checkId = $stateParams.checkId;
+
+            checkFactory.getCheck( $scope.checkId) .success(function (data) {
+
+                if (data === '' || data.id <= 0) {    // not found
+                    toastr.warning('Check not found!');
+                    window.location.hash = '#/checks';
+                } else {
+                    $scope.check = data;
+                    $scope.showDetails = true;
+                }
+            });
+        } else {
+            toastr.warning('Check not found!');
+            window.location.hash = '#/checks';
+        }
+    }]);

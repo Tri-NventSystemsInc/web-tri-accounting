@@ -20,6 +20,8 @@ import java.util.List;
 @RequestMapping(value = "/check")
 public class CheckConfigController {
 
+    private final String BASE_PATH = "admin/check/partials/";
+
     @Autowired
     CheckConfigService checkConfigService;
 
@@ -28,6 +30,12 @@ public class CheckConfigController {
     public String index() {
         return "admin/check/main";
     }
+
+    @RequestMapping(value = "/check-details-page", method = RequestMethod.GET)
+    public String getCheckDetailsPage() {
+        return BASE_PATH + "check-details";
+    }
+
 
     // data providers
 
