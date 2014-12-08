@@ -89,7 +89,7 @@ public class CheckConfig {
     private Date updatedAt;
 
     public CheckConfig() {}
-    
+
     public CheckConfig(String code, Integer dateX, Integer dateY, Integer payeeX, Integer payeeY, Integer payeeW,
                        Integer numericAmountX, Integer numericAmountY, Integer alphaAmountX, Integer alphaAmountY,
                        Integer alphaAmountW, Integer sig1X, Integer sig1Y, Integer sig2X, Integer sig2Y,
