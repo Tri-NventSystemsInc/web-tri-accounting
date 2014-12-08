@@ -42,8 +42,6 @@ public class MenuServiceImpl implements MenuService {
     @Transactional(readOnly = true)
     public List<MenuDto> findAll() {
 
-        User currentUser = authenticationFacade.getLoggedIn();
-
         List<MenuDto> menuDtoList = new ArrayList<>();
         List<Menu> menus =  menuRepo.findAll();
 

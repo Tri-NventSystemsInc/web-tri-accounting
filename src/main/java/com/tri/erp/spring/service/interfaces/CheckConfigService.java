@@ -12,6 +12,7 @@ import java.util.List;
  */
 public interface CheckConfigService {
     public List<CheckConfig> findAll();
+    public CheckConfig findById(Integer id);
     public CreateResponse processUpdate(CheckConfig config, BindingResult bindingResult, MessageSource messageSource);
     public CreateResponse processCreate(CheckConfig config, BindingResult bindingResult, MessageSource messageSource);
 }

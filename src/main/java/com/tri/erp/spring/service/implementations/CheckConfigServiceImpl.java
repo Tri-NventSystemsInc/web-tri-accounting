@@ -27,6 +27,11 @@ public class CheckConfigServiceImpl implements CheckConfigService {
     }
 
     @Override
+    public CheckConfig findById(Integer id) {
+        return checkConfigRepo.findOne(id);
+    }
+
+    @Override
     public CreateResponse processUpdate(CheckConfig config, BindingResult bindingResult, MessageSource messageSource) {
         return null;
     }

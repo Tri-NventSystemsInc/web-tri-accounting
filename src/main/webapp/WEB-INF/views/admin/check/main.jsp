@@ -29,8 +29,8 @@
             <div class="row-top-buffer" style="margin-top: 15px"></div>
 
             <div style="border-top: 1px solid #dcdcdc; padding-top: 10px">
-                <div class="col-md-1 col-lg-1">Code</div>
-                <div class="col-md-3 col-lg-3">Account</div>
+                <div class="col-md-2 col-lg-2">Code</div>
+                <div class="col-md-6 col-lg-6">Account</div>
                 <div class="col-md-2 col-lg-2">Last updated</div>
             </div>
         </div>
@@ -49,7 +49,7 @@
                     <tr data-dismiss="modal" ng-repeat="config in sup = (configs | filter:query)">
                         <td style="width: 7%;">{{config.code}}</td>
                         <td style="width: 30%;">{{config.bankSegmentAccount.accountCode}} {{config.bankSegmentAccount.account.title}}</td>
-                        <td style="width: 15%;">{{supplier.updatedAt | date:'MMM dd, yyyy HH:mm a'}}</td>
+                        <td style="width: 15%;">{{config.updatedAt | date:'MMM dd, yyyy HH:mm a'}}</td>
                         <td style='width: 4%; vertical-align: middle'>
                             <a style='padding: 0' title='View' ui-sref=".detail({supplierId:supplier.id})"><i class='fa fa-search'></i></a>
                             <a style='padding: 0' title='Edit' ui-sref=".edit({supplierId:supplier.id})"><i class='fa fa-edit'></i></a>

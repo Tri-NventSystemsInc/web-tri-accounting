@@ -224,6 +224,25 @@ function config($stateProvider, $urlRouterProvider) {
             }
         })
 
+        .state('check', {
+            url: '/checks',
+            templateUrl: '/check',
+            controller: 'checkListCtrl',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "check",
+                            files: [
+                                "/resources/js/app/module/check.js",
+                                "/resources/js/app/factories/check-factory.js"
+                            ]
+                        }
+                    )
+                }
+            }
+        })
+
         .state('profile.edit', {
             url:  '/edit',
             templateUrl:  '/user/edit-profile-page'

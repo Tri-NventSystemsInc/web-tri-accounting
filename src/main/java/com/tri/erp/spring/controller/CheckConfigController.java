@@ -1,9 +1,11 @@
 package com.tri.erp.spring.controller;
 
 import com.tri.erp.spring.model.CheckConfig;
+import com.tri.erp.spring.model.Item;
 import com.tri.erp.spring.service.interfaces.CheckConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,6 +30,14 @@ public class CheckConfigController {
     }
 
     // data providers
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public CheckConfig getCheck(@PathVariable Integer id) {
+        return checkConfigService.findById(id);
+    }
+
+
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
     public List<CheckConfig> getCheckConfigs() {
