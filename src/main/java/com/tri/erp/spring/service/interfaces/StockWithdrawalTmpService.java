@@ -16,5 +16,5 @@ public interface StockWithdrawalTmpService {
     public StockWithdrawalTmp findById(int id);
 //    public AccountResponse processCreate(Account account, BindingResult bindingResult, MessageSource messageSource);
 //    public AccountResponse processUpdate(Account account, BindingResult bindingResult, MessageSource messageSource);
-    public List<StockWithdrawalTmp> findByStatus(int id);
+    public List<StockWithdrawalTmp> findByDocumentStatus(int id);
 }

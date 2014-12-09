@@ -50,11 +50,11 @@ public class StockWithdrawalTmpServiceImpl implements StockWithdrawalTmpService 
     }
 
     @Override
-    public List<StockWithdrawalTmp> findByStatus(int id) {
+    public List<StockWithdrawalTmp> findByDocumentStatus(int id) {
 
         tmpDtoList = new ArrayList<>();
 
-        List<StockWithdrawalTmp> tmpList = stockWithdrawalTmpRepo.findByDocStatusId(id);
+        List<StockWithdrawalTmp> tmpList = stockWithdrawalTmpRepo.findByDocumentStatus(id);
 
         return tmpList;
     }

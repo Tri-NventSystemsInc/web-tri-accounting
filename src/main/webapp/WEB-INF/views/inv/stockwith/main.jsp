@@ -17,8 +17,8 @@
                 </thead>
                 <tbody ng-repeat="tmp in stockList">
                 <tr>
-                    <td>{{tmp.swNumber}}</td>
-                    <td>{{tmp.transDate}}</td>
+                    <td>{{tmp.referenceNumber}}</td>
+                    <td>{{tmp.transactionDate}}</td>
                     <td>{{tmp.purpose}}</td>
                 </tr>
                 </tbody>

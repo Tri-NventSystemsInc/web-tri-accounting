@@ -1,8 +1,12 @@
 package com.tri.erp.spring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.tri.erp.spring.model.enums.InventoryCategory;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -10,16 +14,17 @@ import java.math.BigDecimal;
  */
 @Entity
 @Table
-public class StockWithdrawalDetailTmp {
+public class StockWithdrawalDetailTmp implements Serializable {
+
     public StockWithdrawalDetailTmp() {
     }
 
-    public StockWithdrawalDetailTmp(int stockWithdrawalId, int itemId, int unitId, BigDecimal quantity, int invCatId) {
-        this.stockWithdrawalId = stockWithdrawalId;
-        this.itemId = itemId;
-        this.unitId = unitId;
+    public StockWithdrawalDetailTmp(BigDecimal quantity, Item item, StockWithdrawalTmp stockWithdrawal, UnitMeasure unit, int FK_inventoryCategoryId) {
         this.quantity = quantity;
-        this.invCatId = invCatId;
+        this.item = item;
+        this.stockWithdrawal = stockWithdrawal;
+        this.unit = unit;
+        this.FK_inventoryCategoryId = FK_inventoryCategoryId;
     }
 
     @Id
@@ -28,63 +33,26 @@ public class StockWithdrawalDetailTmp {
     private int id;
 
     @Column
-    private int stockWithdrawalId;
-
-    @Column
-    private int itemId;
-
-    @Column
-    private int unitId;
-
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "stockWithdrawalId")
-//    private StockWithdrawalTmp stockWithdrawal;
-//
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "itemId")
-//    private Item item;
-//
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "unitId")
-//    private UnitMeasure unit;
-
-    @Column
     private BigDecimal quantity;
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="FK_itemId")
+    private Item item;
 
-    @Column
-    private int invCatId;
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="FK_stockWithdrawalId")
+    private StockWithdrawalTmp stockWithdrawal;
 
-    public int getId() {
-        return id;
-    }
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="FK_unitId")
+    private UnitMeasure unit;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-//    public StockWithdrawalTmp getStockWithdrawal() {
-//        return stockWithdrawal;
-//    }
-//
-//    public void setStockWithdrawal(StockWithdrawalTmp stockWithdrawal) {
-//        this.stockWithdrawal = stockWithdrawal;
-//    }
-
-//    public Item getItem() {
-//        return item;
-//    }
-//
-//    public void setItem(Item item) {
-//        this.item = item;
-//    }
-//
-//    public UnitMeasure getUnit() {
-//        return unit;
-//    }
-//
-//    public void setUnit(UnitMeasure unit) {
-//        this.unit = unit;
-//    }
+    // GETTERS & SETTERS
 
     public BigDecimal getQuantity() {
         return quantity;
@@ -94,11 +62,67 @@ public class StockWithdrawalDetailTmp {
         this.quantity = quantity;
     }
 
-    private InventoryCategory category() {
-        return InventoryCategory.parse(this.invCatId);
+    public int getId() {
+        return id;
     }
 
-    private void setCategory(InventoryCategory category) {
-        this.invCatId = category.getId();
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    // NAVIGATION PROPERTIES (GETTERS & SETTERS)
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public StockWithdrawalTmp getStockWithdrawal() {
+        return stockWithdrawal;
+    }
+
+    public void setStockWithdrawal(StockWithdrawalTmp stockWithdrawal) {
+        this.stockWithdrawal = stockWithdrawal;
+    }
+
+    public UnitMeasure getUnit() {
+        return unit;
+    }
+
+    public void setUnit(UnitMeasure unit) {
+        this.unit = unit;
+    }
+
+    // ENUMS
+
+
+    @Column
+    private int FK_inventoryCategoryId;
+    public InventoryCategory getInventoryCategory() {
+        return InventoryCategory.parse(this.FK_inventoryCategoryId);
+    }
+
+    public void setInventoryCategory(InventoryCategory category) {
+        this.FK_inventoryCategoryId = category.getId();
+    }
+
+    // OVERRIDE
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

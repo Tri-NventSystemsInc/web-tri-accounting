@@ -1,9 +1,15 @@
 package com.tri.erp.spring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.tri.erp.spring.model.enums.DocumentStatus;
+import com.tri.erp.spring.model.enums.InventoryCategory;
 import com.tri.erp.spring.model.enums.RequestType;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
@@ -12,21 +18,29 @@ import java.util.List;
  */
 @Entity
 @Table
-public class StockWithdrawalTmp {
-
+public class StockWithdrawalTmp implements Serializable {
     public StockWithdrawalTmp() {
     }
 
-    public StockWithdrawalTmp(int transId, Date transDate, String purpose, String description, int invLocId, int invCatId, int docStatusId, String remarks, String swNumber) {
-        this.transId = transId;
-        this.transDate = transDate;
-        this.purpose = purpose;
+    public StockWithdrawalTmp(String description, String purpose, String referenceNumber, String remarks, Date transactionDate, int FK_transactionId, User approvedBy, User department, User issuedBy, User notedBy, User preparedBy, User receivedBy, User requisitioned, User user, User documentStatus, List<StockWithdrawalDetailTmp> details, int requestType, int FK_inventoryCategoryId) {
         this.description = description;
-        this.invLocId = invLocId;
-        this.invCatId = invCatId;
-        this.docStatusId = docStatusId;
+        this.purpose = purpose;
+        this.referenceNumber = referenceNumber;
         this.remarks = remarks;
-        this.swNumber = swNumber;
+        this.transactionDate = transactionDate;
+        this.FK_transactionId = FK_transactionId;
+        this.approvedBy = approvedBy;
+        this.department = department;
+        this.issuedBy = issuedBy;
+        this.notedBy = notedBy;
+        this.preparedBy = preparedBy;
+        this.receivedBy = receivedBy;
+        this.requisitioned = requisitioned;
+        this.user = user;
+        this.documentStatus = documentStatus;
+        this.details = details;
+        this.requestType = requestType;
+        this.FK_inventoryCategoryId = FK_inventoryCategoryId;
     }
 
     @Id
@@ -34,52 +48,85 @@ public class StockWithdrawalTmp {
     @Column
     private int id;
     @Column
-    private int transId;
-    @Column
-    private java.sql.Date transDate;
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "deptId")
-//    private Department department;
-    @Column
-    @NotEmpty
-    private String purpose;
-    @Column
     private String description;
     @Column
-    private int invLocId;
+    private String purpose;
     @Column
-    private int invCatId;
-//    @OneToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "userId")
-//    private User user;
-//    @OneToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "approvedBy")
-//    private User approvedBy;
-//    @OneToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "receivedBy")
-//    private User receivedBy;
-//    @OneToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "requisitioned")
-//    private User requisitioned;
-//    @OneToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "preparedBy")
-//    private User preparedBy;
-//    @OneToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "notedBy")
-//    private User notedBy;
-//    @OneToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "issuedBy")
-//    private User issuedBy;
-    @Column
-    private int docStatusId;
+    private String referenceNumber;
     @Column
     private String remarks;
-//    @Enumerated(EnumType.ORDINAL)
-//    private RequestType requestType;
     @Column
-    private String swNumber;
-//    @OneToMany(mappedBy = "stockWithdrawal")
-//    private List<StockWithdrawalDetailTmp> details;
+    private Date transactionDate;
+    @Column
+    private int FK_transactionId;
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="FK_approvedBy")
+    private User approvedBy;
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="FK_departmentId")
+    private User department;
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="FK_issuedBy")
+    private User issuedBy;
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="FK_notedBy", nullable = true, columnDefinition = "0")
+    private User notedBy;
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="FK_preparedBy")
+    private User preparedBy;
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="FK_receivedBy")
+    private User receivedBy;
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="FK_requisitioned")
+    private User requisitioned;
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="FK_userId")
+    private User user;
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="FK_documentStatusId")
+    private User documentStatus;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stockWithdrawal")
+    private List<StockWithdrawalDetailTmp> details;
+
+
+    // GETTERS & SETTERS
+
+
+    public List<StockWithdrawalDetailTmp> getDetails() {
+        return details;
+    }
+
+    public void setDetails(List<StockWithdrawalDetailTmp> details) {
+        this.details = details;
+    }
 
     public int getId() {
         return id;
@@ -87,38 +134,6 @@ public class StockWithdrawalTmp {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getTransId() {
-        return transId;
-    }
-
-    public void setTransId(int transId) {
-        this.transId = transId;
-    }
-
-    public Date getTransDate() {
-        return transDate;
-    }
-
-    public void setTransDate(Date transDate) {
-        this.transDate = transDate;
-    }
-
-//    public Department getDepartment() {
-//        return department;
-//    }
-//
-//    public void setDepartment(Department department) {
-//        this.department = department;
-//    }
-
-    public String getPurpose() {
-        return purpose;
-    }
-
-    public void setPurpose(String purpose) {
-        this.purpose = purpose;
     }
 
     public String getDescription() {
@@ -129,84 +144,20 @@ public class StockWithdrawalTmp {
         this.description = description;
     }
 
-    public int getInvLocId() {
-        return invLocId;
+    public String getPurpose() {
+        return purpose;
     }
 
-    public void setInvLocId(int invLocId) {
-        this.invLocId = invLocId;
+    public void setPurpose(String purpose) {
+        this.purpose = purpose;
     }
 
-    public int getInvCatId() {
-        return invCatId;
+    public String getReferenceNumber() {
+        return referenceNumber;
     }
 
-    public void setInvCatId(int invCatId) {
-        this.invCatId = invCatId;
-    }
-
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
-//
-//    public User getApprovedBy() {
-//        return approvedBy;
-//    }
-//
-//    public void setApprovedBy(User approvedBy) {
-//        this.approvedBy = approvedBy;
-//    }
-//
-//    public User getReceivedBy() {
-//        return receivedBy;
-//    }
-//
-//    public void setReceivedBy(User receivedBy) {
-//        this.receivedBy = receivedBy;
-//    }
-//
-//    public User getRequisitioned() {
-//        return requisitioned;
-//    }
-//
-//    public void setRequisitioned(User requisitioned) {
-//        this.requisitioned = requisitioned;
-//    }
-//
-//    public User getPreparedBy() {
-//        return preparedBy;
-//    }
-//
-//    public void setPreparedBy(User preparedBy) {
-//        this.preparedBy = preparedBy;
-//    }
-//
-//    public User getNotedBy() {
-//        return notedBy;
-//    }
-//
-//    public void setNotedBy(User notedBy) {
-//        this.notedBy = notedBy;
-//    }
-//
-//    public User getIssuedBy() {
-//        return issuedBy;
-//    }
-//
-//    public void setIssuedBy(User issuedBy) {
-//        this.issuedBy = issuedBy;
-//    }
-
-    public int getDocStatusId() {
-        return docStatusId;
-    }
-
-    public void setDocStatusId(int docStatusId) {
-        this.docStatusId = docStatusId;
+    public void setReferenceNumber(String referenceNumber) {
+        this.referenceNumber = referenceNumber;
     }
 
     public String getRemarks() {
@@ -217,28 +168,137 @@ public class StockWithdrawalTmp {
         this.remarks = remarks;
     }
 
-//    public RequestType getRequestType() {
-//        return requestType;
-//    }
-//
-//    public void setRequestType(RequestType requestType) {
-//        this.requestType = requestType;
-//    }
-
-    public String getSwNumber() {
-        return swNumber;
+    public Date getTransactionDate() {
+        return transactionDate;
     }
 
-    public void setSwNumber(String swNumber) {
-        this.swNumber = swNumber;
+    public void setTransactionDate(Date transactionDate) {
+        this.transactionDate = transactionDate;
     }
 
-//    public List<StockWithdrawalDetailTmp> getDetails() {
-//        return details;
-//    }
-//
-//    public void setDetails(List<StockWithdrawalDetailTmp> details) {
-//        this.details = details;
-//    }
+    public int getFK_transactionId() {
+        return FK_transactionId;
+    }
+
+    public void setFK_transactionId(int FK_transactionId) {
+        this.FK_transactionId = FK_transactionId;
+    }
+
+
+    // NAVIGATION PROPERTIES (GETTERS & SETTERS)
+
+    public User getApprovedBy() {
+        return approvedBy;
+    }
+
+    public void setApprovedBy(User approvedBy) {
+        this.approvedBy = approvedBy;
+    }
+
+    public User getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(User department) {
+        this.department = department;
+    }
+
+    public User getIssuedBy() {
+        return issuedBy;
+    }
+
+    public void setIssuedBy(User issuedBy) {
+        this.issuedBy = issuedBy;
+    }
+
+    public User getNotedBy() {
+        return notedBy;
+    }
+
+    public void setNotedBy(User notedBy) {
+        this.notedBy = notedBy;
+    }
+
+    public User getPreparedBy() {
+        return preparedBy;
+    }
+
+    public void setPreparedBy(User preparedBy) {
+        this.preparedBy = preparedBy;
+    }
+
+    public User getReceivedBy() {
+        return receivedBy;
+    }
+
+    public void setReceivedBy(User receivedBy) {
+        this.receivedBy = receivedBy;
+    }
+
+    public User getRequisitioned() {
+        return requisitioned;
+    }
+
+    public void setRequisitioned(User requisitioned) {
+        this.requisitioned = requisitioned;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getDocumentStatus() {
+        return documentStatus;
+    }
+
+    public void setDocumentStatus(User documentStatus) {
+        this.documentStatus = documentStatus;
+    }
+
+
+    // ENUMS
+
+    @Column
+    private int requestType;
+
+    public RequestType getRequestType() {
+        return RequestType.parse(this.requestType);
+    }
+
+    public void setRequestType(RequestType requestType) {
+        this.requestType = requestType.getId();
+    }
+
+    @Column
+    private int FK_inventoryCategoryId;
+
+    public InventoryCategory getInventoryCategory() {
+        return InventoryCategory.parse(this.FK_inventoryCategoryId);
+    }
+
+    public void setInventoryCategory(InventoryCategory category) {
+        this.FK_inventoryCategoryId = category.getId();
+    }
+
+    // OVERRIDE
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
 }
 

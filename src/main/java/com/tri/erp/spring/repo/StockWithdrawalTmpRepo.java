@@ -13,5 +13,5 @@ import java.util.List;
  */
 public interface StockWithdrawalTmpRepo extends JpaRepository<StockWithdrawalTmp, Integer> {
     @Transactional
-    public List<StockWithdrawalTmp> findByDocStatusId(int id);
+    public List<StockWithdrawalTmp> findByDocumentStatus(int id);
 }
