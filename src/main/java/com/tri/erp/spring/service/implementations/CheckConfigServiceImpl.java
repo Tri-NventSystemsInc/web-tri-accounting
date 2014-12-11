@@ -7,6 +7,7 @@ import com.tri.erp.spring.repo.CheckConfigRepo;
 import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.reponse.CreateRoleResponse;
 import com.tri.erp.spring.service.interfaces.CheckConfigService;
+import com.tri.erp.spring.validator.CheckConfigValidator;
 import com.tri.erp.spring.validator.ItemValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -39,6 +40,11 @@ public class CheckConfigServiceImpl implements CheckConfigService {
     }
 
     @Override
+    public CheckConfig findByCode(String code) {
+        return checkConfigRepo.findOneByCode(code);
+    }
+
+    @Override
     @Transactional
     public CreateResponse processUpdate(CheckConfig config, BindingResult bindingResult, MessageSource messageSource) {
         return processCreate(config, bindingResult, messageSource);
@@ -50,9 +56,9 @@ public class CheckConfigServiceImpl implements CheckConfigService {
         CreateResponse response = new CreateRoleResponse();
         MessageFormatter messageFormatter = new MessageFormatter(bindingResult, messageSource, response);
 
-//        ItemValidator validator = new ItemValidator();
-//        validator.setService(this);
-//        validator.validate(config, bindingResult);
+        CheckConfigValidator validator = new CheckConfigValidator();
+        validator.setService(this);
+        validator.validate(config, bindingResult);
 
         if (bindingResult.hasErrors()) {
             messageFormatter.buildErrorMessages();

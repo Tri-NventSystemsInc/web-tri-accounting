@@ -18,64 +18,64 @@ public class CheckConfig {
     @Column
     private Integer id;
 
-    @Column
+    @Column(nullable = false)
     String code;
 
-    @Column
+    @Column(nullable = false)
     Integer dateX;
 
-    @Column
+    @Column(nullable = false)
     Integer dateY;
 
-    @Column
+    @Column(nullable = false)
     Integer payeeX;
 
-    @Column
+    @Column(nullable = false)
     Integer payeeY;
 
-    @Column
+    @Column(nullable = false)
     Integer payeeW;
 
-    @Column
+    @Column(nullable = false)
     Integer numericAmountX;
 
-    @Column
+    @Column(nullable = false)
     Integer numericAmountY;
 
-    @Column
+    @Column(nullable = false)
     Integer alphaAmountX;
 
-    @Column
+    @Column(nullable = false)
     Integer alphaAmountY;
 
-    @Column
+    @Column(nullable = false)
     Integer alphaAmountW;
 
-    @Column
+    @Column(nullable = false)
     Integer sig1X;
 
-    @Column
+    @Column(nullable = false)
     Integer sig1Y;
 
-    @Column
+    @Column(nullable = false)
     Integer sig2X;
 
-    @Column
+    @Column(nullable = false)
     Integer sig2Y;
 
-    @Column
+    @Column(nullable = false)
     Integer checkNoX;
 
-    @Column
+    @Column(nullable = false)
     Integer checkNoY;
 
-    @Column
+    @Column(nullable = false)
     String checkNoPrefix;
 
-    @Column
+    @Column(nullable = false)
     Boolean withSigner;
 
-    @Column
+    @Column(nullable = false)
     Boolean showDesignation;
 
     @JsonIgnoreProperties(ignoreUnknown = true)

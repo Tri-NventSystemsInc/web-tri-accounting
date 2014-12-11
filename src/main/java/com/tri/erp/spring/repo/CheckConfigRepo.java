@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 
 public interface CheckConfigRepo extends JpaRepository<CheckConfig, Integer> {
-
+    public CheckConfig findOneByCode(String codes);
 }
