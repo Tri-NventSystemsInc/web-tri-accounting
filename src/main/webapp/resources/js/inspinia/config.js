@@ -235,6 +235,9 @@ function config($stateProvider, $urlRouterProvider) {
                             name: "check",
                             files: [
                                 "/resources/js/app/module/check.js",
+                                "/resources/js/app/factories/business-segment-factory.js",
+                                "/resources/js/app/factories/account-factory.js",
+                                "/resources/js/app/directives/account-browser-s.js",
                                 "/resources/js/app/factories/check-factory.js"
                             ]
                         }
