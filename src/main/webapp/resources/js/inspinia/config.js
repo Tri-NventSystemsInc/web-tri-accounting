@@ -226,7 +226,7 @@ function config($stateProvider, $urlRouterProvider) {
 
         .state('check', {
             url: '/checks',
-            templateUrl: '/check',
+            templateUrl: '/admin/check',
             controller: 'checkListCtrl',
             resolve: {
                 store: function ($ocLazyLoad) {
@@ -245,19 +245,19 @@ function config($stateProvider, $urlRouterProvider) {
 
         .state('check.detail', {
             url: '/{checkId}/detail',
-            templateUrl: '/check/check-details-page',
+            templateUrl: '/admin/check/check-details-page',
             controller: 'checkDetailsCtrl'
         })
 
         .state('check.edit', {
             url: '/{checkId}/edit',
-            templateUrl: '/check/edit-check-page',
+            templateUrl: '/admin/check/edit-check-page',
             controller: 'addEditCheckCtrl'
         })
 
         .state('check.new', {
             url: '/new',
-            templateUrl: '/check/edit-check-page',
+            templateUrl: '/admin/check/edit-check-page',
             controller: 'addEditCheckCtrl'
         })
 

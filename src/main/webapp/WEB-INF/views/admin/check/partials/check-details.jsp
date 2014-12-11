@@ -3,6 +3,7 @@
         <a ng-click="main()" class="btn btn-primary">Back to list</a>
         <a ui-sref="check.new" class="btn btn-primary">Add</a>
         <a ui-sref="check.edit({checkId: checkId})" class="btn btn-primary">Edit</a>
+        <a target="_blank" href="{{url}}" ng-mousedown="print()" class="btn btn-primary">Test Print</a>
     </div>
 </div>
 <div style="margin-top: 20px;"></div>

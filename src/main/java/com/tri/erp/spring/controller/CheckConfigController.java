@@ -1,33 +1,24 @@
 package com.tri.erp.spring.controller;
 
 import com.tri.erp.spring.model.CheckConfig;
-import com.tri.erp.spring.model.Item;
-import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.service.interfaces.CheckConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by TSI Admin on 12/8/2014.
  */
 
 @Controller
-@RequestMapping(value = "/check")
+@RequestMapping(value = "/admin/check")
 public class CheckConfigController {
-
-    private final String BASE_PATH = "admin/check/partials/";
-
-    @Autowired
-    MessageSource messageSource;
 
     @Autowired
     CheckConfigService checkConfigService;
+
+    private final String BASE_PATH = "admin/check/partials/";
 
     // view providers
     @RequestMapping(method = RequestMethod.GET)
@@ -45,31 +36,15 @@ public class CheckConfigController {
         return BASE_PATH + "add-edit-check";
     }
 
+    @RequestMapping(value = "/print-check-page/{checkId}", method = RequestMethod.GET)
+    public ModelAndView getPrintCheckPage(@PathVariable Integer checkId) {
 
-    // data providers and processors
+        ModelAndView modelAndView = new ModelAndView(BASE_PATH + "print-preview-check");
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    @ResponseBody
-    public CreateResponse updateCheckConfig(@Valid @RequestBody CheckConfig config, BindingResult bindingResult) {
-        return checkConfigService.processUpdate(config, bindingResult, messageSource);
+        CheckConfig checkConfig = checkConfigService.findById(checkId);
+        modelAndView.addObject("checkConfig", checkConfig);
+
+        return modelAndView;
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    @ResponseBody
-    public CreateResponse createCheckConfig(@Valid @RequestBody CheckConfig config, BindingResult bindingResult) {
-        return checkConfigService.processCreate(config, bindingResult, messageSource);
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public CheckConfig getCheck(@PathVariable Integer id) {
-        return checkConfigService.findById(id);
-    }
-
-
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    @ResponseBody
-    public List<CheckConfig> getCheckConfigs() {
-        return checkConfigService.findAll();
-    }
 }

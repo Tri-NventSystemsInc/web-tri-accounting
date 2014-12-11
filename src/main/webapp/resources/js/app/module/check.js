@@ -8,6 +8,25 @@ var checkApp = angular.module('check', [
 ]);
 
 
+checkApp.controller('printSampleCheckCtrl', ['$scope', '$stateParams', '$http', 'checkFactory',
+    function($scope, $stateParams, $http, checkFactory) {
+
+    $scope.checkId = $stateParams.checkId;
+
+    checkFactory.getCheck($scope.checkId).success(function (data) {
+        if (data === '' || data.id <= 0) {    // not found
+            window.location.hash = '#/checks';
+        } else {
+            console.log(data);
+            $scope.check = data;
+
+            console.log($scope.check);
+        }
+    })
+
+
+}]);
+
 checkApp.controller('checkListCtrl', ['$scope', '$http', 'checkFactory', function($scope,  $http, checkFactory) {
 
         checkFactory.getChecks().success(function (data) { $scope.configs = data; });
@@ -107,7 +126,9 @@ checkApp.controller('checkDetailsCtrl', ['$scope', '$state', '$stateParams', '$h
         if(!($stateParams.checkId === undefined)) {
             $scope.title = 'Check details';
 
+
             $scope.checkId = $stateParams.checkId;
+            $scope.url = '/admin/check/print-check-page/' + $scope.checkId;
 
             checkFactory.getCheck( $scope.checkId) .success(function (data) {
 
