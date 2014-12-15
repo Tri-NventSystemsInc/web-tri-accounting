@@ -7,7 +7,7 @@
     </jsp:attribute>
     <jsp:attribute name="body">
         <div ng-app="stockWithApp">
-            <table class="table h6" ng-controller="StockWithController">
+            <table class="table h6" ng-controller="StockWithdrawalTmpController">
                 <thead>
                 <tr>
                     <th>Reference No</th>
@@ -30,8 +30,8 @@
 <script>
     var stockWithApp = angular.module('stockWithApp', []);
 
-    stockWithApp.controller('StockWithController', function ($scope, $http) {
-        $http.get('stockwith/all').success(function(data) {
+    stockWithApp.controller('StockWithdrawalTmpController', function ($scope, $http) {
+        $http.get('inventory/stockwithdrawal/all').success(function(data) {
             $scope.stockList = data;
         });
     });

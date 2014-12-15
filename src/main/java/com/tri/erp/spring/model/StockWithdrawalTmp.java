@@ -4,11 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.tri.erp.spring.model.enums.DocumentStatus;
 import com.tri.erp.spring.model.enums.InventoryCategory;
 import com.tri.erp.spring.model.enums.RequestType;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.persistence.criteria.Fetch;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
@@ -17,7 +20,6 @@ import java.util.List;
  * Created by Ryan D. Repe on 10/5/2014.
  */
 @Entity
-@Table
 public class StockWithdrawalTmp implements Serializable {
     public StockWithdrawalTmp() {
     }
@@ -62,7 +64,7 @@ public class StockWithdrawalTmp implements Serializable {
     @JsonIgnoreProperties(ignoreUnknown = true)
     @NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="FK_approvedBy")
+    @JoinColumn(name="FK_approvedByUserId")
     private User approvedBy;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -74,37 +76,37 @@ public class StockWithdrawalTmp implements Serializable {
     @JsonIgnoreProperties(ignoreUnknown = true)
     @NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="FK_issuedBy")
+    @JoinColumn(name="FK_issuedByUserId")
     private User issuedBy;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     @NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="FK_notedBy", nullable = true, columnDefinition = "0")
+    @JoinColumn(name="FK_notedByUserId", nullable = true, columnDefinition = "0")
     private User notedBy;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     @NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="FK_preparedBy")
+    @JoinColumn(name="FK_preparedByUserId")
     private User preparedBy;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     @NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="FK_receivedBy")
+    @JoinColumn(name="FK_receivedByUserId")
     private User receivedBy;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     @NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="FK_requisitioned")
+    @JoinColumn(name="FK_requisitionedUserId")
     private User requisitioned;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     @NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="FK_userId")
+    @JoinColumn(name="FK_CreatedByUserId")
     private User user;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -113,7 +115,8 @@ public class StockWithdrawalTmp implements Serializable {
     @JoinColumn(name="FK_documentStatusId")
     private User documentStatus;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stockWithdrawal")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "stockWithdrawal",fetch = FetchType.LAZY)
     private List<StockWithdrawalDetailTmp> details;
 
 

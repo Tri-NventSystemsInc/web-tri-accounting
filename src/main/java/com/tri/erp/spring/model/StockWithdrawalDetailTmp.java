@@ -13,19 +13,7 @@ import java.math.BigDecimal;
  * Created by Ryan D. Repe on 10/5/2014.
  */
 @Entity
-@Table
 public class StockWithdrawalDetailTmp implements Serializable {
-
-    public StockWithdrawalDetailTmp() {
-    }
-
-    public StockWithdrawalDetailTmp(BigDecimal quantity, Item item, StockWithdrawalTmp stockWithdrawal, UnitMeasure unit, int FK_inventoryCategoryId) {
-        this.quantity = quantity;
-        this.item = item;
-        this.stockWithdrawal = stockWithdrawal;
-        this.unit = unit;
-        this.FK_inventoryCategoryId = FK_inventoryCategoryId;
-    }
 
     @Id
     @GeneratedValue
@@ -40,10 +28,12 @@ public class StockWithdrawalDetailTmp implements Serializable {
     @JoinColumn(name="FK_itemId")
     private Item item;
 
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    @NotFound(action = NotFoundAction.IGNORE)
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="FK_stockWithdrawalId")
+//    @JsonIgnoreProperties(ignoreUnknown = true)
+//    @NotFound(action = NotFoundAction.IGNORE)
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="FK_stockWithdrawalId")
+@ManyToOne(optional = false)
+@JoinColumn(name = "FK_stockWithdrawalId", referencedColumnName = "id")
     private StockWithdrawalTmp stockWithdrawal;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -51,6 +41,17 @@ public class StockWithdrawalDetailTmp implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="FK_unitId")
     private UnitMeasure unit;
+
+    public StockWithdrawalDetailTmp() {
+    }
+
+    public StockWithdrawalDetailTmp(BigDecimal quantity, Item item, StockWithdrawalTmp stockWithdrawal, UnitMeasure unit, int FK_inventoryCategoryId) {
+        this.quantity = quantity;
+        this.item = item;
+        this.stockWithdrawal = stockWithdrawal;
+        this.unit = unit;
+        this.FK_inventoryCategoryId = FK_inventoryCategoryId;
+    }
 
     // GETTERS & SETTERS
 

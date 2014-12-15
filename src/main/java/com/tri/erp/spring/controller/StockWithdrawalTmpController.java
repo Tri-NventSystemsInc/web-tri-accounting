@@ -18,7 +18,7 @@ import java.util.List;
  * Created by TSI Admin on 9/9/2014.
  */
 @Controller
-@RequestMapping(value = "/inv/stockwith")
+@RequestMapping(value = "/inventory")
 public class StockWithdrawalTmpController {
 
     @Autowired
@@ -29,10 +29,10 @@ public class StockWithdrawalTmpController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(){
-        return "inv/stockwith/main";
+        return "inventory/stockwithdrawal/main";
     }
 
-    @RequestMapping(value = "/all")
+    @RequestMapping(value = "/stockwithdrawal/all")
     @ResponseBody
     public List<StockWithdrawalTmp> getStockWithdrawalTmps(){
         return tmpService.findAll();
