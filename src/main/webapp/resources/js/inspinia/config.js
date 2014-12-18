@@ -209,6 +209,11 @@ function config($stateProvider, $urlRouterProvider) {
             }
         })
 
+        .state('notification', {
+            url: '/notifications',
+            templateUrl: '/common//notifications-page'
+        })
+
         .state('profile', {
             url:  '/user/profile',
             templateUrl:  '/user/profile-page',

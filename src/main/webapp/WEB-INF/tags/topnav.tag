@@ -35,8 +35,8 @@
                 <ul class="dropdown-menu dropdown-alerts">
                     <li>
                         <div class="text-center link-block">
-                            <a ui-sref="notifications_tooltips">
-                                <strong>See All Pendings</strong>
+                            <a ui-sref="notification">
+                                <strong>See All</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </div>
