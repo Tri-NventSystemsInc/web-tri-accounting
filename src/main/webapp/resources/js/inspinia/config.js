@@ -130,12 +130,7 @@ function config($stateProvider, $urlRouterProvider) {
                     return $ocLazyLoad.load(
                         {
                             name: "user",
-                            files: [
-                                "/resources/js/app/module/user.js",
-                                "/resources/js/app/factories/user-factory.js",
-                                "/resources/js/app/factories/role-factory.js",
-                                "/resources/js/app/factories/menu-factory.js"
-                            ]
+                            files: getUserDependencies("/resources/js/app/module/user.js")
                         }
                     )
                 }
@@ -214,9 +209,80 @@ function config($stateProvider, $urlRouterProvider) {
             }
         })
 
+        .state('profile', {
+            url:  '/user/profile',
+            templateUrl:  '/user/profile-page',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "profile",
+                            files: getUserDependencies("/resources/js/app/module/profile.js")
+                        }
+                    )
+                }
+            }
+        })
+
+        .state('check', {
+            url: '/checks',
+            templateUrl: '/admin/check',
+            controller: 'checkListCtrl',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "check",
+                            files: [
+                                "/resources/js/app/module/check.js",
+                                "/resources/js/app/factories/business-segment-factory.js",
+                                "/resources/js/app/factories/account-factory.js",
+                                "/resources/js/app/directives/account-browser-s.js",
+                                "/resources/js/app/factories/check-factory.js"
+                            ]
+                        }
+                    )
+                }
+            }
+        })
+
+        .state('check.detail', {
+            url: '/{checkId}/detail',
+            templateUrl: '/admin/check/check-details-page',
+            controller: 'checkDetailsCtrl'
+        })
+
+        .state('check.edit', {
+            url: '/{checkId}/edit',
+            templateUrl: '/admin/check/edit-check-page',
+            controller: 'addEditCheckCtrl'
+        })
+
+        .state('check.new', {
+            url: '/new',
+            templateUrl: '/admin/check/edit-check-page',
+            controller: 'addEditCheckCtrl'
+        })
+
+        .state('profile.edit', {
+            url:  '/edit',
+            templateUrl:  '/user/edit-profile-page'
+        })
+
         .state('dashboard', {
             url:  '/main'
         })
+
+
+}
+
+function getUserDependencies(moduleJs) {
+     return [
+         moduleJs,
+        "/resources/js/app/factories/user-factory.js",
+        "/resources/js/app/factories/role-factory.js",
+        "/resources/js/app/factories/menu-factory.js"
+    ]
 }
 
 function decorator($provide) {

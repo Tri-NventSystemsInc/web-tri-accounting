@@ -37,7 +37,7 @@ public class HomeController {
     @RequestMapping(value = {"/", "index"}, method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("menus", menuService.findAll());
+        modelAndView.addObject("menus", menuService.findAllByUser());
 
         return modelAndView;
     }

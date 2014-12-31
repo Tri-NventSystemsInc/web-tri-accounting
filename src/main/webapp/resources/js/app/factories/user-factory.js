@@ -8,5 +8,9 @@ userManagementFactory.factory('userFactory', ['$http', function($http) {
     this.getUser = function (userId) {
         return $http.get('/user/'+userId);
     };
+
+    this.getUserProfile = function () {
+        return $http.get('/user/profile');
+    };
     return this;
 }]);
