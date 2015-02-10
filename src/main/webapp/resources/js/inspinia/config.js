@@ -63,7 +63,8 @@ function config($stateProvider, $urlRouterProvider) {
                                 "/resources/js/app/factories/business-segment-factory.js",
                                 "/resources/js/app/factories/account-factory.js",
                                 "/resources/js/app/directives/account-browser-s.js",
-                                "/resources/js/app/factories/item-factory.js"
+                                "/resources/js/app/factories/item-factory.js",
+                                "/resources/js/app/factories/unit-factory.js"
                             ]
                         }
                     )

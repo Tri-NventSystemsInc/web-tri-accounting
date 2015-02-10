@@ -2,6 +2,7 @@ var itemApp = angular.module('item', [
     'cmnAccountBrowserWithSegmentApp',
     'jQueryFnWrapperService',
     'itemFactory',
+    'unitFactory',
     'errorHandlerService',
     'cmnFormErrorApp',
     'utilService'
@@ -21,13 +22,18 @@ itemApp.controller('itemListCtrl', ['$scope', '$http', 'itemFactory',
     }]);
 
 itemApp.controller('addEditItemCtrl', ['$scope', '$stateParams', '$http', 'itemFactory', 'errorToElementBinder',
-    'csrf',
-    function($scope, $stateParams, $http, itemFactory, errorToElementBinder, csrf) {
+    'csrf', 'unitFactory',
+    function($scope, $stateParams, $http, itemFactory, errorToElementBinder, csrf, unitFactory) {
 
-        $scope.units = [
-            {id:1, code: 'M', description: 'Meter'},
-            {id:2, code: 'PCS', description: 'Pieces'}
-        ];
+        $scope.units = [];
+        unitFactory.getUnits()
+            .success(function (data) {
+                $scope.units = data;
+            })
+            .error(function (error) {
+                toastr.error('Failed to load units!');
+            });
+
         $scope.title = 'Add item';
         $scope.save = 'Save';
         $scope.showForm = true;
