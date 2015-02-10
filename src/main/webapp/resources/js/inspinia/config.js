@@ -274,6 +274,25 @@ function config($stateProvider, $urlRouterProvider) {
             templateUrl:  '/user/edit-profile-page'
         })
 
+        .state('unit', {
+            url: '/unit-measures',
+            templateUrl: '/admin/unit-measures',
+            controller: 'unitListCtrl',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "unit",
+                            files: [
+                                "/resources/js/app/module/unit.js"
+                            ]
+                        }
+                    )
+                }
+            }
+        })
+
+
         .state('dashboard', {
             url:  '/main'
         })
