@@ -2,7 +2,7 @@
 <div ng-controller="addEditUnitCtrl" style="margin-bottom: 50px;">
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <button ui-sref="check" class="btn btn-primary">Back to list</button>
+            <button ui-sref="unit" class="btn btn-primary">Back to list</button>
         </div>
     </div>
     <div class="row-top-buffer"></div>

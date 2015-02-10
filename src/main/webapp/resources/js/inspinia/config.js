@@ -302,8 +302,12 @@ function config($stateProvider, $urlRouterProvider) {
 
         .state('unit.edit', {
             url: '/{unitId}/edit',
-            templateUrl: '/admin/unit-measures/new-unit-page',
-            controller: 'addEditUnitCtrl'
+            templateUrl: '/admin/unit-measures/new-unit-page'
+        })
+
+        .state('unit.new', {
+            url: '/new',
+            templateUrl: '/admin/unit-measures/new-unit-page'
         })
 
         .state('dashboard', {
