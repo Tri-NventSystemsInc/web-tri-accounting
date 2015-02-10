@@ -294,6 +294,11 @@ function config($stateProvider, $urlRouterProvider) {
             }
         })
 
+        .state('unit.detail', {
+            url: '/{unitId}/detail',
+            templateUrl: '/admin/unit-measures/unit-details-page',
+            controller: 'unitDetailsCtrl'
+        })
 
         .state('dashboard', {
             url:  '/main'

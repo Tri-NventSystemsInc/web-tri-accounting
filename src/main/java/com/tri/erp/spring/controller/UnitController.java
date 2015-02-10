@@ -33,4 +33,10 @@ public class UnitController {
     public List<UnitMeasure> getUnits() {
         return unitMeasureService.findAll();
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public UnitMeasure getUnit(@PathVariable Integer id) {
+        return unitMeasureService.findById(id);
+    }
 }

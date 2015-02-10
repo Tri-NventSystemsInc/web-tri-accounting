@@ -14,4 +14,5 @@ import java.util.List;
  */
 public interface UnitMeasureService {
     public List<UnitMeasure> findAll();
+    public UnitMeasure findById(Integer id);
 }

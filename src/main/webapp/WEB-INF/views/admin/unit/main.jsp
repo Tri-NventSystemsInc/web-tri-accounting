@@ -46,8 +46,8 @@
                         <td style="width: 7%;">{{unit.code}}</td>
                         <td style="width: 60%;">{{unit.description}}</td>
                         <td style='width: 4%; vertical-align: middle'>
-                            <a style='padding: 0' title='View' ui-sref=".detail({checkId:config.id})"><i class='fa fa-search'></i></a>
-                            <a style='padding: 0' title='Edit' ui-sref=".edit({checkId:config.id})"><i class='fa fa-edit'></i></a>
+                            <a style='padding: 0' title='View' ui-sref=".detail({unitId:unit.id})"><i class='fa fa-search'></i></a>
+                            <a style='padding: 0' title='Edit' ui-sref=".edit({unitId:unit.id})"><i class='fa fa-edit'></i></a>
                         </td>
                     </tr>
                     <tr ng-show="uns.length == 0"><td colspan="4" align="center">No records found</td></tr>

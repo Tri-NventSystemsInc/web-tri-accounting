@@ -27,4 +27,9 @@ public class UnitOfMeasureManagementController {
     public String index() {
         return "admin/unit/main";
     }
+
+    @RequestMapping(value = "/unit-details-page", method = RequestMethod.GET)
+    public String unitDetails() {
+        return BASE_PATH + "unit-details";
+    }
 }

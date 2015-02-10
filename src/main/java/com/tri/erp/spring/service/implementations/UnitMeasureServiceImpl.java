@@ -35,4 +35,9 @@ public class UnitMeasureServiceImpl implements UnitMeasureService {
     public List<UnitMeasure> findAll() {
         return unitMeasureRepo.findAll();
     }
+
+    @Override
+    public UnitMeasure findById(Integer id) {
+        return unitMeasureRepo.findOne(id);
+    }
 }
