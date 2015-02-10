@@ -53,3 +53,76 @@ unitOfMeasureApp.controller('unitDetailsCtrl', ['$scope', '$state', '$stateParam
             window.location.hash = '#/unit-measures/' + $scope.unitId + "/edit";
         }
     }]);
+
+
+unitOfMeasureApp.controller('addEditUnitCtrl', ['$scope', '$state', '$stateParams', '$http', 'unitFactory',
+    'errorToElementBinder', 'csrf', 'routeUtil',
+    function($scope, $state, $stateParams, $http, unitFactory, errorToElementBinder, csrf, routeUtil) {
+
+    $scope.main = function() {
+        routeUtil.gotoMain($state);
+    }
+
+    $scope.title = 'Add unit';
+    $scope.save = 'Save';
+    $scope.showForm = true;
+
+    $scope.unit = {};
+
+    var resourceURI = '/unit/create';
+    if(!($stateParams.unitId === undefined)) {  // update mode
+        $scope.title = 'Update unit';
+        $scope.showForm = false;
+
+        $scope.unitId = $stateParams.unitId;
+
+        unitFactory.getUnit($scope.unitId).success(function (data) {
+            if (data === '' || data.id <= 0) {    // not found
+                window.location.hash = '#/unit-measures';
+            } else {
+                $scope.unit = data;
+                $scope.showForm = true;
+            }
+        })
+            .error(function (error) {
+                toastr.warning('Unit not found!');
+                window.location.hash = '#/unit-measures';
+            });
+
+        resourceURI = '/unit/update';
+    }
+
+
+    $scope.processForm = function() {
+
+        $scope.save ='Saving...';
+
+        $scope.errors = {};
+        $scope.submitting = true;
+        csrf.setCsrfToken();
+
+        console.log($scope.unit);
+
+        var res = $http.post(resourceURI, $scope.unit);
+        res.success(function(data) {
+            if (!data.success) {
+                $scope.errors = errorToElementBinder.bindToElements(data, $scope.errors);
+                $scope.save ='Save';
+                $scope.submitting = false;
+                toastr.warning('Error found.');
+            } else {
+                window.location.hash = '#/unit-measures/detail/' + data.modelId;
+                toastr.success('Unit successfully saved!');
+            }
+        });
+        res.error(function(data, status, headers, config) {
+            toastr.error('Something went wrong!');
+            $scope.save ='Save';
+            $scope.submitting = false;
+        });
+    }
+
+    $scope.showError = function(val) {
+        console.log(val);
+    }
+}]);

@@ -32,4 +32,9 @@ public class UnitOfMeasureManagementController {
     public String unitDetails() {
         return BASE_PATH + "unit-details";
     }
+
+    @RequestMapping(value = "/new-unit-page", method = RequestMethod.GET)
+    public String newUnit() {
+        return BASE_PATH + "add-edit-unit";
+    }
 }

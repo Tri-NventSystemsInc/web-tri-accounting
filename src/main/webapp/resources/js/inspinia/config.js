@@ -300,6 +300,12 @@ function config($stateProvider, $urlRouterProvider) {
             controller: 'unitDetailsCtrl'
         })
 
+        .state('unit.edit', {
+            url: '/{unitId}/edit',
+            templateUrl: '/admin/unit-measures/new-unit-page',
+            controller: 'addEditUnitCtrl'
+        })
+
         .state('dashboard', {
             url:  '/main'
         })
