@@ -8,4 +8,5 @@ var unitOfMeasureApp = angular.module('unit', [
 
 
 unitOfMeasureApp.controller('unitListCtrl', ['$scope', '$http',  function($scope,  $http) {
+    $scope.units = {};
 }]);
