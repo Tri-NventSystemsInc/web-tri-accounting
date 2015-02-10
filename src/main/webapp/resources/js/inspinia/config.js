@@ -284,7 +284,8 @@ function config($stateProvider, $urlRouterProvider) {
                         {
                             name: "unit",
                             files: [
-                                "/resources/js/app/module/unit.js"
+                                "/resources/js/app/module/unit.js",
+                                "/resources/js/app/factories/unit-factory.js"
                             ]
                         }
                     )

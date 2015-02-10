@@ -1,4 +1,5 @@
 var unitOfMeasureApp = angular.module('unit', [
+    'unitFactory',
     'jQueryFnWrapperService',
     'errorHandlerService',
     'cmnFormErrorApp',
@@ -7,6 +8,13 @@ var unitOfMeasureApp = angular.module('unit', [
 
 
 
-unitOfMeasureApp.controller('unitListCtrl', ['$scope', '$http',  function($scope,  $http) {
-    $scope.units = {};
+unitOfMeasureApp.controller('unitListCtrl', ['$scope', '$http', 'unitFactory', function($scope,  $http, unitFactory) {
+
+    unitFactory.getUnits()
+            .success(function (data) {
+                $scope.units = data;
+            })
+            .error(function (error) {
+                toastr.error('Failed to load units!');
+            });
 }]);
