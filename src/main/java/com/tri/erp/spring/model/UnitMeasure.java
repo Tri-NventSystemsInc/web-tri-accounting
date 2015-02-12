@@ -12,10 +12,10 @@ public class UnitMeasure {
     @Column
     private Integer id;
 
-    @Column
+    @Column(unique = true)
     private String code;
 
-    @Column
+    @Column(unique = true)
     private String description;
 
     public UnitMeasure(String code, String description) {

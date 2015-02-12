@@ -13,6 +13,7 @@ import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.service.interfaces.SupplierService;
 import com.tri.erp.spring.service.interfaces.UnitMeasureService;
 import com.tri.erp.spring.validator.SupplierValidator;
+import com.tri.erp.spring.validator.UnitMeasureValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
@@ -56,6 +57,10 @@ public class UnitMeasureServiceImpl implements UnitMeasureService {
         CreateResponse response = new CreateResponse();
         MessageFormatter messageFormatter = new MessageFormatter(bindingResult, messageSource, response);
 
+        UnitMeasureValidator validator = new UnitMeasureValidator();
+        validator.setService(this);
+        validator.validate(unit, bindingResult);
+
         if (bindingResult.hasErrors()) {
             messageFormatter.buildErrorMessages();
             response = messageFormatter.getResponse();
@@ -67,5 +72,15 @@ public class UnitMeasureServiceImpl implements UnitMeasureService {
             response.setSuccess(true);
         }
         return response;
+    }
+
+    @Override
+    public UnitMeasure findByCode(String str) {
+        return unitMeasureRepo.findOneByCode(str);
+    }
+
+    @Override
+    public UnitMeasure findByDescription(String str) {
+        return unitMeasureRepo.findOneByDescription(str);
     }
 }

@@ -21,7 +21,7 @@
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
-                        <input required maxlength="10" ng-model="unit.code" id="code" name="code" class="form-control"
+                        <input required maxlength="255" ng-model="unit.code" id="code" name="code" class="form-control"
                                type="text" placeholder="Enter unit code"/>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
-                        <input required maxlength="10" ng-model="unit.description" id="description" name="description" class="form-control"
+                        <input required maxlength="255" ng-model="unit.description" id="description" name="description" class="form-control"
                                type="text" placeholder="Enter unit description"/>
                     </div>
                 </div>

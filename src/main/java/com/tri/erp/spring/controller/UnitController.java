@@ -45,4 +45,10 @@ public class UnitController {
     public CreateResponse updateUnit(@Valid @RequestBody UnitMeasure unitMeasure, BindingResult bindingResult) {
         return unitMeasureService.processUpdate(unitMeasure, bindingResult, messageSource);
     }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @ResponseBody
+    public CreateResponse createUnit(@Valid @RequestBody UnitMeasure unitMeasure, BindingResult bindingResult) {
+        return unitMeasureService.processCreate(unitMeasure, bindingResult, messageSource);
+    }
 }

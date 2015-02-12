@@ -10,4 +10,6 @@ import java.util.List;
  * Created by TSI Admin on 11/11/2014.
  */
 public interface UnitMeasureRepo extends JpaRepository<UnitMeasure, Integer> {
+    public UnitMeasure findOneByCode(String str);
+    public UnitMeasure findOneByDescription(String str);
 }

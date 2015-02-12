@@ -17,4 +17,6 @@ public interface UnitMeasureService {
     public UnitMeasure findById(Integer id);
     public CreateResponse processUpdate(UnitMeasure unit, BindingResult bindingResult, MessageSource messageSource);
     public CreateResponse processCreate(UnitMeasure unit, BindingResult bindingResult, MessageSource messageSource);
+    public UnitMeasure findByCode(String str);
+    public UnitMeasure findByDescription(String str);
 }
