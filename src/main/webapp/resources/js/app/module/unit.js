@@ -111,7 +111,7 @@ unitOfMeasureApp.controller('addEditUnitCtrl', ['$scope', '$state', '$stateParam
                 $scope.submitting = false;
                 toastr.warning('Error found.');
             } else {
-                window.location.hash = '#/unit-measures/detail/' + data.modelId;
+                window.location.hash = '#/unit-measures/' + data.modelId + '/detail';
                 toastr.success('Unit successfully saved!');
             }
         });

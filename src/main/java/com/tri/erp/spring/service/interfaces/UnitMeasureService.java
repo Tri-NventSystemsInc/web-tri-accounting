@@ -15,4 +15,6 @@ import java.util.List;
 public interface UnitMeasureService {
     public List<UnitMeasure> findAll();
     public UnitMeasure findById(Integer id);
+    public CreateResponse processUpdate(UnitMeasure unit, BindingResult bindingResult, MessageSource messageSource);
+    public CreateResponse processCreate(UnitMeasure unit, BindingResult bindingResult, MessageSource messageSource);
 }

@@ -40,4 +40,32 @@ public class UnitMeasureServiceImpl implements UnitMeasureService {
     public UnitMeasure findById(Integer id) {
         return unitMeasureRepo.findOne(id);
     }
+
+    private UnitMeasure create(UnitMeasure unitMeasure) {
+        return unitMeasureRepo.save(unitMeasure);
+    }
+
+    @Override
+    public CreateResponse processUpdate(UnitMeasure unit, BindingResult bindingResult, MessageSource messageSource) {
+        return this.processCreate(unit, bindingResult, messageSource);
+    }
+
+    @Override
+    @Transactional
+    public CreateResponse processCreate(UnitMeasure unit, BindingResult bindingResult, MessageSource messageSource) {
+        CreateResponse response = new CreateResponse();
+        MessageFormatter messageFormatter = new MessageFormatter(bindingResult, messageSource, response);
+
+        if (bindingResult.hasErrors()) {
+            messageFormatter.buildErrorMessages();
+            response = messageFormatter.getResponse();
+            response.setSuccess(false);
+        } else {
+            UnitMeasure newUnitMeasure = this.create(unit);
+            response.setModelId(newUnitMeasure.getId());
+            response.setSuccessMessage("Unit successfully saved!");
+            response.setSuccess(true);
+        }
+        return response;
+    }
 }

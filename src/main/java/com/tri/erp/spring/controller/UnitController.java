@@ -39,4 +39,10 @@ public class UnitController {
     public UnitMeasure getUnit(@PathVariable Integer id) {
         return unitMeasureService.findById(id);
     }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @ResponseBody
+    public CreateResponse updateUnit(@Valid @RequestBody UnitMeasure unitMeasure, BindingResult bindingResult) {
+        return unitMeasureService.processUpdate(unitMeasure, bindingResult, messageSource);
+    }
 }

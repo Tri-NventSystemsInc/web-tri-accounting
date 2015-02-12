@@ -17,9 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/admin/unit-measures")
 public class UnitOfMeasureManagementController {
 
-    @Autowired
-    CheckConfigService checkConfigService;
-
     private final String BASE_PATH = "admin/unit/partials/";
 
     // view providers

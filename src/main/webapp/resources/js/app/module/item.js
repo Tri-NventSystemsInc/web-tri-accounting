@@ -97,7 +97,7 @@ itemApp.controller('addEditItemCtrl', ['$scope', '$stateParams', '$http', 'itemF
                     $scope.submit = false;
                     toastr.warning('Error found.');
                 } else {
-                    window.location.hash = '#/items/detail/' + data.modelId;
+                    window.location.hash = '#/items/' + data.modelId + '/detail';
                     toastr.success('Item successfully saved!');
                 }
             });

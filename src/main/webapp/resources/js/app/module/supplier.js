@@ -75,7 +75,7 @@ supplierApp.controller('addEditSupplierCtrl', ['$scope', '$state', '$stateParams
                     $scope.submitting = false;
                     toastr.warning('Error found.');
                 } else {
-                    window.location.hash = '#/suppliers/detail/' + data.modelId;
+                    window.location.hash = '#/suppliers/' + data.modelId + '/detail';
                     toastr.success('Supplier successfully saved!');
                 }
             });

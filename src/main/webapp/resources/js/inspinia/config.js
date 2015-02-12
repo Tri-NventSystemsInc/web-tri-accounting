@@ -73,7 +73,7 @@ function config($stateProvider, $urlRouterProvider) {
         })
 
         .state('item.detail', {
-            url: '/detail/{itemId}',
+            url: '/{itemId}/detail',
             templateUrl: 'admin/item/item-details-page',
             controller: 'itemDetailsCtrl'
         })
@@ -108,7 +108,7 @@ function config($stateProvider, $urlRouterProvider) {
         })
 
         .state('supplier.detail', {
-            url: '/detail/{supplierId}',
+            url: '/{supplierId}/detail',
             templateUrl: 'admin/supplier/supplier-details-page',
             controller: 'supplierDetailsCtrl'
         })
