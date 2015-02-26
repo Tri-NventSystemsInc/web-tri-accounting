@@ -1,19 +1,15 @@
 package com.tri.erp.spring.controller;
 
+import com.tri.erp.spring.commons.Debug;
 import com.tri.erp.spring.commons.facade.AuthenticationFacade;
-import com.tri.erp.spring.model.Item;
-import com.tri.erp.spring.model.PageComponent;
-import com.tri.erp.spring.service.interfaces.ItemService;
 import com.tri.erp.spring.service.interfaces.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -31,12 +27,13 @@ public class ItemManagementController {
     private RoleService roleService;
 
     private final String BASE_PATH = "admin/item/partials/";
+    private final String MAIN = "admin/item/main";
 
     // view providers
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView index() {
 
-        ModelAndView modelAndView = new ModelAndView("admin/item/main");
+        ModelAndView modelAndView = new ModelAndView(MAIN);
 
         Map<String, String> pageComponents = roleService.findPageComponentByUserId(authenticationFacade.getLoggedIn().getId());
         modelAndView.addAllObjects(pageComponents);
@@ -50,12 +47,15 @@ public class ItemManagementController {
     }
 
     @RequestMapping(value = "/new-item-page", method = RequestMethod.GET)
-    public String newItem() {
-        return BASE_PATH + "add-edit-item";
+    public String newItem(HttpServletRequest request) {
+        Debug.print(request.getRequestURL());
+        Boolean hasPermissionOnMethod = roleService.isAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
+        return hasPermissionOnMethod ? (BASE_PATH + "add-edit-item") : "403";
     }
 
     @RequestMapping(value = "/item-details-page", method = RequestMethod.GET)
     public String itemDetails() {
         return BASE_PATH + "item-details";
     }
+
 }

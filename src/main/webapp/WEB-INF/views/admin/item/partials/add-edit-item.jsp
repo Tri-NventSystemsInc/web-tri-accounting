@@ -38,7 +38,7 @@
                 </div>
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
-                        <textarea  maxlength="1024" rows="5" cols="71" ng-model="item.description" id="description"
+                        <textarea  maxlength="1024" rows="5" cols="58" ng-model="item.description" id="description"
                                    name="description" placeholder="Enter description"></textarea>
                     </div>
                 </div>

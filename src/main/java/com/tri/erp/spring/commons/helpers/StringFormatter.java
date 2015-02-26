@@ -22,4 +22,13 @@ public class StringFormatter {
                 + SLAccount + dash + auxAccount;
         return accountCode;
     }
+
+    public static String removeBaseFromRoute(String route) {
+        if (route != null) {
+            int startIndex = route.indexOf("#") + 1;
+            return route.substring(startIndex, route.length());
+        } else {
+            return "";
+        }
+    }
 }

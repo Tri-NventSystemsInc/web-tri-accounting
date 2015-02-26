@@ -17,6 +17,6 @@ public interface PageComponentRepo extends JpaRepository<PageComponent, Integer>
             "FROM PageComponent m " +
             "JOIN RolePageComponent ON m.id = FK_pageComponentId " +
             "JOIN UserRole ON RolePageComponent.FK_roleId = UserRole.FK_roleId " +
-            "WHERE FK_userId = ?1 GROUP BY m.id", nativeQuery = true)
+            "WHERE FK_userId = ?1", nativeQuery = true)
     public List<PageComponent> findAllByUserId(Integer userId);
 }
