@@ -8,6 +8,7 @@ import java.util.ArrayList;
  */
 public class CreateResponse implements Serializable {
     private boolean success;
+    private boolean isNotAuthorized = false;
     private ArrayList<String> fields = new ArrayList<>();
     private ArrayList<String> messages = new ArrayList<>();
     private String successMessage;
@@ -51,5 +52,13 @@ public class CreateResponse implements Serializable {
 
     public void setModelId(int modelId) {
         this.modelId = modelId;
+    }
+
+    public boolean isNotAuthorized() {
+        return isNotAuthorized;
+    }
+
+    public void isNotAuthorized(boolean isNotAuthorized) {
+        this.isNotAuthorized = isNotAuthorized;
     }
 }

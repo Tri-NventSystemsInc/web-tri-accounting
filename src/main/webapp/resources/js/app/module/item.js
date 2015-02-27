@@ -82,14 +82,14 @@ itemApp.controller('addEditItemCtrl', ['$scope', '$stateParams', '$http', 'itemF
             csrf.setCsrfToken();
 
             $scope.item.unit = $scope.unit;
-
-            console.log($scope.item);
-
             var res = $http.post(resourceURI, $scope.item);
 
             res.success(function(data) {
- 
-                if (!data.success) {
+
+                if (data.notAuthorized) {
+                    toastr.error(data.messages[0]);
+                    window.location = '/#/items';
+                } else if (!data.success) {
                     $scope.errors = errorToElementBinder.bindToElements(data, $scope.errors);
                     $scope.save ='Save';
                     // flags
