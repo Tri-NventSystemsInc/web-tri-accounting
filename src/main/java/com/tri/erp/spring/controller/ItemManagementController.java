@@ -32,13 +32,7 @@ public class ItemManagementController {
     // view providers
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView index() {
-
-        ModelAndView modelAndView = new ModelAndView(MAIN);
-
-        Map<String, String> pageComponents = roleService.findPageComponentByUserId(authenticationFacade.getLoggedIn().getId());
-        modelAndView.addAllObjects(pageComponents);
-
-        return modelAndView;
+        return getModelAndView(MAIN);
     }
 
     @RequestMapping(value = "/item-list-page", method = RequestMethod.GET)
@@ -53,8 +47,20 @@ public class ItemManagementController {
     }
 
     @RequestMapping(value = "/item-details-page", method = RequestMethod.GET)
-    public String itemDetails() {
-        return BASE_PATH + "item-details";
+    public ModelAndView itemDetails() {
+        return getModelAndView(BASE_PATH + "item-details");
+    }
+
+    private ModelAndView getModelAndView(String path) {
+        ModelAndView modelAndView = new ModelAndView(path);
+
+        Map<String, String> pageComponents = roleService.findPageComponentByUserId(authenticationFacade.getLoggedIn().getId());
+        if (pageComponents != null && pageComponents.size() > 0) {
+            modelAndView.addAllObjects(pageComponents);
+        } else {
+            modelAndView.setViewName("403");
+        }
+        return modelAndView;
     }
 
 }

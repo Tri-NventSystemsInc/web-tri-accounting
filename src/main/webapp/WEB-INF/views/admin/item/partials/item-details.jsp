@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col-md-12 col-lg-12">
         <a ng-click="main()" class="btn btn-primary">Items</a>
-        <a ui-sref="item.new" class="btn btn-primary">Add</a>
-        <a ui-sref="item.edit({itemId: itemId})" class="btn btn-primary">Edit</a>
+        ${detailsAddItem}
+        ${detailsEditItem}
     </div>
 </div>
 <div style="margin-top: 20px;"></div>
