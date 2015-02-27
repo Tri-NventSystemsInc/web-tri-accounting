@@ -1,5 +1,7 @@
 package com.tri.erp.spring.commons.helpers;
 
+import com.tri.erp.spring.commons.GlobalConstant;
+
 /**
  * Created by TSI Admin on 9/11/2014.
  */
@@ -30,5 +32,14 @@ public class StringFormatter {
         } else {
             return "";
         }
+    }
+
+    public static String replaceRouteParamWithPlaceholder(String uri, String... params) {
+        if (params.length > 0) {
+            for (String p : params) {
+                uri = uri.replace(p, GlobalConstant.ROUTE_PARAM_PLACEHOLDER);
+            }
+        }
+        return uri;
     }
 }

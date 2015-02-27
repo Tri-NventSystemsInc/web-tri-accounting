@@ -48,7 +48,6 @@ public class ItemManagementController {
 
     @RequestMapping(value = "/new-item-page", method = RequestMethod.GET)
     public String newItem(HttpServletRequest request) {
-        Debug.print(request.getRequestURL());
         Boolean hasPermissionOnMethod = roleService.isAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
         return hasPermissionOnMethod ? (BASE_PATH + "add-edit-item") : "403";
     }
