@@ -315,6 +315,20 @@ function config($stateProvider, $urlRouterProvider) {
         })
 
 
+        .state('apv', {
+            url:  '/accounts-payable',
+            templateUrl:  '/accounts-payable',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "apv",
+                            files: getUserDependencies("/resources/js/app/module/apv.js")
+                        }
+                    )
+                }
+            }
+        })
 }
 
 function getUserDependencies(moduleJs) {

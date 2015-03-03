@@ -2,6 +2,7 @@ package com.tri.erp.spring.controller;
 
 import com.tri.erp.spring.commons.Debug;
 import com.tri.erp.spring.commons.facade.AuthenticationFacade;
+import com.tri.erp.spring.commons.helpers.ControllerHelper;
 import com.tri.erp.spring.service.interfaces.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,7 +33,7 @@ public class ItemManagementController {
     // view providers
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView index() {
-        return getModelAndView(MAIN);
+        return ControllerHelper.getModelAndView(MAIN, roleService, authenticationFacade.getLoggedIn().getId());
     }
 
     @RequestMapping(value = "/item-list-page", method = RequestMethod.GET)
@@ -48,19 +49,6 @@ public class ItemManagementController {
 
     @RequestMapping(value = "/item-details-page", method = RequestMethod.GET)
     public ModelAndView itemDetails() {
-        return getModelAndView(BASE_PATH + "item-details");
+        return ControllerHelper.getModelAndView(BASE_PATH + "item-details", roleService, authenticationFacade.getLoggedIn().getId());
     }
-
-    private ModelAndView getModelAndView(String path) {
-        ModelAndView modelAndView = new ModelAndView(path);
-
-        Map<String, String> pageComponents = roleService.findPageComponentByUserId(authenticationFacade.getLoggedIn().getId());
-        if (pageComponents != null && pageComponents.size() > 0) {
-            modelAndView.addAllObjects(pageComponents);
-        } else {
-            modelAndView.setViewName("403");
-        }
-        return modelAndView;
-    }
-
 }
