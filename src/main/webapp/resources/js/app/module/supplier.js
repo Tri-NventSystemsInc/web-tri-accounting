@@ -1,6 +1,13 @@
-var supplierManagementCtrls = angular.module('supplierManagementCtrl', ['ngResource', 'ngSanitize']);
+var supplierApp = angular.module('supplier', [
+    'jQueryFnWrapperService',
+    'supplierFactory',
+    'errorHandlerService',
+    'cmnFormErrorApp',
+    'utilService'
+]);
 
-supplierManagementCtrls.controller('supplierListCtrl', ['$scope', '$http', 'supplierFactory',
+
+supplierApp.controller('supplierListCtrl', ['$scope', '$http', 'supplierFactory',
     function($scope,  $http, supplierFactory) {
 
         supplierFactory.getSuppliers()
@@ -12,9 +19,13 @@ supplierManagementCtrls.controller('supplierListCtrl', ['$scope', '$http', 'supp
             });
     }]);
 
-supplierManagementCtrls.controller('addEditSupplierCtrl', ['$scope', '$routeParams', '$http', 'supplierFactory', 'errorToElementBinder',
-    'csrf',
-    function($scope, $routeParams, $http, supplierFactory, errorToElementBinder, csrf) {
+supplierApp.controller('addEditSupplierCtrl', ['$scope', '$state', '$stateParams', '$http', 'supplierFactory',
+    'errorToElementBinder', 'csrf', 'routeUtil',
+    function($scope, $state, $stateParams, $http, supplierFactory, errorToElementBinder, csrf, routeUtil) {
+
+        $scope.main = function() {
+            routeUtil.gotoMain($state);
+        }
 
         $scope.title = 'Add supplier';
         $scope.save = 'Save';
@@ -23,20 +34,17 @@ supplierManagementCtrls.controller('addEditSupplierCtrl', ['$scope', '$routePara
         $scope.supplier = {};
 
         var resourceURI = '/supplier/create';
-        if(!($routeParams.supplierId === undefined)) {  // update mode
+        if(!($stateParams.supplierId === undefined)) {  // update mode
             $scope.title = 'Update supplier';
             $scope.showForm = false;
 
-            $scope.supplierId = $routeParams.supplierId;
+            $scope.supplierId = $stateParams.supplierId;
 
             supplierFactory.getSupplier($scope.supplierId).success(function (data) {
                 if (data === '' || data.id <= 0) {    // not found
                     window.location.hash = '#/suppliers';
                 } else {
                     $scope.supplier = data;
-
-                    console.log(data);
-
                     $scope.showForm = true;
                 }
             })
@@ -67,7 +75,7 @@ supplierManagementCtrls.controller('addEditSupplierCtrl', ['$scope', '$routePara
                     $scope.submitting = false;
                     toastr.warning('Error found.');
                 } else {
-                    window.location.hash = '#/supplier/' + data.modelId;
+                    window.location.hash = '#/suppliers/' + data.modelId + '/detail';
                     toastr.success('Supplier successfully saved!');
                 }
             });
@@ -83,20 +91,23 @@ supplierManagementCtrls.controller('addEditSupplierCtrl', ['$scope', '$routePara
         }
     }]);
 
-supplierManagementCtrls.controller('supplierDetailsCtrl', ['$scope', '$routeParams', '$http', 'supplierFactory',
-    function($scope,  $routeParams, $http, supplierFactory) {
+supplierApp.controller('supplierDetailsCtrl', ['$scope', '$state', '$stateParams', '$http', 'supplierFactory', 'routeUtil',
+function($scope, $state, $stateParams, $http, supplierFactory, routeUtil) {
 
     $scope.showDetails = false;
 
-    if(!($routeParams.supplierId === undefined)) {
+    $scope.main = function() {
+        routeUtil.gotoMain($state);
+    }
+
+    if(!($stateParams.supplierId === undefined)) {
         $scope.title = 'Supplier details';
 
-        $scope.supplierId = $routeParams.supplierId;
+        $scope.supplierId = $stateParams.supplierId;
 
         supplierFactory.getSupplier( $scope.supplierId)
             .success(function (data) {
 
-                console.log(data);
 
                 if (data === '' || data.id <= 0) {    // not found
                     toastr.warning('Supplier not found!');
@@ -105,13 +116,9 @@ supplierManagementCtrls.controller('supplierDetailsCtrl', ['$scope', '$routePara
                     $scope.supplier = data;
                     $scope.showDetails = true;
                 }
-        });
+            });
     } else {
         toastr.warning('Supplier not found!');
         window.location.hash = '#/suppliers';
-    }
-
-    $scope.pointToEditForm = function() {
-        window.location.hash = '#/supplier/' + $scope.supplierId + "/edit";
     }
 }]);

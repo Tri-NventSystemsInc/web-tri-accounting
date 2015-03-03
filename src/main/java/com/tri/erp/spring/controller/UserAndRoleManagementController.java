@@ -32,6 +32,11 @@ public class UserAndRoleManagementController {
         return BASE_PATH + "user-list";
     }
 
+    @RequestMapping(value = "/role-list-page", method = RequestMethod.GET)
+    public String getRoleListPage() {
+        return BASE_PATH + "role-list";
+    }
+
     @RequestMapping(value = "/new-user-page", method = RequestMethod.GET)
     public String newUser() {
         return BASE_PATH + "add-edit-user";

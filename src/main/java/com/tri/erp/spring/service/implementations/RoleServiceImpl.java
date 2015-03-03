@@ -3,30 +3,22 @@ package com.tri.erp.spring.service.implementations;
 import com.tri.erp.spring.commons.Debug;
 import com.tri.erp.spring.commons.helpers.Checker;
 import com.tri.erp.spring.commons.helpers.MessageFormatter;
-import com.tri.erp.spring.model.Item;
-import com.tri.erp.spring.model.Menu;
-import com.tri.erp.spring.model.Role;
-import com.tri.erp.spring.model.User;
-import com.tri.erp.spring.repo.ItemRepo;
+import com.tri.erp.spring.commons.helpers.StringFormatter;
+import com.tri.erp.spring.model.*;
+import com.tri.erp.spring.repo.PageActionRouteRepo;
+import com.tri.erp.spring.repo.PageComponentRepo;
 import com.tri.erp.spring.repo.RoleRepo;
 import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.reponse.CreateRoleResponse;
-import com.tri.erp.spring.reponse.CreateUserResponse;
-import com.tri.erp.spring.service.interfaces.ItemService;
 import com.tri.erp.spring.service.interfaces.RoleService;
 import com.tri.erp.spring.validator.RoleValidator;
-import com.tri.erp.spring.validator.UserValidator;
-import org.hibernate.dialect.Ingres10Dialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 
-import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by TSI Admin on 9/9/2014.
@@ -36,6 +28,12 @@ public class RoleServiceImpl implements RoleService {
 
     @Autowired
     RoleRepo roleRepo;
+
+    @Autowired
+    PageComponentRepo pageComponentRepo;
+
+    @Autowired
+    PageActionRouteRepo pageActionRouteRepo;
 
     @Override
     @Transactional(readOnly = true)
@@ -117,5 +115,24 @@ public class RoleServiceImpl implements RoleService {
     @Transactional
     public CreateResponse processUpdate(Role role, BindingResult bindingResult, MessageSource messageSource) {
         return this.processCreate(role, bindingResult, messageSource);
+    }
+
+    @Override
+    public Map<String, String> findPageComponentByUserId(Integer userId) {
+        List<PageComponent> pageComponents = pageComponentRepo.findAllByUserId(userId);
+
+        Map<String, String> componentMap = new HashMap<>();
+        for(PageComponent pageComponent : pageComponents) {
+            componentMap.put(pageComponent.getDomId(), pageComponent.getHtml());
+        }
+        return componentMap;
+    }
+
+    @Override
+    public Boolean isAuthorized(Integer userId, String route) {
+        route = StringFormatter.removeBaseFromRoute(route);
+        PageActionRoute pageActionRoute = pageActionRouteRepo.find(userId, route);
+
+        return pageActionRoute != null; // no permission for empty result
     }
 }

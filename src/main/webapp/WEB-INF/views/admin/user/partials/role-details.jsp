@@ -1,8 +1,7 @@
 <div class="row">
     <div class="col-md-12 col-lg-12">
-        <button class="btn btn-primary" onclick="(window.location.href = '#/users')">Users & Roles</button>
-        <button class="btn btn-primary" onclick="(window.location.href = '#/new-role')">Add</button>
-        <button class="btn btn-primary" ng-click="pointToEditForm()">Edit</button>
+        <a ui-sref="user.newRole" class="btn btn-primary">Add</a>
+        <a ui-sref="user.roleEdit({roleId: roleId})" class="btn btn-primary">Edit</a>
     </div>
 </div>
 <div style="margin-top: 20px;"></div>

@@ -12,8 +12,14 @@
         </div>
 
         <ul class="nav navbar-top-links navbar-right">
+
+            <form id="logout" class="hidden" action="${pageContext.request.contextPath}/logout" method="post">
+                <input type="submit" value="Log out" />
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            </form>
+
             <li>
-                <a href="${pageContext.request.contextPath}/login">
+                <a href="" onclick="logout();">
                     <i class="fa fa-sign-out"></i> Log out
                 </a>
             </li>
@@ -29,8 +35,8 @@
                 <ul class="dropdown-menu dropdown-alerts">
                     <li>
                         <div class="text-center link-block">
-                            <a ui-sref="notifications_tooltips">
-                                <strong>See All Pendings</strong>
+                            <a ui-sref="notification">
+                                <strong>See All</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </div>
@@ -42,3 +48,11 @@
 
     </nav>
 </div>
+
+<script>
+
+    logout = function() {
+        $('#logout').submit();
+    }
+
+</script>
