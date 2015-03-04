@@ -329,6 +329,11 @@ function config($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+
+        .state('apv.new', {
+            url:  '/new',
+            templateUrl:  '/accounts-payable/new-apv-page'
+        })
 }
 
 function getUserDependencies(moduleJs) {
