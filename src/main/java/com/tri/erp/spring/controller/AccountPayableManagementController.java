@@ -26,12 +26,18 @@ public class AccountPayableManagementController {
     @Autowired
     private RoleService roleService;
 
-    private final String BASE_PATH = "apv/partials";
+    private final String BASE_PATH = "apv/partials/";
     private final String MAIN = "apv/main";
 
     // view providers
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView index() {
         return ControllerHelper.getModelAndView(MAIN, roleService, authenticationFacade.getLoggedIn().getId());
+    }
+
+    @RequestMapping(value = "/new-apv-page", method = RequestMethod.GET)
+    public String newApv(HttpServletRequest request) {
+        Boolean hasPermissionOnMethod = roleService.isAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
+        return hasPermissionOnMethod ? (BASE_PATH + "add-edit") : "403";
     }
 }

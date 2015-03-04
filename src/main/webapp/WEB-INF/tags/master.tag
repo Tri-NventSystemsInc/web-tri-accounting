@@ -56,6 +56,10 @@
 <%--toaster--%>
 <script src="<c:url value="/resources/js/toastr/toastr.min.js" />"></script>
 
+
+<!-- datepicker -->
+<script src="<c:url value="/resources/js/plugins/datepicker/datepicker.js" />"></script>
+
 <!-- MetsiMenu -->
 <script src="<c:url value="/resources/js/plugins/metisMenu/jquery.metisMenu.js" />"></script>
 

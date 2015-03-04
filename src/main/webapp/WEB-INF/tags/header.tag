@@ -17,5 +17,8 @@
 <%-- toaster --%>
 <link href="<c:url value="/resources/css/toastr/toastr.min.css" />" rel="stylesheet">
 
+<%-- datepicker --%>
+<link href="<c:url value="/resources/css/datepicker/datepicker.css" />" rel="stylesheet">
+
 <%--firefly--%>
 <link href="<c:url value="/resources/css/custom/app.css" />" rel="stylesheet">
