@@ -334,6 +334,26 @@ function config($stateProvider, $urlRouterProvider) {
             url:  '/new',
             templateUrl:  '/accounts-payable/new-apv-page'
         })
+
+        .state('rv', {
+            url:  '/requisition-voucher',
+            templateUrl:  '/requisition-voucher',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "rv",
+                            files: getUserDependencies("/resources/js/app/module/rv.js")
+                        }
+                    )
+                }
+            }
+        })
+
+        .state('rv.new', {
+            url:  '/new',
+            templateUrl:  '/requisition-voucher/new-rv-page'
+        })
 }
 
 function getUserDependencies(moduleJs) {
