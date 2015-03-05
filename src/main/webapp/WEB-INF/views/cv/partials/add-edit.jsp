@@ -1,9 +1,9 @@
 
-<div ng-controller="addEditApvCtrl">
+<div ng-controller="addEditCvCtrl">
     <div class="row-top-buffer"></div>
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <a ui-sref="apv" class="btn btn-primary">Back to list</a>
+            <a ui-sref="cv" class="btn btn-primary">Back to list</a>
         </div>
     </div>
     <div class="row-top-buffer"></div>
@@ -17,18 +17,20 @@
         <div class="row">
             <div class="col-md-12 col-lg-12">
                 <div class="col-md-2 col-lg-2">
-                    <label class="input-label" for="supplier">Supplier</label>
+                    <label class="input-label" for="payee">Payee</label>
                 </div>
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
-                        <select required="" class="form-control" id="supplier">
-                            <option value="">Select Supplier</option>
+                        <select required="" class="form-control" id="payee">
+                            <option value="">Select Payee</option>
                             <option value="">Apple, Inc</option>
+                            <option value="">Google, Inc</option>
+                            <option value="">Oracle</option>
                         </select>
                     </div>
                 </div>
-                <form-error err_field="errors.err_supplier"></form-error>
+                <form-error err_field="errors.err_payee"></form-error>
             </div>
         </div>
 
@@ -71,20 +73,19 @@
         <div class="row">
             <div class="col-md-12 col-lg-12">
                 <div class="col-md-2 col-lg-2">
-                    <label class="input-label" for="dueDate">Due Date</label>
+                    <label class="input-label" for="checkDate">Check Date</label>
                 </div>
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
-                        <input class="datepicker" type="text" class="input-sm form-control" id="dueDate" name="dueDate" value="05/14/2014">
+                        <input class="datepicker" type="text" class="input-sm form-control" id="checkDate" name="checkDate" value="05/14/2014">
                     </div>
                 </div>
-                <form-error err_field="errors.err_dueDate"></form-error>
+                <form-error err_field="errors.err_checkDate"></form-error>
             </div>
         </div>
 
         <div class="row-top-buffer"></div>
-
         <div class="row">
             <div class="col-md-12 col-lg-12">
                 <div class="col-md-2 col-lg-2">
@@ -103,30 +104,30 @@
                             </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>00-11-2221 Office supplies</td>
-                                    <td><span class="pull-right">$ 100.00</span></td>
-                                    <td><span class="pull-right"></span></td>
-                                    <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove'><i class='fa fa-minus'></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>00-11-2221 Water pipes</td>
-                                    <td><span class="pull-right">$ 45,562.00</span></td>
-                                    <td><span class="pull-right"></span></td>
-                                    <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove'><i class='fa fa-minus'></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>22-11-2221 Supplier</td>
-                                    <td><span class="pull-right"></span></td>
-                                    <td><span class="pull-right">$ 56,726.00</span></td>
-                                    <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove'><i class='fa fa-minus'></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td><span class="pull-right"></span></td>
-                                    <td><span class="pull-right"></span></td>
-                                    <td style="text-align: center"><a style='padding: 0' title='Add'><i class='fa fa-plus'></i></a></td>
-                                </tr>
+                            <tr>
+                                <td>00-11-2221 Office supplies</td>
+                                <td><span class="pull-right">$ 100.00</span></td>
+                                <td><span class="pull-right"></span></td>
+                                <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove'><i class='fa fa-minus'></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>00-11-2221 Water pipes</td>
+                                <td><span class="pull-right">$ 45,562.00</span></td>
+                                <td><span class="pull-right"></span></td>
+                                <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove'><i class='fa fa-minus'></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>22-11-2221 Maybank - checking</td>
+                                <td><span class="pull-right"></span></td>
+                                <td><span class="pull-right">$ 56,726.00</span></td>
+                                <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove'><i class='fa fa-minus'></i></a></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><span class="pull-right"></span></td>
+                                <td><span class="pull-right"></span></td>
+                                <td style="text-align: center"><a style='padding: 0' title='Add'><i class='fa fa-plus'></i></a></td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -147,6 +148,26 @@
                         <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
                         <select required="" class="form-control" id="checker">
                             <option value="">Select checker</option>
+                            <option value="">John Doe</option>
+                        </select>
+                    </div>
+                </div>
+                <form-error err_field="errors.err_checker"></form-error>
+            </div>
+        </div>
+
+        <div class="row-top-buffer"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-2 col-lg-2">
+                    <label class="input-label" for="auditor">Auditor</label>
+                </div>
+                <div class="col-md-5 col-lg-5">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+                        <select required="" class="form-control" id="auditor">
+                            <option value="">Select Auditor</option>
                             <option value="">John Doe</option>
                         </select>
                     </div>
@@ -193,7 +214,6 @@
 </div>
 
 <div style="margin-bottom: 100px;" />
-
 
 <script>
     $('.datepicker').datepicker({
