@@ -105,13 +105,13 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>00-11-2221 Office supplies</td>
+                                <td class="hasSLAccount" data-container="body" data-toggle="popover" data-placement="right" title="SL Account" data-content="CITI hardware">00-11-2221 Office supplies</td>
                                 <td><span class="pull-right">$ 100.00</span></td>
                                 <td><span class="pull-right"></span></td>
                                 <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove'><i class='fa fa-minus'></i></a></td>
                             </tr>
                             <tr>
-                                <td>00-11-2221 Water pipes</td>
+                                <td class="hasSLAccount" data-container="body" data-toggle="popover" data-placement="right" title="SL Account" data-content="Ace hardware">00-11-2221 Water pipes</td>
                                 <td><span class="pull-right">$ 45,562.00</span></td>
                                 <td><span class="pull-right"></span></td>
                                 <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove'><i class='fa fa-minus'></i></a></td>
@@ -223,5 +223,9 @@
         calendarWeeks: true,
         autoclose: true
     });
+
+    $(function () {
+        $('[data-toggle="popover"]').popover({ trigger: "hover", html: true })
+    })
 </script>
 

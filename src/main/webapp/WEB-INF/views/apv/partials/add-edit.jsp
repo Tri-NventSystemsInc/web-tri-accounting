@@ -116,7 +116,7 @@
                                     <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove'><i class='fa fa-minus'></i></a></td>
                                 </tr>
                                 <tr>
-                                    <td>22-11-2221 Supplier</td>
+                                    <td class="hasSLAccount" data-container="body" data-toggle="popover" data-placement="right" title="SL Account" data-content="CITI hardware<br/>Ace hardware">22-11-2221 Supplier</td>
                                     <td><span class="pull-right"></span></td>
                                     <td><span class="pull-right">$ 56,726.00</span></td>
                                     <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove'><i class='fa fa-minus'></i></a></td>
@@ -203,5 +203,9 @@
         calendarWeeks: true,
         autoclose: true
     });
+
+    $(function () {
+        $('[data-toggle="popover"]').popover({ trigger: "hover", html: true })
+    })
 </script>
 
