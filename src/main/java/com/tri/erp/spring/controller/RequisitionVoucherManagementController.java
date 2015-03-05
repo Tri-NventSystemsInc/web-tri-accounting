@@ -35,9 +35,21 @@ public class RequisitionVoucherManagementController {
         return ControllerHelper.getModelAndView(MAIN, roleService, authenticationFacade.getLoggedIn().getId());
     }
 
-    @RequestMapping(value = "/new-rv-page", method = RequestMethod.GET)
-    public String newApv(HttpServletRequest request) {
+    @RequestMapping(value = "/new-rvPO-page", method = RequestMethod.GET)
+    public String newRvPO(HttpServletRequest request) {
         Boolean hasPermissionOnMethod = roleService.isAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
-        return hasPermissionOnMethod ? (BASE_PATH + "add-edit") : "403";
+        return hasPermissionOnMethod ? (BASE_PATH + "add-edit-for-PO") : "403";
+    }
+
+    @RequestMapping(value = "/new-rvIT-page", method = RequestMethod.GET)
+    public String newRvIT(HttpServletRequest request) {
+        Boolean hasPermissionOnMethod = roleService.isAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
+        return hasPermissionOnMethod ? (BASE_PATH + "add-edit-for-IT") : "403";
+    }
+
+    @RequestMapping(value = "/new-rvJO-page", method = RequestMethod.GET)
+    public String newRvJO(HttpServletRequest request) {
+        Boolean hasPermissionOnMethod = roleService.isAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
+        return hasPermissionOnMethod ? (BASE_PATH + "add-edit-for-JO") : "403";
     }
 }

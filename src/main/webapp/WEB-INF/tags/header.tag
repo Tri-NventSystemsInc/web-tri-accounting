@@ -22,3 +22,6 @@
 
 <%--firefly--%>
 <link href="<c:url value="/resources/css/custom/app.css" />" rel="stylesheet">
+
+<%--custombutton--%>
+<link href="<c:url value="/resources/css/custom/custom.css" />" rel="stylesheet">

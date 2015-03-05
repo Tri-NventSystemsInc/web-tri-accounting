@@ -13,7 +13,13 @@
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-3">
-                            <a ui-sref="rv.new" class="btn btn-primary">Create</a>
+                            <a ui-sref="rv.newPO" class="btn btn-primary">Create For PO</a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a ui-sref="rv.newIT" class="btn btn-primary">Create For IT</a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a ui-sref="rv.newJO" class="btn btn-primary">Create For JO</a>
                         </div>
                         <div class="col-sm-3 pull-right">
                             <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">

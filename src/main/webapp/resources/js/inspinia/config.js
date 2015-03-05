@@ -370,9 +370,19 @@ function config($stateProvider, $urlRouterProvider) {
             }
         })
 
-        .state('rv.new', {
-            url:  '/new',
-            templateUrl:  '/requisition-voucher/new-rv-page'
+        .state('rv.newPO', {
+            url:  '/newPO',
+            templateUrl:  '/requisition-voucher/new-rvPO-page'
+        })
+
+        .state('rv.newIT', {
+            url:  '/newIT',
+            templateUrl:  '/requisition-voucher/new-rvIT-page'
+        })
+
+        .state('rv.newJO', {
+            url:  '/newJO',
+            templateUrl:  '/requisition-voucher/new-rvJO-page'
         })
 }
 
