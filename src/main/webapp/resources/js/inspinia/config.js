@@ -335,6 +335,26 @@ function config($stateProvider, $urlRouterProvider) {
             templateUrl:  '/accounts-payable/new-apv-page'
         })
 
+        .state('cv', {
+            url:  '/check-vouchers',
+            templateUrl:  '/check-voucher',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "cv",
+                            files: getUserDependencies("/resources/js/app/module/cv.js")
+                        }
+                    )
+                }
+            }
+        })
+
+        .state('cv.new', {
+            url:  '/new',
+            templateUrl:  '/check-voucher/new-cv-page'
+        })
+
         .state('rv', {
             url:  '/requisition-voucher',
             templateUrl:  '/requisition-voucher',
