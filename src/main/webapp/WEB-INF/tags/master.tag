@@ -56,6 +56,10 @@
 <%--toaster--%>
 <script src="<c:url value="/resources/js/toastr/toastr.min.js" />"></script>
 
+
+<!-- datepicker -->
+<script src="<c:url value="/resources/js/plugins/datepicker/datepicker.js" />"></script>
+
 <!-- MetsiMenu -->
 <script src="<c:url value="/resources/js/plugins/metisMenu/jquery.metisMenu.js" />"></script>
 
@@ -76,6 +80,10 @@
 <script src="<c:url value="/resources/js/plugins/ocLazyLoad.js" />"></script>
 
 <!-- Angular Dependiences -->
+
+
+<%--notifications--%>
+<script src="//localhost:3000/socket.io/socket.io.js"></script>
 
 <!-- Anglar App Script -->
 <script src="<c:url value="/resources/js/inspinia/app.js" />"></script>

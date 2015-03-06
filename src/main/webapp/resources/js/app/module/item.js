@@ -2,6 +2,7 @@ var itemApp = angular.module('item', [
     'cmnAccountBrowserWithSegmentApp',
     'jQueryFnWrapperService',
     'itemFactory',
+    'unitFactory',
     'errorHandlerService',
     'cmnFormErrorApp',
     'utilService'
@@ -21,13 +22,18 @@ itemApp.controller('itemListCtrl', ['$scope', '$http', 'itemFactory',
     }]);
 
 itemApp.controller('addEditItemCtrl', ['$scope', '$stateParams', '$http', 'itemFactory', 'errorToElementBinder',
-    'csrf',
-    function($scope, $stateParams, $http, itemFactory, errorToElementBinder, csrf) {
+    'csrf', 'unitFactory',
+    function($scope, $stateParams, $http, itemFactory, errorToElementBinder, csrf, unitFactory) {
 
-        $scope.units = [
-            {id:1, code: 'M', description: 'Meter'},
-            {id:2, code: 'PCS', description: 'Pieces'}
-        ];
+        $scope.units = [];
+        unitFactory.getUnits()
+            .success(function (data) {
+                $scope.units = data;
+            })
+            .error(function (error) {
+                toastr.error('Failed to load units!');
+            });
+
         $scope.title = 'Add item';
         $scope.save = 'Save';
         $scope.showForm = true;
@@ -76,14 +82,14 @@ itemApp.controller('addEditItemCtrl', ['$scope', '$stateParams', '$http', 'itemF
             csrf.setCsrfToken();
 
             $scope.item.unit = $scope.unit;
-
-            console.log($scope.item);
-
             var res = $http.post(resourceURI, $scope.item);
 
             res.success(function(data) {
- 
-                if (!data.success) {
+
+                if (data.notAuthorized) {
+                    toastr.error(data.messages[0]);
+                    window.location = '/#/items';
+                } else if (!data.success) {
                     $scope.errors = errorToElementBinder.bindToElements(data, $scope.errors);
                     $scope.save ='Save';
                     // flags
@@ -91,7 +97,7 @@ itemApp.controller('addEditItemCtrl', ['$scope', '$stateParams', '$http', 'itemF
                     $scope.submit = false;
                     toastr.warning('Error found.');
                 } else {
-                    window.location.hash = '#/items/detail/' + data.modelId;
+                    window.location.hash = '#/items/' + data.modelId + '/detail';
                     toastr.success('Item successfully saved!');
                 }
             });

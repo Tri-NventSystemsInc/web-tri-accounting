@@ -21,5 +21,5 @@ public interface MenuRepo extends JpaRepository<Menu, Integer> {
             "JOIN RoleMenu ON m.id = RoleMenu.FK_menuId " +
             "JOIN UserRole ON RoleMenu.FK_roleId = UserRole.FK_roleId " +
             "WHERE FK_userId = ?1 GROUP BY m.id", nativeQuery = true)
-    public List<Menu> findAllByUserId(Integer FK_userId);
+    public List<Menu> findAllByUserId(Integer userId);
 }

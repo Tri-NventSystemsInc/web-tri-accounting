@@ -63,7 +63,8 @@ function config($stateProvider, $urlRouterProvider) {
                                 "/resources/js/app/factories/business-segment-factory.js",
                                 "/resources/js/app/factories/account-factory.js",
                                 "/resources/js/app/directives/account-browser-s.js",
-                                "/resources/js/app/factories/item-factory.js"
+                                "/resources/js/app/factories/item-factory.js",
+                                "/resources/js/app/factories/unit-factory.js"
                             ]
                         }
                     )
@@ -72,7 +73,7 @@ function config($stateProvider, $urlRouterProvider) {
         })
 
         .state('item.detail', {
-            url: '/detail/{itemId}',
+            url: '/{itemId}/detail',
             templateUrl: 'admin/item/item-details-page',
             controller: 'itemDetailsCtrl'
         })
@@ -107,7 +108,7 @@ function config($stateProvider, $urlRouterProvider) {
         })
 
         .state('supplier.detail', {
-            url: '/detail/{supplierId}',
+            url: '/{supplierId}/detail',
             templateUrl: 'admin/supplier/supplier-details-page',
             controller: 'supplierDetailsCtrl'
         })
@@ -209,6 +210,11 @@ function config($stateProvider, $urlRouterProvider) {
             }
         })
 
+        .state('notification', {
+            url: '/notifications',
+            templateUrl: '/common//notifications-page'
+        })
+
         .state('profile', {
             url:  '/user/profile',
             templateUrl:  '/user/profile-page',
@@ -269,11 +275,115 @@ function config($stateProvider, $urlRouterProvider) {
             templateUrl:  '/user/edit-profile-page'
         })
 
+        .state('unit', {
+            url: '/unit-measures',
+            templateUrl: '/admin/unit-measures',
+            controller: 'unitListCtrl',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "unit",
+                            files: [
+                                "/resources/js/app/module/unit.js",
+                                "/resources/js/app/factories/unit-factory.js"
+                            ]
+                        }
+                    )
+                }
+            }
+        })
+
+        .state('unit.detail', {
+            url: '/{unitId}/detail',
+            templateUrl: '/admin/unit-measures/unit-details-page',
+            controller: 'unitDetailsCtrl'
+        })
+
+        .state('unit.edit', {
+            url: '/{unitId}/edit',
+            templateUrl: '/admin/unit-measures/new-unit-page'
+        })
+
+        .state('unit.new', {
+            url: '/new',
+            templateUrl: '/admin/unit-measures/new-unit-page'
+        })
+
         .state('dashboard', {
             url:  '/main'
         })
 
 
+        .state('apv', {
+            url:  '/accounts-payable',
+            templateUrl:  '/accounts-payable',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "apv",
+                            files: getUserDependencies("/resources/js/app/module/apv.js")
+                        }
+                    )
+                }
+            }
+        })
+
+        .state('apv.new', {
+            url:  '/new',
+            templateUrl:  '/accounts-payable/new-apv-page'
+        })
+
+        .state('cv', {
+            url:  '/check-vouchers',
+            templateUrl:  '/check-voucher',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "cv",
+                            files: getUserDependencies("/resources/js/app/module/cv.js")
+                        }
+                    )
+                }
+            }
+        })
+
+        .state('cv.new', {
+            url:  '/new',
+            templateUrl:  '/check-voucher/new-cv-page'
+        })
+
+        .state('rv', {
+            url:  '/requisition-voucher',
+            templateUrl:  '/requisition-voucher',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "rv",
+                            files: getUserDependencies("/resources/js/app/module/rv.js")
+                        }
+                    )
+                }
+            }
+        })
+
+        .state('rv.newPO', {
+            url:  '/newPO',
+            templateUrl:  '/requisition-voucher/new-rvPO-page'
+        })
+
+        .state('rv.newIT', {
+            url:  '/newIT',
+            templateUrl:  '/requisition-voucher/new-rvIT-page'
+        })
+
+        .state('rv.newJO', {
+            url:  '/newJO',
+            templateUrl:  '/requisition-voucher/new-rvJO-page'
+        })
 }
 
 function getUserDependencies(moduleJs) {

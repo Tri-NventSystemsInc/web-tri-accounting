@@ -4,7 +4,7 @@
 <div ui-view>
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <div class="alert alert-info" style="margin-bottom: 5px;">Items <span class="pull-right" style="cursor: pointer"><a ui-sref="item.new"><i class="fa fa-plus" title="Add item"></i></a></span></div>
+            <div class="alert alert-info" style="margin-bottom: 5px;">Items <span class="pull-right" style="cursor: pointer">${addItem}</span></div>
         </div>
     </div>
 
@@ -47,9 +47,9 @@
                         <td style="width: 25%;">{{item.description}}</td>
                         <td style="width: 25%;">{{item.segmentAccount.accountCode + ' ' + item.segmentAccount.account.title}}</td>
                         <td style="width: 6%;">{{item.unit.code}}</td>
-                        <td style="width: 3%;">
+                        <td style="width: 3%; text-align: center">
                             <a style='padding: 0' title='View' ui-sref=".detail({itemId:item.id})"><i class='fa fa-search'></i></a>
-                            <a style='padding: 0' title='Edit' ui-sref=".edit({itemId:item.id})"><i class='fa fa-edit'></i></a>
+                            ${editItem}
                         </td>
                     </tr>
                     <tr ng-show="its.length == 0"><td colspan="4" align="center">No records found</td></tr>
