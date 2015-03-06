@@ -354,6 +354,36 @@ function config($stateProvider, $urlRouterProvider) {
             url:  '/new',
             templateUrl:  '/check-voucher/new-cv-page'
         })
+
+        .state('rv', {
+            url:  '/requisition-voucher',
+            templateUrl:  '/requisition-voucher',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "rv",
+                            files: getUserDependencies("/resources/js/app/module/rv.js")
+                        }
+                    )
+                }
+            }
+        })
+
+        .state('rv.newPO', {
+            url:  '/newPO',
+            templateUrl:  '/requisition-voucher/new-rvPO-page'
+        })
+
+        .state('rv.newIT', {
+            url:  '/newIT',
+            templateUrl:  '/requisition-voucher/new-rvIT-page'
+        })
+
+        .state('rv.newJO', {
+            url:  '/newJO',
+            templateUrl:  '/requisition-voucher/new-rvJO-page'
+        })
 }
 
 function getUserDependencies(moduleJs) {
