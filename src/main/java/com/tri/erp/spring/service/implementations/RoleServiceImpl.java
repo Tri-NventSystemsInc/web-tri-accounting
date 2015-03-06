@@ -1,11 +1,10 @@
 package com.tri.erp.spring.service.implementations;
 
-import com.tri.erp.spring.commons.Debug;
 import com.tri.erp.spring.commons.helpers.Checker;
 import com.tri.erp.spring.commons.helpers.MessageFormatter;
 import com.tri.erp.spring.commons.helpers.StringFormatter;
 import com.tri.erp.spring.model.*;
-import com.tri.erp.spring.repo.PageActionRouteRepo;
+import com.tri.erp.spring.repo.RouteRepo;
 import com.tri.erp.spring.repo.PageComponentRepo;
 import com.tri.erp.spring.repo.RoleRepo;
 import com.tri.erp.spring.reponse.CreateResponse;
@@ -33,7 +32,7 @@ public class RoleServiceImpl implements RoleService {
     PageComponentRepo pageComponentRepo;
 
     @Autowired
-    PageActionRouteRepo pageActionRouteRepo;
+    RouteRepo routeRepo;
 
     @Override
     @Transactional(readOnly = true)
@@ -131,7 +130,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Boolean isAuthorized(Integer userId, String route) {
         route = StringFormatter.removeBaseFromRoute(route);
-        PageActionRoute pageActionRoute = pageActionRouteRepo.find(userId, route);
+        Route pageActionRoute = routeRepo.find(userId, route);
 
         return pageActionRoute != null; // no permission for empty result
     }

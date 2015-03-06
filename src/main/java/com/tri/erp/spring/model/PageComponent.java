@@ -1,9 +1,6 @@
 package com.tri.erp.spring.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -19,10 +16,10 @@ public class PageComponent implements Serializable {
     private Integer id;
 
     @Column
-    private String pageName;
+    private String html;
 
     @Column
-    private String html;
+    private String description;
 
     @Column
     private String clazz;
@@ -30,14 +27,29 @@ public class PageComponent implements Serializable {
     @Column
     private String domId;
 
-    public PageComponent(String pageName, String html, String clazz, String domId) {
-        this.setPageName(pageName);
-        this.setHtml(html);
-        this.setClazz(clazz);
-        this.setDomId(domId);
-    }
+    @ManyToOne
+    @JoinColumn(name = "FK_pageId")
+    private Page page;
+
+    @ManyToOne
+    @JoinColumn(name = "FK_viewRouteId")
+    private Route viewRoute;
+
+    @ManyToOne
+    @JoinColumn(name = "FK_actionRouteId")
+    private Route actionRoute;
 
     public PageComponent() {}
+
+    public PageComponent(String html, String description, String clazz, String domId, Page page, Route viewRoute, Route actionRoute) {
+        this.html = html;
+        this.description = description;
+        this.clazz = clazz;
+        this.domId = domId;
+        this.page = page;
+        this.viewRoute = viewRoute;
+        this.actionRoute = actionRoute;
+    }
 
     public Integer getId() {
         return id;
@@ -47,20 +59,20 @@ public class PageComponent implements Serializable {
         this.id = id;
     }
 
-    public String getPageName() {
-        return pageName;
-    }
-
-    public void setPageName(String pageName) {
-        this.pageName = pageName;
-    }
-
     public String getHtml() {
         return html;
     }
 
     public void setHtml(String html) {
         this.html = html;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getClazz() {
@@ -77,6 +89,30 @@ public class PageComponent implements Serializable {
 
     public void setDomId(String domId) {
         this.domId = domId;
+    }
+
+    public Page getPage() {
+        return page;
+    }
+
+    public void setPage(Page page) {
+        this.page = page;
+    }
+
+    public Route getViewRoute() {
+        return viewRoute;
+    }
+
+    public void setViewRoute(Route viewRoute) {
+        this.viewRoute = viewRoute;
+    }
+
+    public Route getActionRoute() {
+        return actionRoute;
+    }
+
+    public void setActionRoute(Route actionRoute) {
+        this.actionRoute = actionRoute;
     }
 
     @Override
