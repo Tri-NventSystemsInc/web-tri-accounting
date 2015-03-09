@@ -4,6 +4,7 @@ var userApp = angular.module('user', [
     'errorHandlerService',
     'jQueryFnWrapperService',
     'menuFactory',
+    'pageFactory',
     'cmnFormErrorApp',
     'utilService'
 ]);
@@ -220,14 +221,18 @@ userApp.controller('roleDetailsCtrl', ['$scope', '$state', '$stateParams', '$htt
         }
     }]);
 
-userApp.controller('addEditRoleCtrl', ['$scope', '$stateParams', '$http', 'roleFactory', 'errorToElementBinder', 'csrf', 'menuFactory',
-    function($scope, $stateParams, $http, roleFactory, errorToElementBinder, csrf, menuFactory) {
+userApp.controller('addEditRoleCtrl', ['$location', '$scope', '$stateParams', '$http', 'roleFactory', 'errorToElementBinder',
+    'csrf', 'menuFactory', 'pageFactory',
+    function($location, $scope, $stateParams, $http, roleFactory, errorToElementBinder, csrf, menuFactory, pageFactory) {
 
+    $scope.path = '#' + $location.path();
     $scope.title = 'Add role';
     $scope.save = 'Save';
     $scope.showForm = true;
 
+    $scope.pageComponents = [];
     $scope.role = {};
+
 
     var resourceURI = '/role/create';
 
@@ -239,6 +244,18 @@ userApp.controller('addEditRoleCtrl', ['$scope', '$stateParams', '$http', 'roleF
                 setSelectedMenu();
             }
         });
+    }
+
+    pageFactory.getPages().success(function (data) {
+        $scope.pages = data;
+    });
+
+    $scope.showPageComponents = function(pageId) {
+        if ($scope.pageComponents[pageId] == undefined) {
+            pageFactory.getPageComponents(pageId).success(function (data) {
+                $scope.pageComponents[pageId] = data;
+            });
+        }
     }
 
     function setSelectedMenu() {
