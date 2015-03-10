@@ -231,6 +231,7 @@ userApp.controller('addEditRoleCtrl', ['$location', '$scope', '$stateParams', '$
     $scope.showForm = true;
 
     $scope.pageComponents = [];
+    $scope.assignedPageComponents = {};
     $scope.role = {};
 
 
@@ -254,6 +255,7 @@ userApp.controller('addEditRoleCtrl', ['$location', '$scope', '$stateParams', '$
         if ($scope.pageComponents[pageId] == undefined) {
             pageFactory.getPageComponents(pageId).success(function (data) {
                 $scope.pageComponents[pageId] = data;
+                setSelectedPageComponents(pageId);
             });
         }
     }
@@ -271,6 +273,21 @@ userApp.controller('addEditRoleCtrl', ['$location', '$scope', '$stateParams', '$
         });
     }
 
+    function setSelectedPageComponents(pageId) {
+        if ($scope.pageComponents == undefined) return;
+
+        angular.forEach($scope.pageComponents[pageId], function(pageComponent, key) {
+            angular.forEach($scope.role.pageComponents, function(rolePageComponent, key) {
+                if (rolePageComponent.page.id = pageId) {   // for same page components
+                    if (pageComponent.id == rolePageComponent.id) {
+                        pageComponent.selected = true;
+                        return;
+                    }
+                }
+            });
+        });
+    }
+
     loadMenus();
 
     if(!($stateParams.roleId === undefined)) {
@@ -282,8 +299,6 @@ userApp.controller('addEditRoleCtrl', ['$location', '$scope', '$stateParams', '$
 
         roleFactory.getRole($scope.roleId)
             .success(function (data) {
-
-                console.log(data);
 
                 if (data === '' || data.id <= 0) {    // not found
                     window.location.hash = '#/users-and-roles/roles';
@@ -320,6 +335,21 @@ userApp.controller('addEditRoleCtrl', ['$location', '$scope', '$stateParams', '$
         });
 
         $scope.role.menus = roleMenus;
+
+        var rolePageComponents = [];
+        var pages = angular.copy($scope.pageComponents);    // $scope.pageComponents is grouped by page
+        angular.forEach(pages, function(page, key) {  // loop all pages
+            if (page != undefined) {    // for pages with no page components yet
+                angular.forEach(page, function(pageComponent, key) {  // loop all components of a page
+                    if (pageComponent.selected) {
+                        delete pageComponent['selected']; // hibernate will complain, so delete it
+                        rolePageComponents.push(pageComponent);
+                    }
+                });
+            }
+        });
+
+        $scope.role.pageComponents = rolePageComponents;
 
         var res = $http.post(resourceURI, $scope.role);
         res.success(function(data) {

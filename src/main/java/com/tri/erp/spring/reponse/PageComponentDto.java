@@ -10,6 +10,7 @@ import java.util.List;
  */
 public class PageComponentDto {
 
+    private int id;
     private int pageId;
     private int pageComponentId;
     private String description;
@@ -17,7 +18,8 @@ public class PageComponentDto {
     private int actionRouteId;
 
     public PageComponentDto() {}
-    public PageComponentDto(int pageId, int pageComponentId, String description, int viewRouteId, int actionRouteId) {
+    public PageComponentDto(int id, int pageId, int pageComponentId, String description, int viewRouteId, int actionRouteId) {
+        this.id = id;
         this.pageId = pageId;
         this.pageComponentId = pageComponentId;
         this.description = description;
@@ -32,6 +34,15 @@ public class PageComponentDto {
     public void setPageId(int pageId) {
         this.pageId = pageId;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     public int getPageComponentId() {
         return pageComponentId;

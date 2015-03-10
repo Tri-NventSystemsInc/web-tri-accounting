@@ -10,8 +10,6 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by TSI Admin on 11/5/2014.
@@ -44,11 +42,18 @@ public class Role implements Serializable {
     @NotFound(action = NotFoundAction.IGNORE)
     private ArrayList<Menu> menus = new ArrayList<>();
 
-    public Role(String name, Date createdAt, Date updatedAt, ArrayList<Menu> menus) {
+
+    @Transient
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @NotFound(action = NotFoundAction.IGNORE)
+    private ArrayList<PageComponent> pageComponents = new ArrayList<>();
+
+    public Role(String name, Date createdAt, Date updatedAt, ArrayList<Menu> menus, ArrayList<PageComponent> pageComponents) {
         this.name = name;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.menus = menus;
+        this.pageComponents = pageComponents;
     }
 
     public Role(String name, Date createdAt, Date updatedAt) {
@@ -101,5 +106,13 @@ public class Role implements Serializable {
 
     public void setMenus(ArrayList<Menu> menus) {
         this.menus = menus;
+    }
+
+    public ArrayList<PageComponent> getPageComponents() {
+        return pageComponents;
+    }
+
+    public void setPageComponents(ArrayList<PageComponent> pageComponents) {
+        this.pageComponents = pageComponents;
     }
 }

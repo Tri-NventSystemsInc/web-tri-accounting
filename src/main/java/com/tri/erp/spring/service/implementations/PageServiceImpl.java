@@ -53,6 +53,8 @@ public class PageServiceImpl implements PageService {
             componentDto.setPageComponentId(pageComponent.getId());
             componentDto.setPageId(pageComponent.getPage().getId());
             componentDto.setViewRouteId(pageComponent.getViewRoute().getId());
+            componentDto.setViewRouteId(pageComponent.getViewRoute().getId());
+            componentDto.setId(pageComponent.getId());
 
             pageComponentDtoList.add(componentDto);
         }
