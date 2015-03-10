@@ -23,7 +23,6 @@ public class Role implements Serializable {
     @Column
     private Integer id;
 
-
     @NotNull
     @Length(min = 3, max = 512, message = "Invalid length for username (max=512, min=3)")
     @Column(unique = true)
@@ -42,18 +41,23 @@ public class Role implements Serializable {
     @NotFound(action = NotFoundAction.IGNORE)
     private ArrayList<Menu> menus = new ArrayList<>();
 
-
     @Transient
     @JsonIgnoreProperties(ignoreUnknown = true)
     @NotFound(action = NotFoundAction.IGNORE)
     private ArrayList<PageComponent> pageComponents = new ArrayList<>();
 
-    public Role(String name, Date createdAt, Date updatedAt, ArrayList<Menu> menus, ArrayList<PageComponent> pageComponents) {
+     @Transient
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @NotFound(action = NotFoundAction.IGNORE)
+    private ArrayList<PageComponent> pageComponentsToEvict = new ArrayList<>();
+
+    public Role(String name, Date createdAt, Date updatedAt, ArrayList<Menu> menus, ArrayList<PageComponent> pageComponents, ArrayList<PageComponent> pageComponentsToEvict) {
         this.name = name;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.menus = menus;
         this.pageComponents = pageComponents;
+        this.pageComponentsToEvict = pageComponentsToEvict;
     }
 
     public Role(String name, Date createdAt, Date updatedAt) {
@@ -114,5 +118,13 @@ public class Role implements Serializable {
 
     public void setPageComponents(ArrayList<PageComponent> pageComponents) {
         this.pageComponents = pageComponents;
+    }
+
+    public ArrayList<PageComponent> getPageComponentsToEvict() {
+        return pageComponentsToEvict;
+    }
+
+    public void setPageComponentsToEvict(ArrayList<PageComponent> pageComponentsToEvict) {
+        this.pageComponentsToEvict = pageComponentsToEvict;
     }
 }

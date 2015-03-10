@@ -54,7 +54,7 @@ public class AnyJsonController {
     @RequestMapping(value = "/pages", method = RequestMethod.GET)
     @ResponseBody
     public List<Page> getPages() {
-        return pageService.findAll();
+        return pageService.findAllWithComponents();
     }
 
     @RequestMapping(value = "/page-components/{pageId}", method = RequestMethod.GET)

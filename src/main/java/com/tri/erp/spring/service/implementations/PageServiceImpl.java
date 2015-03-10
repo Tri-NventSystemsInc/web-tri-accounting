@@ -35,9 +35,13 @@ public class PageServiceImpl implements PageService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Page> findAll() {
+    public List<Page> findAllWithComponents() {
+        return pageRepo.findAllWithComponents();
+    }
 
-        return pageRepo.findAll();
+    @Override
+    public List<Page> findAllAssigned(Integer roleId) {
+        return pageRepo.findAllAssigned(roleId);
     }
 
     @Override
@@ -46,6 +50,28 @@ public class PageServiceImpl implements PageService {
         List<PageComponentDto> pageComponentDtoList = new ArrayList<>();
 
         List<PageComponent> pageComponentList = pageComponentRepo.findAllByPageId(pageId);
+        for (PageComponent pageComponent : pageComponentList) {
+            PageComponentDto componentDto = new PageComponentDto();
+            componentDto.setDescription(pageComponent.getDescription());
+            componentDto.setActionRouteId(pageComponent.getActionRoute().getId());
+            componentDto.setPageComponentId(pageComponent.getId());
+            componentDto.setPageId(pageComponent.getPage().getId());
+            componentDto.setViewRouteId(pageComponent.getViewRoute().getId());
+            componentDto.setViewRouteId(pageComponent.getViewRoute().getId());
+            componentDto.setId(pageComponent.getId());
+
+            pageComponentDtoList.add(componentDto);
+        }
+
+        return pageComponentDtoList;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<PageComponentDto> getPageComponents(Integer roleId, Integer pageId) {
+        List<PageComponentDto> pageComponentDtoList = new ArrayList<>();
+
+        List<PageComponent> pageComponentList = pageComponentRepo.findAllByRoleIdAndPageId(roleId, pageId);
         for (PageComponent pageComponent : pageComponentList) {
             PageComponentDto componentDto = new PageComponentDto();
             componentDto.setDescription(pageComponent.getDescription());

@@ -1,8 +1,11 @@
 package com.tri.erp.spring.controller;
 
 import com.tri.erp.spring.model.Item;
+import com.tri.erp.spring.model.Page;
 import com.tri.erp.spring.model.Role;
 import com.tri.erp.spring.reponse.CreateResponse;
+import com.tri.erp.spring.reponse.PageComponentDto;
+import com.tri.erp.spring.service.interfaces.PageService;
 import com.tri.erp.spring.service.interfaces.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -23,6 +26,9 @@ public class RoleController {
 
     @Autowired
     RoleService roleService;
+
+    @Autowired
+    PageService pageService;
 
     @Autowired
     MessageSource messageSource;
@@ -50,4 +56,17 @@ public class RoleController {
     public CreateResponse updateUser(@Valid @RequestBody Role role, BindingResult bindingResult) {
         return roleService.processUpdate(role, bindingResult, messageSource);
     }
+
+    @RequestMapping(value = "/pages/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Page> getRolePages(@PathVariable Integer roleId) {
+        return pageService.findAllAssigned(roleId);
+    }
+
+    @RequestMapping(value = "/page-components/{roleId}/{pageId}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<PageComponentDto> getRolePageComponent(@PathVariable Integer roleId, @PathVariable Integer pageId) {
+        return pageService.getPageComponents(roleId, pageId);
+    }
+
 }

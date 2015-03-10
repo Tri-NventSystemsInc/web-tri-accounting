@@ -92,7 +92,12 @@ public class RoleServiceImpl implements RoleService {
 
             if (role.getId() != null && role.getId() > 0) { // update mode; reset some stuffs
                 roleRepo.removeMenus(role.getId());
-                roleRepo.removePageComponents(role.getId());
+
+                if (!Checker.collectionIsEmpty(role.getPageComponents())) {
+                    for (PageComponent pageComponent : role.getPageComponentsToEvict()) {
+                        roleRepo.removePageComponents(role.getId(), pageComponent.getId());
+                    }
+                }
             }
 
             // insert menus assigned

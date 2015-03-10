@@ -11,6 +11,8 @@ import java.util.List;
  * Created by TSI Admin on 10/9/2014.
  */
 public interface PageService {
-    public List<Page> findAll();
+    public List<Page> findAllWithComponents();
+    public List<Page> findAllAssigned(Integer roleId);
     public List<PageComponentDto> getPageComponents(Integer pageId);
+    public List<PageComponentDto> getPageComponents(Integer roleId, Integer pageId);
 }

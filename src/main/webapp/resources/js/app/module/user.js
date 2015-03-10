@@ -179,14 +179,29 @@ userApp.controller('roleListCtrl', ['$scope', '$http','roleFactory', function($s
         });
 }]);
 
-userApp.controller('roleDetailsCtrl', ['$scope', '$state', '$stateParams', '$http', 'roleFactory', 'routeUtil',
-    function($scope, $state,  $stateParams, $http, roleFactory, routeUtil) {
+userApp.controller('roleDetailsCtrl', ['$location', '$scope', '$state', '$stateParams', '$http', 'roleFactory',
+    'routeUtil', 'pageFactory',
+    function($location, $scope, $state,  $stateParams, $http, roleFactory, routeUtil, pageFactory) {
 
         $scope.main = function() {
             routeUtil.gotoMain($state);
         }
 
+        $scope.path = '#' + $location.path();
         $scope.showDetails = false;
+        $scope.pageComponents = [];
+
+        pageFactory.getRolePages().success(function (data) {
+            $scope.pages = data;
+        });
+
+        $scope.showPageComponents = function(pageId) {
+            if ($scope.pageComponents[pageId] == undefined) {
+                pageFactory.getRolePageComponents($scope.roleId, pageId).success(function (data) {
+                    $scope.pageComponents[pageId] = data;
+                });
+            }
+        }
 
         if(!($stateParams.roleId === undefined)) {
             $scope.title = 'Role details';
@@ -195,8 +210,6 @@ userApp.controller('roleDetailsCtrl', ['$scope', '$state', '$stateParams', '$htt
 
             roleFactory.getRole($scope.roleId)
                 .success(function (data) {
-
-                    console.log(data);
 
                     if (data === '' || data.id <= 0) {    // not found
                         toastr.warning('Role not found!');
@@ -337,6 +350,7 @@ userApp.controller('addEditRoleCtrl', ['$location', '$scope', '$stateParams', '$
         $scope.role.menus = roleMenus;
 
         var rolePageComponents = [];
+        var pageComponentsToEvict = [];
         var pages = angular.copy($scope.pageComponents);    // $scope.pageComponents is grouped by page
         angular.forEach(pages, function(page, key) {  // loop all pages
             if (page != undefined) {    // for pages with no page components yet
@@ -344,12 +358,17 @@ userApp.controller('addEditRoleCtrl', ['$location', '$scope', '$stateParams', '$
                     if (pageComponent.selected) {
                         delete pageComponent['selected']; // hibernate will complain, so delete it
                         rolePageComponents.push(pageComponent);
+                    } else {
+                        delete pageComponent['selected']; // hibernate will complain, so delete it
+                        pageComponentsToEvict.push(pageComponent);
                     }
                 });
             }
         });
 
         $scope.role.pageComponents = rolePageComponents;
+        $scope.role.pageComponentsToEvict = pageComponentsToEvict;
+
 
         var res = $http.post(resourceURI, $scope.role);
         res.success(function(data) {

@@ -45,7 +45,13 @@ public interface RoleRepo extends JpaRepository<Role, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO RolePageComponent SET " +
+    @Query(value = "DELETE FROM RolePageComponent " +
+            "WHERE FK_roleId = :roleId AND FK_pageComponentId = :pageComponentId", nativeQuery = true)
+    public int removePageComponents(@Param("roleId") Integer roleId, @Param("pageComponentId") Integer pageComponentId);
+
+    @Modifying
+    @Transactional
+    @Query(value = "INSERT IGNORE INTO RolePageComponent SET " +
             "FK_roleId = :roleId, " +
             "FK_pageComponentId = :pageComponentId", nativeQuery = true)
     public int savePageComponents(@Param("roleId") Integer roleId, @Param("pageComponentId") Integer pageComponentId);

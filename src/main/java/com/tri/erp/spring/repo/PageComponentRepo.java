@@ -1,10 +1,13 @@
 package com.tri.erp.spring.repo;
 
 import com.tri.erp.spring.model.Menu;
+import com.tri.erp.spring.model.Page;
 import com.tri.erp.spring.model.PageComponent;
 import com.tri.erp.spring.reponse.PageComponentDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,4 +32,13 @@ public interface PageComponentRepo extends JpaRepository<PageComponent, Integer>
             "JOIN RolePageComponent ON m.id = FK_pageComponentId " +
             "WHERE FK_roleId = ?1", nativeQuery = true)
     public List<PageComponent> findAllByRoleId(Integer roleId);
+
+    @Transactional(readOnly = true)
+    @Query(value = "SELECT" +
+            "PageComponent.*" +
+            "FROM RolePageComponent" +
+            "JOIN PageComponent ON FK_pageComponentId = PageComponent.id " +
+            "WHERE FK_roleId = :roleId" +
+            "AND PageComponent.FK_pageId = :pageId", nativeQuery = true)
+    public List<PageComponent> findAllByRoleIdAndPageId(@Param("roleId") Integer roleId, @Param("pageId") Integer pageId);
 }

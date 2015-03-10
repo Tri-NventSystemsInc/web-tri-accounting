@@ -46,7 +46,7 @@
         <div class="row">
             <div class="col-md-12 col-lg-12">
                 <div class="col-md-2 col-lg-2">
-                    <label class="input-label" for="name">Page Restrictions</label>
+                    <label class="input-label">Page Restrictions</label>
                 </div>
                 <div class="col-md-8 col-lg-8">
                     <div class="panel-body" style="padding-left: 0px;">
