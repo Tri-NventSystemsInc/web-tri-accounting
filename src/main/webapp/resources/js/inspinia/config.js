@@ -391,7 +391,8 @@ function getUserDependencies(moduleJs) {
          moduleJs,
         "/resources/js/app/factories/user-factory.js",
         "/resources/js/app/factories/role-factory.js",
-        "/resources/js/app/factories/menu-factory.js"
+        "/resources/js/app/factories/menu-factory.js",
+        "/resources/js/app/factories/page-factory.js"
     ]
 }
 

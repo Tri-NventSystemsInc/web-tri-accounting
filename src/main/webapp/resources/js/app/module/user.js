@@ -4,6 +4,7 @@ var userApp = angular.module('user', [
     'errorHandlerService',
     'jQueryFnWrapperService',
     'menuFactory',
+    'pageFactory',
     'cmnFormErrorApp',
     'utilService'
 ]);
@@ -178,14 +179,25 @@ userApp.controller('roleListCtrl', ['$scope', '$http','roleFactory', function($s
         });
 }]);
 
-userApp.controller('roleDetailsCtrl', ['$scope', '$state', '$stateParams', '$http', 'roleFactory', 'routeUtil',
-    function($scope, $state,  $stateParams, $http, roleFactory, routeUtil) {
+userApp.controller('roleDetailsCtrl', ['$location', '$scope', '$state', '$stateParams', '$http', 'roleFactory',
+    'routeUtil', 'pageFactory',
+    function($location, $scope, $state,  $stateParams, $http, roleFactory, routeUtil, pageFactory) {
 
         $scope.main = function() {
             routeUtil.gotoMain($state);
         }
 
+        $scope.path = '#' + $location.path();
         $scope.showDetails = false;
+        $scope.pageComponents = [];
+
+        $scope.showPageComponents = function(pageId) {
+            if ($scope.pageComponents[pageId] == undefined) {
+                pageFactory.getRolePageComponents($scope.roleId, pageId).success(function (data) {
+                    $scope.pageComponents[pageId] = data;
+                });
+            }
+        }
 
         if(!($stateParams.roleId === undefined)) {
             $scope.title = 'Role details';
@@ -195,13 +207,16 @@ userApp.controller('roleDetailsCtrl', ['$scope', '$state', '$stateParams', '$htt
             roleFactory.getRole($scope.roleId)
                 .success(function (data) {
 
-                    console.log(data);
-
                     if (data === '' || data.id <= 0) {    // not found
                         toastr.warning('Role not found!');
                         window.location.hash = '#/users';
                     } else {
                         $scope.role = data;
+
+                        pageFactory.getRolePages($scope.roleId).success(function (data) {
+                            $scope.pages = data;
+                        });
+
                         $scope.showDetails = true;
                     }
                 })
@@ -220,14 +235,19 @@ userApp.controller('roleDetailsCtrl', ['$scope', '$state', '$stateParams', '$htt
         }
     }]);
 
-userApp.controller('addEditRoleCtrl', ['$scope', '$stateParams', '$http', 'roleFactory', 'errorToElementBinder', 'csrf', 'menuFactory',
-    function($scope, $stateParams, $http, roleFactory, errorToElementBinder, csrf, menuFactory) {
+userApp.controller('addEditRoleCtrl', ['$location', '$scope', '$stateParams', '$http', 'roleFactory', 'errorToElementBinder',
+    'csrf', 'menuFactory', 'pageFactory',
+    function($location, $scope, $stateParams, $http, roleFactory, errorToElementBinder, csrf, menuFactory, pageFactory) {
 
+    $scope.path = '#' + $location.path();
     $scope.title = 'Add role';
     $scope.save = 'Save';
     $scope.showForm = true;
 
+    $scope.pageComponents = [];
+    $scope.assignedPageComponents = {};
     $scope.role = {};
+
 
     var resourceURI = '/role/create';
 
@@ -241,6 +261,19 @@ userApp.controller('addEditRoleCtrl', ['$scope', '$stateParams', '$http', 'roleF
         });
     }
 
+    pageFactory.getPages().success(function (data) {
+        $scope.pages = data;
+    });
+
+    $scope.showPageComponents = function(pageId) {
+        if ($scope.pageComponents[pageId] == undefined) {
+            pageFactory.getPageComponents(pageId).success(function (data) {
+                $scope.pageComponents[pageId] = data;
+                setSelectedPageComponents(pageId);
+            });
+        }
+    }
+
     function setSelectedMenu() {
         if ($scope.menus == undefined) return;
 
@@ -249,6 +282,21 @@ userApp.controller('addEditRoleCtrl', ['$scope', '$stateParams', '$http', 'roleF
                 if (menu.id == roleMenu.id) {
                     menu.selected = true;
                     return;
+                }
+            });
+        });
+    }
+
+    function setSelectedPageComponents(pageId) {
+        if ($scope.pageComponents == undefined) return;
+
+        angular.forEach($scope.pageComponents[pageId], function(pageComponent, key) {
+            angular.forEach($scope.role.pageComponents, function(rolePageComponent, key) {
+                if (rolePageComponent.page.id = pageId) {   // for same page components
+                    if (pageComponent.id == rolePageComponent.id) {
+                        pageComponent.selected = true;
+                        return;
+                    }
                 }
             });
         });
@@ -265,8 +313,6 @@ userApp.controller('addEditRoleCtrl', ['$scope', '$stateParams', '$http', 'roleF
 
         roleFactory.getRole($scope.roleId)
             .success(function (data) {
-
-                console.log(data);
 
                 if (data === '' || data.id <= 0) {    // not found
                     window.location.hash = '#/users-and-roles/roles';
@@ -303,6 +349,27 @@ userApp.controller('addEditRoleCtrl', ['$scope', '$stateParams', '$http', 'roleF
         });
 
         $scope.role.menus = roleMenus;
+
+        var rolePageComponents = [];
+        var pageComponentsToEvict = [];
+        var pages = angular.copy($scope.pageComponents);    // $scope.pageComponents is grouped by page
+        angular.forEach(pages, function(page, key) {  // loop all pages
+            if (page != undefined) {    // for pages with no page components yet
+                angular.forEach(page, function(pageComponent, key) {  // loop all components of a page
+                    if (pageComponent.selected) {
+                        delete pageComponent['selected']; // hibernate will complain, so delete it
+                        rolePageComponents.push(pageComponent);
+                    } else {
+                        delete pageComponent['selected']; // hibernate will complain, so delete it
+                        pageComponentsToEvict.push(pageComponent);
+                    }
+                });
+            }
+        });
+
+        $scope.role.pageComponents = rolePageComponents;
+        $scope.role.pageComponentsToEvict = pageComponentsToEvict;
+
 
         var res = $http.post(resourceURI, $scope.role);
         res.success(function(data) {

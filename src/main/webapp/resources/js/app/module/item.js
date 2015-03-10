@@ -2,7 +2,7 @@ var itemApp = angular.module('item', [
     'cmnAccountBrowserWithSegmentApp',
     'jQueryFnWrapperService',
     'itemFactory',
-    'unitFactory',
+    'pageFactory',
     'errorHandlerService',
     'cmnFormErrorApp',
     'utilService'
@@ -22,7 +22,7 @@ itemApp.controller('itemListCtrl', ['$scope', '$http', 'itemFactory',
     }]);
 
 itemApp.controller('addEditItemCtrl', ['$scope', '$stateParams', '$http', 'itemFactory', 'errorToElementBinder',
-    'csrf', 'unitFactory',
+    'csrf', 'pageFactory',
     function($scope, $stateParams, $http, itemFactory, errorToElementBinder, csrf, unitFactory) {
 
         $scope.units = [];

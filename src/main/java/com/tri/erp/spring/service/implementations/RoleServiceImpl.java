@@ -9,6 +9,7 @@ import com.tri.erp.spring.repo.PageComponentRepo;
 import com.tri.erp.spring.repo.RoleRepo;
 import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.reponse.CreateRoleResponse;
+import com.tri.erp.spring.reponse.PageComponentDto;
 import com.tri.erp.spring.service.interfaces.RoleService;
 import com.tri.erp.spring.validator.RoleValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +46,8 @@ public class RoleServiceImpl implements RoleService {
 
         Role role = roleRepo.findOne(roleId);
 
-        if (role != null) { // get roles
+        if (role != null) {
+            // get menus
             List<Object[]> rolesObj = roleRepo.findMenusByRoleId(role.getId());
             if (!Checker.collectionIsEmpty(rolesObj)) {
 
@@ -62,6 +64,10 @@ public class RoleServiceImpl implements RoleService {
                     role.getMenus().add(menu);
                 }
             }
+
+            // get assigned page components
+            List<PageComponent> pageComponents = pageComponentRepo.findAllByRoleId(role.getId());
+            role.getPageComponents().addAll(pageComponents);
         }
 
         return role;
@@ -84,14 +90,27 @@ public class RoleServiceImpl implements RoleService {
         } else {
             Role newRole = roleRepo.save(role);
 
-            if (role.getId() != null && role.getId() > 0) { // update mode
+            if (role.getId() != null && role.getId() > 0) { // update mode; reset some stuffs
                 roleRepo.removeMenus(role.getId());
+
+                if (!Checker.collectionIsEmpty(role.getPageComponentsToEvict())) {
+                    for (PageComponent pageComponent : role.getPageComponentsToEvict()) {
+                        roleRepo.removePageComponents(role.getId(), pageComponent.getId());
+                    }
+                }
             }
 
-            // insert role menus
+            // insert menus assigned
             if (!Checker.collectionIsEmpty(role.getMenus())) {
                 for (Menu menu : role.getMenus()) {
                     roleRepo.saveMenus(role.getId(), menu.getId());
+                }
+            }
+
+            // insert page components assigned
+            if (!Checker.collectionIsEmpty(role.getPageComponents())) {
+                for (PageComponent pageComponent : role.getPageComponents()) {
+                    roleRepo.savePageComponents(role.getId(), pageComponent.getId());
                 }
             }
 
