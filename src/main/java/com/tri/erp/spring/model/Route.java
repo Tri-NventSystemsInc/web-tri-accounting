@@ -19,7 +19,7 @@ public class Route implements Serializable {
     private Integer id;
 
     @Column
-    private String name;
+    private String url;
 
     @Column
     private String type;
@@ -32,8 +32,8 @@ public class Route implements Serializable {
 
     public Route() {}
 
-    public Route(String name, String type, Boolean restricted, String description) {
-        this.name = name;
+    public Route(String url, String type, Boolean restricted, String description) {
+        this.url = url;
         this.type = type;
         this.restricted = restricted;
         this.description = description;
@@ -55,12 +55,12 @@ public class Route implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUrl() {
+        return url;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getType() {
@@ -81,6 +81,6 @@ public class Route implements Serializable {
 
     @Override
     public String toString() {
-        return this.getName();
+        return this.getDescription();
     }
 }

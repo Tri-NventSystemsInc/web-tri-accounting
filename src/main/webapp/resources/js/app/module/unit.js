@@ -1,5 +1,5 @@
 var unitOfMeasureApp = angular.module('unit', [
-    'unitFactory',
+    'pageFactory',
     'jQueryFnWrapperService',
     'errorHandlerService',
     'cmnFormErrorApp',
@@ -8,7 +8,7 @@ var unitOfMeasureApp = angular.module('unit', [
 
 
 
-unitOfMeasureApp.controller('unitListCtrl', ['$scope', '$http', 'unitFactory', function($scope,  $http, unitFactory) {
+unitOfMeasureApp.controller('unitListCtrl', ['$scope', '$http', 'pageFactory', function($scope,  $http, unitFactory) {
 
     unitFactory.getUnits()
             .success(function (data) {
@@ -19,7 +19,7 @@ unitOfMeasureApp.controller('unitListCtrl', ['$scope', '$http', 'unitFactory', f
             });
 }]);
 
-unitOfMeasureApp.controller('unitDetailsCtrl', ['$scope', '$state', '$stateParams', '$http', 'unitFactory', 'routeUtil',
+unitOfMeasureApp.controller('unitDetailsCtrl', ['$scope', '$state', '$stateParams', '$http', 'pageFactory', 'routeUtil',
     function($scope, $state, $stateParams, $http, unitFactory, routeUtil) {
 
         $scope.main = function() {
@@ -55,7 +55,7 @@ unitOfMeasureApp.controller('unitDetailsCtrl', ['$scope', '$state', '$stateParam
     }]);
 
 
-unitOfMeasureApp.controller('addEditUnitCtrl', ['$scope', '$state', '$stateParams', '$http', 'unitFactory',
+unitOfMeasureApp.controller('addEditUnitCtrl', ['$scope', '$state', '$stateParams', '$http', 'pageFactory',
     'errorToElementBinder', 'csrf', 'routeUtil',
     function($scope, $state, $stateParams, $http, unitFactory, errorToElementBinder, csrf, routeUtil) {
 
