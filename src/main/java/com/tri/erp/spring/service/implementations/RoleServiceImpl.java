@@ -93,7 +93,7 @@ public class RoleServiceImpl implements RoleService {
             if (role.getId() != null && role.getId() > 0) { // update mode; reset some stuffs
                 roleRepo.removeMenus(role.getId());
 
-                if (!Checker.collectionIsEmpty(role.getPageComponents())) {
+                if (!Checker.collectionIsEmpty(role.getPageComponentsToEvict())) {
                     for (PageComponent pageComponent : role.getPageComponentsToEvict()) {
                         roleRepo.removePageComponents(role.getId(), pageComponent.getId());
                     }
