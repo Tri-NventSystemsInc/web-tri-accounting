@@ -34,11 +34,11 @@ public interface PageComponentRepo extends JpaRepository<PageComponent, Integer>
     public List<PageComponent> findAllByRoleId(Integer roleId);
 
     @Transactional(readOnly = true)
-    @Query(value = "SELECT" +
-            "PageComponent.*" +
-            "FROM RolePageComponent" +
+    @Query(value = "SELECT " +
+            "PageComponent.* " +
+            "FROM RolePageComponent " +
             "JOIN PageComponent ON FK_pageComponentId = PageComponent.id " +
-            "WHERE FK_roleId = :roleId" +
+            "WHERE FK_roleId = :roleId " +
             "AND PageComponent.FK_pageId = :pageId", nativeQuery = true)
     public List<PageComponent> findAllByRoleIdAndPageId(@Param("roleId") Integer roleId, @Param("pageId") Integer pageId);
 }

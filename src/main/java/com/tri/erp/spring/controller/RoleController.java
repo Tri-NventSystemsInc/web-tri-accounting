@@ -57,7 +57,7 @@ public class RoleController {
         return roleService.processUpdate(role, bindingResult, messageSource);
     }
 
-    @RequestMapping(value = "/pages/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/pages/{roleId}", method = RequestMethod.GET)
     @ResponseBody
     public List<Page> getRolePages(@PathVariable Integer roleId) {
         return pageService.findAllAssigned(roleId);
@@ -65,7 +65,7 @@ public class RoleController {
 
     @RequestMapping(value = "/page-components/{roleId}/{pageId}", method = RequestMethod.GET)
     @ResponseBody
-    public List<PageComponentDto> getRolePageComponent(@PathVariable Integer roleId, @PathVariable Integer pageId) {
+    public List<PageComponentDto> getRolePageComponent(@PathVariable Integer  roleId, @PathVariable Integer  pageId) {
         return pageService.getPageComponents(roleId, pageId);
     }
 

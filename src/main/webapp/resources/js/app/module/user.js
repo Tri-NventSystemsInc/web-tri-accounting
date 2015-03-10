@@ -191,10 +191,6 @@ userApp.controller('roleDetailsCtrl', ['$location', '$scope', '$state', '$stateP
         $scope.showDetails = false;
         $scope.pageComponents = [];
 
-        pageFactory.getRolePages().success(function (data) {
-            $scope.pages = data;
-        });
-
         $scope.showPageComponents = function(pageId) {
             if ($scope.pageComponents[pageId] == undefined) {
                 pageFactory.getRolePageComponents($scope.roleId, pageId).success(function (data) {
@@ -216,6 +212,11 @@ userApp.controller('roleDetailsCtrl', ['$location', '$scope', '$state', '$stateP
                         window.location.hash = '#/users';
                     } else {
                         $scope.role = data;
+
+                        pageFactory.getRolePages($scope.roleId).success(function (data) {
+                            $scope.pages = data;
+                        });
+
                         $scope.showDetails = true;
                     }
                 })

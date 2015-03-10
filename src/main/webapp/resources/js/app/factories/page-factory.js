@@ -14,7 +14,7 @@ pageFactory.factory('pageFactory', ['$http', function($http) {
     };
 
     this.getRolePageComponents = function (roleId, pageId) {
-        return $http.get('/role/page-components/' + roleId + "/" + pageId);
+        return $http.get('/role/page-components/ ' + roleId + '/' + pageId);
     };
 
     return this;
