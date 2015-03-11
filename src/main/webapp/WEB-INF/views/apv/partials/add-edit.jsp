@@ -22,11 +22,11 @@
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
-                        <select required="" class="form-control" id="supplier">
-                            <option value="">Select Supplier</option>
-                            <option value="">Apple, Inc</option>
-                        </select>
+                        <input disabled="" ng-model="selectedSupplier.name" id="supplier" name="supplier" class="form-control ng-pristine ng-valid" type="text" placeholder="Browse supplier"/>
                     </div>
+                </div>
+                <div class="col-md-5 col-lg-5">
+                    <div sl-entity-browser btn_label="Browse supplier" handler="entity_selection_handler(entity)" />
                 </div>
                 <form-error err_field="errors.err_supplier"></form-error>
             </div>
