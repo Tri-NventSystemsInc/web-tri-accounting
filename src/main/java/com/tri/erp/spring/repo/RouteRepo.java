@@ -15,6 +15,6 @@ public interface RouteRepo extends JpaRepository<Route, Integer> {
             "from Route m " +
             "JOIN RoleRoute ON m.id = RoleRoute.FK_routeId " +
             "JOIN UserRole ON RoleRoute.FK_roleId = UserRole.FK_roleId " +
-            "WHERE UserRole.FK_userId = :userId AND m.name = :route", nativeQuery = true)
+            "WHERE UserRole.FK_userId = :userId AND m.url = :route", nativeQuery = true)
     public Route find(@Param("userId") Integer userId, @Param("route")String route);
 }
