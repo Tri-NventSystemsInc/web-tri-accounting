@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="col-md-5 col-lg-5">
-                    <div sl-entity-browser btn_label="Browse supplier" handler="entity_selection_handler(entity)" />
+                    <div sl-entity-browser btn_label="Browse supplier" handler="supplier_selection_handler(entity)" />
                 </div>
                 <form-error err_field="errors.err_supplier"></form-error>
             </div>
@@ -145,11 +145,11 @@
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
-                        <select required="" class="form-control" id="checker">
-                            <option value="">Select checker</option>
-                            <option value="">John Doe</option>
-                        </select>
+                        <input disabled="" ng-model="selectedChecker.name" id="checker" name="checker" class="form-control ng-pristine ng-valid" type="text" placeholder="Browse checker"/>
                     </div>
+                </div>
+                <div class="col-md-5 col-lg-5">
+                    <div sl-entity-browser btn_label="Browse checker" handler="checker_selection_handler" />
                 </div>
                 <form-error err_field="errors.err_checker"></form-error>
             </div>
@@ -165,11 +165,11 @@
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
-                        <select required="" class="form-control" id="approvar">
-                            <option value="">Select Approving Officer</option>
-                            <option value="">John Doe</option>
-                        </select>
+                        <input disabled="" ng-model="selectedApprovingOfficer.name" id="approvar" name="approvar" class="form-control ng-pristine ng-valid" type="text" placeholder="Browse approving officer"/>
                     </div>
+                </div>
+                <div class="col-md-5 col-lg-5">
+                    <div sl-entity-browser btn_label="Browse approving officer" handler="approvar_selection_handler" />
                 </div>
                 <form-error err_field="errors.err_approvar"></form-error>
             </div>
