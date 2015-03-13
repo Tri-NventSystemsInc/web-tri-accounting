@@ -46,7 +46,7 @@ public class Role implements Serializable {
     @NotFound(action = NotFoundAction.IGNORE)
     private ArrayList<PageComponent> pageComponents = new ArrayList<>();
 
-     @Transient
+    @Transient
     @JsonIgnoreProperties(ignoreUnknown = true)
     @NotFound(action = NotFoundAction.IGNORE)
     private ArrayList<PageComponent> pageComponentsToEvict = new ArrayList<>();

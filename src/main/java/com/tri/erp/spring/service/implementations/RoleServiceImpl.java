@@ -9,7 +9,6 @@ import com.tri.erp.spring.repo.PageComponentRepo;
 import com.tri.erp.spring.repo.RoleRepo;
 import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.reponse.CreateRoleResponse;
-import com.tri.erp.spring.reponse.PageComponentDto;
 import com.tri.erp.spring.service.interfaces.RoleService;
 import com.tri.erp.spring.validator.RoleValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,7 +94,9 @@ public class RoleServiceImpl implements RoleService {
 
                 if (!Checker.collectionIsEmpty(role.getPageComponentsToEvict())) {
                     for (PageComponent pageComponent : role.getPageComponentsToEvict()) {
-                        roleRepo.removePageComponents(role.getId(), pageComponent.getId());
+                        roleRepo.removeAssignedPageComponent(role.getId(), pageComponent.getId());
+                        roleRepo.removeAssignedRoute(role.getId(), pageComponent.getViewRoute().getId());
+                        roleRepo.removeAssignedRoute(role.getId(), pageComponent.getActionRoute().getId());
                     }
                 }
             }
@@ -110,7 +111,15 @@ public class RoleServiceImpl implements RoleService {
             // insert page components assigned
             if (!Checker.collectionIsEmpty(role.getPageComponents())) {
                 for (PageComponent pageComponent : role.getPageComponents()) {
-                    roleRepo.savePageComponents(role.getId(), pageComponent.getId());
+                    roleRepo.saveAssignedPageComponent(role.getId(), pageComponent.getId());
+                }
+            }
+
+            // insert assigned route (RoleRoute)
+            if (!Checker.collectionIsEmpty(role.getPageComponentsToEvict())) {
+                for (PageComponent pageComponent : role.getPageComponentsToEvict()) {
+                    roleRepo.saveAssignedRoute(role.getId(), pageComponent.getActionRoute().getId());
+                    roleRepo.saveAssignedRoute(role.getId(), pageComponent.getViewRoute().getId());
                 }
             }
 
