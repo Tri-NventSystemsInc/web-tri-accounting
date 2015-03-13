@@ -18,7 +18,7 @@
                       </div>\
                       <div class='row'>\
                           <div class=\"col-md-7 col-lg-7\"><span style=\"font-weight: bold; padding-left: 80px;\">Title</span></div>\
-                          <div class=\"col-md-2 col-lg-2\"><span style=\"font-weight: bold; padding-left: 7px;\">Code</span></div>\
+                          <div class=\"col-md-2 col-lg-2\"><span style=\"font-weight: bold; padding-left: 30px;\">Code</span></div>\
                           <div class=\"col-md-2 col-lg-2\"><span style=\"font-weight: bold\">Type</span></div>\
                           <div class=\"col-md-1 col-lg-1\"><span style=\"font-weight: bold\">&nbsp;</span></div>\
                       </div>\
@@ -35,8 +35,8 @@
                                 </td>\
                                 <td class='code-col'> {{row.branch['code']}}</td>\
                                 <td class='type-col'> {{row.branch['accountType'].description}}</td>\
-                                <td style='width: 60px; padding: 0'><a style='padding: 0' title='View' href=\"#/account/{{row.branch['id']}}\"><i class='fa fa-search'></i></a>\
-                                    <a style='padding: 0' title='Edit' href=\"#/account/{{row.branch['id']}}/edit\">&nbsp;&nbsp;<i class='fa fa-edit'></i></a>\
+                                <td style='width: 60px; padding: 0'><a style='padding: 0' title='View' ui-sref=\".account({accountId: row.branch['id'] })\"><i class='fa fa-search'></i></a>\
+                                    <a style='padding: 0' title='Edit' ui-sref=\".edit({accountId: row.branch['id'] })\">&nbsp;&nbsp;<i class='fa fa-edit'></i></a>\
                                 </td>\
                             </tr>\
                             </tbody>\

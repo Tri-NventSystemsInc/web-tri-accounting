@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col-md-12 col-lg-12">
-        <button class="btn btn-primary" onclick="(window.location.href = '#/accounts')">Chart of Accounts</button>
-        <button class="btn btn-primary" onclick="(window.location.href = '#/new')">Add</button>
-        <button class="btn btn-primary" ng-click="pointToEditForm()">Edit</button>
+        <a ng-click="main()" class="btn btn-primary">Chart of Accounts</a>
+        <a ui-sref="coa.new" class="btn btn-primary">Add</a>
+        <a ui-sref="coa.edit({accountId: accountId})" class="btn btn-primary">Edit</a>
     </div>
 </div>
 <div style="margin-top: 20px;"></div>

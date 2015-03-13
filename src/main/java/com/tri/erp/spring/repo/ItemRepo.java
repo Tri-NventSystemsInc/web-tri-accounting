@@ -14,4 +14,5 @@ import java.util.List;
 public interface ItemRepo extends JpaRepository<Item, Integer>{
     @Transactional
     public List<Item> findAllByOrderByDescriptionAsc();
+    public Item findOneByDescription(String desc);
 }

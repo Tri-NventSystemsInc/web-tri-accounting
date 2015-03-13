@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<button title="browse account"  class="btn btn-primary" data-toggle="modal" data-target="#accountWithSegmentModal"> {{ btnLabel }}</button>
+<a title="browse account"  class="btn btn-primary" data-toggle="modal" data-target="#accountWithSegmentModal"> {{ btnLabel }}</a>
 
 <div class="modal fade" id="accountWithSegmentModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" style="width: 90%">
@@ -46,7 +46,7 @@
                                     </thead>
                                     <tbody>
                                     <tr data-dismiss="modal" ng-repeat="account in accs = (accounts | filter:query)" style="cursor: pointer" ng-click="selectAccount(account)">
-                                        <td class='code-col'>{{account.code}}</td>
+                                        <td class='code-col'>{{account.segmentAccountCode}}</td>
                                         <td>{{account.title}}</td>
                                         <td class='type-col'>{{account.accountType.description}}</td>
                                     </tr>

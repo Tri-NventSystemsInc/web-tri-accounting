@@ -1,8 +1,7 @@
 <div class="row">
     <div class="col-md-12 col-lg-12">
-        <button class="btn btn-primary" onclick="(window.location.href = '#/users')">Users & Roles</button>
-        <button class="btn btn-primary" onclick="(window.location.href = '#/new-role')">Add</button>
-        <button class="btn btn-primary" ng-click="pointToEditForm()">Edit</button>
+        <a ui-sref="user.newRole" class="btn btn-primary">Add</a>
+        <a ui-sref="user.roleEdit({roleId: roleId})" class="btn btn-primary">Edit</a>
     </div>
 </div>
 <div style="margin-top: 20px;"></div>
@@ -51,6 +50,36 @@
                             <label style="font-weight: normal">{{menu.title}}</label>
                         </li>
                     </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="col-md-2 col-lg-2">
+                        <label class="input-label">Allowed pages and components</label>
+                    </div>
+                    <div class="col-md-8 col-lg-8">
+                        <div class="panel-body" style="padding-left: 0px;">
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-default" ng-repeat="page in pages track by $index">
+                                    <div class="panel-heading">
+                                        <h5 class="panel-title">
+                                            <a ng-click="showPageComponents(page.id)" data-toggle="collapse" data-parent="#accordion" href="{{ path + '#' + page.id}}" aria-expanded="false" class="collapsed">{{page.name}}</a>
+                                        </h5>
+                                    </div>
+                                    <div id="{{page.id}}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                        <div class="panel-body">
+                                            <ul style="list-style: none; padding-left: 2px;">
+                                                <li ng-repeat="component in pageComponents[page.id]">
+                                                    <label>{{component.description}}</label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

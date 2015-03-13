@@ -1,19 +1,16 @@
-/**
- * INSPINIA - Responsive Admin Theme
- * Copyright 2014 Webapplayers.com
- *
- */
-
 
 /**
  * pageTitle - Directive for set Page title - mata title
  */
+
+
+
 function pageTitle($rootScope, $timeout) {
     return {
         link: function(scope, element) {
             var listener = function(event, toState, toParams, fromState, fromParams) {
                 // Default title - load on Dashboard 1
-                var title = 'INSPINIA | Responsive Admin Theme';
+                var title = 'ILECO1 | Firefly';
                 // Create your own title pattern
                 if (toState.data && toState.data.pageTitle) title = 'ILECO I | Firelfy Ver. 1.0.0';
                 $timeout(function() {
@@ -45,7 +42,7 @@ function iboxTools($timeout) {
     return {
         restrict: 'A',
         scope: true,
-        templateUrl: 'views/common/ibox_tools.html',
+        templateUrl: '/WEB-INF/tags/ibox_tools.tag',
         controller: function ($scope, $element) {
             // Function for collapse ibox
             $scope.showhide = function () {

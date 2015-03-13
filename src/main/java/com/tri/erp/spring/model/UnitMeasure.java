@@ -10,12 +10,12 @@ public class UnitMeasure {
     @Id
     @GeneratedValue
     @Column
-    private int id;
+    private Integer id;
 
-    @Column
+    @Column(unique = true)
     private String code;
 
-    @Column
+    @Column(unique = true)
     private String description;
 
     public UnitMeasure(String code, String description) {
@@ -25,11 +25,11 @@ public class UnitMeasure {
 
     public UnitMeasure() { }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

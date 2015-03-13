@@ -36,4 +36,9 @@ public class CommonViewController {
     public String getErrorViewer() {
         return "common/form-field-error-msg";
     }
+
+    @RequestMapping("/notifications-page")
+    public String getNotificationsPage() {
+        return "common/notifications";
+    }
 }

@@ -7,10 +7,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Firefly | Login</title>
 
+    <!-- Page title set in pageTitle directive -->
+    <title page-title></title>
+    <!-- Bootstrap and Fonts -->
     <link href="<c:url value="/resources/css/inspinia/bootstrap.min.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/fonts/inspinia/font-awesome/css/font-awesome.css" />" rel="stylesheet">
+
+    <!-- Main Inspinia CSS files -->
     <link href="<c:url value="/resources/css/inspinia/animate.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/css/inspinia/style.css" />" rel="stylesheet">
+
 
 </head>
 <body class="gray-bg">

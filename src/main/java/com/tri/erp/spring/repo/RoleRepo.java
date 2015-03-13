@@ -27,9 +27,7 @@ public interface RoleRepo extends JpaRepository<Role, Integer> {
     @Query(value = "INSERT INTO RoleMenu SET " +
             "FK_roleId = :roleId, " +
             "FK_menuId = :menuId", nativeQuery = true)
-    public int saveMenus(@Param("roleId") Integer roleId,
-                         @Param("menuId") Integer menuId
-    );
+    public int saveMenus(@Param("roleId") Integer roleId, @Param("menuId") Integer menuId);
 
     @Transactional(readOnly = true)
     @Query(value = "SELECT " +
@@ -39,4 +37,22 @@ public interface RoleRepo extends JpaRepository<Role, Integer> {
             "WHERE FK_roleId = :roleId " +
             "ORDER BY Menu.order ASC, Menu.id ASC", nativeQuery = true)
     public List<Object[]> findMenusByRoleId(@Param("roleId") Integer roleId);
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM RolePageComponent WHERE FK_roleId = :roleId", nativeQuery = true)
+    public int removePageComponents(@Param("roleId") Integer roleId);
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM RolePageComponent " +
+            "WHERE FK_roleId = :roleId AND FK_pageComponentId = :pageComponentId", nativeQuery = true)
+    public int removePageComponents(@Param("roleId") Integer roleId, @Param("pageComponentId") Integer pageComponentId);
+
+    @Modifying
+    @Transactional
+    @Query(value = "INSERT IGNORE INTO RolePageComponent SET " +
+            "FK_roleId = :roleId, " +
+            "FK_pageComponentId = :pageComponentId", nativeQuery = true)
+    public int savePageComponents(@Param("roleId") Integer roleId, @Param("pageComponentId") Integer pageComponentId);
 }

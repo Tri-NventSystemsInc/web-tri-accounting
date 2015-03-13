@@ -37,11 +37,6 @@ public class ChartOfAccountsController {
         return "admin/coa/main";
     }
 
-    @RequestMapping(value = "/accounts-tree-page", method = RequestMethod.GET)
-    public String accountsTree() {
-        return BASE_PATH + "chart-of-accounts";
-    }
-
     @RequestMapping(value = "/new-account-page", method = RequestMethod.GET)
     public String newAccount() {
         return BASE_PATH + "add-edit";

@@ -1,5 +1,6 @@
 package com.tri.erp.spring.controller;
 
+import com.tri.erp.spring.commons.facade.AuthenticationFacade;
 import com.tri.erp.spring.model.Account;
 import com.tri.erp.spring.model.User;
 import com.tri.erp.spring.reponse.AccountDto;
@@ -27,6 +28,9 @@ public class UserController {
     MessageSource messageSource;
 
     @Autowired
+    private AuthenticationFacade authenticationFacade;
+
+    @Autowired
     UserService userService;
 
     @RequestMapping(value = "/list")
@@ -48,9 +52,26 @@ public class UserController {
        return userService.findById(id);
     }
 
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    @ResponseBody
+    public User getUserProfile() {
+        User currentUser = authenticationFacade.getLoggedIn();
+        return userService.findById(currentUser.getId());
+    }
+
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
     public CreateResponse updateUser(@Valid @RequestBody User user, BindingResult bindingResult) {
         return userService.processUpdate(user, bindingResult, messageSource);
+    }
+
+    @RequestMapping(value = "/profile-page", method = RequestMethod.GET)
+    public String getUserProfilePage() {
+        return "profile/user-profile";
+    }
+
+    @RequestMapping(value = "/edit-profile-page", method = RequestMethod.GET)
+    public String getEditProfilePage() {
+        return "profile/edit-profile";
     }
 }
