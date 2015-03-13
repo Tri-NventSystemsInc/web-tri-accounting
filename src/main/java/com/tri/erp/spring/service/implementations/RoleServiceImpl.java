@@ -1,5 +1,6 @@
 package com.tri.erp.spring.service.implementations;
 
+import com.tri.erp.spring.commons.Debug;
 import com.tri.erp.spring.commons.helpers.Checker;
 import com.tri.erp.spring.commons.helpers.MessageFormatter;
 import com.tri.erp.spring.commons.helpers.StringFormatter;
@@ -99,12 +100,23 @@ public class RoleServiceImpl implements RoleService {
                         roleRepo.removeAssignedRoute(role.getId(), pageComponent.getActionRoute().getId());
                     }
                 }
+
+                if (!Checker.collectionIsEmpty(role.getMenusToEvict())) {
+                    for (Menu menu : role.getMenusToEvict()) {
+                        if (menu.getViewRoute() != null) {
+                            roleRepo.removeAssignedRoute(role.getId(), menu.getViewRoute().getId());
+                        }
+                    }
+                }
             }
 
             // insert menus assigned
             if (!Checker.collectionIsEmpty(role.getMenus())) {
                 for (Menu menu : role.getMenus()) {
                     roleRepo.saveMenus(role.getId(), menu.getId());
+                    if (menu.getViewRoute() != null) {
+                        roleRepo.saveAssignedRoute(role.getId(), menu.getViewRoute().getId());
+                    }
                 }
             }
 
@@ -116,8 +128,8 @@ public class RoleServiceImpl implements RoleService {
             }
 
             // insert assigned route (RoleRoute)
-            if (!Checker.collectionIsEmpty(role.getPageComponentsToEvict())) {
-                for (PageComponent pageComponent : role.getPageComponentsToEvict()) {
+            if (!Checker.collectionIsEmpty(role.getPageComponents())) {
+                for (PageComponent pageComponent : role.getPageComponents()) {
                     roleRepo.saveAssignedRoute(role.getId(), pageComponent.getActionRoute().getId());
                     roleRepo.saveAssignedRoute(role.getId(), pageComponent.getViewRoute().getId());
                 }
@@ -145,21 +157,26 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Map<String, String> findPageComponentByUserId(Integer userId) {
-        List<PageComponent> pageComponents = pageComponentRepo.findAllByUserId(userId);
+    public Map<String, String> findPageComponentByRoute(Integer userId, String url) {
+        url = StringFormatter.removeBaseFromRoute(url);
+        Route route = routeRepo.findOneByUrl(url);
 
         Map<String, String> componentMap = new HashMap<>();
-        for(PageComponent pageComponent : pageComponents) {
-            componentMap.put(pageComponent.getDomId(), pageComponent.getHtml());
+
+        if (route != null) {
+            List<PageComponent> pageComponents = pageComponentRepo.findAllByUserAndRouteId(userId, route.getId());
+            for(PageComponent pageComponent : pageComponents) {
+                componentMap.put(pageComponent.getDomId(), pageComponent.getHtml());
+            }
         }
+
         return componentMap;
     }
 
     @Override
-    public Boolean isAuthorized(Integer userId, String route) {
-        route = StringFormatter.removeBaseFromRoute(route);
-        Route pageActionRoute = routeRepo.find(userId, route);
-
-        return pageActionRoute != null; // no permission for empty result
+    public Boolean isRouteAuthorized(Integer userId, String url) {
+        url = StringFormatter.removeBaseFromRoute(url);
+        Route route = routeRepo.findAssignedByUserAndRouteId(userId, url);
+        return route != null; // no permission for empty result
     }
 }

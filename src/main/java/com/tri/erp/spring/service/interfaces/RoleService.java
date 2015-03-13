@@ -17,6 +17,6 @@ public interface RoleService {
     public CreateResponse processCreate(Role role, BindingResult bindingResult, MessageSource messageSource);
     public Role findByName(String str);
     public CreateResponse processUpdate(Role role, BindingResult bindingResult, MessageSource messageSource);
-    public Map<String, String> findPageComponentByUserId(Integer userId);
-    public Boolean isAuthorized(Integer userId, String methodName);
+    public Map<String, String> findPageComponentByRoute(Integer userId, String route);
+    public Boolean isRouteAuthorized(Integer userId, String route);
 }
