@@ -19,5 +19,6 @@ public interface RouteRepo extends JpaRepository<Route, Integer> {
     public Route findAssignedByUserAndRouteId(@Param("userId") Integer userId, @Param("url") String url);
 
     public Route findOneByUrl(String route);
+    public Route findOneByUrlAndRestrictedTrue(String url);
 
 }

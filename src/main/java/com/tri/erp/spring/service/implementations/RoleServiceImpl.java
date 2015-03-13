@@ -176,7 +176,14 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Boolean isRouteAuthorized(Integer userId, String url) {
         url = StringFormatter.removeBaseFromRoute(url);
-        Route route = routeRepo.findAssignedByUserAndRouteId(userId, url);
-        return route != null; // no permission for empty result
+
+        Route restrictedRoute = routeRepo.findOneByUrlAndRestrictedTrue(url);
+
+        if (restrictedRoute != null) {
+            Route route = routeRepo.findAssignedByUserAndRouteId(userId, url);
+            return route != null; // no permission for empty result
+        }
+
+        return true;
     }
 }
