@@ -4,14 +4,4 @@
  *
  */
 
-
-/**
- * MainCtrl - controller
- */
-function MainCtrl() {
-
-
-}
-angular
-    .module('inspinia')
-    .controller('MainCtrl ', MainCtrl)
+angular.module('inspinia')

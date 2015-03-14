@@ -1,5 +1,6 @@
 package com.tri.erp.spring.service.implementations;
 
+import com.tri.erp.spring.commons.Debug;
 import com.tri.erp.spring.commons.helpers.Checker;
 import com.tri.erp.spring.commons.helpers.MessageFormatter;
 import com.tri.erp.spring.commons.helpers.StringFormatter;
@@ -9,7 +10,6 @@ import com.tri.erp.spring.repo.PageComponentRepo;
 import com.tri.erp.spring.repo.RoleRepo;
 import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.reponse.CreateRoleResponse;
-import com.tri.erp.spring.reponse.PageComponentDto;
 import com.tri.erp.spring.service.interfaces.RoleService;
 import com.tri.erp.spring.validator.RoleValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,7 +95,17 @@ public class RoleServiceImpl implements RoleService {
 
                 if (!Checker.collectionIsEmpty(role.getPageComponentsToEvict())) {
                     for (PageComponent pageComponent : role.getPageComponentsToEvict()) {
-                        roleRepo.removePageComponents(role.getId(), pageComponent.getId());
+                        roleRepo.removeAssignedPageComponent(role.getId(), pageComponent.getId());
+                        roleRepo.removeAssignedRoute(role.getId(), pageComponent.getViewRoute().getId());
+                        roleRepo.removeAssignedRoute(role.getId(), pageComponent.getActionRoute().getId());
+                    }
+                }
+
+                if (!Checker.collectionIsEmpty(role.getMenusToEvict())) {
+                    for (Menu menu : role.getMenusToEvict()) {
+                        if (menu.getViewRoute() != null) {
+                            roleRepo.removeAssignedRoute(role.getId(), menu.getViewRoute().getId());
+                        }
                     }
                 }
             }
@@ -104,13 +114,24 @@ public class RoleServiceImpl implements RoleService {
             if (!Checker.collectionIsEmpty(role.getMenus())) {
                 for (Menu menu : role.getMenus()) {
                     roleRepo.saveMenus(role.getId(), menu.getId());
+                    if (menu.getViewRoute() != null) {
+                        roleRepo.saveAssignedRoute(role.getId(), menu.getViewRoute().getId());
+                    }
                 }
             }
 
             // insert page components assigned
             if (!Checker.collectionIsEmpty(role.getPageComponents())) {
                 for (PageComponent pageComponent : role.getPageComponents()) {
-                    roleRepo.savePageComponents(role.getId(), pageComponent.getId());
+                    roleRepo.saveAssignedPageComponent(role.getId(), pageComponent.getId());
+                }
+            }
+
+            // insert assigned route (RoleRoute)
+            if (!Checker.collectionIsEmpty(role.getPageComponents())) {
+                for (PageComponent pageComponent : role.getPageComponents()) {
+                    roleRepo.saveAssignedRoute(role.getId(), pageComponent.getActionRoute().getId());
+                    roleRepo.saveAssignedRoute(role.getId(), pageComponent.getViewRoute().getId());
                 }
             }
 
@@ -136,21 +157,33 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Map<String, String> findPageComponentByUserId(Integer userId) {
-        List<PageComponent> pageComponents = pageComponentRepo.findAllByUserId(userId);
+    public Map<String, String> findPageComponentByRoute(Integer userId, String url) {
+        url = StringFormatter.removeBaseFromRoute(url);
+        Route route = routeRepo.findOneByUrl(url);
 
         Map<String, String> componentMap = new HashMap<>();
-        for(PageComponent pageComponent : pageComponents) {
-            componentMap.put(pageComponent.getDomId(), pageComponent.getHtml());
+
+        if (route != null) {
+            List<PageComponent> pageComponents = pageComponentRepo.findAllByUserAndRouteId(userId, route.getId());
+            for(PageComponent pageComponent : pageComponents) {
+                componentMap.put(pageComponent.getDomId(), pageComponent.getHtml());
+            }
         }
+
         return componentMap;
     }
 
     @Override
-    public Boolean isAuthorized(Integer userId, String route) {
-        route = StringFormatter.removeBaseFromRoute(route);
-        Route pageActionRoute = routeRepo.find(userId, route);
+    public Boolean isRouteAuthorized(Integer userId, String url) {
+        url = StringFormatter.removeBaseFromRoute(url);
 
-        return pageActionRoute != null; // no permission for empty result
+        Route restrictedRoute = routeRepo.findOneByUrlAndRestrictedTrue(url);
+
+        if (restrictedRoute != null) {
+            Route route = routeRepo.findAssignedByUserAndRouteId(userId, url);
+            return route != null; // no permission for empty result
+        }
+
+        return true;
     }
 }
