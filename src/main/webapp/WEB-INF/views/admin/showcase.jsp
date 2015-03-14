@@ -11,10 +11,7 @@
     <div ng-controller="sleCtrl">
 
         <p>You selected entity: <b>{{selectedEntity ? (selectedEntity.accountNo + ' ' + selectedEntity.name) : 'None'}}</b></p>
-        <div sl-entity-browser btn_label="Browse entities" handler="entity_selection_handler" />
-
-        <p>You selected entity: <b>{{selectedEntity2 ? (selectedEntity2.accountNo + ' ' + selectedEntity2.name) : 'None'}}</b></p>
-        <div sl-entity-browser btn_label="Browse entities" handler="entity_selection_handler2" />
+        <div sl-entity-browser btn_label="Browse entities" handler="entity_selection_handler(entity)" />
     </div>
     <p></p>
     <div ng-controller="itemCtrl">

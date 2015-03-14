@@ -1,7 +1,6 @@
 package com.tri.erp.spring.reponse;
 
 import com.tri.erp.spring.model.Menu;
-import com.tri.erp.spring.model.Route;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,6 @@ public class MenuDto {
     private String title;
     private String iconClass;
     private Menu parentMenu;
-    private Route viewRoute;
     private List<MenuDto> subMenus = new ArrayList<>();
 
     public int getId() {
@@ -65,13 +63,5 @@ public class MenuDto {
 
     public void setSubMenus(List<MenuDto> subMenus) {
         this.subMenus = subMenus;
-    }
-
-    public Route getViewRoute() {
-        return viewRoute;
-    }
-
-    public void setViewRoute(Route viewRoute) {
-        this.viewRoute = viewRoute;
     }
 }

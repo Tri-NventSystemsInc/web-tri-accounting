@@ -53,7 +53,6 @@ public class MenuServiceImpl implements MenuService {
             menuDto.setState(menu.getState());
             menuDto.setTitle(menu.getTitle());
             menuDto.setParentMenu(menu.getParentMenu());
-            menuDto.setViewRoute(menu.getViewRoute());
 
             if (menu.getParentMenu() == null || menu.getParentMenu().getId() == 0) {
                 menuDto.setSubMenus(this.getChildren(menus, menu.getId()));

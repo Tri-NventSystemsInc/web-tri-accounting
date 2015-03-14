@@ -65,6 +65,8 @@ supplierApp.controller('addEditSupplierCtrl', ['$scope', '$state', '$stateParams
             $scope.submitting = true;
             csrf.setCsrfToken();
 
+            console.log($scope.supplier);
+
             var res = $http.post(resourceURI, $scope.supplier);
             res.success(function(data) {
                 if (!data.success) {

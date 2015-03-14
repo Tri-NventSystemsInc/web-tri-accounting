@@ -255,8 +255,6 @@ userApp.controller('addEditRoleCtrl', ['$location', '$scope', '$stateParams', '$
         menuFactory.getMenus().success(function (data) {
             $scope.menus = data;
 
-            console.log(data);
-
             if ($scope.role != undefined) {
                 setSelectedMenu();
             }
@@ -342,19 +340,15 @@ userApp.controller('addEditRoleCtrl', ['$location', '$scope', '$stateParams', '$
         csrf.setCsrfToken();
 
         var roleMenus = [];
-        var roleMenusToEvict = [];
         var menus = angular.copy($scope.menus);
         angular.forEach(menus, function(menu, key) {
             if (menu.selected) {
                 delete menu['selected']; // hibernate will complain, so delete it
                 roleMenus.push(menu);
-            } else {
-                roleMenusToEvict.push(menu);
             }
         });
 
         $scope.role.menus = roleMenus;
-        $scope.role.menusToEvict = roleMenusToEvict;
 
         var rolePageComponents = [];
         var pageComponentsToEvict = [];
@@ -362,10 +356,6 @@ userApp.controller('addEditRoleCtrl', ['$location', '$scope', '$stateParams', '$
         angular.forEach(pages, function(page, key) {  // loop all pages
             if (page != undefined) {    // for pages with no page components yet
                 angular.forEach(page, function(pageComponent, key) {  // loop all components of a page
-
-                    pageComponent['viewRoute'] = {'id' : pageComponent.viewRouteId};
-                    pageComponent['actionRoute'] = {'id' : pageComponent.actionRouteId};
-
                     if (pageComponent.selected) {
                         delete pageComponent['selected']; // hibernate will complain, so delete it
                         rolePageComponents.push(pageComponent);
@@ -379,6 +369,7 @@ userApp.controller('addEditRoleCtrl', ['$location', '$scope', '$stateParams', '$
 
         $scope.role.pageComponents = rolePageComponents;
         $scope.role.pageComponentsToEvict = pageComponentsToEvict;
+
 
         var res = $http.post(resourceURI, $scope.role);
         res.success(function(data) {
@@ -400,7 +391,13 @@ userApp.controller('addEditRoleCtrl', ['$location', '$scope', '$stateParams', '$
     }
 
     $scope.toggleParent = function(selectedMenu) {
-        selectedMenu.selected = selectedMenu.selected;
+
+        // reverse checkbox state
+        if (selectedMenu.selected === undefined) {
+            selectedMenu.selected = true;
+        } else {
+            selectedMenu.selected = !selectedMenu.selected;
+        }
 
         // check all children
         if (selectedMenu.parentMenu == null) {

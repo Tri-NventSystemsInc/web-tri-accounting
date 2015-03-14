@@ -40,30 +40,19 @@ public interface RoleRepo extends JpaRepository<Role, Integer> {
 
     @Modifying
     @Transactional
+    @Query(value = "DELETE FROM RolePageComponent WHERE FK_roleId = :roleId", nativeQuery = true)
+    public int removePageComponents(@Param("roleId") Integer roleId);
+
+    @Modifying
+    @Transactional
     @Query(value = "DELETE FROM RolePageComponent " +
             "WHERE FK_roleId = :roleId AND FK_pageComponentId = :pageComponentId", nativeQuery = true)
-    public int removeAssignedPageComponent(@Param("roleId") Integer roleId, @Param("pageComponentId") Integer pageComponentId);
+    public int removePageComponents(@Param("roleId") Integer roleId, @Param("pageComponentId") Integer pageComponentId);
 
     @Modifying
     @Transactional
     @Query(value = "INSERT IGNORE INTO RolePageComponent SET " +
             "FK_roleId = :roleId, " +
             "FK_pageComponentId = :pageComponentId", nativeQuery = true)
-    public int saveAssignedPageComponent(@Param("roleId") Integer roleId, @Param("pageComponentId") Integer pageComponentId);
-
-    @Modifying
-    @Transactional
-    @Query(value = "DELETE FROM RoleRoute WHERE FK_roleId = :roleId AND FK_routeId = :routeId", nativeQuery = true)
-    public int removeAssignedRoute(@Param("roleId") Integer roleId, @Param("routeId") Integer routeId);
-
-    @Modifying
-    @Transactional
-    @Query(value = "INSERT IGNORE INTO RoleRoute SET FK_roleId = :roleId,  FK_routeId = :routeId", nativeQuery = true)
-    public int saveAssignedRoute(@Param("roleId") Integer roleId, @Param("routeId") Integer routeId);
-
-    @Modifying
-    @Transactional
-    @Query(value = "DELETE FROM RoleRoute WHERE FK_roleId = :roleId AND FK_routeId IN " +
-            "(SELECT id FROM Route WHERE restricted = 1)", nativeQuery = true)
-    public int removeRoutes(@Param("roleId") Integer roleId);
+    public int savePageComponents(@Param("roleId") Integer roleId, @Param("pageComponentId") Integer pageComponentId);
 }

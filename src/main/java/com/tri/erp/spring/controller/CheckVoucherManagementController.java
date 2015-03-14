@@ -30,13 +30,13 @@ public class CheckVoucherManagementController {
 
     // view providers
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView index(HttpServletRequest request) {
-        return ControllerHelper.getModelAndView(MAIN, roleService, authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
+    public ModelAndView index() {
+        return ControllerHelper.getModelAndView(MAIN, roleService, authenticationFacade.getLoggedIn().getId());
     }
 
     @RequestMapping(value = "/new-cv-page", method = RequestMethod.GET)
     public String newCv(HttpServletRequest request) {
-        Boolean hasPermissionOnMethod = roleService.isRouteAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
+        Boolean hasPermissionOnMethod = roleService.isAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
         return hasPermissionOnMethod ? (BASE_PATH + "add-edit") : "403";
     }
 }
