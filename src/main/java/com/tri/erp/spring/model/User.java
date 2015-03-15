@@ -1,7 +1,7 @@
 package com.tri.erp.spring.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.sun.javafx.beans.annotations.Default;
+//import com.sun.javafx.beans.annotations.Default;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.validator.constraints.Length;
@@ -82,6 +82,7 @@ public class User {
     }
 
     public User() {}
+
 
     public Integer getId() {
         return id;
