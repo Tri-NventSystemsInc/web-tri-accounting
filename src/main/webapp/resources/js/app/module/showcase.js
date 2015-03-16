@@ -11,6 +11,7 @@ app.controller('acbCtrl', ['$scope', function($scope) {
         }]);
 
 app.controller('sleCtrl', ['$scope', function($scope) {
+    $scope.entityTypes = [1,2,3];
             $scope.entity_selection_handler = function(entity){
                 $scope.selectedEntity = entity;
             }

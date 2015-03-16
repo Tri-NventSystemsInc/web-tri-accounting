@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface SlEntityService {
     public List<SlEntity> findAll();
+    public List<SlEntity> findAllByType(String[] entityTypes);
 }

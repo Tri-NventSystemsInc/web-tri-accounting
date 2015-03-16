@@ -11,11 +11,9 @@ apvApp.controller('addEditApvCtrl', ['$scope', '$stateParams', '$http', 'errorTo
 
         $scope.supplier_selection_handler = function(entity){
             $scope.selectedSupplier = entity;
-            console.log($scope.selectedSupplier);
         }
         $scope.checker_selection_handler = function(entity){
             $scope.selectedChecker = entity;
-            alert('checker ' + entity.name);
         }
 
         $scope.approvar_selection_handler = function(entity){

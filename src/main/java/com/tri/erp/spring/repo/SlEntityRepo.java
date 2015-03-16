@@ -15,4 +15,8 @@ public interface SlEntityRepo extends JpaRepository<SlEntity, Integer>{
 
     @Transactional
     public List<SlEntity> findAllByOrderByNameAsc();
+
+    @Transactional
+    @Query(value = "SELECT e FROM slentity e WHERE marker IN :markers")
+    public List<SlEntity> findByMarkers(@Param("markers") List<String> markers);
 }
