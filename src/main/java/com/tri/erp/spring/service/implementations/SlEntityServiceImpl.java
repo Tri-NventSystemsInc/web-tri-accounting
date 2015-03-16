@@ -23,7 +23,7 @@ public class SlEntityServiceImpl implements SlEntityService {
     }
 
     @Override
-    public List<SlEntity> findAllByType(String[] entityTypes) {
+    public List<SlEntity> findAllByType(Integer[] entityTypes) {
         return slEntityRepo.findByMarkers(Arrays.asList(entityTypes));
     }
 }

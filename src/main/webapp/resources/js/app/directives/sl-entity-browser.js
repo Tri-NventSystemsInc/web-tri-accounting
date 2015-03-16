@@ -35,18 +35,17 @@
                 },
             link: function (scope, elem, attrs) {
 
-                console.log(scope.types);
-
                 elem.bind('click', function () {
-                    if (angular.isDefined(scope.slEntities) && scope.slEntities.length > 0)  {
+                    if (angular.isDefined(scope.slEntities) && scope.slEntities.length > 0 && scope.formerTypes == scope.types)  {
                         scope.open();
                         return;
                     }
                     else  // cache
                     {
                         scope.$apply(function () {
-                            entityFactory.getEntities().success(function (data) {
+                            entityFactory.getEntities(scope.types).success(function (data) {
                                 scope.slEntities = data;
+                                scope.formerTypes = scope.types;
                                 scope.open();
                             });
                         });

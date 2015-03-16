@@ -40,9 +40,12 @@ public class AnyJsonController {
 
     @RequestMapping(value = "/entities", method = RequestMethod.GET)
     @ResponseBody
-    public List<SlEntity> getEntities(@RequestParam(value = "entityTypes", required = false) String[] entityTypes) {
-        Debug.print("entityTypes: " + entityTypes);
-        return slEntityService.findAll();
+    public List<SlEntity> getEntities(@RequestParam(value = "entityTypes", required = false) Integer[] entityTypes) {
+        if (entityTypes != null && entityTypes.length > 0) {
+            return slEntityService.findAllByType(entityTypes);
+        } else {
+            return slEntityService.findAll();
+        }
     }
 
     @RequestMapping(value = "/menus", method = RequestMethod.GET)
