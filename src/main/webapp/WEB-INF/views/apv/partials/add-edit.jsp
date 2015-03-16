@@ -28,6 +28,7 @@
                 <div class="col-md-5 col-lg-5">
                     <button sl-entity-browser
                             handler="supplier_selection_handler"
+                            types="suppliers"
                             class="btn btn-primary">Browse supplier</button>
                 </div>
                 <form-error err_field="errors.err_supplier"></form-error>
@@ -153,6 +154,7 @@
                 <div class="col-md-5 col-lg-5">
                     <button sl-entity-browser
                             handler="checker_selection_handler"
+                            types="signatories"
                             class="btn btn-primary">Browse checker</button>
                 </div>
                 <form-error err_field="errors.err_checker"></form-error>
@@ -175,6 +177,7 @@
                 <div class="col-md-5 col-lg-5">
                     <button sl-entity-browser
                             handler="approvar_selection_handler"
+                            types="signatories"
                             class="btn btn-primary">Browse approving officer</button>
                 </div>
                 <form-error err_field="errors.err_approvar"></form-error>
