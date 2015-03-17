@@ -5,10 +5,14 @@ var app = angular.module('showcase', [
 ]);
 
 app.controller('acbCtrl', ['$scope', function($scope) {
-            $scope.accounts_selection_handler = function(account){
-                $scope.selectedAccount = account;
-            }
-        }]);
+    $scope.accounts_selection_handler = function(account){
+        $scope.selectedAccount = account;
+    }
+
+    $scope.accounts_selection_handler2 = function(account){
+        $scope.selectedAccount2 = account;
+    }
+}]);
 
 app.controller('sleCtrl', ['$scope', function($scope) {
         $scope.entityTypes1 = [1];
@@ -24,8 +28,12 @@ app.controller('sleCtrl', ['$scope', function($scope) {
 }]);
 
 app.controller('itemCtrl', ['$scope', '$http', function($scope, $http) {
-    $scope.item_selection_handler = function(item){
-        $scope.selectedItem = item;
+    $scope.item_selection_handler1 = function(item){
+        $scope.selectedItem1 = item;
+    }
+
+    $scope.item_selection_handler2 = function(item){
+        $scope.selectedItem2 = item;
     }
 
     $scope.export = function(type) {

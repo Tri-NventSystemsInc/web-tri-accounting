@@ -5,7 +5,11 @@
 <div  ui-view>
     <div ng-controller="acbCtrl">
         <p>You selected account: <b>{{selectedAccount ? (selectedAccount.segmentAccountCode + ' ' + selectedAccount.title) : 'None'}}</b></p>
-        <div account-browser-s btn_label="Browse accounts" handler="accounts_selection_handler(account)" />
+        <button class="btn btn-primary" account-browser-s handler="accounts_selection_handler" >Browse accounts</button>
+
+        <p>You selected account: <b>{{selectedAccount2 ? (selectedAccount2.segmentAccountCode + ' ' + selectedAccount2.title) : 'None'}}</b></p>
+        <button class="btn btn-primary" account-browser-s handler="accounts_selection_handler2" >Browse accounts</button>
+
     </div>
     <p></p>
     <div ng-controller="sleCtrl">
@@ -25,8 +29,11 @@
     <p></p>
     <div ng-controller="itemCtrl">
 
-        <p>You selected item: <b>{{selectedItem ? (selectedItem.code + ' ' + selectedItem.description) : 'None'}}</b></p>
-        <div item-browser btn_label="Browse items" handler="item_selection_handler(item)" />
+        <p>You selected item: <b>{{selectedItem1 ? (selectedItem1.code + ' ' + selectedItem1.description) : 'None'}}</b></p>
+        <button class="btn btn-primary" item-browser handler="item_selection_handler1" >Browse item 1</button>
+
+        <p>You selected item: <b>{{selectedItem2 ? (selectedItem2.code + ' ' + selectedItem2.description) : 'None'}}</b></p>
+        <button class="btn btn-primary" item-browser handler="item_selection_handler2" >Browse item 2</button>
 
         <p></p>
         <a class="btn btn-primary" title="export to excel" target="_blank" ng-href="{{url}}"  ng-mousedown="export('xls')">Export items to excel</a>
