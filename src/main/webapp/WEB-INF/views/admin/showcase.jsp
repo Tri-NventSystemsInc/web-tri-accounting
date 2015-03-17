@@ -5,7 +5,7 @@
 <div  ui-view>
     <div ng-controller="acbCtrl">
         <p>You selected account: <b>{{selectedAccount ? (selectedAccount.segmentAccountCode + ' ' + selectedAccount.title) : 'None'}}</b></p>
-        <div account-browser-s btn_label="Browse accounts" handler="accounts_selection_handler(account)" />
+        <button class="btn btn-primary" account-browser-s handler="accounts_selection_handler" >Browse accounts</button>
     </div>
     <p></p>
     <div ng-controller="sleCtrl">
