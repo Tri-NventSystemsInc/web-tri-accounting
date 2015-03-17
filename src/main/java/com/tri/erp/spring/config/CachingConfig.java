@@ -21,6 +21,7 @@ public class CachingConfig {
         EhCacheManagerFactoryBean ehCacheManagerFactoryBean = new EhCacheManagerFactoryBean();
         ehCacheManagerFactoryBean.setConfigLocation(new ClassPathResource("firefly-ehcache.xml"));
         ehCacheManagerFactoryBean.setShared(true);
+        
         return ehCacheManagerFactoryBean;
     }
     @Bean
