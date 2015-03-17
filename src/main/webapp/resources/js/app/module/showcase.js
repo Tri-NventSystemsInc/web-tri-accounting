@@ -5,10 +5,14 @@ var app = angular.module('showcase', [
 ]);
 
 app.controller('acbCtrl', ['$scope', function($scope) {
-            $scope.accounts_selection_handler = function(account){
-                $scope.selectedAccount = account;
-            }
-        }]);
+    $scope.accounts_selection_handler = function(account){
+        $scope.selectedAccount = account;
+    }
+
+    $scope.accounts_selection_handler2 = function(account){
+        $scope.selectedAccount2 = account;
+    }
+}]);
 
 app.controller('sleCtrl', ['$scope', function($scope) {
         $scope.entityTypes1 = [1];

@@ -6,6 +6,10 @@
     <div ng-controller="acbCtrl">
         <p>You selected account: <b>{{selectedAccount ? (selectedAccount.segmentAccountCode + ' ' + selectedAccount.title) : 'None'}}</b></p>
         <button class="btn btn-primary" account-browser-s handler="accounts_selection_handler" >Browse accounts</button>
+
+        <p>You selected account: <b>{{selectedAccount2 ? (selectedAccount2.segmentAccountCode + ' ' + selectedAccount2.title) : 'None'}}</b></p>
+        <button class="btn btn-primary" account-browser-s handler="accounts_selection_handler2" >Browse accounts</button>
+
     </div>
     <p></p>
     <div ng-controller="sleCtrl">

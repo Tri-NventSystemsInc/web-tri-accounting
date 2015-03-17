@@ -51,15 +51,18 @@
                 }
 
                 elem.bind('click', function () {
-                    if (angular.isDefined(scope.accounts) && scope.accounts.length > 0)  return; // cache
-
+                    if (angular.isDefined(scope.accounts) && scope.accounts.length > 0)  { // cache
+                        scope.open();
+                        return;
+                    }
                     scope.$apply(function () {
 
                         if (scope.segments.length > 0) {
-                            collectionSegmentIds();
                             scope.open();
+                            collectionSegmentIds();
                             loadAccounts();
                         } else {
+                            scope.open();
                             businessSegmentFactory.getSegments().success(function (data) {
 
                                 if (data.length > 0) {
@@ -68,7 +71,6 @@
                                         scope.segments.push(segment);
                                     });
                                     collectionSegmentIds();
-                                    scope.open();
                                     loadAccounts();
                                 }
                             });
