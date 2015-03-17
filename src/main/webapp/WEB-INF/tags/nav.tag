@@ -59,6 +59,10 @@
                     </c:choose>
                 </c:if>
             </c:forEach>
+
+            <li  ui-sref-active="active">
+                <a ui-sref="profile"><i class="fa fa-user"></i> <span class="nav-label">Profile</span> </a>
+            </li>
         </ul>
     </div>
 </nav>

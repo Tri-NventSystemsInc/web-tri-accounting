@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col-md-12 col-lg-12">
-        <button class="btn btn-primary" onclick="(window.location.href = '#/items')">Items</button>
-        <button class="btn btn-primary" onclick="(window.location.href = '#/new')">Add</button>
-        <button class="btn btn-primary" ng-click="pointToEditForm()">Edit</button>
+        <a ng-click="main()" class="btn btn-primary">Items</a>
+        ${detailsAddItem}
+        ${detailsEditItem}
     </div>
 </div>
 <div style="margin-top: 20px;"></div>

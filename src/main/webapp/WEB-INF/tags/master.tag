@@ -14,7 +14,7 @@
 </head>
 <!-- ControllerAs syntax -->
 <!-- Main controller with serveral data used in Inspinia theme on diferent view -->
-<body ng-controller="MainCtrl as main">
+<body>
 
 <!-- Wrapper-->
 <div id="wrapper">
@@ -26,7 +26,7 @@
 
     <!-- Page wraper -->
     <!-- ng-class with current state name give you the ability to extended customization your view -->
-    <div id="page-wrapper" class="gray-bg">
+    <div id="page-wrapper" style="height: 100% !important;" class="gray-bg">
 
         <!-- Page wrapper -->
         <div>
@@ -47,10 +47,18 @@
 
 </div>
 <!-- End wrapper-->
+
 <!-- jQuery and Bootstrap -->
 <script src="<c:url value="/resources/js/jquery/inspinia/jquery-2.1.1.min.js" />"></script>
 <script src="<c:url value="/resources/js/plugins/jquery-ui/jquery-ui.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap/inspinia/bootstrap.min.js" />"></script>
+
+<%--toaster--%>
+<script src="<c:url value="/resources/js/toastr/toastr.min.js" />"></script>
+
+
+<!-- datepicker -->
+<script src="<c:url value="/resources/js/plugins/datepicker/datepicker.js" />"></script>
 
 <!-- MetsiMenu -->
 <script src="<c:url value="/resources/js/plugins/metisMenu/jquery.metisMenu.js" />"></script>
@@ -64,7 +72,7 @@
 <script src="<c:url value="/resources/js/inspinia/inspinia.js" />"></script>
 
 <!-- Angular scripts-->
-<script src="<c:url value="/resources/js/angular/inspinia/angular.min.js" />"></script>
+<script src="<c:url value="/resources/js/angular/angular.min.js" />"></script>
 <script src="<c:url value="/resources/js/ui-router/angular-ui-router.min.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap/inspinia/ui-bootstrap-tpls-0.11.0.min.js" />"></script>
 
@@ -73,20 +81,22 @@
 
 <!-- Angular Dependiences -->
 
+
+<%--notifications--%>
+<script src="//localhost:3000/socket.io/socket.io.js"></script>
+
 <!-- Anglar App Script -->
 <script src="<c:url value="/resources/js/inspinia/app.js" />"></script>
 <script src="<c:url value="/resources/js/inspinia/config.js" />"></script>
 <script src="<c:url value="/resources/js/inspinia/directives.js" />"></script>
 <script src="<c:url value="/resources/js/inspinia/controllers.js" />"></script>
 
- <%--toaster--%>
-<script src="<c:url value="/resources/js/toastr/toastr.min.js" />"></script>
-
  <%--firefly--%>
 <script src="<c:url value="/resources/js/app/common/firefly.js" />"></script>
 <script src="<c:url value="/resources/js/app/services/error-handler-service.js" />"></script>
 <script src="<c:url value="/resources/js/app/services/jquery-fn-wrapper-service.js" />"></script>
 <script src="<c:url value="/resources/js/app/directives/form-error.js" />"></script>
+<script src="<c:url value="/resources/js/app/services/util-service.js" />"></script>
 
 </body>
 </html>

@@ -7,5 +7,24 @@ toastr.options.closeButton = true;
 toastr.options.extendedTimeOut = 1000;
 toastr.options.timeOut = 5000;
 
-// coa flags
-var accountUpdated = false;
+
+try {
+
+    // web sockets: for notifications
+    var socket = io.connect('//localhost:3000');
+
+    socket.on('welcome' , function(data){
+        $('#messages').append('<li>' + data.message + '</li>');
+        socket.emit('i am client', {data: 'foo!'});
+    });
+
+    socket.on('time', function(data){
+        console.log(data);
+        $('#messages').append('<li>' + data.time + '</li>');
+    });
+
+    socket.on('error', function(){ connect.error(arguments)});
+    socket.on('message', function(){ connect.log(arguments)});
+}catch (e) {
+    console.log(e);
+}

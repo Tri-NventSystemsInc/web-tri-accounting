@@ -41,8 +41,39 @@ public class MenuServiceImpl implements MenuService {
     @Override
     @Transactional(readOnly = true)
     public List<MenuDto> findAll() {
+
         List<MenuDto> menuDtoList = new ArrayList<>();
         List<Menu> menus =  menuRepo.findAll();
+
+        for (Menu menu : menus) {
+            MenuDto menuDto = new MenuDto();
+
+            menuDto.setId(menu.getId());
+            menuDto.setIconClass(menu.getIconClass());
+            menuDto.setState(menu.getState());
+            menuDto.setTitle(menu.getTitle());
+            menuDto.setParentMenu(menu.getParentMenu());
+            menuDto.setViewRoute(menu.getViewRoute());
+
+            if (menu.getParentMenu() == null || menu.getParentMenu().getId() == 0) {
+                menuDto.setSubMenus(this.getChildren(menus, menu.getId()));
+                menuDto.setParentMenu(null);
+            }
+
+            menuDtoList.add(menuDto);
+        }
+
+        return menuDtoList;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<MenuDto> findAllByUser() {
+
+        User currentUser = authenticationFacade.getLoggedIn();
+
+        List<MenuDto> menuDtoList = new ArrayList<>();
+        List<Menu> menus =  menuRepo.findAllByUserId(currentUser.getId());
 
         for (Menu menu : menus) {
             MenuDto menuDto = new MenuDto();

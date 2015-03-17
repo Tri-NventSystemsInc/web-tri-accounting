@@ -2,7 +2,7 @@
 <div ng-controller="addEditItemCtrl">
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <button class="btn btn-primary" onclick="(window.location.href = '#/items')">Items</button>
+            <a ui-sref="item" class="btn btn-primary">Items</a>
         </div>
     </div>
     <div class="row-top-buffer"></div>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
-                        <textarea  maxlength="1024" rows="5" cols="63" ng-model="item.description" id="description"
+                        <textarea  maxlength="1024" rows="5" cols="59" ng-model="item.description" id="description"
                                    name="description" placeholder="Enter description"></textarea>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
-                        <select class="form-control" id="unit" ng-model="unit"
+                        <select required="" class="form-control" id="unit" ng-model="unit"
                                 ng-options="unit.code for unit in units track by unit.id">
                             <option value="">Select unit</option>
                         </select>
@@ -79,7 +79,7 @@
                     </div>
                 </div>
                 <div class="col-md-5 col-lg-5">
-                    <div account-browser-s btn_label="Browse accounts" handler="accounts_selection_handler(account)" />
+                    <button class="btn btn-primary" account-browser-s handler="accounts_selection_handler" >Browse accounts</button>
                 </div>
             </div>
         </div>
@@ -92,7 +92,7 @@
                 </div>
                 <div class="col-md-5 col-lg-5">
                     <fieldset ng-disabled="submitting">
-                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> {{ save }}</button>
+                        <button ng-mousedown="submit = true" type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> {{ save }}</button>
                         <button type="reset" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span> Reset</button>
                     </fieldset>
                 </div>

@@ -37,20 +37,8 @@ public class CommonViewController {
         return "common/form-field-error-msg";
     }
 
-
-    // test views
-    @RequestMapping("/coa")
-    public String testCoa() {
-        return "test/coa";
-    }
-
-    @RequestMapping("/users")
-    public String testUsers() {
-        return "test/users";
-    }
-
-    @RequestMapping("/showcase")
-    public String testShowcase() {
-        return "test/showcase";
+    @RequestMapping("/notifications-page")
+    public String getNotificationsPage() {
+        return "common/notifications";
     }
 }

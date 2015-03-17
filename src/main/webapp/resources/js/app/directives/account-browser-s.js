@@ -2,19 +2,37 @@
     var app;
     var app = angular.module('cmnAccountBrowserWithSegmentApp', ['businessSegmentFactory', 'accountFactory']);
 
-    app.controller('accountBrowserCtrl', ['$scope', function ($scope) {
-    }]);
-
     app.directive('accountBrowserS', ['$timeout', 'businessSegmentFactory', 'accountFactory', function ($timeout, businessSegmentFactory, accountFactory) {
         return {
             scope : {
-                btnLabel : '@',
                 handler: '&'
             },
             restrict: 'AE',
-            templateUrl: '/common/account-browser-with-segment',
-            link: function (scope, elem, attrs) {
+            controller: function($scope, $modal) {
+                // create open() method
+                // to open a modal
+                $scope.open = function() {
+                    $modal.open({
+                        scope: $scope,
+                        windowClass: 'sl-entity-browser-modal-window',
+                        templateUrl: '/common/account-browser-with-segment',
+                        controller: function($scope, $modalInstance) {
+                            $scope.close  = function() {
+                                $modalInstance.close();
+                            };
 
+                            // expose selected account to the outside world :)
+                            $scope.selectAccount = function(account) {
+                                $scope.handler()(account);
+                                $modalInstance.close();
+                            }
+                        }
+                    });
+                };
+
+
+            },
+            link: function (scope, elem, attrs) {
                 scope.segments = [];
                 var segmentIds = [];
 
@@ -33,31 +51,32 @@
                 }
 
                 elem.bind('click', function () {
-                    if (angular.isDefined(scope.accounts) && scope.accounts.length > 0)  return; // cache
-
+                    if (angular.isDefined(scope.accounts) && scope.accounts.length > 0)  { // cache
+                        scope.open();
+                        return;
+                    }
                     scope.$apply(function () {
-                        businessSegmentFactory.getSegments().success(function (data) {
 
-                            if (data.length > 0) {
-                                angular.forEach(data, function (segment, key) {
-                                    segment['selected'] = true;
-                                    scope.segments.push(segment);
-                                });
-                                collectionSegmentIds();
-                                loadAccounts();
-                            }
-                        });
+                        if (scope.segments.length > 0) {
+                            scope.open();
+                            collectionSegmentIds();
+                            loadAccounts();
+                        } else {
+                            scope.open();
+                            businessSegmentFactory.getSegments().success(function (data) {
+
+                                if (data.length > 0) {
+                                    angular.forEach(data, function (segment, key) {
+                                        segment['selected'] = true;
+                                        scope.segments.push(segment);
+                                    });
+                                    collectionSegmentIds();
+                                    loadAccounts();
+                                }
+                            });
+                        }
                     });
                 });
-
-                // expose selected account to the outside world :)
-                scope.selectAccount = function(account) {
-                    return $timeout(function() {
-                        return scope.handler({
-                            account: account
-                        });
-                    });
-                }
 
                 scope.toggleSegment = function(idx, segment) {
                     if (segment.selected) {

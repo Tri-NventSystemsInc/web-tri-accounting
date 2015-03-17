@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12 col-lg-12">
-        <a ng-click="gotoCoa()" class="btn btn-primary">Chart of Accounts</a>
+        <a ng-click="main()" class="btn btn-primary">Chart of Accounts</a>
         <a ui-sref="coa.new" class="btn btn-primary">Add</a>
         <a ui-sref="coa.edit({accountId: accountId})" class="btn btn-primary">Edit</a>
     </div>

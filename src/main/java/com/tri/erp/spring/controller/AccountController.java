@@ -3,6 +3,7 @@ package com.tri.erp.spring.controller;
 import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.reponse.AccountDto;
 import com.tri.erp.spring.model.Account;
+import com.tri.erp.spring.reponse.SegmentAccountDto;
 import com.tri.erp.spring.service.interfaces.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -71,7 +72,7 @@ public class AccountController {
 
     @RequestMapping(value = "/by-segment", method = RequestMethod.GET)
     @ResponseBody
-    public List<AccountDto> getAccountBySegments(@RequestParam(value = "segmentIds") String[] segmentIds) {
+    public List<SegmentAccountDto> getAccountBySegments(@RequestParam(value = "segmentIds") String[] segmentIds) {
         return accountService.findAllBySegment(segmentIds);
     }
 }

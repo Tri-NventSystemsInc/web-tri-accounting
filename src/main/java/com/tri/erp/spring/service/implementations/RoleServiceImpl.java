@@ -3,30 +3,22 @@ package com.tri.erp.spring.service.implementations;
 import com.tri.erp.spring.commons.Debug;
 import com.tri.erp.spring.commons.helpers.Checker;
 import com.tri.erp.spring.commons.helpers.MessageFormatter;
-import com.tri.erp.spring.model.Item;
-import com.tri.erp.spring.model.Menu;
-import com.tri.erp.spring.model.Role;
-import com.tri.erp.spring.model.User;
-import com.tri.erp.spring.repo.ItemRepo;
+import com.tri.erp.spring.commons.helpers.StringFormatter;
+import com.tri.erp.spring.model.*;
+import com.tri.erp.spring.repo.RouteRepo;
+import com.tri.erp.spring.repo.PageComponentRepo;
 import com.tri.erp.spring.repo.RoleRepo;
 import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.reponse.CreateRoleResponse;
-import com.tri.erp.spring.reponse.CreateUserResponse;
-import com.tri.erp.spring.service.interfaces.ItemService;
 import com.tri.erp.spring.service.interfaces.RoleService;
 import com.tri.erp.spring.validator.RoleValidator;
-import com.tri.erp.spring.validator.UserValidator;
-import org.hibernate.dialect.Ingres10Dialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 
-import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by TSI Admin on 9/9/2014.
@@ -36,6 +28,12 @@ public class RoleServiceImpl implements RoleService {
 
     @Autowired
     RoleRepo roleRepo;
+
+    @Autowired
+    PageComponentRepo pageComponentRepo;
+
+    @Autowired
+    RouteRepo routeRepo;
 
     @Override
     @Transactional(readOnly = true)
@@ -48,7 +46,8 @@ public class RoleServiceImpl implements RoleService {
 
         Role role = roleRepo.findOne(roleId);
 
-        if (role != null) { // get roles
+        if (role != null) {
+            // get menus
             List<Object[]> rolesObj = roleRepo.findMenusByRoleId(role.getId());
             if (!Checker.collectionIsEmpty(rolesObj)) {
 
@@ -65,6 +64,10 @@ public class RoleServiceImpl implements RoleService {
                     role.getMenus().add(menu);
                 }
             }
+
+            // get assigned page components
+            List<PageComponent> pageComponents = pageComponentRepo.findAllByRoleId(role.getId());
+            role.getPageComponents().addAll(pageComponents);
         }
 
         return role;
@@ -87,14 +90,48 @@ public class RoleServiceImpl implements RoleService {
         } else {
             Role newRole = roleRepo.save(role);
 
-            if (role.getId() != null && role.getId() > 0) { // update mode
+            if (role.getId() != null && role.getId() > 0) { // update mode; reset some stuffs
                 roleRepo.removeMenus(role.getId());
+
+                if (!Checker.collectionIsEmpty(role.getPageComponentsToEvict())) {
+                    for (PageComponent pageComponent : role.getPageComponentsToEvict()) {
+                        roleRepo.removeAssignedPageComponent(role.getId(), pageComponent.getId());
+                        roleRepo.removeAssignedRoute(role.getId(), pageComponent.getViewRoute().getId());
+                        roleRepo.removeAssignedRoute(role.getId(), pageComponent.getActionRoute().getId());
+                    }
+                }
+
+                if (!Checker.collectionIsEmpty(role.getMenusToEvict())) {
+                    for (Menu menu : role.getMenusToEvict()) {
+                        if (menu.getViewRoute() != null) {
+                            roleRepo.removeAssignedRoute(role.getId(), menu.getViewRoute().getId());
+                        }
+                    }
+                }
             }
 
-            // insert role menus
+            // insert menus assigned
             if (!Checker.collectionIsEmpty(role.getMenus())) {
                 for (Menu menu : role.getMenus()) {
                     roleRepo.saveMenus(role.getId(), menu.getId());
+                    if (menu.getViewRoute() != null) {
+                        roleRepo.saveAssignedRoute(role.getId(), menu.getViewRoute().getId());
+                    }
+                }
+            }
+
+            // insert page components assigned
+            if (!Checker.collectionIsEmpty(role.getPageComponents())) {
+                for (PageComponent pageComponent : role.getPageComponents()) {
+                    roleRepo.saveAssignedPageComponent(role.getId(), pageComponent.getId());
+                }
+            }
+
+            // insert assigned route (RoleRoute)
+            if (!Checker.collectionIsEmpty(role.getPageComponents())) {
+                for (PageComponent pageComponent : role.getPageComponents()) {
+                    roleRepo.saveAssignedRoute(role.getId(), pageComponent.getActionRoute().getId());
+                    roleRepo.saveAssignedRoute(role.getId(), pageComponent.getViewRoute().getId());
                 }
             }
 
@@ -117,5 +154,36 @@ public class RoleServiceImpl implements RoleService {
     @Transactional
     public CreateResponse processUpdate(Role role, BindingResult bindingResult, MessageSource messageSource) {
         return this.processCreate(role, bindingResult, messageSource);
+    }
+
+    @Override
+    public Map<String, String> findPageComponentByRoute(Integer userId, String url) {
+        url = StringFormatter.removeBaseFromRoute(url);
+        Route route = routeRepo.findOneByUrl(url);
+
+        Map<String, String> componentMap = new HashMap<>();
+
+        if (route != null) {
+            List<PageComponent> pageComponents = pageComponentRepo.findAllByUserAndRouteId(userId, route.getId());
+            for(PageComponent pageComponent : pageComponents) {
+                componentMap.put(pageComponent.getDomId(), pageComponent.getHtml());
+            }
+        }
+
+        return componentMap;
+    }
+
+    @Override
+    public Boolean isRouteAuthorized(Integer userId, String url) {
+        url = StringFormatter.removeBaseFromRoute(url);
+
+        Route restrictedRoute = routeRepo.findOneByUrlAndRestrictedTrue(url);
+
+        if (restrictedRoute != null) {
+            Route route = routeRepo.findAssignedByUserAndRouteId(userId, url);
+            return route != null; // no permission for empty result
+        }
+
+        return true;
     }
 }
