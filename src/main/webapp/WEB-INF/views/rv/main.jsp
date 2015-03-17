@@ -12,14 +12,17 @@
                 </div>
                 <div class="ibox-content">
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <a ui-sref="rv.newPO" class="btn btn-primary">Create For PO</a>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <a ui-sref="rv.newIT" class="btn btn-primary">Create For IT</a>
                         </div>
-                        <div class="col-sm-3">
-                            <a ui-sref="rv.newJO" class="btn btn-primary">Create For JO</a>
+                        <div class="col-sm-2">
+                            <a ui-sref="rv.newRep" class="btn btn-primary">Create For Repair</a>
+                        </div>
+                        <div class="col-sm-2">
+                            <a ui-sref="rv.newLab" class="btn btn-primary">Create For Labor</a>
                         </div>
                         <div class="col-sm-3 pull-right">
                             <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
@@ -53,7 +56,7 @@
                                 <td>RIV-2014-01-0002</td>
                                 <td>Jul 15, 2013</td>
                                 <td>Labor for Network/Electrical rewiring & rearrangement using wiring ducts, etc.</td>
-                                <td>For PO</td>
+                                <td>For LABOR</td>
                                 <td>Jul 14, 2013</td>
                                 <td>LESTER JOHN PAUL CADIZ</td>
                                 <td><span class="label label-danger">Document Created</span></td>
@@ -72,7 +75,7 @@
                                 <td>Jul 18, 2013</td>
                                 <td>Area Operation Department - Guihulngan
                                     Rewinding of Primary coil of MC-31</td>
-                                <td>For JO</td>
+                                <td>For REPAIR</td>
                                 <td>Jul 16, 2013</td>
                                 <td>LESTER JOHN PAUL CADIZ</td>
                                 <td><span class="label label-danger">Document Created</span></td>

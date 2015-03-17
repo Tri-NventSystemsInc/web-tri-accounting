@@ -380,9 +380,14 @@ function config($stateProvider, $urlRouterProvider) {
             templateUrl:  '/requisition-voucher/new-rvIT-page'
         })
 
-        .state('rv.newJO', {
-            url:  '/newJO',
-            templateUrl:  '/requisition-voucher/new-rvJO-page'
+        .state('rv.newRep', {
+            url:  '/newRep',
+            templateUrl:  '/requisition-voucher/new-rvRep-page'
+        })
+
+        .state('rv.newLab', {
+            url:  '/newLab',
+            templateUrl:  '/requisition-voucher/new-rvLab-page'
         })
 }
 
