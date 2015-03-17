@@ -1,6 +1,6 @@
-var unitFactory = angular.module('pageFactory', []);
+var unitFactory = angular.module('unitFactory', []);
 
-unitFactory.factory('pageFactory', ['$http', function($http) {
+unitFactory.factory('unitFactory', ['$http', function($http) {
     this.getUnits = function () {
         return $http.get('/unit/list/');
     };

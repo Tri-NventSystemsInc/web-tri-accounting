@@ -7,20 +7,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en" ng-app="inspinia" class="ng-scope">
+<html lang="en" ng-app="inspinia">
 <head>
     <my:header/>
     <jsp:invoke fragment="head"/>
 </head>
 <!-- ControllerAs syntax -->
 <!-- Main controller with serveral data used in Inspinia theme on diferent view -->
-<body ng-controller="MainCtrl as main" >
+<body>
 
 <!-- Wrapper-->
 <div id="wrapper">
 
     <!-- Navigation -->
-    <div class="ng-scope">
+    <div>
         <my:nav/>
     </div>
 
@@ -72,7 +72,7 @@
 <script src="<c:url value="/resources/js/inspinia/inspinia.js" />"></script>
 
 <!-- Angular scripts-->
-<script src="<c:url value="/resources/js/angular/inspinia/angular.min.js" />"></script>
+<script src="<c:url value="/resources/js/angular/angular.min.js" />"></script>
 <script src="<c:url value="/resources/js/ui-router/angular-ui-router.min.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap/inspinia/ui-bootstrap-tpls-0.11.0.min.js" />"></script>
 
@@ -97,12 +97,6 @@
 <script src="<c:url value="/resources/js/app/services/jquery-fn-wrapper-service.js" />"></script>
 <script src="<c:url value="/resources/js/app/directives/form-error.js" />"></script>
 <script src="<c:url value="/resources/js/app/services/util-service.js" />"></script>
-
-<!-- Data Tables -->
-
-<script src="<c:url value="/resources/js/plugins/dataTables/jquery.dataTables.js" />"></script>
-<script src="<c:url value="/resources/js/plugins/dataTables/dataTables.bootstrap.js" />"></script>
-
 
 </body>
 </html>

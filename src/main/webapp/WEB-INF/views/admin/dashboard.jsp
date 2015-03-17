@@ -7,10 +7,10 @@
     <jsp:attribute name="body">
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-9">
-                <h3><b>ILECO I - Accounting and Inventory System</b></h3>
+                <h2><b>ILECO I - Accounting and Inventory System</b></h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a ui-sref="dashboard">Home</a>
+                        <a href="index.html">Home</a>
                     </li>
                     <li class="active">
                         <strong>Dashboard</strong>

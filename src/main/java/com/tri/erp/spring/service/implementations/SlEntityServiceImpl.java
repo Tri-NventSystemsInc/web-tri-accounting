@@ -6,6 +6,7 @@ import com.tri.erp.spring.service.interfaces.SlEntityService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,5 +20,10 @@ public class SlEntityServiceImpl implements SlEntityService {
     @Override
     public List<SlEntity> findAll() {
         return slEntityRepo.findAllByOrderByNameAsc();
+    }
+
+    @Override
+    public List<SlEntity> findAllByType(Integer[] entityTypes) {
+        return slEntityRepo.findByMarkers(Arrays.asList(entityTypes));
     }
 }

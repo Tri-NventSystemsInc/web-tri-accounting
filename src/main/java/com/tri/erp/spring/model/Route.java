@@ -25,7 +25,7 @@ public class Route implements Serializable {
     private String type;
 
     @Column
-    private Boolean restricted;
+    private Boolean restricted = false;
 
     @Column
     private String description;
@@ -71,7 +71,7 @@ public class Route implements Serializable {
         this.type = type;
     }
 
-    public Boolean getRestricted() {
+    public Boolean isRestricted() {
         return restricted;
     }
 

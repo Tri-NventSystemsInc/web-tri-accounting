@@ -1,6 +1,6 @@
 <%@ tag %>
 
-<div class="footer ng-scope fixed">
+<div class="footer">
     <div class="pull-right">
         Powered by <strong>Tri-Nvent </strong>
     </div>

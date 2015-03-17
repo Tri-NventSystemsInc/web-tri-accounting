@@ -30,3 +30,8 @@
  .sub-menu {
      margin-left: 20px;
  }
+
+ /*entity browser modal size*/
+ .sl-entity-browser-modal-window .modal-dialog {
+     width: 80%;
+ }

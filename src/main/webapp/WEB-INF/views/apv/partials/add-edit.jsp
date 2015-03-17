@@ -22,11 +22,14 @@
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
-                        <select required="" class="form-control" id="supplier">
-                            <option value="">Select Supplier</option>
-                            <option value="">Apple, Inc</option>
-                        </select>
+                        <input disabled="" ng-model="selectedSupplier.name" id="supplier" name="supplier" class="form-control ng-pristine ng-valid" type="text" placeholder="Browse supplier"/>
                     </div>
+                </div>
+                <div class="col-md-5 col-lg-5">
+                    <button sl-entity-browser
+                            handler="supplier_selection_handler"
+                            types="suppliers"
+                            class="btn btn-primary">Browse supplier</button>
                 </div>
                 <form-error err_field="errors.err_supplier"></form-error>
             </div>
@@ -145,11 +148,14 @@
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
-                        <select required="" class="form-control" id="checker">
-                            <option value="">Select checker</option>
-                            <option value="">John Doe</option>
-                        </select>
+                        <input disabled="" ng-model="selectedChecker.name" id="checker" name="checker" class="form-control ng-pristine ng-valid" type="text" placeholder="Browse checker"/>
                     </div>
+                </div>
+                <div class="col-md-5 col-lg-5">
+                    <button sl-entity-browser
+                            handler="checker_selection_handler"
+                            types="signatories"
+                            class="btn btn-primary">Browse checker</button>
                 </div>
                 <form-error err_field="errors.err_checker"></form-error>
             </div>
@@ -165,11 +171,14 @@
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
-                        <select required="" class="form-control" id="approvar">
-                            <option value="">Select Approving Officer</option>
-                            <option value="">John Doe</option>
-                        </select>
+                        <input disabled="" ng-model="selectedApprovingOfficer.name" id="approvar" name="approvar" class="form-control ng-pristine ng-valid" type="text" placeholder="Browse approving officer"/>
                     </div>
+                </div>
+                <div class="col-md-5 col-lg-5">
+                    <button sl-entity-browser
+                            handler="approvar_selection_handler"
+                            types="signatories"
+                            class="btn btn-primary">Browse approving officer</button>
                 </div>
                 <form-error err_field="errors.err_approvar"></form-error>
             </div>
