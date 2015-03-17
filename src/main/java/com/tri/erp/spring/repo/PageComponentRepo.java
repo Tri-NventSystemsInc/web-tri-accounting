@@ -21,8 +21,8 @@ public interface PageComponentRepo extends JpaRepository<PageComponent, Integer>
             "FROM PageComponent m " +
             "JOIN RolePageComponent ON m.id = FK_pageComponentId " +
             "JOIN UserRole ON RolePageComponent.FK_roleId = UserRole.FK_roleId " +
-            "WHERE FK_userId = ?1", nativeQuery = true)
-    public List<PageComponent> findAllByUserId(Integer userId);
+            "WHERE FK_userId = :userId AND FK_viewRouteId = :viewRouteId", nativeQuery = true)
+    public List<PageComponent> findAllByUserAndRouteId(@Param("userId") Integer userId, @Param("viewRouteId") Integer viewRouteId);
 
     public List<PageComponent> findAllByPageId(Integer pageId);
 

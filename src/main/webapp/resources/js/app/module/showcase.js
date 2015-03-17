@@ -11,14 +11,17 @@ app.controller('acbCtrl', ['$scope', function($scope) {
         }]);
 
 app.controller('sleCtrl', ['$scope', function($scope) {
-            $scope.entity_selection_handler = function(entity){
-                $scope.selectedEntity = entity;
-            }
+        $scope.entityTypes1 = [1];
+        $scope.entity_selection_handler = function(entity){
+            $scope.selectedEntity = entity;
+        }
 
-            $scope.entity_selection_handler2 = function(entity){
-                $scope.selectedEntity2 = entity;
-            }
-        }]);
+
+        $scope.entityTypes2 = [1,2];
+        $scope.entity_selection_handler2 = function(entity){
+            $scope.selectedEntity2 = entity;
+        }
+}]);
 
 app.controller('itemCtrl', ['$scope', '$http', function($scope, $http) {
     $scope.item_selection_handler = function(item){

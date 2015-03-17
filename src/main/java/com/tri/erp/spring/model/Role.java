@@ -46,18 +46,25 @@ public class Role implements Serializable {
     @NotFound(action = NotFoundAction.IGNORE)
     private ArrayList<PageComponent> pageComponents = new ArrayList<>();
 
-     @Transient
+    @Transient
     @JsonIgnoreProperties(ignoreUnknown = true)
     @NotFound(action = NotFoundAction.IGNORE)
     private ArrayList<PageComponent> pageComponentsToEvict = new ArrayList<>();
 
-    public Role(String name, Date createdAt, Date updatedAt, ArrayList<Menu> menus, ArrayList<PageComponent> pageComponents, ArrayList<PageComponent> pageComponentsToEvict) {
+    @Transient
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @NotFound(action = NotFoundAction.IGNORE)
+    private ArrayList<Menu> menusToEvict = new ArrayList<>();
+
+    public Role(String name, Date createdAt, Date updatedAt, ArrayList<Menu> menus, ArrayList<PageComponent> pageComponents,
+                ArrayList<PageComponent> pageComponentsToEvict, ArrayList<Menu> menusToEvict) {
         this.name = name;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.menus = menus;
         this.pageComponents = pageComponents;
         this.pageComponentsToEvict = pageComponentsToEvict;
+        this.menusToEvict = menusToEvict;
     }
 
     public Role(String name, Date createdAt, Date updatedAt) {
@@ -126,5 +133,13 @@ public class Role implements Serializable {
 
     public void setPageComponentsToEvict(ArrayList<PageComponent> pageComponentsToEvict) {
         this.pageComponentsToEvict = pageComponentsToEvict;
+    }
+
+    public ArrayList<Menu> getMenusToEvict() {
+        return menusToEvict;
+    }
+
+    public void setMenusToEvict(ArrayList<Menu> menusToEvict) {
+        this.menusToEvict = menusToEvict;
     }
 }

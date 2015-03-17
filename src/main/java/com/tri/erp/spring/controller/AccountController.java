@@ -75,4 +75,3 @@ public class AccountController {
         return accountService.findAllBySegment(segmentIds);
     }
 }
-//2nyo was here
