@@ -40,6 +40,7 @@ checkApp.controller('addEditCheckCtrl', ['$scope', '$stateParams', '$http', 'che
         $scope.title = 'Add check';
         $scope.save = 'Save';
         $scope.showForm = true;
+        $scope.submit = false;
 
         $scope.check = {};
 
@@ -74,6 +75,7 @@ checkApp.controller('addEditCheckCtrl', ['$scope', '$stateParams', '$http', 'che
 
 
         $scope.processForm = function() {
+            if (!$scope.submit) return; // check if save button is clicked
 
             $scope.save ='Saving...';
 
@@ -92,6 +94,7 @@ checkApp.controller('addEditCheckCtrl', ['$scope', '$stateParams', '$http', 'che
                     $scope.save ='Save';
                     // flags
                     $scope.submitting = false;
+                    $scope.submit = false;
                     toastr.warning('Error found.');
                 } else {
                     window.location.hash = '#/checks/' + data.modelId + '/detail';
@@ -103,6 +106,7 @@ checkApp.controller('addEditCheckCtrl', ['$scope', '$stateParams', '$http', 'che
                 $scope.save ='Save';
                 // flags
                 $scope.submitting = false;
+                $scope.submit = false;
             });
         }
 
