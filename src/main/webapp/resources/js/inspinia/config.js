@@ -388,6 +388,11 @@ function config($stateProvider, $urlRouterProvider) {
             url:  '/newJO',
             templateUrl:  '/requisition-voucher/new-rvJO-page'
         })
+
+        .state('processVoucher', {
+            url:  '/process-voucher',
+            templateUrl:  '/common/process-voucher'
+        })
 }
 
 function getUserDependencies(moduleJs) {

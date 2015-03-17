@@ -41,4 +41,9 @@ public class CommonViewController {
     public String getNotificationsPage() {
         return "common/notifications";
     }
+
+    @RequestMapping("/process-voucher")
+    public String getProcessVoucherPage() {
+        return "common/process-voucher";
+    }
 }
