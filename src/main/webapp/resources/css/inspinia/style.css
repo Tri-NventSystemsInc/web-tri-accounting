@@ -2117,11 +2117,12 @@ table.table-mail tr td {
 }
 .ibox-title h5 {
   display: inline-block;
-  font-size: 14px;
+  font-size: 12px;
   margin: 0 0 7px;
   padding: 0;
   text-overflow: ellipsis;
   float: left;
+   color:#f8ac59;
 }
 .ibox-title .label {
   float: left;
