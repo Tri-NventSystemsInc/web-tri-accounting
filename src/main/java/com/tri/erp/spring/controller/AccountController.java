@@ -31,6 +31,7 @@ public class AccountController {
     @ResponseBody
     public AccountDto getAccount(@PathVariable Integer id) {
         AccountDto account = accountService.findById(id);
+
         return account;
     }
 
