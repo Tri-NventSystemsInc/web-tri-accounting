@@ -14,7 +14,7 @@
 </head>
 <!-- ControllerAs syntax -->
 <!-- Main controller with serveral data used in Inspinia theme on diferent view -->
-<body ng-controller="MainCtrl as main">
+<body>
 
 <!-- Wrapper-->
 <div id="wrapper">
@@ -72,7 +72,7 @@
 <script src="<c:url value="/resources/js/inspinia/inspinia.js" />"></script>
 
 <!-- Angular scripts-->
-<script src="<c:url value="/resources/js/angular/inspinia/angular.min.js" />"></script>
+<script src="<c:url value="/resources/js/angular/angular.min.js" />"></script>
 <script src="<c:url value="/resources/js/ui-router/angular-ui-router.min.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap/inspinia/ui-bootstrap-tpls-0.11.0.min.js" />"></script>
 

@@ -71,7 +71,7 @@ public class ItemController {
     @ResponseBody
     public Item getItem(@PathVariable Integer id, HttpServletRequest request) {
         String uri = StringFormatter.replaceRouteParamWithPlaceholder(request.getRequestURI(), String.valueOf(id));
-        Boolean hasPermissionOnMethod = roleService.isAuthorized(authenticationFacade.getLoggedIn().getId(), uri);
+        Boolean hasPermissionOnMethod = roleService.isRouteAuthorized(authenticationFacade.getLoggedIn().getId(), uri);
 
         if (hasPermissionOnMethod) {
             return itemService.findById(id);
@@ -83,7 +83,7 @@ public class ItemController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
     public CreateResponse updateSupplier(@Valid @RequestBody  Item item, BindingResult bindingResult, HttpServletRequest request) {
-        Boolean hasPermissionOnMethod = roleService.isAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
+        Boolean hasPermissionOnMethod = roleService.isRouteAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
         if (hasPermissionOnMethod) {
             return itemService.processUpdate(item, bindingResult, messageSource);
         } else {

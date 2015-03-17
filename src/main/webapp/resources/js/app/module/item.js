@@ -1,8 +1,8 @@
 var itemApp = angular.module('item', [
-    'cmnAccountBrowserWithSegmentApp',
-    'jQueryFnWrapperService',
     'itemFactory',
     'unitFactory',
+    'cmnAccountBrowserWithSegmentApp',
+    'jQueryFnWrapperService',
     'errorHandlerService',
     'cmnFormErrorApp',
     'utilService'
@@ -12,13 +12,13 @@ var itemApp = angular.module('item', [
 itemApp.controller('itemListCtrl', ['$scope', '$http', 'itemFactory',
     function($scope,  $http, itemFactory) {
 
-            itemFactory.getItems()
-                .success(function (data) {
-                    $scope.items = data;
-                })
-                .error(function (error) {
-                    toastr.error('Failed to load items!');
-                });
+        itemFactory.getItems()
+            .success(function (data) {
+                $scope.items = data;
+            })
+            .error(function (error) {
+                toastr.error('Failed to load items!');
+            });
     }]);
 
 itemApp.controller('addEditItemCtrl', ['$scope', '$stateParams', '$http', 'itemFactory', 'errorToElementBinder',
@@ -137,7 +137,6 @@ itemApp.controller('itemDetailsCtrl', ['$scope', '$state', '$stateParams', '$htt
 
                     if (data === '' || data.id <= 0) {    // not found
                         toastr.warning('Item not found!');
-                        window.location.hash = '#/items';
                     } else {
                         $scope.item = data;
                         $scope.showDetails = true;

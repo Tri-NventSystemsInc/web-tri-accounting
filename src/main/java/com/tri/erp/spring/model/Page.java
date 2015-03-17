@@ -4,14 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.io.Serializable;
 
 /**
- * Created by TSI Admin on 2/26/2015.
+ * Created by TSI Admin on 3/6/2015.
  */
 
 @Entity
-public class PageActionRoute implements Serializable {
+public class Page {
 
     @Id
     @GeneratedValue
@@ -21,9 +20,10 @@ public class PageActionRoute implements Serializable {
     @Column
     private String name;
 
-    public PageActionRoute() {}
+    public Page() {
+    }
 
-    public PageActionRoute(String name) {
+    public Page(String name) {
         this.name = name;
     }
 
@@ -41,10 +41,5 @@ public class PageActionRoute implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return this.getName();
     }
 }

@@ -5,31 +5,52 @@
     app.directive('slEntityBrowser', ['$timeout', 'entityFactory', 'slEntityUtil', function ($timeout, entityFactory, slEntityUtil) {
         return {
             scope : {
-                btnLabel : '@',
+                types: "=",
                 handler: '&'
             },
             restrict: 'AE',
-            templateUrl: '/common/sl-entity-browser',
+                controller: function($scope, $modal) {
+                    // create open() method
+                    // to open a modal
+                    $scope.open = function() {
+                        $modal.open({
+                            scope: $scope,
+                            windowClass: 'sl-entity-browser-modal-window',
+                            templateUrl: '/common/sl-entity-browser',
+                            controller: function($scope, $modalInstance) {
+                                $scope.close  = function() {
+                                    $modalInstance.close();
+                                };
+
+                                // expose selected entity to the outside world :)
+                                $scope.selectEntity = function(entity) {
+                                    $scope.handler()(entity);
+                                    $modalInstance.close();
+                                }
+                            }
+                        });
+                    };
+
+
+                },
             link: function (scope, elem, attrs) {
 
                 elem.bind('click', function () {
-                    if (angular.isDefined(scope.slEntities) && scope.slEntities.length > 0)  return; // cache
-
-                    scope.$apply(function () {
-                        entityFactory.getEntities().success(function (data) {
-                            scope.slEntities = data;
+                    if (angular.isDefined(scope.slEntities) && scope.slEntities.length > 0 && scope.formerTypes == scope.types)  {
+                        scope.open();
+                        return;
+                    }
+                    else  // cache
+                    {
+                        scope.$apply(function () {
+                            entityFactory.getEntities(scope.types).success(function (data) {
+                                scope.slEntities = data;
+                                scope.formerTypes = scope.types;
+                                scope.open();
+                            });
                         });
-                    });
+                    }
                 });
-
-                // expose selected account to the outside world :)
-                scope.selectEntity = function(entity) {
-                    return $timeout(function() {
-                        return scope.handler({
-                            entity: entity
-                        });
-                    });
-                }
 
                 scope.convert = function(marker) {
                     var obj = slEntityUtil.markerToString(marker);

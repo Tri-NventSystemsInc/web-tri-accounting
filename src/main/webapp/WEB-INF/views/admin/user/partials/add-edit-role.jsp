@@ -46,6 +46,40 @@
         <div class="row">
             <div class="col-md-12 col-lg-12">
                 <div class="col-md-2 col-lg-2">
+                    <label class="input-label">Page Restrictions</label>
+                </div>
+                <div class="col-md-8 col-lg-8">
+                    <div class="panel-body" style="padding-left: 0px;">
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-default" ng-repeat="page in pages track by $index">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a ng-click="showPageComponents(page.id)" data-toggle="collapse" data-parent="#accordion" href="{{ path + '#' + page.id}}" aria-expanded="false" class="collapsed">{{page.name}}</a>
+                                    </h5>
+                                </div>
+                                <div id="{{page.id}}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                    <div class="panel-body">
+                                        <ul style="list-style: none; padding-left: 2px;">
+                                            <li ng-repeat="component in pageComponents[page.id]">
+                                                <label>
+                                                    <input ng-model="component.selected" type="checkbox"/> {{component.description}}
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row-top-buffer"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="col-md-2 col-lg-2">
                 </div>
                 <div class="col-md-5 col-lg-5">
                     <fieldset ng-disabled="submitting">
@@ -57,3 +91,5 @@
         </div>
     </form>
 </div>
+
+<div style="margin-bottom: 100px;" />

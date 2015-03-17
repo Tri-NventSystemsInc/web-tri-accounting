@@ -323,7 +323,11 @@ function config($stateProvider, $urlRouterProvider) {
                     return $ocLazyLoad.load(
                         {
                             name: "apv",
-                            files: getUserDependencies("/resources/js/app/module/apv.js")
+                            files: [
+                                "/resources/js/app/module/apv.js",
+                                "/resources/js/app/factories/entity-factory.js",
+                                "/resources/js/app/directives/sl-entity-browser.js"
+                            ]
                         }
                     )
                 }
@@ -396,7 +400,8 @@ function getUserDependencies(moduleJs) {
          moduleJs,
         "/resources/js/app/factories/user-factory.js",
         "/resources/js/app/factories/role-factory.js",
-        "/resources/js/app/factories/menu-factory.js"
+        "/resources/js/app/factories/menu-factory.js",
+        "/resources/js/app/factories/page-factory.js"
     ]
 }
 

@@ -1,9 +1,9 @@
 var unitOfMeasureApp = angular.module('unit', [
-    'unitFactory',
     'jQueryFnWrapperService',
     'errorHandlerService',
     'cmnFormErrorApp',
-    'utilService'
+    'utilService',
+    'unitFactory'
 ]);
 
 

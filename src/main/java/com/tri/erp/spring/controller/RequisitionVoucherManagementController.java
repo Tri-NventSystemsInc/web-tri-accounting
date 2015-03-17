@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 
 /**
  * Created by TSI Admin on 11/13/2014.
@@ -31,31 +30,31 @@ public class RequisitionVoucherManagementController {
 
     // view providers
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView index() {
-        return ControllerHelper.getModelAndView(MAIN, roleService, authenticationFacade.getLoggedIn().getId());
+    public ModelAndView index(HttpServletRequest request) {
+        return ControllerHelper.getModelAndView(MAIN, roleService, authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
     }
 
     @RequestMapping(value = "/new-rvPO-page", method = RequestMethod.GET)
     public String newRvPO(HttpServletRequest request) {
-        Boolean hasPermissionOnMethod = roleService.isAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
+        Boolean hasPermissionOnMethod = roleService.isRouteAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
         return hasPermissionOnMethod ? (BASE_PATH + "add-edit-for-PO") : "403";
     }
 
     @RequestMapping(value = "/new-rvIT-page", method = RequestMethod.GET)
     public String newRvIT(HttpServletRequest request) {
-        Boolean hasPermissionOnMethod = roleService.isAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
+        Boolean hasPermissionOnMethod = roleService.isRouteAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
         return hasPermissionOnMethod ? (BASE_PATH + "add-edit-for-IT") : "403";
     }
 
     @RequestMapping(value = "/new-rvRep-page", method = RequestMethod.GET)
     public String newRvRep(HttpServletRequest request) {
-        Boolean hasPermissionOnMethod = roleService.isAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
+        Boolean hasPermissionOnMethod = roleService.isRouteAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
         return hasPermissionOnMethod ? (BASE_PATH + "add-edit-for-Rep") : "403";
     }
 
     @RequestMapping(value = "/new-rvLab-page", method = RequestMethod.GET)
     public String newRvLab(HttpServletRequest request) {
-        Boolean hasPermissionOnMethod = roleService.isAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
+        Boolean hasPermissionOnMethod = roleService.isRouteAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
         return hasPermissionOnMethod ? (BASE_PATH + "add-edit-for-Lab") : "403";
     }
 }
