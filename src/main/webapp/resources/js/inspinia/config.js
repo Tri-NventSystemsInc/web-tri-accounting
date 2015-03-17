@@ -393,6 +393,26 @@ function config($stateProvider, $urlRouterProvider) {
             url:  '/newLab',
             templateUrl:  '/requisition-voucher/new-rvLab-page'
         })
+
+        .state('cnvs', {
+            url:  '/canvass',
+            templateUrl:  '/canvass',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "cnvs",
+                            files: getUserDependencies("/resources/js/app/module/cnvs.js")
+                        }
+                    )
+                }
+            }
+        })
+
+        .state('cnvs.new', {
+            url:  '/new',
+            templateUrl:  '/canvass/new-cnvs-page'
+        })
 }
 
 function getUserDependencies(moduleJs) {
