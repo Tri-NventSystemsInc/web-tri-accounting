@@ -413,6 +413,11 @@ function config($stateProvider, $urlRouterProvider) {
             url:  '/new',
             templateUrl:  '/canvass/new-cnvs-page'
         })
+
+        .state('processVoucher', {
+            url:  '/process-voucher',
+            templateUrl:  '/common/process-voucher'
+        })
 }
 
 function getUserDependencies(moduleJs) {
