@@ -1,4 +1,4 @@
-<div ng-controller="addEditRvForITCtrl">
+<div ng-controller="addEditRvForITCtrl" >
 <div class="row-top-buffer"></div>
 <div class="row">
     <div class="col-md-12 col-lg-12">

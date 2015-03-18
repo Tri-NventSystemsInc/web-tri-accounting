@@ -7,7 +7,7 @@
                     <a href="index.html">Home</a>
                 </li>
                 <li class="active">
-                    <strong>RIV Management</strong>
+                    <strong>RIV List</strong>
                 </li>
             </ol>
         </div>
@@ -22,12 +22,12 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>List of RIVs</h5>
+                            <h5>List of Requested Issue Voucher/s</h5>
                         </div>
                         <div class="ibox-content">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <a ui-sref="rv.newPO" class="btn btn-primary">Create For PO</a>
+                                    <a ui-sref="rv.newPO" class="btn btn-primary" ng-click="open()">Create For PO</a>
                                 </div>
                                 <div class="col-sm-3">
                                     <a ui-sref="rv.newIT" class="btn btn-primary">Create For IT</a>
