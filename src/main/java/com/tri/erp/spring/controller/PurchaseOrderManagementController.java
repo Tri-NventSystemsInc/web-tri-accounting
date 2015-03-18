@@ -12,11 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by Personal on 3/17/2015.
+ * Created by Personal on 3/18/2015.
  */
 @Controller
-@RequestMapping(value = "/canvass-rv")
-public class CanvassManagementController {
+@RequestMapping(value = "/purchase-order")
+public class PurchaseOrderManagementController {
 
     @Autowired
     private AuthenticationFacade authenticationFacade;
@@ -24,8 +24,8 @@ public class CanvassManagementController {
     @Autowired
     private RoleService roleService;
 
-    private final String BASE_PATH = "canvass/partials/";
-    private final String MAIN = "canvass/main";
+    private final String BASE_PATH = "po/partials/";
+    private final String MAIN = "po/main";
 
     // view providers
     @RequestMapping(method = RequestMethod.GET)
@@ -33,8 +33,8 @@ public class CanvassManagementController {
         return ControllerHelper.getModelAndView(MAIN, roleService, authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
     }
 
-    @RequestMapping(value = "/new-canvass-page", method = RequestMethod.GET)
-    public String newCanvass(HttpServletRequest request) {
+    @RequestMapping(value = "/new-po-page", method = RequestMethod.GET)
+    public String newPO(HttpServletRequest request) {
         Boolean hasPermissionOnMethod = roleService.isRouteAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
         return hasPermissionOnMethod ? (BASE_PATH + "add-edit") : "403";
     }

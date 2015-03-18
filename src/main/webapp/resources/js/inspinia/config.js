@@ -394,29 +394,81 @@ function config($stateProvider, $urlRouterProvider) {
             templateUrl:  '/requisition-voucher/new-rvLab-page'
         })
 
-        .state('cnvs', {
-            url:  '/canvass',
-            templateUrl:  '/canvass',
+        .state('canvass', {
+            url:  '/canvass-rv',
+            templateUrl:  '/canvass-rv',
             resolve: {
                 store: function ($ocLazyLoad) {
                     return $ocLazyLoad.load(
                         {
-                            name: "cnvs",
-                            files: getUserDependencies("/resources/js/app/module/cnvs.js")
+                            name: "canvass",
+                            files: [
+                                "/resources/js/app/module/canvass.js",
+                                "/resources/js/app/factories/entity-factory.js",
+                                "/resources/js/app/directives/sl-entity-browser.js"
+                                ]
                         }
                     )
                 }
             }
         })
 
-        .state('cnvs.new', {
+        .state('canvass.new', {
             url:  '/new',
-            templateUrl:  '/canvass/new-cnvs-page'
+            templateUrl:  '/canvass/new-canvass-page'
         })
 
         .state('processVoucher', {
             url:  '/process-voucher',
             templateUrl:  '/common/process-voucher'
+        })
+
+        .state('po', {
+            url:  '/purchase-order',
+            templateUrl:  '/purchase-order',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "po",
+                            files: [
+                                "/resources/js/app/module/po.js",
+                                "/resources/js/app/factories/entity-factory.js",
+                                "/resources/js/app/directives/sl-entity-browser.js"
+                                ]
+                        }
+                    )
+                }
+            }
+        })
+
+        .state('po.new', {
+            url:  '/new',
+            templateUrl:  '/purchase-order/new-po-page'
+        })
+
+        .state('jo', {
+            url:  '/job-order',
+            templateUrl:  '/job-order',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "jo",
+                            files: [
+                                "/resources/js/app/module/jo.js",
+                                "/resources/js/app/factories/entity-factory.js",
+                                "/resources/js/app/directives/sl-entity-browser.js"
+                            ]
+                        }
+                    )
+                }
+            }
+        })
+
+        .state('jo.new', {
+            url:  '/new',
+            templateUrl:  '/job-order/new-jo-page'
         })
 }
 

@@ -2,7 +2,7 @@
 <div class="row-top-buffer"></div>
 <div class="row">
     <div class="col-md-12 col-lg-12">
-        <a ui-sref="cnvs" class="btn btn-primary">Back to list</a>
+        <a ui-sref="canvass" class="btn btn-primary">Back to list</a>
     </div>
 </div>
 <div class="row-top-buffer"></div>
@@ -16,7 +16,7 @@
 <div class="row">
     <div class="col-md-12 col-lg-12">
         <div class="col-md-2 col-lg-2">
-            <label class="input-label" for="rvdate">Date</label>
+            <label class="input-label" for="cnvsdate">Date</label>
         </div>
         <div class="col-md-5 col-lg-5">
             <div class="input-group date">
@@ -24,7 +24,7 @@
                         <i class="fa fa-calendar">
                         </i>
                     </span>
-                <input class="datepicker" type="text" class="input-sm form-control" id="rvdate" name="rvdate" value="05/14/2014">
+                <input class="datepicker" type="text" class="input-sm form-control" id="cnvsdate" name="cnvsdate" value="05/14/2014">
             </div>
         </div>
         <form-error err_field="errors.err_payee"></form-error>

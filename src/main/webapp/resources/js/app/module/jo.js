@@ -1,4 +1,4 @@
-var rvApp = angular.module('cnvs', [
+var poApp = angular.module('jo', [
     'jQueryFnWrapperService',
     'errorHandlerService',
     'cmnFormErrorApp',
@@ -6,7 +6,7 @@ var rvApp = angular.module('cnvs', [
     'utilService'
 ]);
 
-rvApp.controller('addEditCnvsCtrl', ['$scope', '$stateParams', '$http', 'errorToElementBinder', 'csrf',
+poApp.controller('addEditJoCtrl', ['$scope', '$stateParams', '$http', 'errorToElementBinder', 'csrf',
     function($scope, $stateParams, $http, errorToElementBinder, csrf) {
         $scope.suppliers = [1,2];
 
@@ -14,7 +14,7 @@ rvApp.controller('addEditCnvsCtrl', ['$scope', '$stateParams', '$http', 'errorTo
         $scope.supplier_selection_handler = function(entity){
             $scope.selectedSupplier = entity;
         }
-        $scope.title = 'Create Canvass';
+        $scope.title = 'Create Job Order';
         $scope.save = 'Save';
         $scope.showForm = true;
     }]);
