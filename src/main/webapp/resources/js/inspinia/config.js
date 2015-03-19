@@ -393,6 +393,21 @@ function config($stateProvider, $urlRouterProvider) {
             url:  '/process-voucher',
             templateUrl:  '/common/process-voucher'
         })
+
+        .state('allocationFactor', {
+            url:  '/allocation-factor',
+            templateUrl:  '/admin/allocation-factor',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "allocationFactor",
+                            files: ["/resources/js/app/module/allocation-factor.js"]
+                        }
+                    )
+                }
+            }
+        })
 }
 
 function getUserDependencies(moduleJs) {
