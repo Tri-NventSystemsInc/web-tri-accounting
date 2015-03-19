@@ -415,7 +415,7 @@ function config($stateProvider, $urlRouterProvider) {
 
         .state('canvass.new', {
             url:  '/new',
-            templateUrl:  '/canvass/new-canvass-page'
+            templateUrl:  '/canvass-rv/new-canvass-page'
         })
 
         .state('processVoucher', {
