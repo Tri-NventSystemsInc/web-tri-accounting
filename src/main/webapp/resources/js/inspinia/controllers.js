@@ -4,6 +4,12 @@
  *
  */
 
-angular.module('inspinia')
+angular
+    .module('inspinia')
+    .controller('MainCtrl', MainCtrl)
 
 
+function MainCtrl() {
+
+
+};

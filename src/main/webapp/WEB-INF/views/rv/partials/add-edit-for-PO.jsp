@@ -7,7 +7,7 @@
                 <a href="index.html">Home</a>
             </li>
             <li>
-                <a ui-sref="rv.newPO" ng-click="open()">RIV List</a>
+                <a ui-sref="rv">RIV List</a>
             </li>
             <li class="active">
                 <strong>New RIV for PO</strong>

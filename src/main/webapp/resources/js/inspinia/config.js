@@ -393,6 +393,11 @@ function config($stateProvider, $urlRouterProvider) {
             url:  '/process-voucher',
             templateUrl:  '/common/process-voucher'
         })
+
+
+
+
+
 }
 
 function getUserDependencies(moduleJs) {
