@@ -42,11 +42,11 @@ public class AllocationFactorManagementController {
     @RequestMapping(value = "/new-factor-page", method = RequestMethod.GET)
     public String newAllocationFactor(HttpServletRequest request) {
         Boolean hasPermissionOnMethod = roleService.isRouteAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
-        return hasPermissionOnMethod ? (BASE_PATH + "add-edit-factor") : "403";
+        return hasPermissionOnMethod ? (BASE_PATH + "add-edit") : "403";
     }
 
     @RequestMapping(value = "/factor-details-page", method = RequestMethod.GET)
     public ModelAndView factorDetails(HttpServletRequest request) {
-        return ControllerHelper.getModelAndView(BASE_PATH + "factor-details", roleService, authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
+        return ControllerHelper.getModelAndView(BASE_PATH + "details", roleService, authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
     }
 }

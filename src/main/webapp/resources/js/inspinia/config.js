@@ -402,11 +402,21 @@ function config($stateProvider, $urlRouterProvider) {
                     return $ocLazyLoad.load(
                         {
                             name: "allocationFactor",
-                            files: ["/resources/js/app/module/allocation-factor.js"]
+                            files: [
+                                "/resources/js/app/module/allocation-factor.js",
+                                "/resources/js/app/factories/account-factory.js",
+                                "/resources/js/app/factories/business-segment-factory.js",
+                                "/resources/js/app/services/account-service.js"
+                            ]
                         }
                     )
                 }
             }
+        })
+
+        .state('allocationFactor.new', {
+            url:  '/new',
+            templateUrl:  '/admin/allocation-factor/new-factor-page'
         })
 }
 

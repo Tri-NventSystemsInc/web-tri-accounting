@@ -13,7 +13,7 @@
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-3">
-                            ${createAllocationFactor}
+                            <a ui-sref="allocationFactor.new" class="btn btn-primary">Create</a>
                         </div>
                         <div class="col-sm-3 pull-right">
                             <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
