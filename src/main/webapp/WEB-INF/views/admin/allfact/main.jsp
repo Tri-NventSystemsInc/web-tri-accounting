@@ -27,6 +27,7 @@
                                 <th>Account</th>
                                 <th>Business Segments</th>
                                 <th>Last Updated</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -38,6 +39,10 @@
                                     <span class="label">Related Businesses</span>
                                 </td>
                                 <td>Jul 14, 2013 12:34 PM</td>
+                                <td style="width: 5%; text-align: center">
+                                    <a style="padding: 0" title="View"  href=""><i class="fa fa-search"></i></a>
+                                    <a style="padding: 0" title="Edit" href=""><i class="fa fa-edit"></i></a>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Consumer Load Deposit</td>
@@ -46,6 +51,10 @@
                                     <span class="label">Non-Regulated Retail Services</span>
                                 </td>
                                 <td>Jul 14, 2013 12:34 PM</td>
+                                <td style="width: 5%; text-align: center">
+                                    <a style="padding: 0" title="View"  href=""><i class="fa fa-search"></i></a>
+                                    <a style="padding: 0" title="Edit" href=""><i class="fa fa-edit"></i></a>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Accounts Receivable WESM</td>
@@ -55,6 +64,10 @@
                                     <span class="label">Supplier of Last Resort</span>
                                 </td>
                                 <td>Jul 14, 2013 12:34 PM</td>
+                                <td style="width: 5%; text-align: center">
+                                    <a style="padding: 0" title="View"  href=""><i class="fa fa-search"></i></a>
+                                    <a style="padding: 0" title="Edit" href=""><i class="fa fa-edit"></i></a>
+                                </td>
                             </tr>
                             <tr>
                                 <td>CWIP - Special Equipment - Subsidy</td>
@@ -64,6 +77,10 @@
                                     <span class="label">Supplier of Last Resort</span>
                                 </td>
                                 <td>Jul 14, 2013 12:34 PM</td>
+                                <td style="width: 5%; text-align: center">
+                                    <a style="padding: 0" title="View"  href=""><i class="fa fa-search"></i></a>
+                                    <a style="padding: 0" title="Edit" href=""><i class="fa fa-edit"></i></a>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
