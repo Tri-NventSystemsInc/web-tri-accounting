@@ -475,6 +475,32 @@ function config($stateProvider, $urlRouterProvider) {
             templateUrl:  '/job-order/new-jo-page'
         })
 
+		.state('allocationFactor', {
+            url:  '/allocation-factor',
+            templateUrl:  '/admin/allocation-factor',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+							name: "allocationFactor",
+                            files: [
+                                "/resources/js/app/module/allocation-factor.js",
+                                "/resources/js/app/factories/account-factory.js",
+                                "/resources/js/app/factories/business-segment-factory.js",
+                                "/resources/js/app/services/account-service.js"
+                            ]
+                        }
+                    )
+                }
+            }
+        })
+        
+        .state('allocationFactor.new', {
+            url:  '/new',
+            templateUrl:  '/admin/allocation-factor/new-factor-page'
+
+        })
+
         .state('pp', {
             url:  '/pre-payment',
             templateUrl:  '/pre-payment',
