@@ -7,7 +7,7 @@
                 <a href="index.html">Home</a>
             </li>
             <li>
-                <a ui-sref="rv.newPO" ng-click="open()">RIV List</a>
+                <a ui-sref="rv">RIV List</a>
             </li>
             <li class="active">
                 <strong>New RIV for IT</strong>
@@ -25,7 +25,7 @@
 <div class="col-lg-12">
 <div class="ibox float-e-margins">
 <div class="ibox-title">
-    <h5>Create New Requisition For Purchase Order</h5>
+    <h5>Create New Requisition For Information Technology</h5>
 </div>
 <div class="ibox-content">
 

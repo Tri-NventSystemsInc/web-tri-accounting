@@ -1,3 +1,5 @@
+
+
 <div ui-view>
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-9">
@@ -26,14 +28,17 @@
                         </div>
                         <div class="ibox-content">
                             <div class="row">
-                                <div class="col-sm-3">
-                                    <a ui-sref="rv.newPO" class="btn btn-primary" ng-click="open()">Create For PO</a>
-                                </div>
-                                <div class="col-sm-3">
-                                    <a ui-sref="rv.newIT" class="btn btn-primary">Create For IT</a>
-                                </div>
-                                <div class="col-sm-3">
-                                    <a ui-sref="rv.newJO" class="btn btn-primary">Create For JO</a>
+                                <div class="col-sm-5">
+                                    <div class="btn-group" dropdown >
+                                        <button type="button" class="btn btn-primary dropdown-toggle"><i class="fa fa-file-o"></i>&nbsp;
+                                            Create New&nbsp;<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a ui-sref="rv.newPO" ng-click="open()"><strong>Purchase Order</strong> Request</a></li>
+                                            <li><a ui-sref="rv.newJO"><strong>Job Order</strong> Request</a></li>
+                                            <li><a ui-sref="rv.newIT"><strong>Info Tech</strong> Request</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div class="col-sm-3 pull-right">
                                     <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
