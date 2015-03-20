@@ -141,7 +141,7 @@
                         <td></td>
                         <td><span class="pull-right"></span></td>
                         <td><span class="pull-right"></span></td>
-                        <td style="text-align: center"><a style='padding: 0' title='Add'><i class='fa fa-plus'></i></a></td>
+                        <td style="text-align: center"><a style='padding: 0' title='Add'><i item-browser handler="item_selection_handler1" class='fa fa-plus'></i></a></td>
                     </tr>
                     </tbody>
                 </table>

@@ -1,4 +1,4 @@
-var poApp = angular.module('jo', [
+var joApp = angular.module('jo', [
     'jQueryFnWrapperService',
     'errorHandlerService',
     'cmnFormErrorApp',
@@ -6,7 +6,7 @@ var poApp = angular.module('jo', [
     'utilService'
 ]);
 
-poApp.controller('addEditJoCtrl', ['$scope', '$stateParams', '$http', 'errorToElementBinder', 'csrf',
+joApp.controller('addEditJoCtrl', ['$scope', '$stateParams', '$http', 'errorToElementBinder', 'csrf',
     function($scope, $stateParams, $http, errorToElementBinder, csrf) {
         $scope.suppliers = [1,2];
 

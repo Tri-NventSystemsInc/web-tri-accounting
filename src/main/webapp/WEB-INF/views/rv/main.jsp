@@ -38,8 +38,8 @@
                                 <th>Purpose</th>
                                 <th>Type</th>
                                 <th>Date</th>
-                                <th>Status</th>
                                 <th>Prepared By</th>
+                                <th>Status</th>
                             </tr>
                             </thead>
                             <tbody>

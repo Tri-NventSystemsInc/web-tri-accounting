@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>List of Job Order</h5>
+                    <h5>List of Job Orders</h5>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
@@ -24,42 +24,48 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th>CNVS Number</th>
+                                <th>JO Number</th>
                                 <th>Date</th>
                                 <th>Supplier</th>
                                 <th>Prepared By</th>
+                                <th>Status</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>CF-2014-01-0001</td>
+                                <td>JO-2014-01-0001</td>
                                 <td>Jul 15, 2013</td>
-                                <td>ACELOGIC COMPUTER SOLUTIONS</td>
+                                <td>ENTRY MANAGEMENT JANITORIAL & ALLIED SERVICES</td>
                                 <td>LESTER JOHN PAUL CADIZ</td>
+                                <td><span class="label label-danger">Document Created</span></td>
                             </tr>
                             <tr>
-                                <td>CF-2014-01-0002</td>
+                                <td>JO-2014-01-0002</td>
                                 <td>Jul 15, 2013</td>
-                                <td>ALOTA ENGINEERING WORKS</td>
-                                <td>LESTER JOHN PAUL CADIZ</td>
-                            </tr>
-                            <tr>
-                                <td>CF-2014-01-0003</td>
-                                <td>Jul 18, 2013</td>
-                                <td>COPYLANDIA OFFICE SYSTEMS CORPORATION</td>
-                                <td>LESTER JOHN PAUL CADIZ</td>
-                            </tr>
-                            <tr>
-                                <td>CF-2014-01-0004</td>
-                                <td>Jul 18, 2013</td>
                                 <td>POLARIS POWER ENGINEERING</td>
                                 <td>LESTER JOHN PAUL CADIZ</td>
+                                <td><span class="label label-primary">For Approval</span></td>
                             </tr>
                             <tr>
-                                <td>CF-2014-01-0005</td>
-                                <td>Jul 25, 2013</td>
-                                <td>PHILIPPINE HEALTH INSURANCE CORPORATION</td>
+                                <td>JO-2014-01-0003</td>
+                                <td>Jul 18, 2013</td>
+                                <td>ABT ELECTRICAL SUPPLIES & ENGINEERING SERVICES</td>
                                 <td>LESTER JOHN PAUL CADIZ</td>
+                                <td><span class="label label-danger">Document Created</span></td>
+                            </tr>
+                            <tr>
+                                <td>JO-2014-01-0004</td>
+                                <td>Jul 18, 2013</td>
+                                <td>JRAS AIRCON SALES AND SERVICE CENTER</td>
+                                <td>LESTER JOHN PAUL CADIZ</td>
+                                <td><span class="label label-danger">Document Created</span></td>
+                            </tr>
+                            <tr>
+                                <td>JO-2014-01-0005</td>
+                                <td>Jul 25, 2013</td>
+                                <td>QUICK TIRE SERVICE CENTER</td>
+                                <td>LESTER JOHN PAUL CADIZ</td>
+                                <td><span class="label label-info">Approved</span></td>
                             </tr>
                             </tbody>
                         </table>

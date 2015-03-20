@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>List of Purchase Order</h5>
+                    <h5>List of Purchase Orders</h5>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
@@ -27,8 +27,8 @@
                                 <th>PO Number</th>
                                 <th>Date</th>
                                 <th>Supplier</th>
-                                <th>Status</th>
                                 <th>Prepared By</th>
+                                <th>Status</th>
                             </tr>
                             </thead>
                             <tbody>

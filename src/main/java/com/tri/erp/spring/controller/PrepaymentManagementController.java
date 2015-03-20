@@ -12,11 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by Personal on 3/18/2015.
+ * Created by Personal on 3/19/2015.
  */
 @Controller
-@RequestMapping(value = "/job-order")
-public class JobOrderManagementController {
+@RequestMapping(value = "/pre-payment")
+public class PrepaymentManagementController {
 
     @Autowired
     private AuthenticationFacade authenticationFacade;
@@ -24,8 +24,8 @@ public class JobOrderManagementController {
     @Autowired
     private RoleService roleService;
 
-    private final String BASE_PATH = "jo/partials/";
-    private final String MAIN = "jo/main";
+    private final String BASE_PATH = "pp/partials/";
+    private final String MAIN = "pp/main";
 
     // view providers
     @RequestMapping(method = RequestMethod.GET)
@@ -33,8 +33,8 @@ public class JobOrderManagementController {
         return ControllerHelper.getModelAndView(MAIN, roleService, authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
     }
 
-    @RequestMapping(value = "/new-jo-page", method = RequestMethod.GET)
-    public String newJO(HttpServletRequest request) {
+    @RequestMapping(value = "/new-pp-page", method = RequestMethod.GET)
+    public String newPP(HttpServletRequest request) {
         Boolean hasPermissionOnMethod = roleService.isRouteAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
         return hasPermissionOnMethod ? (BASE_PATH + "add-edit") : "403";
     }

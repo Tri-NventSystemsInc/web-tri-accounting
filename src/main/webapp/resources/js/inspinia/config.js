@@ -367,7 +367,11 @@ function config($stateProvider, $urlRouterProvider) {
                     return $ocLazyLoad.load(
                         {
                             name: "rv",
-                            files: getUserDependencies("/resources/js/app/module/rv.js")
+                            files: [
+                                "/resources/js/app/module/rv.js",
+                                "/resources/js/app/factories/item-factory.js",
+                                "/resources/js/app/directives/item-browser.js"
+                            ]
                         }
                     )
                 }
@@ -415,7 +419,7 @@ function config($stateProvider, $urlRouterProvider) {
 
         .state('canvass.new', {
             url:  '/new',
-            templateUrl:  '/canvass/new-canvass-page'
+            templateUrl:  '/canvass-rv/new-canvass-page'
         })
 
         .state('processVoucher', {
@@ -469,6 +473,31 @@ function config($stateProvider, $urlRouterProvider) {
         .state('jo.new', {
             url:  '/new',
             templateUrl:  '/job-order/new-jo-page'
+        })
+
+        .state('pp', {
+            url:  '/pre-payment',
+            templateUrl:  '/pre-payment',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "pp",
+                            files: [
+                                "/resources/js/app/module/pp.js",
+                                "/resources/js/app/factories/account-factory.js",
+                                "/resources/js/app/factories/business-segment-factory.js",
+                                "/resources/js/app/directives/account-browser-s.js"
+                            ]
+                        }
+                    )
+                }
+            }
+        })
+
+        .state('pp.new', {
+            url:  '/new',
+            templateUrl:  '/pre-payment/new-pp-page'
         })
 }
 
