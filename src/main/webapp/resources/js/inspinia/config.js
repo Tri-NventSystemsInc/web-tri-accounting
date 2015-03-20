@@ -370,7 +370,7 @@ function config($stateProvider, $urlRouterProvider) {
                             files: [
                                 "/resources/js/app/module/rv.js",
                                 "/resources/js/app/factories/item-factory.js",
-                                "/resources/js/app/directives/item-browser.js"
+                               "/resources/js/app/directives/item-browser.js"
                             ]
                         }
                     )
