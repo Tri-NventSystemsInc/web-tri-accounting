@@ -25,24 +25,30 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
                             <h5>List of Requested Issue Voucher/s</h5>
+                            <div class="ibox-tools ">
+                                <a href="index.html"><i class="fa fa fa-sign-out"></i></a>
+                            </div>
                         </div>
                         <div class="ibox-content">
                             <div class="row">
                                 <div class="col-sm-5">
                                     <div class="btn-group" dropdown >
-                                        <button type="button" class="btn btn-primary dropdown-toggle"><i class="fa fa-file-o"></i>&nbsp;
+                                        <button type="button" class="btn btn-primary btn-sm dropdown-toggle"><i class="fa fa-file-o"></i>&nbsp;&nbsp;
                                             Create New&nbsp;<span class="caret"></span>
                                         </button>
+
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a ui-sref="rv.newPO" ng-click="open()"><strong>Purchase Order</strong> Request</a></li>
-                                            <li><a ui-sref="rv.newJO"><strong>Job Order</strong> Request</a></li>
-                                            <li><a ui-sref="rv.newIT"><strong>Info Tech</strong> Request</a></li>
+                                            <li><a ui-sref="rv.newPO" ng-click="open()"><i class="fa fa-file-o "></i>&nbsp;&nbsp;<strong>Purchase Order</strong>  Request</a></li>
+                                            <li><a ui-sref="rv.newJO"><i class="fa fa-file-o "></i>&nbsp;&nbsp;<strong>Job Order</strong> Request</a></li>
+                                            <li><a ui-sref="rv.newIT"><i class="fa fa-file-o "></i>&nbsp;&nbsp;<strong>Info Tech</strong> Request</a></li>
                                         </ul>
                                     </div>
+
+                                    <button type="button" id="refresh" class="btn btn-warning btn-sm"><i class="fa fa-refresh"></i> Refresh</button>
+
                                 </div>
                                 <div class="col-sm-3 pull-right">
-                                    <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
-                                                <button type="button" class="btn btn-sm btn-primary"> Go!</button> </span></div>
+                                    <input type=text" placeholder="Search Here" class="input-sm form-control ">
                                 </div>
                             </div>
                             <div class="table-responsive">
