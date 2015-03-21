@@ -44,7 +44,7 @@
                                         </ul>
                                     </div>
 
-                                    <button type="button" id="refresh" class="btn btn-warning btn-sm"><i class="fa fa-refresh"></i> Refresh</button>
+                                    <button type="button" id="refresh" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i> Refresh</button>
 
                                 </div>
                                 <div class="col-sm-3 pull-right">
