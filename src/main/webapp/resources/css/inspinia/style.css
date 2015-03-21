@@ -1509,6 +1509,8 @@ table.dataTable thead .sorting:after {
 .input-s-sm {
   width: 120px;
 }
+
+
 .input-s {
   width: 200px;
 }
@@ -1551,7 +1553,7 @@ table.dataTable thead .sorting:after {
   color: #ed5565;
 }
 .input-group-addon {
-  background-color: #fff;
+  background-color:#1ab394;
   border: 1px solid #E5E6E7;
   border-radius: 1px;
   color: inherit;
@@ -1561,6 +1563,9 @@ table.dataTable thead .sorting:after {
   padding: 6px 12px;
   text-align: center;
 }
+
+
+
 .spinner-buttons.input-group-btn .btn-xs {
   line-height: 1.13;
 }
