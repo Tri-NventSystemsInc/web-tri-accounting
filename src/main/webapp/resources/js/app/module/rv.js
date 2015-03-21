@@ -21,10 +21,18 @@ rvApp.controller('addEditRvForITCtrl', ['$scope', '$stateParams', '$http', 'erro
         $scope.showForm = true;
     }]);
 
-rvApp.controller('addEditRvForJOCtrl', ['$scope', '$stateParams', '$http', 'errorToElementBinder', 'csrf',
+rvApp.controller('addEditRvForRepCtrl', ['$scope', '$stateParams', '$http', 'errorToElementBinder', 'csrf',
     function($scope, $stateParams, $http, errorToElementBinder, csrf) {
 
-        $scope.title = 'Create Requisition Voucher For JO';
+        $scope.title = 'Create Requisition Voucher For Repair';
+        $scope.save = 'Save';
+        $scope.showForm = true;
+    }]);
+
+rvApp.controller('addEditRvForLabCtrl', ['$scope', '$stateParams', '$http', 'errorToElementBinder', 'csrf',
+    function($scope, $stateParams, $http, errorToElementBinder, csrf) {
+
+        $scope.title = 'Create Requisition Voucher For Labor';
         $scope.save = 'Save';
         $scope.showForm = true;
     }]);
