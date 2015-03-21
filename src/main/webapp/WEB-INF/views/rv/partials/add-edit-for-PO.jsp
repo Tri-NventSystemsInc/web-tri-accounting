@@ -26,16 +26,15 @@
 <div class="ibox float-e-margins">
 <div class="ibox-title">
     <h5>Create New Requisition For Purchase Order</h5>
+    <div class="ibox-tools ">
+        <a ui-sref="rv"><i class="fa fa fa-sign-out"></i></a>
+    </div>
 </div>
 <div class="ibox-content">
 <div ng-controller="addEditRvForPOCtrl">
 
 <div class="row-top-buffer"></div>
-<div class="row">
-    <div class="col-md-12 col-lg-12">
-        <a ui-sref="rv" class="btn btn-primary">Back to list</a>
-    </div>
-</div>
+
 <div class="row-top-buffer"></div>
 <form ng-submit="processForm()" ng-show="showForm">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
