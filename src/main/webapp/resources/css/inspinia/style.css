@@ -803,7 +803,7 @@ button.dim:active:before {
   top: 7px;
   font-size: 50px;
 }
-.label {
+.tab {
   background-color: #d1dade;
   color: #5e5e5e;
   font-family: 'Open Sans';
@@ -2626,6 +2626,9 @@ table.table-mail tr td {
   margin-right: 160px;
 }
 /* DASBOARD */
+
+
+
 .dashboard-header {
   border-top: 4px solid #e7eaec;
   padding: 20px 20px 20px 20px;
@@ -3610,3 +3613,4 @@ body.skin-3 {
     display: none;
   }
 }
+

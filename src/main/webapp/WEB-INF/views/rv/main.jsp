@@ -54,28 +54,48 @@
                                     <div class="input-group sm-b"><span class="input-group-addon "><i class="fa fa-search"></i></span> <input type="search" placeholder="Search" class="input-sm form-control"></div>
                                 </div>
                             </div>
-                            <div class="table-responsive">
-                                <table class="table table-striped">
+                            <div class="table-responsive project-list">
+                                <table class="table table-striped ">
                                     <thead>
                                     <tr>
-                                        <th>RV Number</th>
-                                        <th>Delivery Date</th>
-                                        <th>Purpose</th>
-                                        <th>Type</th>
-                                        <th>Date</th>
                                         <th>Status</th>
-                                        <th>Prepared By</th>
+                                        <th>Reference</th>
+                                        <th>Particular</th>
+                                        <th>Prepared by</th>
+                                        <th>Type</th>
+                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>RIV-2014-01-0001</td>
-                                        <td>Jul 15, 2013</td>
-                                        <td>MIS equipment</td>
-                                        <td>For PO</td>
-                                        <td>Jul 14, 2013</td>
-                                        <td>LESTER JOHN PAUL CADIZ</td>
-                                        <td><span class="label label-danger">Document Created</span></td>
+                                    <tr >
+                                        <td class="project-status">
+                                            <i class="fa fa-flag-o"></i>&nbsp;<span class="label label-default " style="width: 100px">Document Created</span>
+                                        </td>
+                                        <td style="width: 180px" align="center">
+
+                                            <small>RIV No.</small><br>
+                                            <strong>RIV-2014-01-0001</strong><br>
+                                            <small>Date of Delivery</small><br>
+                                            <small><strong>Jul 20, 2013</strong></small>
+
+                                        </td>
+                                        <td style="width:300px" class="project-title" >
+                                            <small> Labor for Network/Electrical rewiring & rearrangement using wiring ducts, etc.</small>
+                                        </td>
+                                        <td style="width:180px" align="center">
+                                            <div class="feed-element">
+                                                <a>
+                                                    <img alt="image" class="img-circle" src="/resources/images/pix/a1.jpg">
+                                                </a>
+                                                <div>
+                                                    <small><strong>Tony Zerna</strong></small><small> MIS Head</small> <br>
+                                                    <small class="text-muted">Created: Jul 14, 2013</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="project-status">
+                                            <span class="label label-warning-light " style="width: 100px">Purchase Order</span>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>RIV-2014-01-0002</td>
@@ -118,6 +138,8 @@
                                     </tbody>
                                 </table>
                             </div>
+
+
                         </div>
                     </div>
 
