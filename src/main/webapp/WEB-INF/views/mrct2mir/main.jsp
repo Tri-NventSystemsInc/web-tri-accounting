@@ -13,8 +13,7 @@
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-3">
-                            <%--<a ui-sref="rv.newPO" class="btn btn-primary">Create For PO</a>--%>
-                                <a class="btn btn-primary">Browse MRCT</a>
+                                <a ui-sref="mrct2mir.new" class="btn btn-primary">Browse MRCT</a>
                         </div>
                         <div class="col-sm-3 pull-right">
                             <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
@@ -84,7 +83,6 @@
                             </tbody>
                         </table>
                     </div>
-
                 </div>
             </div>
         </div>

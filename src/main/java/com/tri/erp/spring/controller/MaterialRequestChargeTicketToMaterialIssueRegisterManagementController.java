@@ -32,4 +32,10 @@ public class MaterialRequestChargeTicketToMaterialIssueRegisterManagementControl
     public ModelAndView index(HttpServletRequest request) {
         return ControllerHelper.getModelAndView(MAIN, roleService, authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
     }
+
+    @RequestMapping(value = "/browse-mrct", method = RequestMethod.GET)
+    public String browseMRCT(HttpServletRequest request) {
+        Boolean hasPermissionOnMethod = roleService.isRouteAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
+        return hasPermissionOnMethod ? (BASE_PATH + "mrct-list") : "403";
+    }
 }
