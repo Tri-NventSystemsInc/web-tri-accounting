@@ -25,3 +25,7 @@
 
 <%--custombutton--%>
 <link href="<c:url value="/resources/css/custom/custom.css" />" rel="stylesheet">
+
+<!-- iCheck -->
+<link href="<c:url value="/resources/css/inspinia/plugins/iCheck/custom.css" />" rel="stylesheet">
+

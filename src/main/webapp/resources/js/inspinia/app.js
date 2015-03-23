@@ -7,6 +7,7 @@
     angular.module('inspinia', [
         'ui.router',
         'ui.bootstrap',
-        'oc.lazyLoad'
+        'oc.lazyLoad',
+        'ui.checkbox'
     ])
 })();
