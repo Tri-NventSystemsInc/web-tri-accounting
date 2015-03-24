@@ -39,7 +39,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr data-dismiss="modal" ng-repeat="item in mrctList | filter: itemDescription" ng-click="selectItem(item)">
+                <tr data-toggle="modal"
+                    data-target="#showModal" data-dismiss="modal" ng-repeat="item in mrctList | filter: itemDescription" ng-click="selectItem(item)">
                     <td style="width: 120px;">{{item.referenceNo}}</td>
                     <td style="width: 200px;">{{item.date}}</td>
                     <td style="width: 480px;">{{item.itemDescription}}</td>
@@ -58,35 +59,67 @@
         </div>
     </div>
 
-    <%--<div modal="showModal" close="cancel()">--%>
-        <%--<div class="modal-header">--%>
-            <%--<h4>Modal Dialog</h4>--%>
-        <%--</div>--%>
-        <%--<div class="modal-body">--%>
-            <%--<p>Example paragraph with some text.</p>--%>
-        <%--</div>--%>
-        <%--<div class="modal-footer">--%>
-            <%--<button class="btn btn-success" ng-click="ok()">Okay</button>--%>
-            <%--<button class="btn" ng-click="cancel()">Cancel</button>--%>
-        <%--</div>--%>
-    <%--</div>--%>
 
-    <%--<div id="selectedItemModal" class="modal fade">--%>
-        <%--<div class="modal-dialog">--%>
-            <%--<div class="modal-content">--%>
-                <%--<div class="modal-header">--%>
-                    <%--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>--%>
-                    <%--<h4 class="modal-title">Modal title</h4>--%>
-                <%--</div>--%>
-                <%--<div class="modal-body">--%>
-                    <%--<p>One fine body…</p>--%>
-                <%--</div>--%>
-                <%--<div class="modal-footer">--%>
-                    <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
-                    <%--<button type="button" class="btn btn-primary">Save changes</button>--%>
-                <%--</div>--%>
-            <%--</div><!-- /.modal-content -->--%>
-        <%--</div><!-- /.modal-dialog -->--%>
-    <%--</div><!-- /.modal -->--%>
+
+
+
+    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h4 class="modal-title" id="myModalLabel">Current Selection - {{selectedItemData.referenceNo}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <span>Reference Number:</span>
+                        <span>{{selectedItemData.referenceNo}}</span>
+                    </div>
+                    <div class="form-group">
+                        <span>Date:</span>
+                        <span>{{selectedItemData.date}}</span>
+                    </div>
+                    <div class="form-group">
+                        <span>Description:</span>
+                        <span>{{selectedItemData.itemDescription}}</span>
+                    </div>
+                    <div class="form-group">
+                        <span>Quantity:</span>
+                        <span>{{selectedItemData.quantity}}</span>
+                    </div>
+                    <div class="form-group">
+                        <span>Unit Cost:</span>
+                        <span>{{selectedItemData.unitCost}}</span>
+                    </div>
+                    <div class="form-group">
+                        <span>Item Cost:</span>
+                        <span>{{selectedItemData.itemCost}}</span>
+                    </div>
+                    <div class="form-group">
+                        <span>Prepared By:</span>
+                        <span>{{selectedItemData.preparedBy}}</span>
+                    </div>
+                    <div class="form-group">
+                        <span>Issued By:</span>
+                        <span>{{selectedItemData.issuedBy}}</span>
+                    </div>
+                    <div class="form-group">
+                        <span>Received By:</span>
+                        <span>{{selectedItemData.receivedBy}}</span>
+                    </div>
+                    <div class="form-group">
+                        <span>Approved By:</span>
+                        <span>{{selectedItemData.approvedBy}}</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Post</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 </div>

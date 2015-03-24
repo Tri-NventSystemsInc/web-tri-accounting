@@ -12,10 +12,23 @@ mrct2mirApp.controller('browseMRCTCtrl', ['$scope', '$stateParams', '$http', 'er
         $scope.save = 'Save';
         $scope.showForm = true;
         $scope.selectedItemData = {};
+        $scope.showModal = false;
 
         $scope.selectItem = function(item){
 
             $scope.selectedItemData = item;
+            $scope.showModal = true;
+
+        };
+
+        $scope.opts = {
+            backdropFade: true,
+            dialogFade:true
+        };
+
+        $scope.close = function(){
+
+            $scope.showModal = false;
 
         };
 
