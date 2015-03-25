@@ -8,7 +8,7 @@ var jvApp = angular.module('jv', [
     'utilService'
 ]);
 
-jvApp.controller('addEditCvCtrl', ['$scope', '$stateParams', '$http', 'errorToElementBinder', 'csrf',
+jvApp.controller('addEditJVCtrl', ['$scope', '$stateParams', '$http', 'errorToElementBinder', 'csrf',
     function($scope, $stateParams, $http, errorToElementBinder, csrf) {
 
         $scope.title = 'Create journal voucher';
