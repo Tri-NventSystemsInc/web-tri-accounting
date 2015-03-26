@@ -31,11 +31,9 @@ utilService.service('voucherUtil', function() {
                     var dr = parseFloat(entry['debit']);
                     var cr = parseFloat(entry['credit']);
                     if (isNaN(dr)) {
-                        toastr.warning("Debit amount for " + entry.account.description + " is invalid!");
                         dr = 0;
                     }
                     if (isNaN(cr)) {
-                        toastr.warning("Credit amount for " + entry.account.description + " is invalid!");
                         cr = 0;
                     }
 
