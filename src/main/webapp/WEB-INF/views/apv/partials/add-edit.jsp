@@ -93,42 +93,31 @@
                 <div class="col-md-2 col-lg-2">
                     <label class="input-label">Journal Entries</label>
                 </div>
-                <div class="col-md-7 col-lg-7">
+                <div class="col-md-10 col-lg-10">
                     <div class="table-responsive white-bg">
                         <table class="table table-striped">
                             <thead>
                             <tr>
 
-                                <th>Account</th>
+                                <th style="width: 50%">Account</th>
                                 <th><span class="pull-right">Debit</span></th>
                                 <th><span class="pull-right">Credit</span></th>
-                                <th style="width: 60px"></th>
+                                <th style="width: 60px"  class="text-center"><a style='padding: 0' title='Add'><i class='fa fa-plus'></i></a></th>
                             </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>00-11-2221 Office supplies</td>
-                                    <td><span class="pull-right">$ 100.00</span></td>
-                                    <td><span class="pull-right"></span></td>
-                                    <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove'><i class='fa fa-minus'></i></a></td>
+                                <tr ng-repeat="entry in journalEntries">
+                                    <td>{{entry.account.code}} {{entry.account.description}}</td>
+                                    <td><input ng-model="entry.debit" ng-change="updateTotal(entry.debit, '{{entry.debit}}')" class="text-right" type="text"/></td>
+                                    <td><input ng-model="entry.credit" ng-change="updateTotal(entry.credit, '{{entry.credit}}')" class="text-right" type="text"/></td>
+                                    <td style="text-align: center"><a style='padding: 0' title='Account'><i class='fa fa-angellist'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='SL'><i class='fa fa-user'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove'><i class='fa fa-minus'></i></a></td>
                                 </tr>
+
                                 <tr>
-                                    <td>00-11-2221 Water pipes</td>
-                                    <td><span class="pull-right">$ 45,562.00</span></td>
-                                    <td><span class="pull-right"></span></td>
-                                    <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove'><i class='fa fa-minus'></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="hasSLAccount" data-container="body" data-toggle="popover" data-placement="right" title="SL Account" data-content="CITI hardware<br/>Ace hardware">22-11-2221 Supplier</td>
-                                    <td><span class="pull-right"></span></td>
-                                    <td><span class="pull-right">$ 56,726.00</span></td>
-                                    <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove'><i class='fa fa-minus'></i></a></td>
-                                </tr>
-                                <tr>
+                                    <td>TOTAL</td>
+                                    <td><input class="text-right" type="text" value="{{journalTotals.debit}}"/></td>
+                                    <td><input class="text-right" type="text" value="{{journalTotals.credit}}"/></td>
                                     <td></td>
-                                    <td><span class="pull-right"></span></td>
-                                    <td><span class="pull-right"></span></td>
-                                    <td style="text-align: center"><a style='padding: 0' title='Add'><i class='fa fa-plus'></i></a></td>
                                 </tr>
                             </tbody>
                         </table>
