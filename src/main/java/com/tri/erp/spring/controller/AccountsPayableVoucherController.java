@@ -4,6 +4,7 @@ import com.tri.erp.spring.commons.GlobalConstant;
 import com.tri.erp.spring.commons.facade.AuthenticationFacade;
 import com.tri.erp.spring.commons.helpers.ReportUtil;
 import com.tri.erp.spring.commons.helpers.StringFormatter;
+import com.tri.erp.spring.model.AccountsPayableVoucher;
 import com.tri.erp.spring.model.Item;
 import com.tri.erp.spring.reponse.CreateResponse;
 import com.tri.erp.spring.reponse.CreateRoleResponse;
@@ -11,6 +12,7 @@ import com.tri.erp.spring.reponse.StatusResponse;
 import com.tri.erp.spring.service.implementations.DownloadService;
 import com.tri.erp.spring.service.implementations.JasperDatasourceService;
 import com.tri.erp.spring.service.implementations.TokenService;
+import com.tri.erp.spring.service.interfaces.ApvService;
 import com.tri.erp.spring.service.interfaces.ItemService;
 import com.tri.erp.spring.service.interfaces.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +33,8 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("/item")
-public class ItemController {
+@RequestMapping("/apv")
+public class AccountsPayableVoucherController {
 
     @Autowired
     private AuthenticationFacade authenticationFacade;
@@ -44,37 +46,28 @@ public class ItemController {
     MessageSource messageSource;
 
     @Autowired
-    ItemService itemService;
-
-    @Autowired
-    private DownloadService downloadService;
-
-    @Autowired
-    private JasperDatasourceService datasource;
-
-    @Autowired
-    private TokenService tokenService;
+    ApvService apvService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public List<Item> itemList() {
-        return itemService.findAll();
+    public List<Item> apvList() {
+        return null;
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
     @ResponseBody
-    public CreateResponse createItem(@Valid @RequestBody Item item, BindingResult bindingResult) {
-        return itemService.processCreate(item, bindingResult, messageSource);
+    public CreateResponse createApv(@Valid @RequestBody AccountsPayableVoucher apv, BindingResult bindingResult) {
+        return apvService.processCreate(apv, bindingResult, messageSource);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Item getItem(@PathVariable Integer id, HttpServletRequest request) {
+    public Item getApv(@PathVariable Integer id, HttpServletRequest request) {
         String uri = StringFormatter.replaceRouteParamWithPlaceholder(request.getRequestURI(), String.valueOf(id));
         Boolean hasPermissionOnMethod = roleService.isRouteAuthorized(authenticationFacade.getLoggedIn().getId(), uri);
 
         if (hasPermissionOnMethod) {
-            return itemService.findById(id);
+            return null;
         } else {
             return null;
         }
@@ -82,10 +75,10 @@ public class ItemController {
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    public CreateResponse updateItem(@Valid @RequestBody  Item item, BindingResult bindingResult, HttpServletRequest request) {
+    public CreateResponse updateApv(@Valid @RequestBody  Item item, BindingResult bindingResult, HttpServletRequest request) {
         Boolean hasPermissionOnMethod = roleService.isRouteAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
         if (hasPermissionOnMethod) {
-            return itemService.processUpdate(item, bindingResult, messageSource);
+            return null;
         } else {
             ArrayList<String> messages = new ArrayList<>();
             messages.add("Permission denied!");
@@ -97,22 +90,5 @@ public class ItemController {
 
             return response;
         }
-    }
-
-    @RequestMapping(value="/download/token")
-    public @ResponseBody
-    StatusResponse getDownloadToken() {
-        return new StatusResponse(true, tokenService.generate());
-    }
-
-    @RequestMapping(value="/download")
-    public void download(@RequestParam(value = "type") String type,
-                         @RequestParam(value = "token") String token,
-                         HttpServletResponse response) {
-
-        HashMap<String, Object> params = ReportUtil.setupSharedReportHeaders();
-
-        String template = GlobalConstant.JASPER_BASE_PATH + "/item/ItemList.jrxml";
-        downloadService.download(type, token, response, params, template, datasource.getItemDataSource());
     }
 }
