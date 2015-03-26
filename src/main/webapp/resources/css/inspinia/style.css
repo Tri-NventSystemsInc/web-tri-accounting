@@ -803,7 +803,7 @@ button.dim:active:before {
   top: 7px;
   font-size: 50px;
 }
-.tab {
+.label {
   background-color: #d1dade;
   color: #5e5e5e;
   font-family: 'Open Sans';
@@ -1509,8 +1509,6 @@ table.dataTable thead .sorting:after {
 .input-s-sm {
   width: 120px;
 }
-
-
 .input-s {
   width: 200px;
 }
@@ -1553,7 +1551,7 @@ table.dataTable thead .sorting:after {
   color: #ed5565;
 }
 .input-group-addon {
-  background-color:#1ab394;
+  background-color: #fff;
   border: 1px solid #E5E6E7;
   border-radius: 1px;
   color: inherit;
@@ -1563,9 +1561,6 @@ table.dataTable thead .sorting:after {
   padding: 6px 12px;
   text-align: center;
 }
-
-
-
 .spinner-buttons.input-group-btn .btn-xs {
   line-height: 1.13;
 }
@@ -2127,7 +2122,6 @@ table.table-mail tr td {
   padding: 0;
   text-overflow: ellipsis;
   float: left;
-
 }
 .ibox-title .label {
   float: left;
@@ -2626,9 +2620,6 @@ table.table-mail tr td {
   margin-right: 160px;
 }
 /* DASBOARD */
-
-
-
 .dashboard-header {
   border-top: 4px solid #e7eaec;
   padding: 20px 20px 20px 20px;
@@ -3613,4 +3604,3 @@ body.skin-3 {
     display: none;
   }
 }
-

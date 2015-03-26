@@ -79,7 +79,7 @@
                     </div>
                 </div>
                 <div class="col-md-5 col-lg-5">
-                    <button class="btn btn-primary" account-browser-s handler="accounts_selection_handler" >Browse accounts</button>
+                    <div account-browser-s btn_label="Browse accounts" handler="accounts_selection_handler(account)" />
                 </div>
             </div>
         </div>

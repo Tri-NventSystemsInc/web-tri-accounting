@@ -22,7 +22,7 @@
                                     $modalInstance.close();
                                 };
 
-                                // expose selected entity to the outside world :)
+                                // expose selected account to the outside world :)
                                 $scope.selectEntity = function(entity) {
                                     $scope.handler()(entity);
                                     $modalInstance.close();

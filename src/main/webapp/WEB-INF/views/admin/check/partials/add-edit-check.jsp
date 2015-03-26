@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="col-md-5 col-lg-5">
-                    <button class="btn btn-primary" account-browser-s handler="accounts_selection_handler" >Browse accounts</button>
+                    <div account-browser-s btn_label="Browse accounts" handler="accounts_selection_handler(account)" />
                 </div>
             </div>
         </div>
@@ -238,7 +238,7 @@
                 </div>
                 <div class="col-md-5 col-lg-5">
                     <fieldset ng-disabled="submitting">
-                        <button ng-mousedown="submit = true" type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> {{ save }}</button>
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> {{ save }}</button>
                         <button type="reset" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span> Reset</button>
                     </fieldset>
                 </div>

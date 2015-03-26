@@ -5,45 +5,32 @@
     app.directive('itemBrowser', ['$timeout', 'itemFactory', function ($timeout, itemFactory) {
         return {
             scope : {
+                btnLabel : '@',
                 handler: '&'
             },
             restrict: 'AE',
-            controller: function($scope, $modal) {
-                // create open() method
-                // to open a modal
-                $scope.open = function() {
-                    $modal.open({
-                        scope: $scope,
-                        windowClass: 'sl-entity-browser-modal-window',
-                        templateUrl: '/common/item-browser',
-                        controller: function($scope, $modalInstance) {
-                            $scope.close  = function() {
-                                $modalInstance.close();
-                            };
-
-                            // expose selected item to the outside world :)
-                            $scope.selectItem = function(account) {
-                                $scope.handler()(account);
-                                $modalInstance.close();
-                            }
-                        }
-                    });
-                };
-            },
+            templateUrl: '/common/item-browser',
             link: function (scope, elem, attrs) {
 
                 elem.bind('click', function () {
-                    if (angular.isDefined(scope.items) && scope.items.length > 0)  {  // cache
-                        scope.open();
-                    } else {
-                        scope.$apply(function () {
-                            itemFactory.getItems().success(function (data) {
-                                scope.open();
-                                scope.items = data;
-                            });
+                    if (angular.isDefined(scope.items) && scope.items.length > 0)  return; // cache
+
+                    scope.$apply(function () {
+                        itemFactory.getItems().success(function (data) {
+                            scope.items = data;
+                            console.log(data);
                         });
-                    }
+                    });
                 });
+
+                // expose selected item to the outside world :)
+                scope.selectItem = function(item) {
+                    return $timeout(function() {
+                        return scope.handler({
+                            item: item
+                        });
+                    });
+                }
             }
         };
     }]);

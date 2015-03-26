@@ -46,15 +46,9 @@ public class RequisitionVoucherManagementController {
         return hasPermissionOnMethod ? (BASE_PATH + "add-edit-for-IT") : "403";
     }
 
-    @RequestMapping(value = "/new-rvRep-page", method = RequestMethod.GET)
-    public String newRvRep(HttpServletRequest request) {
+    @RequestMapping(value = "/new-rvJO-page", method = RequestMethod.GET)
+    public String newRvJO(HttpServletRequest request) {
         Boolean hasPermissionOnMethod = roleService.isRouteAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
-        return hasPermissionOnMethod ? (BASE_PATH + "add-edit-for-Rep") : "403";
-    }
-
-    @RequestMapping(value = "/new-rvLab-page", method = RequestMethod.GET)
-    public String newRvLab(HttpServletRequest request) {
-        Boolean hasPermissionOnMethod = roleService.isRouteAuthorized(authenticationFacade.getLoggedIn().getId(), request.getRequestURI());
-        return hasPermissionOnMethod ? (BASE_PATH + "add-edit-for-Lab") : "403";
+        return hasPermissionOnMethod ? (BASE_PATH + "add-edit-for-JO") : "403";
     }
 }

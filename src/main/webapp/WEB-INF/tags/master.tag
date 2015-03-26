@@ -14,7 +14,8 @@
 </head>
 <!-- ControllerAs syntax -->
 <!-- Main controller with serveral data used in Inspinia theme on diferent view -->
-<body >
+<body>
+
 <!-- Wrapper-->
 <div id="wrapper">
 
