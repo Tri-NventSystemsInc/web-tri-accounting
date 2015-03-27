@@ -525,6 +525,30 @@ function config($stateProvider, $urlRouterProvider) {
             url:  '/new',
             templateUrl:  '/pre-payment/new-pp-page'
         })
+
+        .state('ca', {
+            url:  '/cash-advance',
+            templateUrl:  '/cash-advance',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "ca",
+                            files: [
+                                "/resources/js/app/module/ca.js",
+                                "/resources/js/app/factories/entity-factory.js",
+                                "/resources/js/app/directives/sl-entity-browser.js"
+                            ]
+                        }
+                    )
+                }
+            }
+        })
+
+        .state('ca.new', {
+            url:  '/new',
+            templateUrl:  '/cash-advance/new-ca-page'
+        })
 }
 
 function getUserDependencies(moduleJs) {
