@@ -1,6 +1,7 @@
 var app = angular.module('showcase', [
     'cmnAccountBrowserWithSegmentApp',
     'cmnSLEntityBrowserApp',
+    'cmnRequisitionVoucherBrowserApp',
     'cmnItemBrowserApp'
 ]);
 
@@ -43,5 +44,11 @@ app.controller('itemCtrl', ['$scope', '$http', function($scope, $http) {
             // Start download
             $scope.url = '/item/download'+'?token='+token+'&type='+type;
         });
+    }
+}]);
+
+app.controller('rvCtrl', ['$scope', '$http', function($scope, $http) {
+    $scope.rv_selection_handler1 = function(requisition){
+        $scope.selectedRv1 = rv;
     }
 }]);

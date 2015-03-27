@@ -2,14 +2,18 @@ package com.tri.erp.spring.controller;
 
 import com.tri.erp.spring.commons.facade.AuthenticationFacade;
 import com.tri.erp.spring.commons.helpers.ControllerHelper;
+import com.tri.erp.spring.model.RequisitionVoucher;
+import com.tri.erp.spring.service.interfaces.RequisitionVoucherService;
 import com.tri.erp.spring.service.interfaces.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * Created by TSI Admin on 11/13/2014.

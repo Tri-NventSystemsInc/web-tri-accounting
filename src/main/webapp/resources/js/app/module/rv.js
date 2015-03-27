@@ -1,5 +1,6 @@
 var rvApp = angular.module('rv', [
     'jQueryFnWrapperService',
+    'requisitionVoucherFactory',
     'errorHandlerService',
     'cmnFormErrorApp',
     'utilService',
@@ -42,4 +43,16 @@ rvApp.controller('addEditRvForLabCtrl', ['$scope', '$stateParams', '$http', 'err
         $scope.title = 'Create Requisition Voucher For Labor';
         $scope.save = 'Save';
         $scope.showForm = true;
+    }]);
+
+rvApp.controller('rvListCtrl', ['$scope', '$http', 'requisitionVoucherFactory',
+    function($scope,  $http, requisitionVoucherFactory) {
+
+        requisitionVoucherFactory.getRequisitionVouchers()
+            .success(function (data) {
+                $scope.requisitionVouchers = data;
+            })
+            .error(function (error) {
+                toastr.error('Failed to load suppliers!');
+            });
     }]);
