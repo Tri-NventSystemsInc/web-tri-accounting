@@ -41,16 +41,15 @@
     <div class="row">
         <div class="col-md-12 col-lg-12">
             <div class="col-md-2 col-lg-2">
-                <label class="input-label" for="rvdate">Date</label>
+                <label class="input-label" for="rvdate"><small>Date</small></label>
             </div>
-            <div class="col-md-5 col-lg-5">
-                <div class="input-group date">
+            <div class="col-md-2 col-lg-2">
+                 <div class="input-group date">
                     <span class="input-group-addon">
-                        <i class="fa fa-calendar">
-                        </i>
+                        <i class="fa fa-calendar"></i>
                     </span>
-                    <input class="datepicker" type="text" class="input-sm form-control" id="rvdate" name="rvdate" value="05/14/2014">
-                </div>
+                    <input class="" type="text" class="form-control input-sm" id="rvdate" name="rvdate" value="05/14/2015">
+                 </div>
             </div>
             <form-error err_field="errors.err_payee"></form-error>
         </div>
@@ -61,9 +60,9 @@
     <div class="row">
         <div class="col-md-12 col-lg-12">
             <div class="col-md-2 col-lg-2">
-                <label class="input-label" for="deldate">Del. Date</label>
+                <label class="input-label" for="deldate"><small>Delivery Date</small></label>
             </div>
-            <div class="col-md-5 col-lg-5">
+            <div class="col-md-2 col-lg-2">
                 <div class="input-group date">
                     <span class="input-group-addon">
                         <i class="fa fa-calendar">
@@ -71,6 +70,12 @@
                     </span>
                     <input class="datepicker" type="text" class="input-sm form-control" id="deldate" name="deldate" value="05/14/2014">
                 </div>
+                <div class="input-group date">
+                    <span class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                    </span>
+                    <input type="text" class="form-control input-sm" id="rvdate" name="rvdate" value="05/14/2015">
+                </div>
             </div>
             <form-error err_field="errors.err_payee"></form-error>
         </div>
@@ -81,12 +86,12 @@
     <div class="row">
         <div class="col-md-12 col-lg-12">
             <div class="col-md-2 col-lg-2">
-                <label class="input-label" for="purpose">Reason(s)/Purpose(s)</label>
+                <label class="input-label" for="purpose"><Small>Reason(s)/Purpose(s)</Small></label>
             </div>
-            <div class="col-md-5 col-lg-5">
+            <div class="col-md-7 col-lg-7">
                 <div class="input-group">
-                    <textarea  maxlength="1024" rows="5" cols="59" ng-model="apv.particulars" id="purpose"
-                               name="purpose" placeholder="Enter purpose"></textarea>
+                    <textarea maxlength="1024" rows="5" cols="59" class="form-control" ng-model="apv.particulars" id="purpose"
+                              name="purpose" placeholder="Enter purpose"></textarea>
                 </div>
             </div>
             <form-error err_field="errors.err_particulars"></form-error>
@@ -258,7 +263,7 @@
 </div></div></div></div></div></div></div>
 <div style="margin-bottom: 100px;" />
 
-<script>
+<%--<script>
     $('.datepicker').datepicker({
         todayBtn: "linked",
         keyboardNavigation: false,
@@ -270,4 +275,4 @@
     $(function () {
         $('[data-toggle="popover"]').popover({ trigger: "hover", html: true })
     })
-</script>
+</script>--%>
