@@ -22,7 +22,7 @@
                             };
 
                             // expose selected item to the outside world :)
-                            $scope.selectRequisitionVocher = function(account) {
+                            $scope.selectRequisitionVoucher = function(account) {
                                 $scope.handler()(account);
                                 $modalInstance.close();
                             }

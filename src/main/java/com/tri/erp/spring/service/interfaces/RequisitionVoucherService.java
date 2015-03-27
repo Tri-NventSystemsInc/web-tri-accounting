@@ -10,4 +10,5 @@ import java.util.List;
 public interface RequisitionVoucherService {
     public RequisitionVoucher findByRvNumber(String rvNumber);
     public List<RequisitionVoucher> findAll();
+    public RequisitionVoucher findByRvId(Integer rvId);
 }

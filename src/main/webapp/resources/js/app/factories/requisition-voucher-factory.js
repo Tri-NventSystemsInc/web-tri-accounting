@@ -4,8 +4,8 @@ requisitionVoucherFactory.factory('requisitionVoucherFactory', ['$http', functio
     this.getRequisitionVouchers = function () {
         return $http.get('/requisition-voucher/list/');
     };
-//    this.getSupplier = function (id) {
-//        return $http.get('/supplier/'+id);
-//    };
+    this.getRequisitionVoucher = function (id) {
+        return $http.get('/requisition-voucher/'+id);
+    };
     return this;
 }]);

@@ -12,6 +12,12 @@
 
     </div>
     <p></p>
+    <div ng-controller="rvCtrl">
+
+        <p>You selected RV: <b>{{selectedRv1 ? (selectedRv1.rvNumber + ' ' + selectedRv1.purpose) : 'None'}}</b></p>
+        <button class="btn btn-primary" requisition-voucher-browser handler="rv_selection_handler" >Browse Rv 1</button>
+    </div>
+    <p></p>
     <div ng-controller="sleCtrl">
 
         <p>You selected entity: <b>{{selectedEntity ? (selectedEntity.accountNo + ' ' + selectedEntity.name) : 'None'}}</b></p>
@@ -37,11 +43,5 @@
 
         <p></p>
         <a class="btn btn-primary" title="export to excel" target="_blank" ng-href="{{url}}"  ng-mousedown="export('xls')">Export items to excel</a>
-    </div>
-    <p></p>
-    <div ng-controller="rvCtrl">
-
-        <p>You selected RV: <b>{{selectedRv1 ? (selectedRv1.rvNumber + ' ' + selectedItem1.purpose) : 'None'}}</b></p>
-        <button class="btn btn-primary" item-browser handler="rv_selection_handler1" >Browse Rv 1</button>
     </div>
 </div>
