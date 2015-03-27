@@ -8,21 +8,12 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>List of Requisition Issue Vouchers</h5>
+                    <h5>List of Purchase Order</h5>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-2">
-                            <a ui-sref="rv.newPO" class="btn btn-primary">Create For PO</a>
-                        </div>
-                        <div class="col-sm-2">
-                            <a ui-sref="rv.newIT" class="btn btn-primary">Create For IT</a>
-                        </div>
-                        <div class="col-sm-2">
-                            <a ui-sref="rv.newRep" class="btn btn-primary">Create For Repair</a>
-                        </div>
-                        <div class="col-sm-2">
-                            <a ui-sref="rv.newLab" class="btn btn-primary">Create For Labor</a>
+                            <a ui-sref="po.new" class="btn btn-primary">Create</a>
                         </div>
                         <div class="col-sm-3 pull-right">
                             <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
@@ -33,62 +24,48 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th>RV Number</th>
-                                <th>Delivery Date</th>
-                                <th>Purpose</th>
-                                <th>Type</th>
+                                <th>PO Number</th>
                                 <th>Date</th>
+                                <th>Supplier</th>
                                 <th>Status</th>
                                 <th>Prepared By</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>RIV-2014-01-0001</td>
+                                <td>PO-2014-01-0001</td>
                                 <td>Jul 15, 2013</td>
-                                <td>MIS equipment</td>
-                                <td>For PO</td>
-                                <td>Jul 14, 2013</td>
+                                <td>PHILIPPINE HEALTH INSURANCE CORPORATION</td>
                                 <td>LESTER JOHN PAUL CADIZ</td>
                                 <td><span class="label label-danger">Document Created</span></td>
                             </tr>
                             <tr>
-                                <td>RIV-2014-01-0002</td>
+                                <td>PO-2014-01-0002</td>
                                 <td>Jul 15, 2013</td>
-                                <td>Labor for Network/Electrical rewiring & rearrangement using wiring ducts, etc.</td>
-                                <td>For LABOR</td>
-                                <td>Jul 14, 2013</td>
+                                <td>POLARIS POWER ENGINEERING</td>
                                 <td>LESTER JOHN PAUL CADIZ</td>
-                                <td><span class="label label-danger">Document Created</span></td>
+                                <td><span class="label label-primary">For Approval</span></td>
                             </tr>
                             <tr>
-                                <td>RIV-2014-01-0003</td>
+                                <td>PO-2014-01-0003</td>
                                 <td>Jul 18, 2013</td>
-                                <td>FSD Spare parts for MC-40</td>
-                                <td>For PO</td>
-                                <td>Jul 15, 2013</td>
+                                <td>COPYLANDIA OFFICE SYSTEMS CORPORATION</td>
                                 <td>LESTER JOHN PAUL CADIZ</td>
                                 <td><span class="label label-danger">Document Created</span></td>
                             </tr>
                             <tr>
-                                <td>RIV-2014-01-0004</td>
+                                <td>PO-2014-01-0004</td>
                                 <td>Jul 18, 2013</td>
-                                <td>Area Operation Department - Guihulngan
-                                    Rewinding of Primary coil of MC-31</td>
-                                <td>For REPAIR</td>
-                                <td>Jul 16, 2013</td>
+                                <td>ALOTA ENGINEERING WORKS</td>
                                 <td>LESTER JOHN PAUL CADIZ</td>
                                 <td><span class="label label-danger">Document Created</span></td>
                             </tr>
                             <tr>
-                                <td>RIV-2014-01-0005</td>
+                                <td>PO-2014-01-0005</td>
                                 <td>Jul 25, 2013</td>
-                                <td>OGM - Internal Audit Division
-                                    Office Supplies/ First Quarter</td>
-                                <td>For PO</td>
-                                <td>Jul 18, 2013</td>
+                                <td>ACELOGIC COMPUTER SOLUTIONS</td>
                                 <td>LESTER JOHN PAUL CADIZ</td>
-                                <td><span class="label label-danger">Document Created</span></td>
+                                <td><span class="label label-info">Approved</span></td>
                             </tr>
                             </tbody>
                         </table>
