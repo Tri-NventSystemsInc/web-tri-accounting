@@ -519,6 +519,11 @@ function config($stateProvider, $urlRouterProvider) {
             url:  '/new',
             templateUrl:  '/admin/allocation-factor/new-factor-page'
         })
+
+        .state('reportAccounting', {
+            url:  '/reports/accounting',
+            templateUrl:  '/reports/accounting'
+        })
 }
 
 function getUserDependencies(moduleJs) {

@@ -253,7 +253,7 @@ userApp.controller('addEditRoleCtrl', ['$location', '$scope', '$stateParams', '$
 
     function loadMenus() {
         menuFactory.getMenus().success(function (data) {
-            $scope.menus = data; 
+            $scope.menus = data;
             if ($scope.role != undefined) {
                 setSelectedMenu();
             }
