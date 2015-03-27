@@ -354,6 +354,30 @@ function config($stateProvider, $urlRouterProvider) {
             }
         })
 
+        .state('jv', {
+            url:  '/journal-voucher',
+            templateUrl:  '/journal-voucher',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "jv",
+                            files: [
+                                "/resources/js/app/module/jv.js",
+                                "/resources/js/app/factories/entity-factory.js",
+                                "/resources/js/app/directives/sl-entity-browser.js"
+                            ]
+                        }
+                    )
+                }
+            }
+        })
+
+        .state('jv.new', {
+            url:  '/new',
+            templateUrl:  '/journal-voucher/new-jv-page'
+        })
+
         .state('cv.new', {
             url:  '/new',
             templateUrl:  '/check-voucher/new-cv-page'
