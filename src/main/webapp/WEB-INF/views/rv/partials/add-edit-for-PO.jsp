@@ -102,7 +102,7 @@
             </div>
             <div class="col-md-9 col-lg-9">
                 <div class="table-responsive white-bg">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered table-striped">
                         <thead>
                         <tr >
 

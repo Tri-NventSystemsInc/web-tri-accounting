@@ -18,46 +18,71 @@
             <div class="row">
                 <div class="col-md-12 col-lg-12">
                 </div>
-
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>List of Requested Issue Voucher/s</h5>
+                            <h5>List of Requested Issue Voucher/s</h5><small>Display list filtered by <strong> Pending</strong> RIVs</small>
+
                             <div class="ibox-tools ">
                                 <a href="index.html"><i class="fa fa fa-sign-out"></i></a>
                             </div>
                         </div>
                         <div class="ibox-content">
+
+
+
                             <div class="row">
-                                <div class="col-sm-3">
+                                <div class="col-sm-9">
                                     <div class="btn-group" dropdown >
                                         <button type="button" class="btn btn-primary btn-sm dropdown-toggle"><i class="fa fa-file-o"></i>&nbsp;&nbsp;
                                             Create New&nbsp;<span class="caret"></span>
                                         </button>
 
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a ui-sref="rv.newPO" ng-click="open()"><i class="fa fa-file-o "></i>&nbsp;&nbsp;<strong>Purchase Order</strong>  Request</a></li>
+                                            <li><a ui-sref="rv.newPO"><i class="fa fa-file-o "></i>&nbsp;&nbsp;<strong>Purchase Order</strong>  Request</a></li>
                                             <li><a ui-sref="rv.newJO"><i class="fa fa-file-o "></i>&nbsp;&nbsp;<strong>Job Order</strong> Request</a></li>
                                             <li><a ui-sref="rv.newIT"><i class="fa fa-file-o "></i>&nbsp;&nbsp;<strong>Info Tech</strong> Request</a></li>
                                             <li><a ui-sref="rv.newRep"><i class="fa fa-file-o "></i>&nbsp;&nbsp;<strong>Repair</strong> Request</a></li>
                                             <li><a ui-sref="rv.newLab"><i class="fa fa-file-o "></i>&nbsp;&nbsp;<strong>Labor</strong> Request</a></li>
                                         </ul>
                                     </div>
+                                    <div class="btn-group" dropdown >
+                                        <button type="button" class="btn btn-white btn-sm dropdown-toggle"><i class="fa fa-flag-o"></i>&nbsp;&nbsp;
+                                            Filter&nbsp;<span class="caret"></span>
+                                        </button>
 
-                                   <%-- <button type="button" id="refresh" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i> Refresh</button>--%>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a ui-sref=""><i class="fa fa-flag-o "></i>&nbsp;&nbsp;<strong>Pending</strong></a></li>
+                                            <li><a ui-sref=""><i class="fa fa-flag-o "></i>&nbsp;&nbsp;<strong>Cancelled</strong></a></li>
+                                            <li><a ui-sref=""><i class="fa fa-flag-o "></i>&nbsp;&nbsp;<strong>Returned</strong></a></li>
+                                            <li><a ui-sref=""><i class="fa fa-flag-o "></i>&nbsp;&nbsp;<strong>Audit</strong></a></li>
+                                            <li><a ui-sref=""><i class="fa fa-flag-o "></i>&nbsp;&nbsp;<strong>RecApproval</strong></a></li>
+                                            <li><a ui-sref=""><i class="fa fa-flag-o "></i>&nbsp;&nbsp;<strong>Approved</strong></a></li>
+                                            <li class="divider"></li>
+                                            <li><a ui-sref=""><i class="fa fa-flag-o "></i>&nbsp;&nbsp;<strong>All</strong></a></li>
+                                        </ul>
+                                    </div>
+
+
                                 </div>
-
-
 
                                 <div class="col-sm-3 pull-right">
                                     <input type="search" placeholder="Search" class="input-sm form-control">
                                 </div>
 
 
-                              </div>
+                            </div>
+                            <div class="row-top-buffer"></div>
+                            <%--<div class="row-top-buffer"></div>
+                            <div class="alert alert-success alert">
+                                <small>Display list filtered by <strong> Pending</strong> RIVs</small>
+                            </div>
+                            <div class="row-top-buffer"></div>--%>
+
+
                             <div class="table-responsive project-list">
                                 <table class="table table-striped ">
                                     <thead>
@@ -74,7 +99,7 @@
                                     <%--rec--%>
                                     <tr >
                                         <td class="project-status" style="width: 100px">
-                                            <span class="label label-default " ><i class="fa fa-flag-o"></i>&nbsp;Document Created</span>
+                                            <span class="label label-default " ><i class="fa fa-flag-o"></i>&nbsp;Pending</span>
                                         </td>
                                         <td style="width: 220px" align="center">
 
