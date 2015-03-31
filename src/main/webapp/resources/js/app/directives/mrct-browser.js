@@ -40,38 +40,4 @@
         };
     });
 
-//    app.directive('mrctBrowser', ['$timeout', 'mrctFactory' , function ($timeout, mrctFactory) {
-//        return {
-//            scope : {
-//                types: "=",
-//                handler: '&'
-//            },
-//            restrict: 'AE',
-//            controller: function($scope, $modal) {
-//                // create open() method
-//                // to open a modal
-//                $scope.open = function() {
-//                    $modal.open({
-//                        scope: $scope,
-////                        windowClass: 'mrct-browser-modal-window',
-//                        templateUrl: '/common/mrct-browser'
-//                        ,
-//                        controller: function($scope, $modalInstance) {
-//                            $scope.close  = function() {
-//                                $modalInstance.close();
-//                            };
-//                        }
-//                    });
-//                };
-//
-//
-//            }
-//            ,
-//            link: function (scope, elem, attrs) {
-//                elem.bind('click', function () {
-//                    scope.open();
-//                });
-//            }
-//        };
-//    }]);
 }).call(this);
