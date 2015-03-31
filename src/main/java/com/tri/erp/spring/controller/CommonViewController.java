@@ -46,4 +46,9 @@ public class CommonViewController {
     public String getProcessVoucherPage() {
         return "common/process-voucher";
     }
+
+    @RequestMapping("/mrct-browser")
+    public String getMRCTBrowser() {
+        return "common/mrct-browser";
+    }
 }

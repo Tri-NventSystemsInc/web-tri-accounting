@@ -548,6 +548,30 @@ function config($stateProvider, $urlRouterProvider) {
             url:  '/new',
             templateUrl:  '/petty-cash-voucher/new-pcv-page'
         })
+
+        .state('mrctToMIR', {
+            url:  '/mrct-to-mir',
+            templateUrl:  '/mrct-to-mir',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "mrctToMIR",
+                            files: [
+                                "/resources/js/app/module/mrctToMIR.js",
+                                "/resources/js/app/factories/mrct-factory.js",
+                                "/resources/js/app/directives/mrct-browser.js"
+                            ]
+                        }
+                    )
+                }
+            }
+        })
+
+        .state('mrctToMIR.new',{
+            url: '/mrct-list',
+            templateUrl: '/mrct-to-mir/browse-mrct'
+        })
 }
 
 function getUserDependencies(moduleJs) {

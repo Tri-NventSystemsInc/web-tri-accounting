@@ -194,15 +194,15 @@
 
 
 <script>
-    $('.datepicker').datepicker({
-        todayBtn: "linked",
-        keyboardNavigation: false,
-        forceParse: false,
-        calendarWeeks: true,
-        autoclose: true
-    });
-
     $(function () {
+        $('.datepicker').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true
+        });
+
         $('[data-toggle="popover"]').popover({ trigger: "hover", html: true })
     })
 </script>
