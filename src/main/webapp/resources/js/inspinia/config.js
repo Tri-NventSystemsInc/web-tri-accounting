@@ -524,6 +524,30 @@ function config($stateProvider, $urlRouterProvider) {
             url:  '/reports/accounting',
             templateUrl:  '/reports/accounting'
         })
+
+        .state('pcv', {
+            url:  '/petty-cash-voucher',
+            templateUrl:  '/petty-cash-voucher',
+            resolve: {
+                store: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load(
+                        {
+                            name: "pcv",
+                            files: [
+                                "/resources/js/app/module/pcv.js",
+                                "/resources/js/app/factories/entity-factory.js",
+                                "/resources/js/app/directives/sl-entity-browser.js"
+                            ]
+                        }
+                    )
+                }
+            }
+        })
+
+        .state('pcv.new', {
+            url:  '/new',
+            templateUrl:  '/petty-cash-voucher/new-pcv-page'
+        })
 }
 
 function getUserDependencies(moduleJs) {
