@@ -69,7 +69,7 @@
                             </td>
                             <td>
                                 <button type="button" class="btn btn-warning m-r-sm">30</button>
-                                Journal Voucher
+                                Journal Vouchers
                             </td>
                         </tr>
                         </tbody>

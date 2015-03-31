@@ -8,12 +8,12 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>List of Accounts Payable Vouchers </h5>
+                    <h5>List of Journal Vouchers </h5>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-3">
-                            ${createApv}
+                            <a ui-sref="jv.new" class="btn btn-primary">Create</a>
                         </div>
                         <div class="col-sm-3 pull-right">
                             <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
@@ -26,44 +26,39 @@
                             <tr>
 
                                 <th>Code</th>
-                                <th>Supplier</th>
-                                <th><span class="pull-right">Amount</span></th>
                                 <th>Particulars</th>
+                                <th><span class="pull-right">Amount</span></th>
                                 <th>Date</th>
                                 <th>Status</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>APV-201301</td>
-                                <td>Apple, Inc</td>
-                                <td><span class="pull-right">100.00</span></td>
-                                <td>Please attach needed docs!</td>
-                                <td>Jul 14, 2013</td>
+                                <td>JV-201501</td>
+                                <td>To record Green Core Power Cost for the month of January.</td>
+                                <td><span class="pull-right">1,300.00</span></td>
+                                <td>Jan 14, 2015</td>
                                 <td><span class="label label-danger">For recommendation</span></td>
                             </tr>
                             <tr>
-                                <td>APV-201302</td>
-                                <td>Pinterest</td>
-                                <td><span class="pull-right">45,562.00</span></td>
-                                <td>Please pin it home!</td>
-                                <td>Feb 14, 2008</td>
+                                <td>JV-201502</td>
+                                <td>To record Green Core Power Cost for the month of February.</td>
+                                <td><span class="pull-right">453,562.00</span></td>
+                                <td>Feb 14, 2015</td>
                                 <td><span class="label label-warning">Pending</span></td>
                             </tr>
                             <tr>
-                                <td>APV-201303</td>
-                                <td>Instagram</td>
-                                <td><span class="pull-right">56,726.00</span></td>
-                                <td>Please view my recent selfie!</td>
-                                <td>Dec 24, 2012</td>
+                                <td>JV-201503</td>
+                                <td>To record Green Core Power Cost for the month of March.</td>
+                                <td><span class="pull-right">356,726.00</span></td>
+                                <td>Mar 24, 2015</td>
                                 <td><span class="label label-info">Approved</span></td>
                             </tr>
                             <tr>
-                                <td>APV-201304</td>
-                                <td>Samsung</td>
-                                <td><span class="pull-right">1,600.00</span></td>
-                                <td>Please attach the S6 edge</td>
-                                <td>Aug 13, 2014</td>
+                                <td>JV-201504</td>
+                                <td>To record Green Core Power Cost for the month of August.</td>
+                                <td><span class="pull-right">31,600.00</span></td>
+                                <td>Aug 13, 2015</td>
                                 <td><span class="label label-primary">For Approval</span></td>
                             </tr>
                             </tbody>
