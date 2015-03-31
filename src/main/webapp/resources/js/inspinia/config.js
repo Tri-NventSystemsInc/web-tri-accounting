@@ -389,24 +389,28 @@ function config($stateProvider, $urlRouterProvider) {
             templateUrl:  '/requisition-voucher/new-rvJO-page'
         })
 
-        .state('mrct2mir', {
-            url:  '/mrct-to-mir', // display sa browser
-            templateUrl:  '/mrct2mir', // from controller
+        .state('mrctToMIR', {
+            url:  '/mrct-to-mir',
+            templateUrl:  '/mrct-to-mir',
             resolve: {
                 store: function ($ocLazyLoad) {
                     return $ocLazyLoad.load(
                         {
-                            name: "mrct2mir",
-                            files: getUserDependencies("/resources/js/app/module/mrct2mir.js")
+                            name: "mrctToMIR",
+                            files: [
+                                "/resources/js/app/module/mrctToMIR.js",
+                                "/resources/js/app/factories/mrct-factory.js",
+                                "/resources/js/app/directives/mrct-browser.js"
+                            ]
                         }
                     )
                 }
             }
         })
 
-        .state('mrct2mir.new',{
+        .state('mrctToMIR.new',{
             url: '/mrct-list',
-            templateUrl: '/mrct2mir/browse-mrct'
+            templateUrl: '/mrct-to-mir/browse-mrct'
         })
 }
 

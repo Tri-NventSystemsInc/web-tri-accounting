@@ -41,4 +41,9 @@ public class CommonViewController {
     public String getNotificationsPage() {
         return "common/notifications";
     }
+
+    @RequestMapping("/mrct-browser")
+    public String getMRCTBrowser() {
+        return "common/mrct-browser";
+    }
 }

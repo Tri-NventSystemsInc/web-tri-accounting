@@ -13,7 +13,7 @@
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-3">
-                                <a ui-sref="mrct2mir.new" class="btn btn-primary">Browse MRCT</a>
+                                <a ui-sref="mrctToMIR.new" class="btn btn-primary">Browse MRCT</a>
                         </div>
                         <div class="col-sm-3 pull-right">
                             <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
@@ -46,7 +46,7 @@
                                 <td></td>
                                 <td>MRCT-2014-01-0001</td>
                                 <td>Jul 14, 2013</td>
-                                <td>Epson Printer duh duh duh Print, print, print...</td>
+                                <td>Epson Printer</td>
                                 <td>3,500</td>
                                 <td></td>
                             </tr>
@@ -54,7 +54,7 @@
                                 <td></td>
                                 <td>MRCT-2014-01-00011</td>
                                 <td>Jul 14, 2013</td>
-                                <td>Epson Printer duh duh duh Print, print, print...</td>
+                                <td>Speaker (Creative)</td>
                                 <td></td>
                                 <td>1,250</td>
                             </tr>
@@ -62,7 +62,7 @@
                                 <td></td>
                                 <td>MRCT-2014-01-00012</td>
                                 <td>Jul 14, 2013</td>
-                                <td>Epson Printer duh duh duh Print, print, print...</td>
+                                <td>Sony headphone</td>
                                 <td></td>
                                 <td>2,250</td>
                             </tr>
@@ -78,7 +78,7 @@
                                 <td></td>
                                 <td>MRCT-2014-01-0002</td>
                                 <td>Jul 14, 2013</td>
-                                <td>Epson Printer duh duh duh Print, print, print...</td>
+                                <td>Tables and Chairs</td>
                                 <td>3,500</td>
                                 <td></td>
                             </tr>
@@ -86,7 +86,7 @@
                                 <td></td>
                                 <td>MRCT-2014-01-00022</td>
                                 <td>Jul 14, 2013</td>
-                                <td>Epson Printer duh duh duh Print, print, print...</td>
+                                <td>Copper wires</td>
                                 <td></td>
                                 <td>3,500</td>
                             </tr>

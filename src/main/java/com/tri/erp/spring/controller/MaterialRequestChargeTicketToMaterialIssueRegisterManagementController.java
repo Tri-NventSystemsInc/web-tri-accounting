@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  * Created by nsutgio2015 on 3/16/2015.
  */
 @Controller
-@RequestMapping(value = "mrct2mir")
+@RequestMapping(value = "mrct-to-mir")
 public class MaterialRequestChargeTicketToMaterialIssueRegisterManagementController {
 
     @Autowired
@@ -24,8 +24,8 @@ public class MaterialRequestChargeTicketToMaterialIssueRegisterManagementControl
     @Autowired
     private RoleService roleService;
 
-    private final String BASE_PATH = "mrct2mir/partials/";
-    private final String MAIN = "mrct2mir/main";
+    private final String BASE_PATH = "mrct-to-mir/partials/";
+    private final String MAIN = "mrct-to-mir/main";
 
     // view providers
     @RequestMapping(method = RequestMethod.GET)

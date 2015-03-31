@@ -35,3 +35,8 @@
  .sl-entity-browser-modal-window .modal-dialog {
      width: 80%;
  }
+
+ /*mrct browser modal size*/
+ .mrct-browser-modal-window .modal-dialog{
+     width: 80%;
+ }
