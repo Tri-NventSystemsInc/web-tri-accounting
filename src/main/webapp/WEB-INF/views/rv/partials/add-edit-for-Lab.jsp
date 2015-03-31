@@ -102,11 +102,15 @@
         </div>
         <div class="col-md-5 col-lg-5">
             <div class="input-group">
-                <select required="" class="form-control" id="request">
-                    <option value="">Mikho Malto</option>
-                    <option value="">John Doe</option>
-                </select>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+                <input disabled="" ng-model="selectedReqOfficer.name" id="request" name="request" class="form-control ng-pristine ng-valid" type="text" placeholder="Browse Requesting officer"/>
             </div>
+        </div>
+        <div class="col-md-5 col-lg-5">
+            <button sl-entity-browser
+                    handler="req_selection_handler"
+                    types="signatories"
+                    class="btn btn-primary">Browse Requesting Officer</button>
         </div>
         <form-error err_field="errors.err_checker"></form-error>
     </div>
@@ -121,11 +125,15 @@
         </div>
         <div class="col-md-5 col-lg-5">
             <div class="input-group">
-                <select required="" class="form-control" id="recapp">
-                    <option value="">Select Person</option>
-                    <option value="">John Doe</option>
-                </select>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+                <input disabled="" ng-model="selectedRecappOfficer.name" id="recapp" name="recapp" class="form-control ng-pristine ng-valid" type="text" placeholder="Browse Rec. Approval Officer"/>
             </div>
+        </div>
+        <div class="col-md-5 col-lg-5">
+            <button sl-entity-browser
+                    handler="recapp_selection_handler"
+                    types="signatories"
+                    class="btn btn-primary">Browse Rec. Approval Officer</button>
         </div>
         <form-error err_field="errors.err_checker"></form-error>
     </div>
@@ -140,11 +148,15 @@
         </div>
         <div class="col-md-5 col-lg-5">
             <div class="input-group">
-                <select required="" class="form-control" id="check">
-                    <option value="">Select Person</option>
-                    <option value="">John Doe</option>
-                </select>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+                <input disabled="" ng-model="selectedCheckerOfficer.name" id="check" name="check" class="form-control ng-pristine ng-valid" type="text" placeholder="Browse Checking Officer"/>
             </div>
+        </div>
+        <div class="col-md-5 col-lg-5">
+            <button sl-entity-browser
+                    handler="checker_selection_handler"
+                    types="signatories"
+                    class="btn btn-primary">Browse Checking Officer</button>
         </div>
         <form-error err_field="errors.err_checker"></form-error>
     </div>
@@ -159,11 +171,15 @@
         </div>
         <div class="col-md-5 col-lg-5">
             <div class="input-group">
-                <select required="" class="form-control" id="audit">
-                    <option value="">Select Person</option>
-                    <option value="">John Doe</option>
-                </select>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+                <input disabled="" ng-model="selectedAuditorOfficer.name" id="audit" name="audit" class="form-control ng-pristine ng-valid" type="text" placeholder="Browse Auditing Officer"/>
             </div>
+        </div>
+        <div class="col-md-5 col-lg-5">
+            <button sl-entity-browser
+                    handler="auditor_selection_handler"
+                    types="signatories"
+                    class="btn btn-primary">Browse Auditing Officer</button>
         </div>
         <form-error err_field="errors.err_approvar"></form-error>
     </div>
@@ -178,11 +194,15 @@
         </div>
         <div class="col-md-5 col-lg-5">
             <div class="input-group">
-                <select required="" class="form-control" id="approve">
-                    <option value="">Select Person</option>
-                    <option value="">John Doe</option>
-                </select>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+                <input disabled="" ng-model="selectedAppOfficer.name" id="approve" name="approve" class="form-control ng-pristine ng-valid" type="text" placeholder="Browse Approving Officer"/>
             </div>
+        </div>
+        <div class="col-md-5 col-lg-5">
+            <button sl-entity-browser
+                    handler="app_selection_handler"
+                    types="signatories"
+                    class="btn btn-primary">Browse Approving Officer</button>
         </div>
         <form-error err_field="errors.err_checker"></form-error>
     </div>

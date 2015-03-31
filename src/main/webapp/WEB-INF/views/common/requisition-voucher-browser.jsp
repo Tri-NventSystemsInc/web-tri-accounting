@@ -14,10 +14,10 @@
             <div class="col-lg-12 col-md-12">
                 <div class="row-top-buffer" style="margin-top: 15px"/>
                 <div class='row' style="border-top: 1px solid #dcdcdc; padding-top: 10px">
-                    <div class="col-md-1 col-lg-1"><span style="font-weight: bold; padding-left: 2px;">RV Number</span></div>
-                    <div class="col-md-5 col-lg-5"><span style="font-weight: bold; padding-left: 30px;">Date</span></div>
-                    <div class="col-md-1 col-lg-1"><span style="font-weight: bold">Purpose</span></div>
-                    <div class="col-md-5 col-lg-5"><span style="font-weight: bold">Prepared By</span></div>
+                    <div class="col-md-1 col-lg-2"><span style="font-weight: bold; padding-left: 2px;">RV Number</span></div>
+                    <div class="col-md-1 col-lg-2"><span style="font-weight: bold; padding-left: 30px;">Date</span></div>
+                    <div class="col-md-1 col-lg-6"><span style="font-weight: bold">Purpose</span></div>
+                    <div class="col-md-1 col-lg-2"><span style="font-weight: bold">Prepared By</span></div>
                 </div>
                 <div class="row-top-buffer" style="margin-top: 5px"/>
                 <div class="row" style='max-height: 500px; overflow: auto;'>
@@ -29,10 +29,10 @@
                         </thead>
                         <tbody>
                         <tr data-dismiss="modal" ng-repeat="requisitionVoucher in its = (requisitionVouchers | filter:query)" style="cursor: pointer" ng-click="selectRequisitionVoucher(requisitionVoucher)">
-                            <td style="width: 120px;">{{requisitionVoucher.rvNumber}}</td>
-                            <td style="width: 480px;">{{requisitionVoucher.rvDate}}</td>
-                            <td style="width: 90px;">{{requisitionVoucher.purpose}}</td>
-                            <td style="max-width: 300px;">{{requisitionVoucher.preparedBy}}</td>
+                            <td style="width: 150px;">{{requisitionVoucher.rvNumber}}</td>
+                            <td style="width: 150px;">{{requisitionVoucher.rvDate | date:'MMM dd, yyyy'}}</td>
+                            <td style="width: 480px;">{{requisitionVoucher.purpose}}</td>
+                            <td style="max-width: 300px;">{{requisitionVoucher.preparedBy.fullName}}</td>
                         </tr>
                         <tr ng-show="its.length == 0"><td colspan="4" align="center">No records found</td></tr>
                         </tbody>

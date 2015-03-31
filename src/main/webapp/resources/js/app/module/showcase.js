@@ -30,7 +30,6 @@ app.controller('sleCtrl', ['$scope', function($scope) {
 
 app.controller('itemCtrl', ['$scope', '$http', function($scope, $http) {
     $scope.item_selection_handler1 = function(item){
-        alert(qwe)
         $scope.selectedItem1 = item;
     }
 

@@ -371,8 +371,10 @@ function config($stateProvider, $urlRouterProvider) {
                             name: "rv",
                             files: [
                                 "/resources/js/app/module/rv.js",
+                                "/resources/js/app/factories/entity-factory.js",
+                                "/resources/js/app/directives/sl-entity-browser.js",
                                 "/resources/js/app/factories/item-factory.js",
-                               "/resources/js/app/directives/item-browser.js"
+                                "/resources/js/app/directives/item-browser.js"
                             ]
                         }
                     )

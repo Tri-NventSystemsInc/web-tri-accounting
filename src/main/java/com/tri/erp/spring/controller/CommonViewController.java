@@ -46,4 +46,9 @@ public class CommonViewController {
     public String getProcessVoucherPage() {
         return "common/process-voucher";
     }
+
+    @RequestMapping("/requisition-voucher-browser")
+    public String getRequisitionVoucherBrowser() {
+        return "common/requisition-voucher-browser";
+    }
 }

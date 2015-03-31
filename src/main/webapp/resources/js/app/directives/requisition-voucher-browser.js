@@ -2,7 +2,7 @@
     var app;
     var app = angular.module('cmnRequisitionVoucherBrowserApp', ['requisitionVoucherFactory']);
 
-    app.directive('RequisitionVoucherBrowser', ['$timeout', 'requisitionVoucherFactory', function ($timeout, requisitionVoucherFactory) {
+    app.directive('requisitionVoucherBrowser', ['$timeout', 'requisitionVoucherFactory', function ($timeout, requisitionVoucherFactory) {
         return {
             scope : {
                 handler: '&'
