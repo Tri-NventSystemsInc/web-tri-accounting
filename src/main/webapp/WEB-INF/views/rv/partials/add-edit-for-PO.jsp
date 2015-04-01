@@ -290,7 +290,7 @@
     </div>
 </form>
 </div>
-</div></div></div></div></div></div></div>
+
 <div style="margin-bottom: 100px;" />
 
 <script>
@@ -306,3 +306,4 @@
         $('[data-toggle="popover"]').popover({ trigger: "hover", html: true })
     })
 </script>
+</div></div></div></div></div></div></div>

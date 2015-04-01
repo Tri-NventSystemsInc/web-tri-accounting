@@ -43,9 +43,9 @@
             <div class="col-md-3 col-lg-3">
                 <label class="input-label" for="payee">Payee</label>
             </div>
-            <div class="col-md-5 col-lg-5">
+            <div class="col-md-4 col-lg-4">
                 <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
                     <select required="" class="form-control" id="payee">
                         <option value="">Select Payee</option>
                         <option value="">Apple, Inc</option>
@@ -82,9 +82,9 @@
             <div class="col-md-3 col-lg-3">
                 <label class="input-label" for="vdate">Voucher Date</label>
             </div>
-            <div class="col-md-5 col-lg-5">
+            <div class="col-md-2 col-lg-2">
                 <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                     <input  type="text" class="input-sm form-control datepicker" id="vdate" name="vdate" value="05/14/2014">
                 </div>
             </div>
@@ -101,9 +101,9 @@
             <div class="col-md-3 col-lg-3">
                 <label class="input-label" for="checkDate">Check Date</label>
             </div>
-            <div class="col-md-5 col-lg-5">
+            <div class="col-md-2 col-lg-2">
                 <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                     <input type="text" class="input-sm form-control datepicker" id="checkDate" name="checkDate" value="05/14/2014">
                 </div>
             </div>
@@ -187,9 +187,9 @@
             <div class="col-md-3 col-lg-3">
                 <label class="input-label" for="checker">Checker</label>
             </div>
-            <div class="col-md-5 col-lg-5">
+            <div class="col-md-4 col-lg-4">
                 <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
                     <select required="" class="form-control" id="checker">
                         <option value="">Select checker</option>
                         <option value="">John Doe</option>
@@ -207,9 +207,9 @@
             <div class="col-md-3 col-lg-3">
                 <label class="input-label" for="auditor">Auditor</label>
             </div>
-            <div class="col-md-5 col-lg-5">
+            <div class="col-md-4 col-lg-4">
                 <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
                     <select required="" class="form-control" id="auditor">
                         <option value="">Select Auditor</option>
                         <option value="">John Doe</option>
@@ -227,9 +227,9 @@
             <div class="col-md-3 col-lg-3">
                 <label class="input-label" for="approvar">Approving Officer</label>
             </div>
-            <div class="col-md-5 col-lg-5">
+            <div class="col-md-4 col-lg-4">
                 <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
                     <select required="" class="form-control" id="approvar">
                         <option value="">Select Approving Officer</option>
                         <option value="">John Doe</option>
@@ -246,7 +246,7 @@
         <div class="col-md-12 col-lg-12">
             <div class="col-md-3 col-lg-3">
             </div>
-            <div class="col-md-5 col-lg-5">
+            <div class="col-md-4 col-lg-4">
                 <fieldset ng-disabled="submitting">
                     <button ng-mousedown="submit = true" type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> {{save}}</button>
                     <button type="reset" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span> Reset</button>
@@ -272,3 +272,9 @@
         $('[data-toggle="popover"]').popover({ trigger: "hover", html: true })
     })
 </script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
