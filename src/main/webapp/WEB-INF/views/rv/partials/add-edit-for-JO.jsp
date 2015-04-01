@@ -47,7 +47,7 @@
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
                     <select required="" class="form-control" id="payee">
-                        <option value="">Select Payee</option>
+                        <option value="">SELECT</option>
                         <option value="">Apple, Inc</option>
                         <option value="">Google, Inc</option>
                         <option value="">Oracle</option>
@@ -191,7 +191,7 @@
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
                     <select required="" class="form-control" id="checker">
-                        <option value="">Select checker</option>
+                        <option value="">SELECT</option>
                         <option value="">John Doe</option>
                     </select>
                 </div>
@@ -211,7 +211,7 @@
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
                     <select required="" class="form-control" id="auditor">
-                        <option value="">Select Auditor</option>
+                        <option value="">SELECT</option>
                         <option value="">John Doe</option>
                     </select>
                 </div>
@@ -231,7 +231,7 @@
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
                     <select required="" class="form-control" id="approvar">
-                        <option value="">Select Approving Officer</option>
+                        <option value="">SELECT</option>
                         <option value="">John Doe</option>
                     </select>
                 </div>
