@@ -26,28 +26,21 @@
 <div class="ibox float-e-margins">
 <div class="ibox-title">
     <h5>Create New Requisition For Job Order</h5>
+    <div class="ibox-tools ">
+        <a ui-sref="rv"><i class="fa fa fa-sign-out"></i></a>
+    </div>
 </div>
 <div class="ibox-content">
 
 
 <div ng-controller="addEditRvForJOCtrl">
 <div class="row-top-buffer"></div>
-<div class="row">
-    <div class="col-md-12 col-lg-12">
-        <a ui-sref="rv" class="btn btn-primary">Back to list</a>
-    </div>
-</div>
-<div class="row-top-buffer"></div>
-<div class="row">
-    <div class="col-md-12 col-lg-12">
-        <div class="alert alert-info">{{title}}</div>
-    </div>
-</div>
+
 <form ng-submit="processForm()" ng-show="showForm">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <div class="col-md-2 col-lg-2">
+            <div class="col-md-3 col-lg-3">
                 <label class="input-label" for="payee">Payee</label>
             </div>
             <div class="col-md-5 col-lg-5">
@@ -69,13 +62,13 @@
 
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <div class="col-md-2 col-lg-2">
+            <div class="col-md-3 col-lg-3">
                 <label class="input-label" for="particulars">Particulars</label>
             </div>
             <div class="col-md-5 col-lg-5">
                 <div class="input-group">
-                    <textarea  maxlength="1024" rows="5" cols="59" ng-model="apv.particulars" id="particulars"
-                               name="particulars" placeholder="Enter particulars"></textarea>
+                    <textarea  maxlength="1024" rows="5" cols="59" ng-model="apv.particulars" id="particulars" class="form-control "
+                               name="particulars" placeholder=""></textarea>
                 </div>
             </div>
             <form-error err_field="errors.err_particulars"></form-error>
@@ -86,13 +79,13 @@
 
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <div class="col-md-2 col-lg-2">
+            <div class="col-md-3 col-lg-3">
                 <label class="input-label" for="vdate">Voucher Date</label>
             </div>
             <div class="col-md-5 col-lg-5">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
-                    <input class="datepicker" type="text" class="input-sm form-control" id="vdate" name="vdate" value="05/14/2014">
+                    <input  type="text" class="input-sm form-control datepicker" id="vdate" name="vdate" value="05/14/2014">
                 </div>
             </div>
             <form-error err_field="errors.err_apvDate"></form-error>
@@ -105,13 +98,13 @@
 
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <div class="col-md-2 col-lg-2">
+            <div class="col-md-3 col-lg-3">
                 <label class="input-label" for="checkDate">Check Date</label>
             </div>
             <div class="col-md-5 col-lg-5">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
-                    <input class="datepicker" type="text" class="input-sm form-control" id="checkDate" name="checkDate" value="05/14/2014">
+                    <input type="text" class="input-sm form-control datepicker" id="checkDate" name="checkDate" value="05/14/2014">
                 </div>
             </div>
             <form-error err_field="errors.err_checkDate"></form-error>
@@ -119,12 +112,16 @@
     </div>
 
     <div class="row-top-buffer"></div>
+    <div class="hr-line-dashed"></div>
+    <div class="row-top-buffer"></div>
+
+    <div class="row-top-buffer"></div>
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <div class="col-md-2 col-lg-2">
+            <div class="col-md-3 col-lg-3">
                 <label class="input-label">Journal Entries</label>
             </div>
-            <div class="col-md-7 col-lg-7">
+            <div class="col-md-9 col-lg-9">
                 <div class="table-responsive white-bg">
                     <table class="table table-striped">
                         <thead>
@@ -133,33 +130,36 @@
                             <th>Account</th>
                             <th><span class="pull-right">Debit</span></th>
                             <th><span class="pull-right">Credit</span></th>
-                            <th style="width: 60px"></th>
+                            <th style="width: 90px"></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td class="hasSLAccount" data-container="body" data-toggle="popover" data-placement="right" title="SL Account" data-content="CITI hardware">00-11-2221 Office supplies</td>
-                            <td><span class="pull-right">$ 100.00</span></td>
+                            <td><span class="pull-right">100.00</span></td>
                             <td><span class="pull-right"></span></td>
-                            <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove'><i class='fa fa-minus'></i></a></td>
+                            <td style="text-align: right">
+                                <a href="" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i></a>
+                                <a href="" class="btn btn-white btn-sm"><i class="fa fa-trash-o"></i></a>
+                            </td>
                         </tr>
                         <tr>
                             <td class="hasSLAccount" data-container="body" data-toggle="popover" data-placement="right" title="SL Account" data-content="Ace hardware">00-11-2221 Water pipes</td>
-                            <td><span class="pull-right">$ 45,562.00</span></td>
+                            <td><span class="pull-right">45,562.00</span></td>
                             <td><span class="pull-right"></span></td>
-                            <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove'><i class='fa fa-minus'></i></a></td>
+                            <td style="text-align: right">
+                                <a href="" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i></a>
+                                <a href="" class="btn btn-white btn-sm"><i class="fa fa-trash-o"></i></a>
+                            </td>
                         </tr>
                         <tr>
                             <td>22-11-2221 Maybank - checking</td>
                             <td><span class="pull-right"></span></td>
-                            <td><span class="pull-right">$ 56,726.00</span></td>
-                            <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove'><i class='fa fa-minus'></i></a></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><span class="pull-right"></span></td>
-                            <td><span class="pull-right"></span></td>
-                            <td style="text-align: center"><a style='padding: 0' title='Add'><i class='fa fa-plus'></i></a></td>
+                            <td><span class="pull-right">56,726.00</span></td>
+                            <td style="text-align: right">
+                                <a href="" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i></a>
+                                <a href="" class="btn btn-white btn-sm"><i class="fa fa-trash-o"></i></a>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -168,12 +168,23 @@
             <form-error err_field="errors.err_particulars"></form-error>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <div class="col-md-3 col-lg-3">
+            </div>
+            <div class="col-md-9 col-lg-9 ">
+                <a href="" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus-circle" title='Add'></i> Add Account </a>
+            </div>
+        </div>
+    </div>
 
+    <div class="row-top-buffer"></div>
+    <div class="hr-line-dashed"></div>
     <div class="row-top-buffer"></div>
 
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <div class="col-md-2 col-lg-2">
+            <div class="col-md-3 col-lg-3">
                 <label class="input-label" for="checker">Checker</label>
             </div>
             <div class="col-md-5 col-lg-5">
@@ -193,7 +204,7 @@
 
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <div class="col-md-2 col-lg-2">
+            <div class="col-md-3 col-lg-3">
                 <label class="input-label" for="auditor">Auditor</label>
             </div>
             <div class="col-md-5 col-lg-5">
@@ -213,7 +224,7 @@
 
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <div class="col-md-2 col-lg-2">
+            <div class="col-md-3 col-lg-3">
                 <label class="input-label" for="approvar">Approving Officer</label>
             </div>
             <div class="col-md-5 col-lg-5">
@@ -233,7 +244,7 @@
 
     <div class="row">
         <div class="col-md-12 col-lg-12">
-            <div class="col-md-2 col-lg-2">
+            <div class="col-md-3 col-lg-3">
             </div>
             <div class="col-md-5 col-lg-5">
                 <fieldset ng-disabled="submitting">

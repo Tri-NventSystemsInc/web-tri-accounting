@@ -84,7 +84,7 @@
             <div class="col-md-7 col-lg-7">
                 <div class="input-group">
                     <textarea maxlength="1024" rows="5" cols="59" class="form-control " ng-model="apv.particulars" id="purpose"
-                              name="purpose" placeholder="enter purpose here..."></textarea>
+                              name="purpose" ></textarea>
                 </div>
             </div>
             <form-error err_field="errors.err_particulars"></form-error>
@@ -102,14 +102,14 @@
             </div>
             <div class="col-md-9 col-lg-9">
                 <div class="table-responsive white-bg">
-                    <table class="table table-bordered table-striped">
+                    <table class="table table-striped">
                         <thead>
                         <tr >
 
                             <th style="text-align: center " >Item No.</th>
-                            <th style="width: 480px">Description</th>
+                            <th style="width: 420px">Description</th>
                             <th>Quantity</th>
-                            <th style="width: 60px"></th>
+                            <th style="width: 90px">Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -117,19 +117,28 @@
                             <td style="text-align: center">1</td>
                             <td>Ballpen Faber castel</td>
                             <td>&nbsp;&nbsp;2 pcs</td>
-                            <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit text-primary'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove '><i class='fa fa-minus text-primary'></i></a></td>
+                            <td style="text-align: right">
+                                <a href="" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i></a>
+                                <a href="" class="btn btn-white btn-sm"><i class="fa fa-trash-o"></i></a>
+                            </td>
                         </tr>
                         <tr>
                             <td style="text-align: center">2</td>
                             <td>Bond paper long-S, 20-paper one</td>
                             <td>&nbsp;&nbsp;12 rimm</td>
-                            <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit text-primary'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove '><i class='fa fa-minus text-primary'></i></a></td>
+                            <td style="text-align: right">
+                                <a href="" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i></a>
+                                <a href="" class="btn btn-white btn-sm"><i class="fa fa-trash-o"></i></a>
+                            </td>
                         </tr>
                         <tr>
                             <td style="text-align: center">3</td>
                             <td>Expandable file folder thick-green(long)</td>
                             <td>&nbsp;&nbsp;<strong>6</strong> pcs</td>
-                            <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit text-primary'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove'><i class='fa fa-minus text-primary'></i></a></td>
+                            <td style="text-align: right">
+                                <a href="" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i></a>
+                                <a href="" class="btn btn-white btn-sm"><i class="fa fa-trash-o"></i></a>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -143,7 +152,7 @@
             <div class="col-md-3 col-lg-3">
             </div>
             <div class="col-md-9 col-lg-9 ">
-                <a href="" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus-square-o" title='Add'></i> Add Item </a>
+                <a href="" class="btn btn-primary btn-sm pull-right"><i class="fa fa-plus-circle" title='Add'></i> Add Item </a>
             </div>
         </div>
     </div>
