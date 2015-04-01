@@ -254,9 +254,6 @@ userApp.controller('addEditRoleCtrl', ['$location', '$scope', '$stateParams', '$
     function loadMenus() {
         menuFactory.getMenus().success(function (data) {
             $scope.menus = data;
-
-            console.log(data);
-
             if ($scope.role != undefined) {
                 setSelectedMenu();
             }
@@ -400,37 +397,42 @@ userApp.controller('addEditRoleCtrl', ['$location', '$scope', '$stateParams', '$
     }
 
     $scope.toggleParent = function(selectedMenu) {
-        selectedMenu.selected = selectedMenu.selected;
 
-        // check all children
-        if (selectedMenu.parentMenu == null) {
+        if (selectedMenu.parentMenu == null) { // selected top level menu
+
+            selectedMenu.selected = selectedMenu.selected;
+
             angular.forEach($scope.menus, function(menu, key) {
                 if (menu.parentMenu != null) {
                     if (menu.parentMenu.id == selectedMenu.id) {
-                        menu.selected = selectedMenu.selected;
+                        menu.selected = !selectedMenu.selected;
                     }
                 }
             });
         } else {
 
+            selectedMenu.selected = !selectedMenu.selected;
+
             var parentMenu = {};
-            var unCheck = false;
+            var checked = false;
 
             // uncheck parent if no selected child
             angular.forEach($scope.menus, function(menu, key) {
+
                 if (menu.id == selectedMenu.parentMenu.id) { parentMenu = menu; } // needed for binding
                 if (menu.parentMenu != null) {  // get menu with parent
 
                     if (menu.parentMenu.id == selectedMenu.parentMenu.id) {
-                        if (menu.selected) {
-                            unCheck = true;
+
+                        if (menu.selected) { // after selection
+                            checked = true;
                             return;
                         }
                     }
                 }
-            });
 
-            parentMenu.selected = unCheck;
+            });
+            parentMenu.selected = checked;
         }
     }
 }]);

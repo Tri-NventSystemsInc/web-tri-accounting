@@ -68,20 +68,20 @@
                             <tbody>
                             <tr>
                                 <td>00-11-2221 Office supplies</td>
-                                <td><span class="pull-right">$ 100.00</span></td>
+                                <td><span class="pull-right">100.00</span></td>
                                 <td><span class="pull-right"></span></td>
                                 <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove'><i class='fa fa-minus'></i></a></td>
                             </tr>
                             <tr>
                                 <td>00-11-2221 Water pipes</td>
-                                <td><span class="pull-right">$ 45,562.00</span></td>
+                                <td><span class="pull-right">45,562.00</span></td>
                                 <td><span class="pull-right"></span></td>
                                 <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove'><i class='fa fa-minus'></i></a></td>
                             </tr>
                             <tr>
                                 <td class="hasSLAccount" data-container="body" data-toggle="popover" data-placement="right" title="SL Account" data-content="CITI hardware<br/>Ace hardware">22-11-2221 Supplier</td>
                                 <td><span class="pull-right"></span></td>
-                                <td><span class="pull-right">$ 56,726.00</span></td>
+                                <td><span class="pull-right">45,662.00</span></td>
                                 <td style="text-align: center"><a style='padding: 0' title='Edit'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;<a style='padding: 0' title='Remove'><i class='fa fa-minus'></i></a></td>
                             </tr>
                             <tr>

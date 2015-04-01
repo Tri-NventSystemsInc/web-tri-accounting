@@ -36,28 +36,28 @@
                             <tr>
                                 <td>JV-201501</td>
                                 <td>To record Green Core Power Cost for the month of January.</td>
-                                <td><span class="pull-right">$ 1,300.00</span></td>
+                                <td><span class="pull-right">1,300.00</span></td>
                                 <td>Jan 14, 2015</td>
                                 <td><span class="label label-danger">For recommendation</span></td>
                             </tr>
                             <tr>
                                 <td>JV-201502</td>
                                 <td>To record Green Core Power Cost for the month of February.</td>
-                                <td><span class="pull-right">$ 453,562.00</span></td>
+                                <td><span class="pull-right">453,562.00</span></td>
                                 <td>Feb 14, 2015</td>
                                 <td><span class="label label-warning">Pending</span></td>
                             </tr>
                             <tr>
                                 <td>JV-201503</td>
                                 <td>To record Green Core Power Cost for the month of March.</td>
-                                <td><span class="pull-right">$ 356,726.00</span></td>
+                                <td><span class="pull-right">356,726.00</span></td>
                                 <td>Mar 24, 2015</td>
                                 <td><span class="label label-info">Approved</span></td>
                             </tr>
                             <tr>
                                 <td>JV-201504</td>
                                 <td>To record Green Core Power Cost for the month of August.</td>
-                                <td><span class="pull-right">$ 31,600.00</span></td>
+                                <td><span class="pull-right">31,600.00</span></td>
                                 <td>Aug 13, 2015</td>
                                 <td><span class="label label-primary">For Approval</span></td>
                             </tr>
