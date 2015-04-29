@@ -1,17 +1,39 @@
+<div ui-view>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-9">
+        <h2><b>Accounts Payable Voucher</b></h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li>
+                <a ui-sref="apv">APV List</a>
+            </li>
+            <li class="active">
+                <strong>New AP Voucher</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+    </div>
+</div>
 
+<div class="row">
+<div class="col-lg-12">
+<div class="ibox float-e-margins">
+<div class="ibox-title">
+    <h5>Create New Account Payable Voucher</h5>
+    <div class="ibox-tools ">
+        <a ui-sref="apv"><i class="fa fa-times"></i></a>
+    </div>
+</div>
+<div class="ibox-content">
 <div ng-controller="addEditApvCtrl">
     <div class="row-top-buffer"></div>
-    <div class="row">
-        <div class="col-md-12 col-lg-12">
-            <a ui-sref="apv" class="btn btn-primary">Back to list</a>
-        </div>
-    </div>
-    <div class="row-top-buffer"></div>
-    <div class="row">
-        <div class="col-md-12 col-lg-12">
-            <div class="alert alert-info">{{title}}</div>
-        </div>
-    </div>
+
     <form ng-submit="processForm()" ng-show="showForm">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="row">
@@ -207,3 +229,4 @@
     })
 </script>
 
+</div></div></div></div></div></div></div>

@@ -22,18 +22,28 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="ibox float-e-margins">
+                   <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>List of Requested Issue Voucher/s</h5><small>Display list filtered by <strong> Pending</strong> RIVs</small>
-
-                            <div class="ibox-tools ">
-                                <a href="index.html"><i class="fa fa fa-sign-out"></i></a>
+                            <h5>List of Requested Issue Voucher/s</h5>
+                            <div class="ibox-tools">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="" aria-expanded="false">
+                                    <i class="fa fa-wrench "></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li><a href=""></i>&nbsp;&nbsp;Pending</a></li>
+                                    <li><a href=""></i>&nbsp;&nbsp;Cancelled</a></li>
+                                    <li><a href=""></i>&nbsp;&nbsp;Returned</a></li>
+                                    <li><a href=""></i>&nbsp;&nbsp;Audit</a></li>
+                                    <li><a href=""></i>&nbsp;&nbsp;RecApproval</a></li>
+                                    <li><a href=""></i>&nbsp;&nbsp;Approved</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="">&nbsp;&nbsp;Show All</a></li>
+                                </ul>
+                                <a href="index.html"><i class="fa fa-times"></i></a>
                             </div>
                         </div>
+
                         <div class="ibox-content">
-
-
-
                             <div class="row">
                                 <div class="col-sm-9">
                                     <div class="btn-group" dropdown >
@@ -49,28 +59,12 @@
                                             <li><a ui-sref="rv.newLab"><i class="fa fa-file-o "></i>&nbsp;&nbsp;<strong>Labor</strong> Request</a></li>
                                         </ul>
                                     </div>
-                                    <div class="btn-group" dropdown >
-                                        <button type="button" class="btn btn-white btn-sm dropdown-toggle"><i class="fa fa-flag-o"></i>&nbsp;&nbsp;
-                                            Filter&nbsp;<span class="caret"></span>
-                                        </button>
-
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a ui-sref=""><i class="fa fa-flag-o "></i>&nbsp;&nbsp;<strong>Pending</strong></a></li>
-                                            <li><a ui-sref=""><i class="fa fa-flag-o "></i>&nbsp;&nbsp;<strong>Cancelled</strong></a></li>
-                                            <li><a ui-sref=""><i class="fa fa-flag-o "></i>&nbsp;&nbsp;<strong>Returned</strong></a></li>
-                                            <li><a ui-sref=""><i class="fa fa-flag-o "></i>&nbsp;&nbsp;<strong>Audit</strong></a></li>
-                                            <li><a ui-sref=""><i class="fa fa-flag-o "></i>&nbsp;&nbsp;<strong>RecApproval</strong></a></li>
-                                            <li><a ui-sref=""><i class="fa fa-flag-o "></i>&nbsp;&nbsp;<strong>Approved</strong></a></li>
-                                            <li class="divider"></li>
-                                            <li><a ui-sref=""><i class="fa fa-flag-o "></i>&nbsp;&nbsp;<strong>All</strong></a></li>
-                                        </ul>
-                                    </div>
-
 
                                 </div>
 
                                 <div class="col-sm-3 pull-right">
-                                    <input type="search" placeholder="Search" class="input-sm form-control">
+                                    <div class="input-group"><input type="text" placeholder="Search" class="input input-sm form-control"> <span class="input-group-btn">
+                                        <button type="button" class="btn btn-sm  btn-primary"> Go!</button> </span></div>
                                 </div>
 
 
@@ -101,10 +95,10 @@
                                         <td class="project-status" style="width: 100px">
                                             <span class="label label-default " ><i class="fa fa-flag-o"></i>&nbsp;Pending</span>
                                         </td>
-                                        <td style="width: 220px" align="center">
+                                        <td style="width: 250px" align="center">
 
                                             <small>RIV No.</small><br>
-                                            <small><strong>RIV-2014-01-0001</strong></small><br>
+                                            <strong>RIV-2014-01-0001</strong><br>
                                             <small>Date of Delivery</small><br>
                                             <small><strong>Jul 20, 2013</strong></small>
 
@@ -153,10 +147,10 @@
                                         <td class="project-status" style="width: 100px">
                                             <span class="label label-danger " ><i class="fa fa-flag-o"></i>&nbsp;Cancelled</span>
                                         </td>
-                                        <td style="width: 220px" align="center">
+                                        <td style="width: 250px" align="center">
 
                                             <small>RIV No.</small><br>
-                                            <small><strong>RIV-2014-01-0001</strong></small><br>
+                                            <strong>RIV-2014-01-0001</strong><br>
                                             <small>Date of Delivery</small><br>
                                             <small><strong>Jul 20, 2013</strong></small>
 
@@ -212,6 +206,7 @@
                     </div>
 
                 </div>
+            </div>
             </div>
         </div>
 </div>

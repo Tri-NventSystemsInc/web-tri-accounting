@@ -27,7 +27,7 @@
 <div class="ibox-title">
     <h5>Create New Requisition For Purchase Order</h5>
     <div class="ibox-tools ">
-        <a ui-sref="rv"><i class="fa fa fa-sign-out"></i></a>
+        <a ui-sref="rv"><i class="fa fa-times"></i></a>
     </div>
 </div>
 <div class="ibox-content">

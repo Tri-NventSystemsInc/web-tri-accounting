@@ -1,16 +1,37 @@
+
+
 <div ui-view>
-    <div class="row">
-        <div class="col-md-12 col-lg-12">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-9">
+            <h2><b>Accounts Payable Voucher</b></h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="active">
+                    <strong>APV List</strong>
+                </li>
+            </ol>
         </div>
     </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+            </div>
+        </div>
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>List of Accounts Payable Vouchers </h5>
-                </div>
-                <div class="ibox-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <strong class="text-primary"><i class="fa fa-paste" >&nbsp;&nbsp;</i>List of Accounts Payable Voucher/s</strong>
+
+                        <div class="ibox-tools ">
+                            <a href="index.html"><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
                     <div class="row">
                         <div class="col-sm-3">
                             ${createApv}
@@ -73,4 +94,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>
