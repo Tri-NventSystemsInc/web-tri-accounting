@@ -2,7 +2,14 @@
     <div class="modal-content">
     <div class="modal-header">
         <h5 class="modal-title">Select Supplier</h5>
+        <div class="row-top-buffer" style="margin-top: 5px"/>
+        <div class=" pull-left">
+            <div class="input-group"><input type="text" placeholder="Search" class="input input-sm form-control"> <span class="input-group-btn">
+                                        <button type="button" class="btn btn-sm  btn-primary"> Go!</button> </span></div>
+        </div>
+        <div class="row-top-buffer" style="margin-top: 15px"/>
     </div>
+
     <div class="modal-body">
 
             <%--<div class="col-lg-12 col-md-12">
@@ -29,6 +36,8 @@
         </div>--%>
 
         <div class="table-responsive project-list">
+
+
             <div class="row" style='max-height: 350px; overflow: auto;'>
             <div ng-show="!slEntities">Loading entities...</div>
             <table class="table table-hover">
@@ -38,6 +47,7 @@
                     <th>Entity Type</th>
                     <th>AccountNo</th>
                     <th>Name</th>
+                    <th>VAT</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -56,7 +66,9 @@
                         <br/>
                         <small>{{entity.address}}</small>
                     </td>
-
+                    <td style="width:100px" align="center" class="project-status">
+                        Non-Vatable
+                    </td>
                     <td class="project-people">
                         <a href=""><img alt="image" class="img-circle" src="/resources/images/pix/a1.jpg"></a>
                     </td>
@@ -72,7 +84,10 @@
     </div>
 
     <div class="modal-footer">
-        <button type="button" class="btn btn-white" ng-click="close()">Close</button>
+
+         <div class=" pull-right">
+                <button type="button" class="btn btn-white" ng-click="close()">Close</button>
+         </div>
     </div>
 
 </div>
