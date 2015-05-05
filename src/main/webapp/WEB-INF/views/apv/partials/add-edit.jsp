@@ -25,7 +25,7 @@
 <div class="col-lg-12">
 <div class="ibox float-e-margins">
 <div class="ibox-title">
-    <h5>Create New Account Payable Voucher</h5>
+    <strong class="text-primary"><i class="fa fa-file-o" >&nbsp;&nbsp;</i>List of Accounts Payable Voucher/s</strong>
     <div class="ibox-tools ">
         <a ui-sref="apv"><i class="fa fa-times"></i></a>
     </div>
@@ -109,6 +109,8 @@
         </div>
 
         <div class="row-top-buffer"></div>
+        <div class="hr-line-dashed"></div>
+        <div class="row-top-buffer"></div>
 
         <div class="row">
             <div class="col-md-12 col-lg-12">
@@ -149,6 +151,8 @@
             </div>
         </div>
 
+        <div class="row-top-buffer"></div>
+        <div class="hr-line-dashed"></div>
         <div class="row-top-buffer"></div>
 
         <div class="row">

@@ -2,12 +2,7 @@
     <div class="modal-content">
     <div class="modal-header">
         <h5 class="modal-title">Select Supplier</h5>
-        <div class="row-top-buffer" style="margin-top: 5px"/>
-        <div class=" pull-left">
-            <div class="input-group"><input type="text" placeholder="Search" class="input input-sm form-control"> <span class="input-group-btn">
-                                        <button type="button" class="btn btn-sm  btn-primary"> Go!</button> </span></div>
-        </div>
-        <div class="row-top-buffer" style="margin-top: 15px"/>
+
     </div>
 
     <div class="modal-body">
@@ -37,8 +32,12 @@
 
         <div class="table-responsive project-list">
 
+            <div class="row"><input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn"></span></div>
+
+
 
             <div class="row" style='max-height: 350px; overflow: auto;'>
+
             <div ng-show="!slEntities">Loading entities...</div>
             <table class="table table-hover">
 
@@ -62,6 +61,7 @@
                         <strong>{{entity.accountNo}}</strong>
                     </td>
                     <td style="width:600px" class="project-title">
+                        <a ui-sref="project_detail">{{entity.name}}</a>
                         <br/>
                         <small>{{entity.address}}</small>
                     </td>
