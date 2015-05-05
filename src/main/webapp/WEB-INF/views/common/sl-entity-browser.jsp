@@ -62,7 +62,6 @@
                         <strong>{{entity.accountNo}}</strong>
                     </td>
                     <td style="width:600px" class="project-title">
-                        <a ui-sref="project_detail">{{entity.name}}</a>
                         <br/>
                         <small>{{entity.address}}</small>
                     </td>
