@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
                         <input disabled="" ng-model="selectedSupplier.name" id="supplier" name="supplier" class="form-control ng-pristine ng-valid" type="text" placeholder="Browse supplier"/>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                 </div>
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                         <input class="datepicker" type="text" class="input-sm form-control" id="vdate" name="vdate" value="05/14/2014">
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                 </div>
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                         <input class="datepicker" type="text" class="input-sm form-control" id="dueDate" name="dueDate" value="05/14/2014">
                     </div>
                 </div>
@@ -162,7 +162,7 @@
                 </div>
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
                         <input disabled="" ng-model="selectedChecker.name" id="checker" name="checker" class="form-control ng-pristine ng-valid" type="text" placeholder="Browse checker"/>
                     </div>
                 </div>
@@ -185,7 +185,7 @@
                 </div>
                 <div class="col-md-5 col-lg-5">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-filter"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
                         <input disabled="" ng-model="selectedApprovingOfficer.name" id="approvar" name="approvar" class="form-control ng-pristine ng-valid" type="text" placeholder="Browse approving officer"/>
                     </div>
                 </div>
